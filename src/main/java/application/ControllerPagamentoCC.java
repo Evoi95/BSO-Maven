@@ -3,9 +3,9 @@ package application;
 import java.sql.Date;
 import java.sql.SQLException;
 
-import bso.CartaCredito;
 import database.CartaCreditoDao;
 import javafx.collections.ObservableList;
+import pagamento.CartaCredito;
 
 public class ControllerPagamentoCC {
 	private CartaCreditoDao cDao;

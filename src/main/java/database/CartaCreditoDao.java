@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import bso.CartaCredito;
+import pagamento.CartaCredito;
 
 public class CartaCreditoDao {
 	private PreparedStatement stmt=null;

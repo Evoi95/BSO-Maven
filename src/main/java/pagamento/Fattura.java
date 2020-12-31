@@ -1,4 +1,4 @@
-package bsoPagamento;
+package pagamento;
 
 public class Fattura {
 	private String nome,cognome, via, com;

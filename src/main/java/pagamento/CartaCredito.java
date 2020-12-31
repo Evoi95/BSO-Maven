@@ -1,4 +1,4 @@
-package bsoPagamento;
+package pagamento;
 
 import java.sql.Date;
 

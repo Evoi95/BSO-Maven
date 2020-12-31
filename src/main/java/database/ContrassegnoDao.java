@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import bso.Fattura;
+import pagamento.Fattura;
 
 public class ContrassegnoDao {
 	

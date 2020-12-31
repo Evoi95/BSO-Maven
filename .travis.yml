@@ -1,0 +1,26 @@
+language: java
+
+jdk: openjdk11
+
+
+before_install:
+  - sudo apt update
+  - sudo apt install openjfx
+  - sudo apt install mysql-workbench	
+
+install: true
+ 
+
+addons:
+  sonarcloud:
+    organization: "evoi95"
+    token:
+    secure: "3c2f7e5cb9b0b7cf6c9bc0dc05120ca054fb0730" # encrypted value of your token
+
+services:
+  - mysql
+
+script:
+  - ant build  
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar

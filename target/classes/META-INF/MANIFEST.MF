@@ -1,6 +1,11 @@
 Manifest-Version: 1.0
-Built-By: dani
-Build-Jdk: 14.0.2
+Built-By: ginoz
+Build-Jdk: 15.0.1
+Class-Path: lib/mysql-connector-java-8.0.22.jar lib/protobuf-java-3.11.4
+ .jar lib/itextpdf-5.5.9.jar lib/javafx-fxml-11.0.2.jar lib/javafx-fxml-
+ 11.0.2-win.jar lib/javafx-controls-11.0.2.jar lib/javafx-controls-11.0.
+ 2-win.jar lib/javafx-graphics-11.0.2.jar lib/javafx-graphics-11.0.2-win
+ .jar lib/javafx-base-11.0.2.jar lib/javafx-base-11.0.2-win.jar
 Main-Class: com.example.test.HelloWorld
 Created-By: Maven Integration for Eclipse
 

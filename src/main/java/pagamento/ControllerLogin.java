@@ -1,4 +1,4 @@
-package bsoPagamento;
+package pagamento;
 
 public class ControllerLogin {
 

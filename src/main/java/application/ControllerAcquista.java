@@ -2,7 +2,7 @@ package application;
 
 import java.sql.SQLException;
 
-import bso.Pagamento;
+import pagamento.Pagamento;
 import database.GiornaleDao;
 import database.LibroDao;
 import database.PagamentoDao;

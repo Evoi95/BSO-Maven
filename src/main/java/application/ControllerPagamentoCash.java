@@ -3,8 +3,8 @@ package application;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import bso.Fattura;
 import database.ContrassegnoDao;
+import pagamento.Fattura;
 
 public class ControllerPagamentoCash {
 	private ContrassegnoDao pD;

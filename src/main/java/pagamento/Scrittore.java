@@ -1,4 +1,4 @@
-package bsoPagamento;
+package pagamento;
 import java.util.ArrayList;
 public class Scrittore {
 	

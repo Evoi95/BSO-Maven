@@ -1,4 +1,4 @@
-package bsoPagamento;
+package pagamento;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
