@@ -1,6 +1,5 @@
 package application;
 
-import java.awt.Panel;
 import java.io.IOException;
 
 import javafx.fxml.FXML;
