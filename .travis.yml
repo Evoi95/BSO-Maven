@@ -1,0 +1,26 @@
+lenguage : java
+
+jdk: openjdk11
+
+before_install:
+  - chmod +x mvnw
+  - sudo apt update
+  - sudo apt install openjfx
+  - sudo apt install mysql-workbench
+  
+script : ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+install: true
+
+script: ./mvnw clean install
+
+cache:
+  directories:
+  - $HOME/.m2
+  
+ 
+services:
+  - mysql
+
+script:
+  - ant build
