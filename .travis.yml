@@ -5,10 +5,12 @@ jdk: openjdk11
 # run in container
 sudo: false
 
-
-# configure xvfb screen
-services:
-  - xvfb
+before_install:
+  
+  - sudo apt update
+  - sudo apt install maven
+  - sudo apt install openjfx
+  - sudo apt install mysql-workbench
 
 # Install xmlstarlet
 addons:
@@ -18,25 +20,16 @@ addons:
 
 # Do not run travis install step
 install: true
-
-# Assemble jars
-script:
-  ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
-  - mvn clean compile verify
-
-before_install:
-  - sudo apt update
-  - sudo apt install openjfx
-  - sudo apt install mysql-workbench
-  
-  
+ 
 cache:
   directories:
     - $HOME/.m2  
  
 services:
   - mysql
+    xvfb
 
 script:
-  - ant build
+    - mvn clean compile verify
+
+    - ant build
