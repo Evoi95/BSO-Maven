@@ -36,7 +36,7 @@ services:
 script:
     - mvn clean compile verify
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-    - mvn sonar:sonar -Dsonar.login="3c2f7e5cb9b0b7cf6c9bc0dc05120ca054fb0730"
+    - mvn sonar:sonar -Dsonar.login=3c2f7e5cb9b0b7cf6c9bc0dc05120ca054fb0730
     - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
 
 
