@@ -2,15 +2,14 @@
 language: java
 jdk: openjdk11
 
-# run in container
-sudo: false
-
 before_install:
   
   - sudo apt update
   - sudo apt install maven
   - sudo apt install openjfx
   - sudo apt install mysql-workbench
+  - sudo apt install libjacoco-java
+
 
 # Install xmlstarlet
 addons:
@@ -35,9 +34,5 @@ services:
    
 script:
     - mvn clean compile verify
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
-    - mvn sonar:sonar -Dsonar.login=3c2f7e5cb9b0b7cf6c9bc0dc05120ca054fb0730
-    - mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar
-
-
+    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
     - ant build
