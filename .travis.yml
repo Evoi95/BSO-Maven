@@ -2,21 +2,43 @@ lenguage : java
 
 jdk: openjdk11
 
+# use java support
+language: java
+jdk: openjdk11
+
+# run in container
+sudo: false
+
+# use linux as operating system
+os: linux
+dist: xenial
+
+# configure xvfb screen
+services:
+  - xvfb
+
+# Install xmlstarlet
+addons:
+  apt:
+    packages:
+      - xmlstarlet
+
+# Do not run travis install step
+install: true
+
+# Assemble jars
+script:
+  - mvn clean compile verify
+
 before_install:
   - sudo apt update
   - sudo apt install openjfx
   - sudo apt install mysql-workbench
   
-script : ./mvnw install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-
-install: true
-
-script: ./mvnw clean install
-
+  
 cache:
   directories:
-  - $HOME/.m2
-  
+    - $HOME/.m2  
  
 services:
   - mysql
