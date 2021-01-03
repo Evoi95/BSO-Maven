@@ -60,6 +60,7 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,1);
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
+			
 			FileInputStream fin = new FileInputStream("main/java/images/icon.png");
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
