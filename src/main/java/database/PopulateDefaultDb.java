@@ -60,7 +60,11 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,1);
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
+<<<<<<< HEAD
 			FileInputStream fin = new FileInputStream("main/java/images/icon.png");
+=======
+			FileInputStream fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 
@@ -81,7 +85,11 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,1);
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
+<<<<<<< HEAD
 			fin = new FileInputStream("main/java/images/icon.png");
+=======
+			fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 			
@@ -103,7 +111,11 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,11);
 			prepQ.setFloat(13, 121);
 			prepQ.setInt (14, 1522);
+<<<<<<< HEAD
 			fin = new FileInputStream("main/java/images/icon.png");
+=======
+			fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 			// popolo il db con utenti e dati 
@@ -141,7 +153,11 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 20); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
+<<<<<<< HEAD
 		FileInputStream fin = new FileInputStream("main/java/images/icon.png");
+=======
+		FileInputStream fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		
@@ -155,7 +171,11 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 30); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
+<<<<<<< HEAD
 		fin = new FileInputStream("main/java/images/icon.png");
+=======
+		fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		
@@ -169,7 +189,11 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 15); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
+<<<<<<< HEAD
 		fin = new FileInputStream("main/java/images/icon.png");
+=======
+		fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		} 
@@ -214,7 +238,11 @@ public class PopulateDefaultDb {
 		prepQ.setInt(8,1);
 		prepQ.setFloat(9, 12);
 		prepQ.setInt(10, 2000); // copie rimaneti
+<<<<<<< HEAD
 		FileInputStream fin = new FileInputStream("main/java/images/icon.png");
+=======
+		FileInputStream fin = new FileInputStream("C:/Users/dani/git/BSO-Maven/src/main/java/images/icon.png");
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 		prepQ.setBinaryStream(11, fin);
 		prepQ.executeUpdate();
 		} catch (SQLException e) {

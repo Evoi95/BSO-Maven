@@ -12,6 +12,15 @@ module com.example.test {
 	opens application to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	exports factoryBook;
 	opens factoryBook to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
+<<<<<<< HEAD
+	exports pagamento;
+	opens pagamento to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
+	exports database;
+	opens database to javafx.graphics,javafx.base,javafx.controls,javafx.fxml,java.sql;
+	
+	//exports reports;
+	
+=======
 	exports database;
 	opens database to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	exports loginSingleton to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
@@ -19,5 +28,6 @@ module com.example.test {
 	exports factoryUser to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 
 
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven
 }
 
