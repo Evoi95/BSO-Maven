@@ -60,7 +60,7 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,1);
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
-			FileInputStream fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+			FileInputStream fin = new FileInputStream("icon.png");
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 
@@ -81,7 +81,7 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,1);
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
-			fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+			fin = new FileInputStream("images/icon.png");
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 			
@@ -103,7 +103,7 @@ public class PopulateDefaultDb {
 			prepQ.setInt(12,11);
 			prepQ.setFloat(13, 121);
 			prepQ.setInt (14, 1522);
-			fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+			fin = new FileInputStream("images/icon.png");
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 			// popolo il db con utenti e dati 
@@ -141,7 +141,7 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 20); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
-		FileInputStream fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+		FileInputStream fin = new FileInputStream("images/icon.png");
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		
@@ -155,7 +155,7 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 30); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
-		fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+		fin = new FileInputStream("images/icon.png");
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		
@@ -169,7 +169,7 @@ public class PopulateDefaultDb {
 		prepQ.setInt(6, 15); // copie rimanenti
 		prepQ.setInt(7,1);
 		prepQ.setFloat(8, 1);
-		fin = new FileInputStream("/BSO-Maven/src/main/java//BSO-Maven/src/main/java/images/icon.png");
+		fin = new FileInputStream("images/icon.png");
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
 		} 
@@ -214,7 +214,7 @@ public class PopulateDefaultDb {
 		prepQ.setInt(8,1);
 		prepQ.setFloat(9, 12);
 		prepQ.setInt(10, 2000); // copie rimaneti
-		FileInputStream fin = new FileInputStream("C:/Users/dani/git/BSO-Maven/src/main/java/images/icon.png");
+		FileInputStream fin = new FileInputStream("images/icon.png");
 		prepQ.setBinaryStream(11, fin);
 		prepQ.executeUpdate();
 		} catch (SQLException e) {
