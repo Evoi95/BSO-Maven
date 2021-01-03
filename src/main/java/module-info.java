@@ -20,6 +20,14 @@ module com.example.BSOMaven {
 	
 	//exports reports;
 	
+<<<<<<< HEAD
+	exports loginSingleton to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
+	opens factoryUser;
+	exports factoryUser to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
+	
+}
+=======
 
 }
 
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven
