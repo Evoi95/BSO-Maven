@@ -1,6 +1,7 @@
 module com.example.test {
     requires java.logging;
 	requires java.sql;
+	requires java.sql.rowset;
 	requires java.desktop;
 	requires itextpdf;
 	requires javafx.controls;
@@ -18,8 +19,14 @@ module com.example.test {
 	
 	//exports reports;
 	
+<<<<<<< HEAD
 	exports loginSingleton to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	opens factoryUser;
 	exports factoryUser to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	
 }
+=======
+
+}
+
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven

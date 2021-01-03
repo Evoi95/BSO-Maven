@@ -262,8 +262,6 @@
             <mainClass>Main.java</mainClass>
     	    </configuration>
     		</plugin>
-    		
-    	
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -276,25 +274,6 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-            
-            <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-jar-plugin</artifactId>
-            <version>2.4</version>
-            <configuration>
-                <archive>
-                    <manifest>
-                        <mainClass></mainClass>
-                    </manifest>
-                </archive>
-            </configuration>
-        </plugin>
-
-
-
-
-            
-            
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -319,15 +298,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
             </plugin>
-            
-         
+
         </plugins>
-        
-        <resources>
-     <resource>
-       <directory>src/main/java/images</directory>
-       <includes><include>*.png</include></includes>
-     </resource>
-   </resources>
     </build>
 </project>
