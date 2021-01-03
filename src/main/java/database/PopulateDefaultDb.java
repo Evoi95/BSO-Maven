@@ -61,8 +61,12 @@ public class PopulateDefaultDb {
 			prepQ.setFloat(13, 12);
 			prepQ.setInt (14, 15);
 <<<<<<< HEAD
+			
+=======
+<<<<<<< HEAD
 			FileInputStream fin = new FileInputStream("icon.png");
 =======
+>>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven.git
 			FileInputStream fin = new FileInputStream("main/java/images/icon.png");
 >>>>>>> branch 'main' of https://github.com/Evoi95/BSO-Maven
 			prepQ.setBinaryStream(15, fin);
