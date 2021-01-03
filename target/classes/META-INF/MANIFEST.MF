@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
-Built-By: ginoz
-Build-Jdk: 15.0.1
+Built-By: dani
+Build-Jdk: 14.0.2
 Class-Path: lib/javafx-archetype-fxml-0.0.3.jar lib/javafx-archetype-sim
  ple-0.0.3.jar lib/jacoco-maven-plugin-0.8.1.jar lib/maven-project-2.2.1
  .jar lib/maven-profile-2.2.1.jar lib/maven-artifact-manager-2.2.1.jar l

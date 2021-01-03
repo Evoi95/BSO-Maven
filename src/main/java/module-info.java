@@ -1,4 +1,4 @@
-module com.example.BSOMaven {
+module com.example.test {
     requires java.logging;
 	requires java.sql;
 	requires java.sql.rowset;
@@ -8,7 +8,7 @@ module com.example.BSOMaven {
 	requires javafx.fxml;
 	requires javafx.graphics;
 	requires javafx.base;
-	requires org.junit.jupiter.api;
+	//requires org.junit.jupiter.api;
 	exports application;
 	opens application to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	exports factoryBook;
