@@ -1,9 +1,11 @@
 package factoryUser_old;
 
+import abstractFactoryLogin.Admin;
+
 public class AdminController {
 	
 	private Admin admin = new Admin();
-	
+	/*
 	public String getNome() {
 		return admin.nome;
 	}
@@ -37,5 +39,5 @@ public class AdminController {
 
 	
 	
-
+*/
 }

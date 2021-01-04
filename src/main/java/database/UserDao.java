@@ -26,12 +26,15 @@ public class UserDao {
     }
     
     //check User data for login 
+    //Qui viene passato dal controller un oggetto di tipo user
     public boolean checkUser()
     {
+    	
     	return false;
     }
     
     // delete a user from db
+    
     public boolean deleteUser(int userId)
     {
     	try 
