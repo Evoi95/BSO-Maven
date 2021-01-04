@@ -1,4 +1,4 @@
-package factoryUser;
+package factoryUser_old;
 
 public class Utente {
 	private String nome,cognome,email,user,pass,descr,listaPref;

@@ -15,15 +15,19 @@ public class PopulateDefaultDb {
 	private static PreparedStatement prepQ = null;
     private BufferedImage slate;
 	
-	public static void populateDefaultDb() throws FileNotFoundException
+	public static boolean populateDefaultDb() throws FileNotFoundException
 	{
-		createLibri();
-		createGiornale();
-		createRivista();
-		createUser();
+		if(	createLibri() && createGiornale() && createRivista())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
-	private static void createLibri() throws FileNotFoundException
+	private static boolean createLibri() throws FileNotFoundException
 	{
 		try 
 		{
@@ -117,16 +121,19 @@ public class PopulateDefaultDb {
 			prepQ.setBinaryStream(15, fin);
 			prepQ.executeUpdate();
 			// popolo il db con utenti e dati 
+			return true;
 		}
 	
 		catch(SQLException e1) 
 		{
 			e1.printStackTrace();
 			System.err.println("ERRORE DI SQL ");
+		
 		}
+		return false;
 	}
 
-	private static void createGiornale() throws FileNotFoundException
+	private static boolean createGiornale() throws FileNotFoundException
 	{
 		try {
 		qInsert = "INSERT INTO `ispw`.`giornale`"
@@ -192,17 +199,19 @@ public class PopulateDefaultDb {
 
 		prepQ.setBinaryStream(9, fin);
 		prepQ.executeUpdate();
+		
+		return true;
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		
+		return false;
 		
 	}
 
-	private static void createRivista() throws FileNotFoundException
+	private static boolean createRivista() throws FileNotFoundException
 	
 	{
 		try 
@@ -241,10 +250,13 @@ public class PopulateDefaultDb {
 
 		prepQ.setBinaryStream(11, fin);
 		prepQ.executeUpdate();
+		
+		return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return false;
 	}
 
 	private static void createUser()

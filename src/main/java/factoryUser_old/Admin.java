@@ -1,4 +1,4 @@
-package factoryUser;
+package factoryUser_old;
 
 public class Admin {
 	protected String nome,cognome,email,pass;

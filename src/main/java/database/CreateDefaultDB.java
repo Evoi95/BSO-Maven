@@ -39,13 +39,36 @@ public class CreateDefaultDB
 				System.out.println("Chiamo la Stored Procedure, per creare le tabelle");
 				//cStmt = ConnToDb.conn.prepareCall("call createTableDB");
 				
-				query=	"CREATE TABLE if not exists ADMIN "
-						+ "	( Nome Varchar(20),Cognome Varchar(20),"
-						+ "	  id INT primary key auto_increment not null,"
-						+ "      email Varchar(30), pwd varchar(20)"
+				query=	"CREATE TABLE if not exists USERS "
+						+ "	(	idUser INT primary key not null auto_increment,"
+						+ "	idRuolo VARCHAR(1) NOT NULL,"
+						+ "	Nome VARCHAR(40), Cognome VARCHAR(40),"
+						+ "    Email VARCHAR(50), pwd VARCHAR(16),"
+						+ "    descrizione text, DataDiNascita date,"
+						+ "    listDeiPreferiti Varchar(200) "
 						+ "	);";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella Admin");
+				
+				query=	"Create table  if not exists AMMINISTRATORE"
+						+ "	( idAdmin int primary key not null auto_increment,"
+						+ "	  idUser int,"
+						+ "   FOREIGN KEY (idUser) REFERENCES USERS(idUser) );";
+				st.executeUpdate(query);			
+					
+				query=	"Create table  if not exists EDITORE "
+						+ "	( idEditor int primary key not null auto_increment,"
+						+ "	  idUser int, casaEditrice VARCHAR (200), "
+						+ "   FOREIGN KEY (idUser) REFERENCES USERS(idUser) "
+						+ "      ); ";
+				st.executeUpdate(query);				
+				
+				query=	"Create table  if not exists SCRITTORI"
+						+ "	( idScrittore int primary key not null auto_increment,"
+						+ "	  idUser int, editoreAssociato int, "
+						+ "	  FOREIGN KEY (editoreAssociato) REFERENCES EDITORE(idEditor) ,"
+						+ "   FOREIGN KEY (idUser) REFERENCES USERS(idUser) );";
+				st.executeUpdate(query);
+				
 				
 				query=	"Create table  if not exists LIBRO "
 						+ "	( titolo VARCHAR(200), numeroPagine int, "
@@ -56,45 +79,12 @@ public class CreateDefaultDB
 						+ "    disp int, prezzo float,"
 						+ "    copieRimanenti int,img longblob);";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella Libro");
 				
-				query=	"Create table  if not exists EDITORE "
-						+ "	( Nome Varchar(20) ,Cognome Varchar(20), "
-						+ "	  id int primary key auto_increment, "
-						+ "      email Varchar(30), password Varchar(20), "
-						+ "      casaEditrice Varchar(200),"
-						+ "      NumeroPublicazioni int,"
-						+ "      listaScritottoriAssociati varchar(200),"
-						+ "      LibriPubblicati Varchar(200)"
-						+ "      ); ";
-				st.executeUpdate(query);				
-				System.out.println("Creata tabella Editore");
-				
-				query=	"Create table  if not exists SCRITTORI"
-						+ "	( Nome Varchar(20),Cognome Varchar(20),"
-						+ "	  id int primary key auto_increment not null,"
-						+ "      email Varchar(30), pwd Varchar(20),"
-						+ "      nickName Varchar(20), descrizione text,"
-						+ "      dataDiNascita Date, ListaDeiPreferiti Varchar(200),"
-						+ "      ListaColleghiAssociati Varchar(200), "
-						+ "      editore int,"
-						+ "      libriPubblicati varchar(20), numeroPublicazioni int);";
-				st.executeUpdate(query);
-				System.out.println("Creata tabella Scrittori");
-				
-				query=	"Create table if not exists USER "
-						+ "	( Nome Varchar(20),Cognome Varchar(20),"
-						+ "     id int primary key auto_increment not null, "
-						+ "     email Varchar(30), password Varchar(20), "
-						+ "     nickName Varchar(20), descrizione text,"
-						+ "     dataDiNascita Date, listDeiPreferiti Varchar(200)"
-						+ "     );";
-				st.executeUpdate(query);
-				System.out.println("Creata tabella User");
-				
-				query=	"create table if not exists pagamento(id_op int primary key auto_increment,metodo varchar(10),esito int ,nomeUtente varchar(10),spesaTotale float ) ";
+				query=	"create table if not exists pagamento("
+						+ "id_op int primary key auto_increment,"
+						+ "metodo varchar(10),esito int ,"
+						+ "nomeUtente varchar(10),spesaTotale float ) ";
 						st.executeUpdate(query);
-				System.out.println("Creata tabella Pagamento");
 				
 				query=	"Create table if not exists RIVISTA "
 						+ "	( titolo VARCHAR(200),tipologia Varchar(60),"
@@ -106,7 +96,6 @@ public class CreateDefaultDB
 						+ "	copieRimanenti int,img longblob,"
 						+ "id int primary key not null auto_increment);";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella RIVISTA");
 				
 				query=	"Create table if not exists GIORNALE "
 						+ "	( titolo VARCHAR(200),tipologia Varchar(60),"
@@ -119,7 +108,6 @@ public class CreateDefaultDB
 						+ " img longblob,"
 						+ " id int primary key not null auto_increment);";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella GIORNALE");
 				
 				query=	"Create table if not exists cartacredito "
 						+ "	( nomeP VARCHAR(10),cognomeP  Varchar(20),"
@@ -128,7 +116,6 @@ public class CreateDefaultDB
 						+ "	codicePin varchar(5) ,"
 						+ " ammontare float );";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella CARTACREDITO");
 				
 				query=	"Create table if not exists FATTURA "
 						+ "	( nome varchar(10),cognome varchar(10),"
@@ -137,15 +124,18 @@ public class CreateDefaultDB
 						+ " id int auto_increment not null  primary key,"
 						+ " ammontare float);";
 				st.executeUpdate(query);
-				System.out.println("Creata tabella FATTURA");
-				
+			
 				
 				System.out.println("Tabelle create!");
-				PopulateDefaultDb.populateDefaultDb();
-				System.out.println("Tabella populata con valori di default");
-				ConnToDb.conn.close();
-				System.out.println("Connesione chiusa col db");
-				
+				if (PopulateDefaultDb.populateDefaultDb()) {
+					System.out.println("Tabella populata con valori di default");
+					ConnToDb.conn.close();
+					System.out.println("Connesione chiusa col db");
+				}
+				else
+				{
+					System.err.println("Ops..! qualcosa è andato storto!");
+				}
 				
 			}
 			else if (ConnToDb.InitailConnection() && ConnToDb.connection())
