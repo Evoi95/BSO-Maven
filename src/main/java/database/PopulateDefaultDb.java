@@ -17,7 +17,7 @@ public class PopulateDefaultDb {
 	
 	public static boolean populateDefaultDb() throws FileNotFoundException
 	{
-		if(	createLibri() && createGiornale() && createRivista())
+		if(	createLibri() && createGiornale() && createRivista() && createUser())
 		{
 			return true;
 		}
@@ -259,30 +259,50 @@ public class PopulateDefaultDb {
 		return false;
 	}
 
-	private static void createUser()
+	private static boolean createUser()
 	{
-		try {qInsert = "INSERT INTO `ispw`.`user`"
-				+ "(`Nome`,"
-				+ "`Cognome`,"
-				+ "`email`,"
-				+ "`password`,"
-				+ "`nickName`,"
-				+ "`descrizione`,"
-				+ "`dataDiNascita`)"
-				+ "VALUES"
+		try {
+			qInsert ="INSERT INTO `ispw`.`users`"
+				+ "(`idRuolo`,"
+				+ "`Nome`,`Cognome`,"
+				+ "`Email`,`pwd`,"
+				+ "`descrizione`,`DataDiNascita`)"
+				+ "VALUES\r\n"
 				+ "(?,?,?,?,?,?,?);";
+				 
 			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1,"Gianni"); // nome
-			prepQ.setString(2, "Morandi"); // cognome
-			prepQ.setString(3, "bigHand@gmail.com"); // email 
-			prepQ.setString(4,"bigHand"); // password
-			prepQ.setString(5,"bigHand"); // 
+			prepQ.setString(1, "a");
+			prepQ.setString(2,"Gianni"); // nome
+			prepQ.setString(3, "Morandi"); // cognome
+			prepQ.setString(4, "bigHand@gmail.com"); // email 
+			prepQ.setString(5,"bigHand97"); // password
 			prepQ.setString(6,"Grande uomo grandi mani grande cuore");
 			prepQ.setDate(7, java.sql.Date.valueOf("1944-12-11"));  // date
 			prepQ.executeUpdate();
+			
+			qInsert ="INSERT INTO `ispw`.`users`"
+					+ "(`idRuolo`,"
+					+ "`Nome`,`Cognome`,"
+					+ "`Email`,`pwd`,"
+					+ "`descrizione`,`DataDiNascita`)"
+					+ "VALUES\r\n"
+					+ "(?,?,?,?,?,?,?);";
+					 
+			prepQ = ConnToDb.conn.prepareStatement(qInsert);
+			prepQ.setString(1, "a");
+			prepQ.setString(2,"Admin"); // nome
+			prepQ.setString(3, "Admin"); // cognome
+			prepQ.setString(4, "Admin@Admin.com"); // email 
+			prepQ.setString(5,"Admin871"); // password
+			prepQ.setString(6,"Grande uomo grandi mani grande cuore");
+			prepQ.setDate(7, java.sql.Date.valueOf("1970-01-01"));  // date
+			prepQ.executeUpdate();
+			
+			return true;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}
 		
 	}
