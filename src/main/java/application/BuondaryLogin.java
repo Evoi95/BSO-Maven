@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -24,7 +25,7 @@ public class BuondaryLogin implements Initializable {
 	@FXML
 	private javafx.scene.layout.GridPane grid;
 	@FXML
-	private TextField textFieldusername;
+	private TextField textFieldUsername;
 	@FXML
 	private PasswordField pwdField;
 	@FXML
@@ -50,7 +51,18 @@ public class BuondaryLogin implements Initializable {
 
 	@FXML
 	private void controllaCredenziali() throws IOException {
-/*
+		
+		Boolean v;
+		String u="";
+		String p="";
+		
+		u = textFieldUsername.getText();
+		p = pwdField.getText();
+		
+		//System.out.println(" \n\n Credenziali u-->p"+u+p);
+
+		v=cL.controlla(u,p);
+		/*
 		System.out.println("Controllo button");
 		String u;
 		String p;
@@ -59,9 +71,9 @@ public class BuondaryLogin implements Initializable {
 		p = pwdField.getText();
 
 		v = cL.controlla(u, p);
-
+*/
 		if (v) {
-		*/
+		
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -75,7 +87,17 @@ public class BuondaryLogin implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 
-		} /*else {
+		} 
+		else {
+			Alert alert=new Alert(AlertType.ERROR);
+			alert.setTitle("Credenziali errate");// line 2
+			alert.setHeaderText("Credenziali non valide ");// line 3
+			alert.setContentText(" Per favore registrarsi");// line 4
+			alert.showAndWait(); // line 5
+
+
+		}
+	}/*else {
 			Alert a = new Alert(Alert.AlertType.ERROR);
 			a.setTitle("Errore nelle credenziali");
 			a.setContentText("Credenizali immesse sbagliate");
@@ -133,6 +155,9 @@ public class BuondaryLogin implements Initializable {
 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
+		
+		
+		//Controller password 
 //caricare nuocva schermata eccecc
 	}
 }

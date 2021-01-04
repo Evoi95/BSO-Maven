@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 import java.sql.SQLException;
 
 import database.CreateDefaultDB;
-import factoryBook.Libro;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;

@@ -41,10 +41,20 @@ public class BuondaryResetPwd {
 	@FXML
 	private Button buttonH;
 	
+	private ControllerPassword cP;
+	
 	@FXML
 	private void conferma()
 	{
 		//update pwd
+		String email,vecchiaP,nuovaP;
+		
+		email=emailTF.getText();
+		vecchiaP=vecchiaPF.getText();
+		nuovaP=nuovaPF.getText();
+		cP.aggiornaPass(email,vecchiaP,nuovaP);
+		
+		
 	}
 	@FXML
 	private void ritorna() throws IOException
@@ -61,6 +71,10 @@ public class BuondaryResetPwd {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 
+	}
+	public BuondaryResetPwd()
+	{
+		cP=new ControllerPassword();
 	}
 
 }

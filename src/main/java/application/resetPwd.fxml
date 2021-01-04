@@ -40,7 +40,7 @@
             <Button fx:id="buttonH" mnemonicParsing="false" onAction="#ritorna" prefHeight="83.0" prefWidth="200.0" text="Home page" textFill="#f50000" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <ImageView fx:id="image" fitHeight="119.0" fitWidth="98.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <image>
-                  <Image url="@../image/password-icon.png" />
+                  <Image url="@../../../../img/password-icon.png" />
                </image>
             </ImageView>
          </children>
