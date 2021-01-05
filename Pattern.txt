@@ -1,0 +1,8 @@
+usata abstrac factory per login e uteni
+
+usata factory method per raccolta ligri etc
+
+i dao sono singleton
+
+per il momento basta  
+edit : 04-01-2021
