@@ -1,7 +1,5 @@
 package database;
 
-import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,25 +8,26 @@ import java.sql.Statement;
 
 import abstractFactoryLogin.User;
 
+
 public class UserDao {
 	
 	private static Statement st = null ;
-	private static Statement stmt = null ;
 	private static String query ;
-	private static ResultSet rs;;
+	private static ResultSet rs;
 	private static PreparedStatement prepQ = null;
-    
+    private Connection  conn;
+
     //public boolean 
     // use this function on controller after you had check the email
     // add an user on db after registration
-    public boolean createUser(User U)
+    public boolean createUser(User U) throws SQLException
     {
-    	
+    	boolean state=false;
     	try 
 		{
 			if (ConnToDb.connection())
 			{
-				Connection conn = ConnToDb.generalConnection();
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
@@ -37,10 +36,10 @@ public class UserDao {
 			 			+ "`Cognome`,"
 			 			+ "`Email`,"
 			 			+ "`pwd`,"
-			 			+ "`DataDiNascita`"
+			 			+ "`DataDiNascita`)"
 			 			+ "VALUES"
-						+ "	"
-						+ "(?,?,?,?,?)";
+			 			+" "
+			 			+ "(?,?,?,?,?)";
 				prepQ = ConnToDb.conn.prepareStatement(query);	
 				prepQ.setString(1,U.getNome()); // titolo
 				prepQ.setString(2,U.getCognome()); //
@@ -50,17 +49,22 @@ public class UserDao {
 		 		// vuole un oggetto di tipo data sql 
 				prepQ.setDate(5, java.sql.Date.valueOf(U.getDataDiNascita().toString()));  
 				prepQ.executeUpdate();
-				conn.close();				 	
+				//conn.close();
 			 	System.out.println("utente Inserito con successo");
-			 	return true; // true		 			 	
+			 	state= true; // true		 			 	
 			}
+			else {
+		    	System.err.print("Errore inserimento utenete");
+		    	state= false ;
+		    	}
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
     	// errore
-    	System.err.print("Errore inserimento utenete");
-    	return false ;
+		//conn.close();				 	
+		return state;
+    	
     }
     
     //check User email if we found that we retun true else we return false
@@ -76,8 +80,8 @@ public class UserDao {
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
-			 	query="SELECT idUser FROM ispw.users where Email = "+email+" ;";
-			 	rs = stmt.executeQuery(query);
+			 	query="SELECT idUser FROM ispw.users where Email = '"+email+"' ;";
+			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
 				 	conn.close();				 	

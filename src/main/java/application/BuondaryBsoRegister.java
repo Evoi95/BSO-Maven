@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 import abstractFactoryLogin.User;
 import database.UserDao;
@@ -68,8 +69,9 @@ public class BuondaryBsoRegister {
 		 * TODO opzionale mettere StrongPWDGen vedi skype
 		 */
 		
-		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(), calendarL.getValue()))
+		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(),calendarL.getValue())==true)
 		{
+
 			System.out.println("Data inserita : " + calendarL.getValue());
 			Stage stage;
 			Parent root;

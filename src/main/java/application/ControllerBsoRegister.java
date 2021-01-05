@@ -14,17 +14,24 @@ public class ControllerBsoRegister {
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		// TODO Auto-generated method stub
-		U = new User(email,pwd);
+		
+		U.setEmail(email);
+		U.setPassword(pwd);
+		//U = new User(email,pwd);
 		
 		if(checkData ( n,c,email,pwd,pwdC) )
 		{
-			if (Ud.checkUser(U) == 0)
+			if (UserDao.checkUser(U) == 0)
 			{
 				// nuovo utente creo l'account
-				User U1 = new User( n,c,email,pwd,LocalDate);
-				state=Ud.createUser(U1);
+				U.setNome(n);
+				U.setCognome(c);
+				U.setDataDiNascita(LocalDate);
+				//User U1 = new User( n,c,email,pwd,LocalDate);
+				state=Ud.createUser(U);
+				//state=true;
 			}
-			else if (Ud.checkUser(U) == 1 || Ud.checkUser(U) == -1)
+			else if (UserDao.checkUser(U) == 1 || UserDao.checkUser(U) == -1)
 			{
 				// utente gia registrato o errore 
 				state = false;
@@ -84,6 +91,12 @@ public class ControllerBsoRegister {
 		}else {
 		return false;
 		}
+	}
+	
+	public ControllerBsoRegister()
+	{
+		U=new User();
+		Ud=new UserDao();
 	}
 	
 	// TO DO: checkData o lo facciamo diretti in mysql
