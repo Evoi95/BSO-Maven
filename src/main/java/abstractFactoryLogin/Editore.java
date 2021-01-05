@@ -15,6 +15,8 @@ public class Editore implements LoginInterface {
 	@Override
 	public void login( String a) {
 		// TODO Auto-generated method stub
+		a="Sono loggato come Editore generico";
+		System.out.println(a);
 		
 	}
 	public String getIdRuolo() {

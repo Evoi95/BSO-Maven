@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -50,7 +51,7 @@ public class BuondaryLogin implements Initializable {
 	}
 
 	@FXML
-	private void controllaCredenziali() throws IOException {
+	private void controllaCredenziali() throws IOException, SQLException {
 		
 		Boolean v;
 		String u="";
@@ -59,19 +60,9 @@ public class BuondaryLogin implements Initializable {
 		u = textFieldUsername.getText();
 		p = pwdField.getText();
 		
-		//System.out.println(" \n\n Credenziali u-->p"+u+p);
 
 		v=cL.controlla(u,p);
-		/*
-		System.out.println("Controllo button");
-		String u;
-		String p;
-		Boolean v;// validazone
-		u = textFieldusername.getText();
-		p = pwdField.getText();
 
-		v = cL.controlla(u, p);
-*/
 		if (v) {
 		
 			Stage stage;
@@ -80,7 +71,7 @@ public class BuondaryLogin implements Initializable {
 			/*
 			 * modificare schermata
 			 */
-			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
 			stage.setTitle("Benvenuto nella schermata del catalogo libri ");
 
 			Scene scene = new Scene(root);
@@ -92,21 +83,12 @@ public class BuondaryLogin implements Initializable {
 			Alert alert=new Alert(AlertType.ERROR);
 			alert.setTitle("Credenziali errate");// line 2
 			alert.setHeaderText("Credenziali non valide ");// line 3
-			alert.setContentText(" Per favore registrarsi");// line 4
+			alert.setContentText(" Per favore registrarsi o reinsci credenziali");// line 4
 			alert.showAndWait(); // line 5
 
 
 		}
-	}/*else {
-			Alert a = new Alert(Alert.AlertType.ERROR);
-			a.setTitle("Errore nelle credenziali");
-			a.setContentText("Credenizali immesse sbagliate");
-			a.setHeaderText(null);
-			a.showAndWait();
-		}
-		*/
-
-	//}
+	}
 
 	@FXML
 	private void annullaCredenziali() throws IOException {

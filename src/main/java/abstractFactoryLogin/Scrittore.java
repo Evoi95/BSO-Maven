@@ -13,6 +13,8 @@ public class Scrittore implements LoginInterface {
 	@Override
 	public void login( String a) {
 		// TODO Auto-generated method stub
+		a="Sono loggato come Scrittore generico";
+		System.out.println(a);
 		
 	}
 	public String getIdRuolo() {

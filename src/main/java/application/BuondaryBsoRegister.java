@@ -1,13 +1,17 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import abstractFactoryLogin.User;
+import database.UserDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -49,17 +53,24 @@ public class BuondaryBsoRegister {
 	private Button buttonReg;
 	@FXML
 	private Button buttonA;
+	@FXML
+	private Label dataL;
+	@FXML 
+	private DatePicker calendarL;
+	
 	
 	private ControllerBsoRegister cR;
+
 	
 	@FXML
-	private void procedi() throws IOException {
+	private void procedi() throws IOException, SQLException {
 		/*
 		 * TODO opzionale mettere StrongPWDGen vedi skype
 		 */
 		
-		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText()))
+		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(), calendarL.getValue()))
 		{
+			System.out.println("Data inserita : " + calendarL.getValue());
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonReg.getScene().getWindow();

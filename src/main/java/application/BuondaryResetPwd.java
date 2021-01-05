@@ -1,6 +1,7 @@
 package application;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -44,7 +45,7 @@ public class BuondaryResetPwd {
 	private ControllerPassword cP;
 	
 	@FXML
-	private void conferma()
+	private void conferma() throws SQLException
 	{
 		//update pwd
 		String email,vecchiaP,nuovaP;

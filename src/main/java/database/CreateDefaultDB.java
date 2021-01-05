@@ -39,11 +39,11 @@ public class CreateDefaultDB
 				
 				query=	"CREATE TABLE if not exists USERS "
 						+ "	(	idUser INT primary key not null auto_increment,"
-						+ "	idRuolo VARCHAR(1) NOT NULL,"
+						+ "	idRuolo VARCHAR(1) NOT NULL DEFAULT 'U',"
 						+ "	Nome VARCHAR(40), Cognome VARCHAR(40),"
-						+ "    Email VARCHAR(50), pwd VARCHAR(16),"
-						+ "    descrizione text, DataDiNascita date,"
-						+ "    listDeiPreferiti Varchar(200) "
+						+ " Email VARCHAR(50) UNIQUE, pwd VARCHAR(16),"
+						+ " descrizione text, DataDiNascita date,"
+						+ " listDeiPreferiti Varchar(200) "
 						+ "	);";
 				st.executeUpdate(query);
 				
@@ -70,12 +70,13 @@ public class CreateDefaultDB
 				
 				query=	"Create table  if not exists LIBRO "
 						+ "	( titolo VARCHAR(200), numeroPagine int, "
-						+ "    Cod_isbn varchar(10) primary key, editore varchar(200) ,"
-						+ "    autore varchar(200), lingua varchar(10),"
-						+ "    categoria Varchar(60), dataPubblicazione date,"
-						+ "    recensione text, copieVendute int, breveDescrizione text,"
-						+ "    disp int, prezzo float,"
-						+ "    copieRimanenti int,img longblob);";
+						+ " Cod_isbn varchar(10) primary key not null unique ,"
+						+ "	editore varchar(200) ,"
+						+ " autore varchar(200), lingua varchar(10),"
+						+ " categoria Varchar(60), dataPubblicazione date,"
+						+ " recensione text, copieVendute int, breveDescrizione text,"
+						+ " disp int, prezzo float,"
+						+ " copieRimanenti int,img longblob);";
 				st.executeUpdate(query);
 				
 				query=	"create table if not exists pagamento("
@@ -146,7 +147,7 @@ public class CreateDefaultDB
 			// Se trovo tutto  chiudo la connesione e vado avanti con l'esecuzione del programma
 			else if (status == false)
 			{
-				System.out.print("Trovato database e connesso senza problemi! Buone madonne!");
+				System.out.println("Trovato database e connesso senza problemi! Buone madonne!");
 				ConnToDb.conn.close();		
 			}
 			// Se qualcosa non va chiudo la connessione e vado nel cacth
