@@ -26,15 +26,15 @@ public class ControllerPassword {
 		if(nuovaP.length()>=8 || !email.equals(""))
 		{
 			U = new User(email, vecchiaP);
-			if(Ud.checkUser(U) == 1)
+			if(UserDao.checkUser(U) == 1)
 			{
-				Ud.checkResetpass(U, nuovaP);
+				UserDao.checkResetpass(U, nuovaP,email);
 				Alert alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Cambio password");// line 2
 				alert.setHeaderText(" Passowrd aggiornata ");// line 3
 				alert.showAndWait(); // line 5
 			}
-			else if  (Ud.checkUser(U) == 0 || Ud.checkUser(U) == -1 )
+			else if  (UserDao.checkUser(U) == 0 || UserDao.checkUser(U) == -1 )
 			{
 				Alert alert=new Alert(AlertType.ERROR);
 				alert.setTitle("Credenziali errate");// line 2

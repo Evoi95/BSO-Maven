@@ -107,9 +107,10 @@ public class UserDao {
      
  
     // this function check if you have changed password successfully 
-    public static boolean checkResetpass (User U, String pwd )
+    public static boolean checkResetpass (User U, String pwd,String email )
     {
-    	String email = U.getEmail();
+    	//String email = U.getEmail();
+    	System.out.println("Email : "+email);
     	try 
 		{
 			if (ConnToDb.connection())
@@ -118,7 +119,7 @@ public class UserDao {
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
-			 	query="Update user SET pwd = "+pwd+" where Email = "+email+" ;";
+			 	query="Update users SET pwd = '"+pwd+"' where Email = '"+email+"'";
 			 	st.executeUpdate(query);
 			 	conn.close();
 			 	return true;
