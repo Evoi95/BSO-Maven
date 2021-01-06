@@ -19,6 +19,21 @@ public class Editore implements LoginInterface {
 		System.out.println(a);
 		
 	}
+	@Override
+	public void logout(User U) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Editore()
+	{
+		this.idRuolo = "E"; // use to abstrac factory 
+		this.nome = null;
+		this.cognome = null;
+		this.email = null;
+		this.password = null;
+		this.dataDiNascita =  null;
+	}
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -114,4 +129,5 @@ public class Editore implements LoginInterface {
 	public void setListaScrittori(ArrayList<Integer> listaScrittori) {
 		this.listaScrittori = listaScrittori;
 	}
+
 }

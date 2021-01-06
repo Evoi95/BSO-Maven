@@ -12,8 +12,19 @@ public class Admin implements LoginInterface {
 		// TODO Auto-generated method stub
 		a="Sono loggato come Admin generico";
 		System.out.println(a);
-			
+	
 	}
+	
+	public Admin()
+	{
+		this.idRuolo = "A"; // use to abstrac factory 
+		this.nome = null;
+		this.cognome = null;
+		this.email = null;
+		this.password = null;
+		this.dataDiNascita =  null;
+	}
+	
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -94,6 +105,11 @@ public class Admin implements LoginInterface {
 
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
+	}
+	@Override
+	public void logout(User U) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

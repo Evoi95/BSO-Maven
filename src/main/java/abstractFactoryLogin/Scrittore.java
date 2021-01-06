@@ -17,6 +17,16 @@ public class Scrittore implements LoginInterface {
 		System.out.println(a);
 		
 	}
+	
+	public Scrittore()
+	{
+		this.idRuolo = "W"; // use to abstrac factory  
+		this.nome = null;
+		this.cognome = null;
+		this.email = null;
+		this.password = null;
+		this.dataDiNascita =  null;
+	}
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -97,6 +107,11 @@ public class Scrittore implements LoginInterface {
 
 	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
+	}
+	@Override
+	public void logout(User U) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

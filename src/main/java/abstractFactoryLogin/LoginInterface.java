@@ -5,5 +5,8 @@ public interface LoginInterface {
 	
 	// la string passata è il ruolo dell'utente
 	void login(String a);
+	
+	void logout(User U);
+	
 
 }

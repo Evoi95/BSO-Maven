@@ -105,7 +105,46 @@ public class UserDao {
     	return -1 ;
     }
      
- 
+    public static String setRuolo (User U)
+    {
+    	String r = null ;
+
+    	String email = U.getEmail();
+    	try 
+		{
+			if (ConnToDb.connection())
+			{
+				Connection conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+			 	query="SELECT idRuolo FROM ispw.users where Email = '"+email+"' ;";
+			 	rs = st.executeQuery(query);
+			 	if(rs.next())
+			 	{
+			 		r =rs.getString(1);
+			 		U.setIdRuolo(r);
+				 	conn.close();				 	
+			 		System.out.println("Ruolo utente : "+r);
+			 		return r; // true
+			 	}
+			 	else
+			 	{
+				 	conn.close();				 	
+			 		return null; // Errore
+			 	}
+
+			}
+		}
+		catch (SQLException e1) {
+			e1.printStackTrace();
+			}
+    	// errore
+
+    	return r;
+    	
+    }
+    
     // this function check if you have changed password successfully 
     public static boolean checkResetpass (User U, String pwd,String email )
     {

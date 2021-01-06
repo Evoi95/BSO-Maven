@@ -30,6 +30,7 @@ public class User implements LoginInterface{
 	public User() 
 	{
 		// void user for reset pass 
+		this.idRuolo = "U"; // use to abstrac factory 
 		this.nome = null;
 		this.cognome = null;
 		this.email = null;
@@ -49,6 +50,12 @@ public class User implements LoginInterface{
 		this.dataDiNascita = dataDiNascita;
 		this.listaPreferiti = listaPreferiti;
 	}
+	public User(LoginInterface us, String m , String p) {
+		// usato per il secondo caso d'urso
+		this.email= m;
+		this.password  = p;
+	}
+	
 	@Override
 	public void login( String a) {
 		// TODO Auto-generated method stub
@@ -148,6 +155,11 @@ public class User implements LoginInterface{
 
 	public void setListaPreferiti(ArrayList<String> listaPreferiti) {
 		this.listaPreferiti = listaPreferiti;
+	}
+	@Override
+	public void logout(User U) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

@@ -2,11 +2,14 @@ package application;
 
 import java.sql.SQLException;
 
+import abstractFactoryLogin.*;
 import abstractFactoryLogin.User;
 import database.UserDao;
 
 public class ControllerLogin {
 
+	private AbstractUserFactory aUF;
+	
 	public boolean controlla(String m, String p) throws SQLException
 	// M = Mail , P = pass prese dalla boundary grafica
 	{
@@ -23,20 +26,25 @@ public class ControllerLogin {
 			}
 		else {
 			// creo uno user generico solo per il login
-			User U = new User(m,p);
-			if(UserDao.checkUser(U) == -1)
+			aUF = LoginProducer.getUserRole("U");
+			LoginInterface Us = GeneralUserFactory.getLogin("U");
+			User user = new User(Us,m,p);
+			
+			if(UserDao.checkUser(user) == -1)
 			{
-				return esito;
+				return esito; // false erroe
 			}
-			else if (UserDao.checkUser(U) == 1)
+			else if (UserDao.checkUser(user) == 1)
 			{
 				// utente trovato
-				// val col login
+				// vai col login
+				UserDao.setRuolo(user);
+				System.out.println("/n loggato come :" + user.getIdRuolo());
 				return esito = true;
 			}
-			else if (UserDao.checkUser(U) == 0)
+			else if (UserDao.checkUser(user) == 0)
 			{
-				return esito;
+				return esito; // false non registrato
 			}
 			System.out.println("Errore nelle credenziali");
 			return esito;
