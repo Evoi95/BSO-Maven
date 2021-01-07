@@ -3,18 +3,18 @@ package application;
 import java.sql.SQLException;
 
 import abstractFactoryLogin.User;
-import database.UserDao;
+import database.UsersDao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControllerPassword {
 	private User U;
-	private UserDao Ud;
+	private UsersDao Ud;
 	
 	public ControllerPassword()
 	{
 		U = new User();
-		Ud = new UserDao();
+		Ud = new UsersDao();
 		
 	}
 
@@ -26,15 +26,15 @@ public class ControllerPassword {
 		if(nuovaP.length()>=8 || !email.equals(""))
 		{
 			U = new User(email, vecchiaP);
-			if(UserDao.checkUser(U) == 1)
+			if(UsersDao.checkUser(U) == 1)
 			{
-				UserDao.checkResetpass(U, nuovaP,email);
+				UsersDao.checkResetpass(U, nuovaP,email);
 				Alert alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Cambio password");// line 2
 				alert.setHeaderText(" Passowrd aggiornata ");// line 3
 				alert.showAndWait(); // line 5
 			}
-			else if  (UserDao.checkUser(U) == 0 || UserDao.checkUser(U) == -1 )
+			else if  (UsersDao.checkUser(U) == 0 || UsersDao.checkUser(U) == -1 )
 			{
 				Alert alert=new Alert(AlertType.ERROR);
 				alert.setTitle("Credenziali errate");// line 2

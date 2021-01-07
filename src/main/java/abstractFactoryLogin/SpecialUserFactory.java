@@ -40,4 +40,5 @@ public class SpecialUserFactory extends AbstractUserFactory {
 		return null;
 	}
 
+	
 }

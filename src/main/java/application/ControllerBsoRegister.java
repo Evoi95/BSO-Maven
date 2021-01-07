@@ -5,12 +5,12 @@ import java.time.LocalDate;
 import java.util.regex.Pattern;
 
 import abstractFactoryLogin.User;
-import database.UserDao;
+import database.UsersDao;
 
 public class ControllerBsoRegister {
 	private Boolean state=false;
 	private User U ;
-	private UserDao Ud ;
+	private UsersDao Ud ;
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		// TODO Auto-generated method stub
@@ -21,7 +21,7 @@ public class ControllerBsoRegister {
 		
 		if(checkData ( n,c,email,pwd,pwdC) )
 		{
-			if (UserDao.checkUser(U) == 0)
+			if (UsersDao.checkUser(U) == 0)
 			{
 				// nuovo utente creo l'account
 				U.setNome(n);
@@ -31,7 +31,7 @@ public class ControllerBsoRegister {
 				state=Ud.createUser(U);
 				//state=true;
 			}
-			else if (UserDao.checkUser(U) == 1 || UserDao.checkUser(U) == -1)
+			else if (UsersDao.checkUser(U) == 1 || UsersDao.checkUser(U) == -1)
 			{
 				// utente gia registrato o errore 
 				state = false;
@@ -96,7 +96,7 @@ public class ControllerBsoRegister {
 	public ControllerBsoRegister()
 	{
 		U=new User();
-		Ud=new UserDao();
+		Ud=new UsersDao();
 	}
 	
 	// TO DO: checkData o lo facciamo diretti in mysql

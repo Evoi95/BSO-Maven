@@ -19,6 +19,7 @@ public class User implements LoginInterface{
 		this.email = m;
 		this.password = p;
 	}
+	
 	public User( String nome, String cognome, String email, String password,LocalDate dataDiNascita) {
 		//user for registration
 		this.nome = nome;		
@@ -27,10 +28,12 @@ public class User implements LoginInterface{
 		this.password = password;
 		this.dataDiNascita = dataDiNascita;
 	}
+	
+	// use to abstrac factory AND void user for reset pass 
 	public User() 
 	{
-		// void user for reset pass 
-		this.idRuolo = "U"; // use to abstrac factory 
+		
+		this.idRuolo = "U"; 
 		this.nome = null;
 		this.cognome = null;
 		this.email = null;
@@ -50,6 +53,7 @@ public class User implements LoginInterface{
 		this.dataDiNascita = dataDiNascita;
 		this.listaPreferiti = listaPreferiti;
 	}
+	
 	public User(LoginInterface us, String m , String p) {
 		// usato per il secondo caso d'urso
 		this.email= m;
@@ -63,103 +67,75 @@ public class User implements LoginInterface{
 		System.out.println(a);
 		
 	}
+	
+	@Override
+	public void logout(User U) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public String getIdRuolo() {
 		return idRuolo;
 	}
-
-
 
 	public void setIdRuolo(String idRuolo) {
 		this.idRuolo = idRuolo;
 	}
 
-
-
 	public String getNome() {
 		return nome;
 	}
-
-
 
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-
-
 	public String getCognome() {
 		return cognome;
 	}
-
-
 
 	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
-
-
 	public String getDescrizione() {
 		return descrizione;
 	}
-
-
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
 
-
-
 	public LocalDate getDataDiNascita() {
 		return dataDiNascita;
 	}
-
-
 
 	public void setDataDiNascita(LocalDate dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 
-
-
 	public ArrayList<String> getListaPreferiti() {
 		return listaPreferiti;
 	}
 
-
-
 	public void setListaPreferiti(ArrayList<String> listaPreferiti) {
 		this.listaPreferiti = listaPreferiti;
-	}
-	@Override
-	public void logout(User U) {
-		// TODO Auto-generated method stub
-		
 	}
 
 

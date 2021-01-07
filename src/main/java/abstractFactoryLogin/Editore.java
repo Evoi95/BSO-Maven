@@ -1,11 +1,12 @@
 package abstractFactoryLogin;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Editore implements LoginInterface {
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
-	private Date dataDiNascita;
+	private LocalDate dataDiNascita;
 	// array di codici isbn presi dai libri che l'editre ha publicato
 	private ArrayList<String> listaPublicazioni = new ArrayList<String>();
 	
@@ -34,6 +35,13 @@ public class Editore implements LoginInterface {
 		this.password = null;
 		this.dataDiNascita =  null;
 	}
+	public Editore(User u) {
+		this.idRuolo = "E"; // use to abstrac factory 
+		this.nome = u.getNome();
+		this.cognome = u.getCognome();
+		this.email = u.getEmail();
+		this.password = u.getPassword();
+		this.dataDiNascita =  u.getDataDiNascita();	}
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -106,13 +114,13 @@ public class Editore implements LoginInterface {
 
 
 
-	public Date getDataDiNascita() {
+	public LocalDate getDataDiNascita() {
 		return dataDiNascita;
 	}
 
 
 
-	public void setDataDiNascita(Date dataDiNascita) {
+	public void setDataDiNascita(LocalDate dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
 

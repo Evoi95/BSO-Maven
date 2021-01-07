@@ -25,4 +25,10 @@ public class GeneralUserFactory extends AbstractUserFactory{
 		return null;
 	}
 
+	// for logout function
+	public LoginInterface getUserIstance(User U)
+	{
+		
+		return null;
+	}
 }

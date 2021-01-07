@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import abstractFactoryLogin.*;
 import abstractFactoryLogin.User;
-import database.UserDao;
+import database.UsersDao;
 
 public class ControllerLogin {
 
@@ -28,21 +28,25 @@ public class ControllerLogin {
 			// creo uno user generico solo per il login
 			aUF = LoginProducer.getUserRole("U");
 			LoginInterface Us = GeneralUserFactory.getLogin("U");
+			// Utente di appoggio per login e factory 
 			User user = new User(Us,m,p);
 			
-			if(UserDao.checkUser(user) == -1)
+			if(UsersDao.checkUser(user) == -1)
 			{
 				return esito; // false erroe
 			}
-			else if (UserDao.checkUser(user) == 1)
+			else if (UsersDao.checkUser(user) == 1)
 			{
 				// utente trovato
 				// vai col login
-				UserDao.setRuolo(user);
-				System.out.println("/n loggato come :" + user.getIdRuolo());
+				// vai con la specializzazione prendendo i dati dal dao
+				
+				String r =UsersDao.getRuolo(user);
+				UsersDao.pickData(user);
+				System.out.println("\n loggato come :" + r);
 				return esito = true;
 			}
-			else if (UserDao.checkUser(user) == 0)
+			else if (UsersDao.checkUser(user) == 0)
 			{
 				return esito; // false non registrato
 			}
@@ -51,5 +55,11 @@ public class ControllerLogin {
 
 		}
 		return esito;
+	}
+
+	public boolean logout(String R, String id)
+	{
+		
+		return false;
 	}
 }
