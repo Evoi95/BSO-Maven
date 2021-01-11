@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-import abstractFactoryLogin.User;
+import usersSingelton.User;
 import database.UsersDao;
 
 public class ControllerBsoRegister {
@@ -95,7 +95,7 @@ public class ControllerBsoRegister {
 	
 	public ControllerBsoRegister()
 	{
-		U=new User();
+		U.getInstance();
 		Ud=new UsersDao();
 	}
 	

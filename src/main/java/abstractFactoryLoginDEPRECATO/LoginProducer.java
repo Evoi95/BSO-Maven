@@ -1,4 +1,4 @@
-package abstractFactoryLogin;
+package abstractFactoryLoginDEPRECATO;
 
 public class LoginProducer {
 	
@@ -7,6 +7,22 @@ public class LoginProducer {
 	{
 		// USO SEMPRE QUESTRA PER IL LOGIN INIZIALE O LA 
 		//SPECIALIZZAZIONE IN UTENTE GENERICO  
+		if (R.equals("U"))
+		{
+			return new  GeneralUserFactory();
+		}
+		// LO CHIAMO PER SPECIALIZZARE GLI UTENTI CON
+		// PRIVELIGI SUPERIORI O PER FUNZIONI SPECIFICHE
+		else if (R.equals("W") || R.equals("E") || R.equals("A"))
+		{
+			return new SpecialUserFactory();
+		}
+		return null;
+	}
+	
+	public static AbstractUserFactory logut(User U)
+	{
+		String R = U.getIdRuolo();
 		if (R.equals("U"))
 		{
 			return new  GeneralUserFactory();

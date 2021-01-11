@@ -39,6 +39,8 @@ public class BuondaryLogin implements Initializable {
 	private Button buttonReg;
 	@FXML
 	private Button buttonReset;
+
+	
 	private ControllerLogin cL;
 
 	// private Stage stage;
@@ -106,6 +108,7 @@ public class BuondaryLogin implements Initializable {
 		stage.show();
 
 	}
+
 	@FXML
 	private void register() throws IOException
 	{
@@ -124,6 +127,7 @@ public class BuondaryLogin implements Initializable {
 		stage.setScene(scene);
 
 	}
+	
 	@FXML
 	private void azzeraPwd() throws IOException
 	{
@@ -142,4 +146,5 @@ public class BuondaryLogin implements Initializable {
 		//Controller password 
 //caricare nuocva schermata eccecc
 	}
+
 }

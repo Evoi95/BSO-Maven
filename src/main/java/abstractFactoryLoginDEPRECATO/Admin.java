@@ -1,40 +1,40 @@
-package abstractFactoryLogin;
+package abstractFactoryLoginDEPRECATO;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Scrittore implements LoginInterface {
+public class Admin implements LoginInterface {
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
-	// array di codici isbn presi dai libri 
-	private ArrayList<String> listaPreferiti = new ArrayList<String>();
- 	
-	@Override
-	public void login( String a) {
+		@Override
+	public User login( String a) {
 		// TODO Auto-generated method stub
-		a="Sono loggato come Scrittore generico";
+		a="Sono loggato come Admin generico";
 		System.out.println(a);
-		
+		return null;
+	
 	}
 	
-	public Scrittore()
+	public Admin()
 	{
-		this.idRuolo = "W"; // use to abstrac factory  
+		this.idRuolo = "A"; // use to abstrac factory 
 		this.nome = null;
 		this.cognome = null;
 		this.email = null;
 		this.password = null;
 		this.dataDiNascita =  null;
 	}
-	public Scrittore(User u) {
-		this.idRuolo = "W"; // use to abstrac factory 
+	
+	public Admin(User u) {
+		this.idRuolo = "A"; // use to abstrac factory 
 		this.nome = u.getNome();
 		this.cognome = u.getCognome();
 		this.email = u.getEmail();
 		this.password = u.getPassword();
-		this.dataDiNascita =  u.getDataDiNascita();	}
+		this.dataDiNascita =  u.getDataDiNascita();
+	}
 
 	public String getIdRuolo() {
 		return idRuolo;
@@ -118,7 +118,8 @@ public class Scrittore implements LoginInterface {
 		this.dataDiNascita = dataDiNascita;
 	}
 	@Override
-	public void logout(User U) {
+	public User logout(User U) {
+		return U;
 		// TODO Auto-generated method stub
 		
 	}

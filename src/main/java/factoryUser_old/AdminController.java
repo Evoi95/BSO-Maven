@@ -1,6 +1,6 @@
 package factoryUser_old;
 
-import abstractFactoryLogin.Admin;
+import abstractFactoryLoginDEPRECATO.Admin;
 
 public class AdminController {
 	

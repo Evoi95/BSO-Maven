@@ -1,12 +1,13 @@
-package abstractFactoryLogin;
+package abstractFactoryLoginDEPRECATO;
  
 // qui ho gia preso i dati 
 public interface LoginInterface {
 	
 	// la string passata è il ruolo dell'utente
-	void login(String a);
+	User login(String a);
 	
-	void logout(User U);
+	User logout(User U);
+	// set a instance return
 	
 
 }

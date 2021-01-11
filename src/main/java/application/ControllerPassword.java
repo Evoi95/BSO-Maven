@@ -2,30 +2,28 @@ package application;
 
 import java.sql.SQLException;
 
-import abstractFactoryLogin.User;
 import database.UsersDao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import usersSingelton.User;
 
 public class ControllerPassword {
-	private User U;
+	private User U = User.getInstance();
 	private UsersDao Ud;
 	
 	public ControllerPassword()
 	{
-		U = new User();
 		Ud = new UsersDao();
 		
 	}
 
 	public void aggiornaPass(String email,String vecchiaP,String nuovaP) throws SQLException
 	{
-		/*
-		 * todo daoUSer
-		 */
+		
 		if(nuovaP.length()>=8 || !email.equals(""))
 		{
-			U = new User(email, vecchiaP);
+			U.setEmail(email);
+			U.setPassword(nuovaP);
 			if(UsersDao.checkUser(U) == 1)
 			{
 				UsersDao.checkResetpass(U, nuovaP,email);

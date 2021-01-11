@@ -1,4 +1,5 @@
-package abstractFactoryLogin;
+package usersSingelton;
+
 
 import java.sql.Date;
 import java.time.LocalDate;
@@ -6,21 +7,23 @@ import java.util.ArrayList;
 import java.util.List;
 import factoryBook.Libro;
 
-public class User implements LoginInterface{
+public class User {
 	
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
 	// array di codici isbn presi dai libri 
 	private ArrayList<String> listaPreferiti = new ArrayList<String>();
- 	
-	public User(String m, String p) {
-		// temp user user for checking data
-		this.email = m;
-		this.password = p;
-	}
 	
-	public User( String nome, String cognome, String email, String password,LocalDate dataDiNascita) {
+	private static User instance = new User();
+	
+	private  User()
+	{
+		
+	}
+ 	/*
+	
+private User( String nome, String cognome, String email, String password,LocalDate dataDiNascita) {
 		//user for registration
 		this.nome = nome;		
 		this.cognome = cognome;
@@ -30,7 +33,7 @@ public class User implements LoginInterface{
 	}
 	
 	// use to abstrac factory AND void user for reset pass 
-	public User() 
+	private User() 
 	{
 		
 		this.idRuolo = "U"; 
@@ -41,7 +44,7 @@ public class User implements LoginInterface{
 		this.dataDiNascita =  null;
 	}
 	
-	public User(String idRuolo, String nome, String cognome, String email, String password, String descrizione,
+	private User(String idRuolo, String nome, String cognome, String email, String password, String descrizione,
 			LocalDate dataDiNascita, ArrayList<String> listaPreferiti) {
 		// user for third use case
 		this.idRuolo = idRuolo;
@@ -54,26 +57,16 @@ public class User implements LoginInterface{
 		this.listaPreferiti = listaPreferiti;
 	}
 	
-	public User(LoginInterface us, String m , String p) {
+	private  User (String m , String p) {
 		// usato per il secondo caso d'urso
 		this.email= m;
 		this.password  = p;
 	}
+	*/
 	
-	@Override
-	public void login( String a) {
-		// TODO Auto-generated method stub
-		a="Sono loggato come User generico";
-		System.out.println(a);
-		
-	}
+	// end of construtor
+	// start of getters and setters
 	
-	@Override
-	public void logout(User U) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -138,6 +131,42 @@ public class User implements LoginInterface{
 		this.listaPreferiti = listaPreferiti;
 	}
 
+	// end of setters and getters
+	
+	// start method
+	
+	public static User getInstance()
+	{
+		return instance;
+	}
+	public User login( String a) {
+		// TODO Auto-generated method stub
+		// rivedere il pickdata per fare l'assegnaziopne dei dati qui nella classe
+		// presi dal dao 
+		a="Sono loggato come User generico";
+		System.out.println(a);
+		return null;
+		
+	}
+		
+	public void setNull() {
+		
+		this.idRuolo = null; 
+		this.nome = null;
+		this.cognome = null;
+		this.email = null;
+		this.password = null;
+		this.dataDiNascita =  null;
+		
+	}
+
+
+	
+
+
+
+	
+	
 
 
 	

@@ -1,40 +1,49 @@
-package abstractFactoryLogin;
-
+package abstractFactoryLoginDEPRECATO;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Admin implements LoginInterface {
+public class Editore implements LoginInterface {
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
-		@Override
-	public void login( String a) {
-		// TODO Auto-generated method stub
-		a="Sono loggato come Admin generico";
-		System.out.println(a);
+	// array di codici isbn presi dai libri che l'editre ha publicato
+	private ArrayList<String> listaPublicazioni = new ArrayList<String>();
 	
+	// array degli id degli scrittori associati alla casa editrice
+	private ArrayList<Integer> listaScrittori = new ArrayList<Integer>();
+	
+	@Override
+	public User login( String a) {
+		// TODO Auto-generated method stub
+		a="Sono loggato come Editore generico";
+		System.out.println(a);
+		return null;
+		
+	}
+	@Override
+	public User logout(User U) {
+		return U;
+		// TODO Auto-generated method stub
+		
 	}
 	
-	public Admin()
+	public Editore()
 	{
-		this.idRuolo = "A"; // use to abstrac factory 
+		this.idRuolo = "E"; // use to abstrac factory 
 		this.nome = null;
 		this.cognome = null;
 		this.email = null;
 		this.password = null;
 		this.dataDiNascita =  null;
 	}
-	
-	public Admin(User u) {
-		this.idRuolo = "A"; // use to abstrac factory 
+	public Editore(User u) {
+		this.idRuolo = "E"; // use to abstrac factory 
 		this.nome = u.getNome();
 		this.cognome = u.getCognome();
 		this.email = u.getEmail();
 		this.password = u.getPassword();
-		this.dataDiNascita =  u.getDataDiNascita();
-	}
-
+		this.dataDiNascita =  u.getDataDiNascita();	}
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -116,12 +125,19 @@ public class Admin implements LoginInterface {
 	public void setDataDiNascita(LocalDate dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
-	@Override
-	public void logout(User U) {
-		// TODO Auto-generated method stub
-		
+
+
+	public ArrayList<String> getListaPublicazioni() {
+		return listaPublicazioni;
 	}
-
-
+	public void setListaPublicazioni(ArrayList<String> listaPublicazioni) {
+		this.listaPublicazioni = listaPublicazioni;
+	}
+	public ArrayList<Integer> getListaScrittori() {
+		return listaScrittori;
+	}
+	public void setListaScrittori(ArrayList<Integer> listaScrittori) {
+		this.listaScrittori = listaScrittori;
+	}
 
 }

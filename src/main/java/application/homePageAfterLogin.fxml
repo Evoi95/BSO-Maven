@@ -51,7 +51,8 @@
                   <Image url="@../../../../img/vector-users-icon-png_302626.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="buttonProfile" mnemonicParsing="false" onAction="#profile" prefHeight="67.0" prefWidth="161.0" text="Visualizza Profilo" textFill="#5600ff" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <Button fx:id="buttonProfile" mnemonicParsing="false" onAction="#profile" prefHeight="67.0" prefWidth="161.0" text="Visualizza Profilo" textFill="#5600ff" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <Button fx:id="buttonLogout" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#logout" text="Logout" textFill="RED" GridPane.columnIndex="5" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </children>

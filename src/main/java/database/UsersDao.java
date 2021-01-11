@@ -6,10 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import abstractFactoryLogin.Admin;
-import abstractFactoryLogin.Editore;
-import abstractFactoryLogin.Scrittore;
-import abstractFactoryLogin.User;
+import usersSingelton.Admin;
+import usersSingelton.Editore;
+import usersSingelton.Scrittore;
+import usersSingelton.User;
+
 
 
 public class UsersDao {
@@ -19,6 +20,7 @@ public class UsersDao {
 	private static ResultSet rs;
 	private static PreparedStatement prepQ = null;
     private Connection  conn;
+	private User U = User.getInstance();
 
     //public boolean 
     // use this function on controller after you had check the email
@@ -238,11 +240,7 @@ public class UsersDao {
     	return false ;
     }
     
-    public static Object logout()
-    {
-    	return null;
-    }
-    
+   
     // Con pickData prendo i dati dall'utente creato per il login
     // per poi restituirlo in un nuovo oggetto di tipo User
     // e poi il controller lo specializza nelle 4 classi 
@@ -267,6 +265,7 @@ public class UsersDao {
 			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
+			 		// setto i vari dati 
 			 		U.setIdRuolo(rs.getString(1));
 			 		U.setNome(rs.getString(2));
 			 		U.setCognome(rs.getString(3));
@@ -275,11 +274,12 @@ public class UsersDao {
 			 		U.setDataDiNascita(rs.getDate(6).toLocalDate());
 			 				 		
 			 		conn.close();	
+			 	//	sono delle print messe per controllo 
 			 	//	System.out.println("U: "+U+"\n Con i campi :\n Cognome "
 			 	//			+ U.getCognome() + "\n email " + U .getEmail() + "\n ");
 			 		return U ;
 			 		 // true
-			 		// account al ready exists
+			 		// account already exists
 			 	}
 			 	else
 			 	{
@@ -296,7 +296,7 @@ public class UsersDao {
     	// errore
     	return null;
     }
-    // TO DO : robe per prendere dati dal db 
+
     // TO DO : Robe per modificare e aggiornare i dati sono del terzo caso d'uso
     
 	

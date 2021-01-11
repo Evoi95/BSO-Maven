@@ -2,12 +2,15 @@ package application;
 
 import java.io.IOException;
 
+import abstractFactoryLoginDEPRECATO.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -36,7 +39,9 @@ public class BoundaryHomePageAfterLogin {
 	private ImageView imageU;
 	@FXML
 	private Button buttonLogin;
-
+	@FXML
+	private Button buttonLogout;
+	
 	// private ControllerHomePageLibri cHPL;
 
 	@FXML
@@ -112,4 +117,33 @@ public class BoundaryHomePageAfterLogin {
 		System.out.println("Sto nel terzo caso d'urso lode");
 	}
 
+	// Usaiamo la Reflection!! no! 
+	@FXML
+	private void logout() throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException 
+	{
+		
+		if (ControllerHomePageAfterLogin.logout())
+		{
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonLogout.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+
+			stage.show();
+		}
+		else
+		{
+			Alert alert=new Alert(AlertType.ERROR);
+			alert.setTitle("Errore Logout");// line 2
+			alert.setHeaderText("Errore Logout");// line 3
+			alert.setContentText("!--Errore Logout--!");// line 4
+			alert.showAndWait(); // line 5
+
+		}
+		
+			
+		
+	}
 }

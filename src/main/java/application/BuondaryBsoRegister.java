@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
-import abstractFactoryLogin.User;
+import abstractFactoryLoginDEPRECATO.User;
 import database.UsersDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

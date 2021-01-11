@@ -2,16 +2,16 @@ package application;
 
 import java.sql.SQLException;
 
-import abstractFactoryLogin.*;
-import abstractFactoryLogin.User;
+import usersSingelton.*;
 import database.UsersDao;
 
 public class ControllerLogin {
+	
+	private User user = User.getInstance();
 
-	private AbstractUserFactory aUF;
 	
 	public boolean controlla(String m, String p) throws SQLException
-	// M = Mail , P = pass prese dalla boundary grafica
+	// M = Mail , P = pass prese dalla boundary grafica per il login
 	{
 		
 		boolean esito = false;
@@ -25,12 +25,9 @@ public class ControllerLogin {
 			
 			}
 		else {
-			// creo uno user generico solo per il login
-			aUF = LoginProducer.getUserRole("U");
-			LoginInterface Us = GeneralUserFactory.getLogin("U");
-			// Utente di appoggio per login e factory 
-			User user = new User(Us,m,p);
 			
+			user.setEmail(m);
+			user.setPassword(p);
 			if(UsersDao.checkUser(user) == -1)
 			{
 				return esito; // false erroe
@@ -41,7 +38,9 @@ public class ControllerLogin {
 				// vai col login
 				// vai con la specializzazione prendendo i dati dal dao
 				
+				// qui prendo il ruolo in base ala mail dell'utente
 				String r =UsersDao.getRuolo(user);
+				// predno e li assegno all'oggetto user
 				UsersDao.pickData(user);
 				System.out.println("\n loggato come :" + r);
 				return esito = true;
@@ -56,10 +55,7 @@ public class ControllerLogin {
 		}
 		return esito;
 	}
+	
+	//set
 
-	public boolean logout(String R, String id)
-	{
-		
-		return false;
-	}
 }

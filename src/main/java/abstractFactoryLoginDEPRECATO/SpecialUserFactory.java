@@ -1,4 +1,4 @@
-package abstractFactoryLogin;
+package abstractFactoryLoginDEPRECATO;
 
 public class SpecialUserFactory extends AbstractUserFactory {
 
@@ -37,6 +37,13 @@ public class SpecialUserFactory extends AbstractUserFactory {
 		{
 			return new Scrittore();
 		}
+		return null;
+	}
+
+
+	@Override
+	LoginInterface logout(User U) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
