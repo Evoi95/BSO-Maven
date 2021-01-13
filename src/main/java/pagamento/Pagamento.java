@@ -6,6 +6,20 @@ public class Pagamento {
 	private int esito; //0 ok 1 fallito
 	private String nomeUtente;
 	private float ammontare;
+	private String tipo;
+	public String getTipo() {
+		return tipo;
+	}
+	public int getIdOg() {
+		return idOg;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public void setIdOg(int idOg) {
+		this.idOg = idOg;
+	}
+	private int idOg;
 	public int getId() {
 		return this.id;
 	}
@@ -36,14 +50,17 @@ public class Pagamento {
 	public void setAmmontare(float ammontare) {
 		this.ammontare = ammontare;
 	}
-	public Pagamento(int id, String metodo, int esito, String nomeUtente, float ammontare) {
+	public Pagamento(int id, String metodo, int esito, String nomeUtente, float ammontare,String tipologia,int idOg) {
 		//super();
 		this.id = id;
 		this.metodo = metodo;
 		this.esito = esito;
 		this.nomeUtente = nomeUtente;
 		this.ammontare = ammontare;
+		this.tipo=tipologia;
+		this.idOg=idOg;
 	}
+	/*
 	public Pagamento(float totale)
 	{
 		this.id=0;
@@ -52,6 +69,6 @@ public class Pagamento {
 		this.nomeUtente=null;
 		this.ammontare=totale;
 		
-	}
+	}*/
 	
 }

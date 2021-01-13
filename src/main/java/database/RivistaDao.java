@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import factoryBook.Factory;
+import factoryBook.Libro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -42,7 +43,7 @@ public class RivistaDao {
 	                int disp=rs.getInt("disp");
 	                float prezzo=rs.getFloat("prezzo");
 	                int copieR=rs.getInt("copieRimanenti");
-	                InputStream img=rs.getBinaryStream("img");
+	               // InputStream img=rs.getBinaryStream("img");
 
 
 	                
@@ -51,7 +52,7 @@ public class RivistaDao {
 	    	        alert.setHeaderText("Ecco il riepigolo del libro");
 	    	        alert.setContentText("  Titolo : "+titolo+"\n"+"tipologia : "+tipologia+"\n"+"codice isbn :"+ "\n"+"autore :"+autore+"\n"+"lingua :"+lingua+"\n"+
 	    	        "\n"+"editore : "+editore+"\n"+"descrizione :"+desc+"\n"+"data pubblicazione : "+data+"\n"+"disponibilita :"+ disp
-	    	        		+"\n"+"prezzo :"+prezzo+"\n"+"copieRimanenti : "+copieR+"\n"+"foto copertina : "+img);
+	    	        		+"\n"+"prezzo :"+prezzo+"\n"+"copieRimanenti : "+copieR+"\n");
 	    	        alert.showAndWait();
 	    	        
 	            }
@@ -174,5 +175,59 @@ public class RivistaDao {
 	{
 		f=new Factory();
 	}
+	
+	public int retId(Rivista r) throws SQLException {
+		int id = 0;
+		String titolo=r.getTitolo();
+		 Connection conn = ConnToDb.generalConnection();
+		 try {
+         Statement stmt = conn.createStatement();
+         ResultSet rs;
+
+         rs = stmt.executeQuery("select id from rivista where titolo ='"+titolo+"'");
+         while ( rs.next() ) {
+              id=rs.getInt("id");
+
+         }
+		 }catch(SQLException e)
+		 {
+			 e.getCause();
+		 }finally {
+			 conn.close();
+		 }
+		 //return id;
+		return id;
+
+		// TODO Auto-generated method stub
+		
+	}
+	public String retTip(Rivista r) throws SQLException {
+		// TODO Auto-generated method stub
+		String categoria=null;
+		 Connection conn = ConnToDb.generalConnection();
+		 try {
+         Statement stmt = conn.createStatement();
+         ResultSet rs;
+
+         rs = stmt.executeQuery("select tipologia from rivista where titolo ='"+r.getTitolo()+"'");
+         while ( rs.next() ) {
+              categoria=rs.getString("tipologia");
+
+         }
+		 }catch(SQLException e)
+		 {
+			 e.getCause();
+		 }finally {
+				conn.close();
+			}
+			
+		return categoria;
+
+		
+	}
+	
+	
+
+
 
 }

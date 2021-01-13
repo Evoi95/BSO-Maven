@@ -55,8 +55,6 @@ public class BuondaryCompravenditaLibri implements Initializable {
 	private TableColumn<Raccolta, SimpleFloatProperty> prezzo = new TableColumn<>("Prezzo");
 	@FXML
 	private TableColumn<Raccolta, SimpleIntegerProperty> copie = new TableColumn<>("CopieRimanenti");
-	@FXML
-	private TableColumn<Raccolta, Image> img = new TableColumn<>("Image");
 	/*
 	 * TODO sistemare altre righe tabella dal db
 	 */
@@ -125,7 +123,6 @@ public class BuondaryCompravenditaLibri implements Initializable {
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
 		copie.setCellValueFactory(new PropertyValueFactory<>("copieRim"));
 
-		img.setCellValueFactory(new PropertyValueFactory<>("Img"));
 
 	}
 

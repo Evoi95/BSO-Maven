@@ -9,7 +9,7 @@
 
 <Pane fx:id="panel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="985.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.BuondaryCompravenditaRiviste">
    <children>
-      <TableView fx:id="table" layoutX="59.0" layoutY="110.0" prefHeight="263.0" prefWidth="850.0">
+      <TableView fx:id="table" layoutX="59.0" layoutY="110.0" prefHeight="263.0" prefWidth="771.0">
         <columns>
             <TableColumn fx:id="titolo" prefWidth="75.0" text="Titolo" />
             <TableColumn fx:id="autore" prefWidth="75.0" text="Autore" />
@@ -20,7 +20,6 @@
             <TableColumn fx:id="disponibilita" prefWidth="105.0" text="Disponibilita" />
             <TableColumn fx:id="prezzo" prefWidth="59.0" text="Prezzo" />
             <TableColumn fx:id="copieRim" prefWidth="107.0" text="CopieRimanenti" />
-            <TableColumn fx:id="foto" prefWidth="79.0" text="Foto" />
         </columns>
       </TableView>
       <Label fx:id="header" layoutX="405.0" layoutY="36.0" text="Ecco la lista delle riviste presenti" textAlignment="CENTER" textFill="#41a9ab" />

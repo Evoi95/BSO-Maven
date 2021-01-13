@@ -33,6 +33,12 @@ public class ControllerAcquista {
 
 			System.out.println("ControllerAcquist");
 			lD.aggiornaDisponibilita(l);
+			
+			/*
+			 * TODO 
+			 */
+			
+			
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -49,6 +55,13 @@ public class ControllerAcquista {
 			gD.daiPrivilegi();
 			y = gD.getCosto(g);
 			gD.aggiornaDisponibilita(g);
+			
+		/*	p=new Pagamento(0, null, 0, null, y, null, 0);
+			p.setId(gD.retId(g));
+			p.setTipo(gD.retTip(g));
+			pagD.inserisciPagamento(p);
+			*/
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -65,6 +78,12 @@ public class ControllerAcquista {
 			rD.daiPrivilegi();
 			z = rD.getCosto(r);
 			rD.aggiornaDisponibilita(r);
+			/*
+			p=new Pagamento(0, null, 0, null, z, null, 0);
+			p.setId(rD.retId(r));
+			p.setTipo(rD.retTip(r));
+			pagD.inserisciPagamento(p);
+*/
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,10 +101,10 @@ public class ControllerAcquista {
 		r = new Rivista();
 		pagD = new PagamentoDao();
 		pagD.daiPrivilegi();
-		p = new Pagamento(0);
+		//p = new Pagamento(0);
 
 	}
-
+/*
 	public void returnSpesa(String amm) throws SQLException {
 		float totale = Float.parseFloat(amm);
 		p.setMetodo(null);
@@ -95,5 +114,70 @@ public class ControllerAcquista {
 
 		pagD.inserisciPagamento(p);
 	}
+*/
 
-}
+	public int getIdL(String text) throws SQLException {
+		l.setCodIsbn(text);
+		return lD.retId( l);
+		// TODO Auto-generated method stub
+		
+	}
+	public String getTipL(String text) throws SQLException
+	{
+		l.setCodIsbn(text);
+		return lD.retTip(l);
+	}
+	
+	public int getIdG(String text) throws SQLException {
+		g.setTitolo(text);//l.setCodIsbn(text);
+		return gD.retId( g);
+		// TODO Auto-generated method stub
+		
+	}
+	public String getTipG(String text) throws SQLException
+	{
+		g.setTitolo(text);	
+		return gD.retTip(g);
+	}
+	
+	public int getIdR(String text) throws SQLException {
+		r.setTitolo(text);//l.setCodIsbn(text);
+		return rD.retId( r);
+		// TODO Auto-generated method stub
+		
+	}
+	public String getTipR(String text) throws SQLException
+	{
+		r.setTitolo(text);	
+		return rD.retTip(r);
+	}
+	
+	public void inserisciAmmontareL(Float f) throws SQLException
+	{
+		p=new Pagamento(0, null, 0, null,  f, null, 0);
+		p.setId(lD.retId(l));
+		p.setTipo(lD.retTip(l));
+		pagD.inserisciPagamento(p);
+
+	}
+	public void inserisciAmmontareG(Float f) throws SQLException
+	{
+		p=new Pagamento(0, null, 0, null,  f, null, 0);
+		p.setId(gD.retId(g));
+		p.setTipo(gD.retTip(g));
+		pagD.inserisciPagamento(p);
+
+	}
+	public void inserisciAmmontareR(Float f) throws SQLException
+	{
+		p=new Pagamento(0, null, 0, null,  f, null, 0);
+		p.setId(rD.retId(r));
+		p.setTipo(rD.retTip(r));
+		pagD.inserisciPagamento(p);
+
+	}
+
+
+	
+	
+	}

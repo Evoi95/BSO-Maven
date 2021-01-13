@@ -4,14 +4,17 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import database.CartaCreditoDao;
+import database.PagamentoDao;
 import javafx.collections.ObservableList;
 import pagamento.CartaCredito;
+import pagamento.Pagamento;
 
 public class ControllerPagamentoCC {
 	private CartaCreditoDao cDao;
 	private String appoggio = "";
 	private Boolean state;
 	private CartaCredito cc;
+	private PagamentoDao pD;
 
 	public boolean controllaPag(String d, String c) {
 
@@ -37,15 +40,26 @@ public class ControllerPagamentoCC {
 	public ControllerPagamentoCC() throws Exception {
 		cDao = new CartaCreditoDao();
 		cDao.daiPrivilegi();
+		pD=new PagamentoDao();
+		pD.daiPrivilegi();
 	}
 
 	public void aggiungiCartaDB(String n, String c, String cod, java.util.Date data, String civ, float prezzo)
 			throws SQLException {
 		try {
 			cc = new CartaCredito(n, c, cod, (Date) data, civ, 0);
+			
+			System.out.println("\n\n\t CC: \n\n"+cc.getAmmontare());
 
 			cc.setPrezzoTransazine(cDao.prendiSpesa());
 			cDao.insCC(cc);
+			
+			Pagamento p=new Pagamento(0,"cc",0,cc.getUserNome(),cc.getPrezzoTransazine(),null,0);
+			pD.aggiornaPagamentoCC(p);
+			
+			
+			
+
 
 		} catch (SQLException e) {
 			e.getCause();

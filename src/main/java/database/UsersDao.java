@@ -47,13 +47,13 @@ public class UsersDao {
 			 			+" "
 			 			+ "(?,?,?,?,?)";
 				prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,U.getNome()); // titolo
-				prepQ.setString(2,U.getCognome()); //
-				prepQ.setString(3,U.getEmail());
-		 		prepQ.setString(4, U.getPassword());
+				prepQ.setString(1,U.getInstance().getNome()); // titolo
+				prepQ.setString(2,U.getInstance().getCognome()); //
+				prepQ.setString(3,U.getInstance().getEmail());
+		 		prepQ.setString(4, U.getInstance().getPassword());
 		 		// alternativa NO se rompe tutto se passi un oggetto di tipo data java lui
 		 		// vuole un oggetto di tipo data sql 
-				prepQ.setDate(5, java.sql.Date.valueOf(U.getDataDiNascita().toString()));  
+				prepQ.setDate(5, java.sql.Date.valueOf(U.getInstance().getDataDiNascita().toString()));  
 				prepQ.executeUpdate();
 				//conn.close();
 			 	System.out.println("utente Inserito con successo");
@@ -79,7 +79,7 @@ public class UsersDao {
     {
     	// ritorna int per motivi legati al controller
     	// anche se lo tratto come boolean
-    	String email = U.getEmail();
+    	String email = U.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -117,7 +117,7 @@ public class UsersDao {
     {
     	String r = null ;
 
-    	String email = U.getEmail();
+    	String email = U.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -131,7 +131,7 @@ public class UsersDao {
 			 	if(rs.next())
 			 	{
 			 		r =rs.getString(1);
-			 		U.setIdRuolo(r);
+			 		U.getInstance().setIdRuolo(r);
 				 	conn.close();				 	
 			 		System.out.println("Ruolo utente : "+r);
 			 		return r; // true
@@ -185,7 +185,7 @@ public class UsersDao {
     //
     public static Object findUser(User U)
     {
-    	String r = U.getIdRuolo();
+    	String r = U.getInstance().getIdRuolo();
     	if(r.contentEquals("U"))
     	{
     		return  U;
@@ -217,7 +217,7 @@ public class UsersDao {
     // delete a user from db  terzo caso d'uso
     public static boolean deleteUser(User U)
     {
-    	String Email = U.getEmail();
+    	String Email = U.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -226,8 +226,8 @@ public class UsersDao {
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
-			 	query="DELETE FROM user WHERE "+
-				"Email = "+ Email +";";
+			 	query="DELETE FROM users WHERE "+
+				"Email = '"+ Email +"'";
 			 	st.executeUpdate(query);
 			 	conn.close();
 			 	return true;
@@ -246,7 +246,7 @@ public class UsersDao {
     // e poi il controller lo specializza nelle 4 classi 
     public static User pickData(User U)
     {
-    	String email = U.getEmail();
+    	String email = U.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -266,12 +266,12 @@ public class UsersDao {
 			 	if(rs.next())
 			 	{
 			 		// setto i vari dati 
-			 		U.setIdRuolo(rs.getString(1));
-			 		U.setNome(rs.getString(2));
-			 		U.setCognome(rs.getString(3));
-			 		U.setEmail(rs.getString(4));
-			 		U.setDescrizione(rs.getString(5));
-			 		U.setDataDiNascita(rs.getDate(6).toLocalDate());
+			 		U.getInstance().setIdRuolo(rs.getString(1));
+			 		U.getInstance().setNome(rs.getString(2));
+			 		U.getInstance().setCognome(rs.getString(3));
+			 		U.getInstance().setEmail(rs.getString(4));
+			 		U.getInstance().setDescrizione(rs.getString(5));
+			 		U.getInstance().setDataDiNascita(rs.getDate(6).toLocalDate());
 			 				 		
 			 		conn.close();	
 			 	//	sono delle print messe per controllo 
@@ -296,7 +296,8 @@ public class UsersDao {
     	// errore
     	return null;
     }
-
+    
+    
     // TO DO : Robe per modificare e aggiornare i dati sono del terzo caso d'uso
     
 	

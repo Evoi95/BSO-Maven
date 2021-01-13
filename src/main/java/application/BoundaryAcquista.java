@@ -107,7 +107,15 @@ public class BoundaryAcquista implements Initializable {
 				float tot;
 				tot = x * (Float.parseFloat(quantita.getText()));
 				totale.setText("" + tot);
+				CA.inserisciAmmontareL(tot);
+				
+				//prendo id e tipologia
+				
+				//System.out.println("Id del libro : "+CA.getIdL(nome.getText()));
+				//System.out.println("categoria libro :"+CA.getTipL(nome.getText()));
+				
 				// CA.retAmmontare(totale.getText());
+				//CA.Paga();
 
 			} else if (scelta.equals("giornale")) {
 				labelN.setText("Leggere nome giornale");
@@ -117,6 +125,12 @@ public class BoundaryAcquista implements Initializable {
 				float tot1;
 				tot1 = y * (Float.parseFloat(quantita.getText()));
 				totale.setText("" + tot1);
+				CA.inserisciAmmontareG(tot1);
+
+				
+				//System.out.println("Id del giornale: "+CA.getIdG(nome.getText()));
+				//System.out.println("categoria giornale :"+CA.getTipG(nome.getText()));
+				
 				// CA.retAmmontare(totale.getText());
 
 			} else if (scelta.equals("rivista")) {
@@ -125,13 +139,19 @@ public class BoundaryAcquista implements Initializable {
 				float tot2;
 				tot2 = z * (Float.parseFloat(quantita.getText()));
 				totale.setText("" + tot2);
+				CA.inserisciAmmontareR(tot2);
+
+				
+				//System.out.println("Id del giornale: "+CA.getIdR(nome.getText()));
+				//System.out.println("categoria giornale :"+CA.getTipR(nome.getText()));
+				
 
 			} else {
 				throw new IOException();
 			}
 
 		}
-		CA.returnSpesa(totale.getText());
+		//CA.returnSpesa(totale.getText());
 
 	}
 

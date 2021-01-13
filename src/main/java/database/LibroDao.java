@@ -47,7 +47,7 @@ public class LibroDao  {
 	                int disp=rs.getInt("disp");
 	                float prezzo=rs.getFloat("prezzo");
 	                int copieR=rs.getInt("copieRimanenti");
-	                InputStream img=rs.getBinaryStream("img");
+	             //   InputStream img=rs.getBinaryStream("img");
 
 
 	                
@@ -58,7 +58,7 @@ public class LibroDao  {
 	    	        		+"\n"+"editore : "+editore+ "\n"+"autore :"+autore+"\n"+"lingua :"+lingua+"\n"+"categoria :"+categoria+
 	    	        		"\n"+"data pubblicazione : "+data+"\n"+"recensione :"+recensione+"\n"+"numero copie vendute :"+copie
 	    	        		+"\n"+"descrizione :"+desc+"\n"+"copie disponibili :"+disp+"\n"+"prezzo :"+prezzo
-	    	        		+"\n"+"copieRimanenti : "+copieR+"\n"+"foto copertina : "+img);
+	    	        		+"\n"+"copieRimanenti : "+copieR+"\n");
 	    	        alert.showAndWait();
 	    	        
 	            }
@@ -188,6 +188,57 @@ public class LibroDao  {
 	{
 		f=new Factory();
 	}
+
+	public int retId(Libro l) throws SQLException {
+		int id = 0;
+		 Connection conn = ConnToDb.generalConnection();
+		 try {
+         Statement stmt = conn.createStatement();
+         ResultSet rs;
+
+         rs = stmt.executeQuery("select id_prod from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
+         while ( rs.next() ) {
+              id=rs.getInt("id_prod");
+
+         }
+		 }catch(SQLException e)
+		 {
+			 e.getCause();
+		 }finally {
+			 conn.close();
+		 }
+		 //return id;
+		return id;
+
+		// TODO Auto-generated method stub
+		
+	}
+	public String retTip(Libro l) throws SQLException {
+		// TODO Auto-generated method stub
+		String categoria=l.getCategoria();
+		 Connection conn = ConnToDb.generalConnection();
+		 try {
+         Statement stmt = conn.createStatement();
+         ResultSet rs;
+
+         rs = stmt.executeQuery("select categoria from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
+         while ( rs.next() ) {
+              categoria=rs.getString("categoria");
+
+         }
+		 }catch(SQLException e)
+		 {
+			 e.getCause();
+		 }finally {
+				conn.close();
+			}
+			
+		return categoria;
+
+		
+	}
+	
+	
 
 	}
 	

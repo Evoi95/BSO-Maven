@@ -15,8 +15,8 @@ public class ControllerBsoRegister {
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		U.setEmail(email);
-		U.setPassword(pwd);
+		U.getInstance().setEmail(email);
+		U.getInstance().setPassword(pwd);
 		//U = new User(email,pwd);
 		
 		if(checkData ( n,c,email,pwd,pwdC) )
@@ -24,9 +24,9 @@ public class ControllerBsoRegister {
 			if (UsersDao.checkUser(U) == 0)
 			{
 				// nuovo utente creo l'account
-				U.setNome(n);
-				U.setCognome(c);
-				U.setDataDiNascita(LocalDate);
+				U.getInstance().setNome(n);
+				U.getInstance().setCognome(c);
+				U.getInstance().setDataDiNascita(LocalDate);
 				//User U1 = new User( n,c,email,pwd,LocalDate);
 				state=Ud.createUser(U);
 				//state=true;
@@ -95,7 +95,7 @@ public class ControllerBsoRegister {
 	
 	public ControllerBsoRegister()
 	{
-		U.getInstance();
+		//U.getInstance();
 		Ud=new UsersDao();
 	}
 	

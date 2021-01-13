@@ -70,19 +70,24 @@ public class CreateDefaultDB
 				
 				query=	"Create table  if not exists LIBRO "
 						+ "	( titolo VARCHAR(200), numeroPagine int, "
-						+ " Cod_isbn varchar(10) primary key not null unique ,"
+						+ " Cod_isbn varchar(10)  not null unique ,"
 						+ "	editore varchar(200) ,"
 						+ " autore varchar(200), lingua varchar(10),"
 						+ " categoria Varchar(60), dataPubblicazione date,"
 						+ " recensione text, copieVendute int, breveDescrizione text,"
 						+ " disp int, prezzo float,"
-						+ " copieRimanenti int,img longblob);";
+						+ " copieRimanenti int,img longblob,"
+						+ "id_prod int primary key auto_increment);";
 				st.executeUpdate(query);
 				
 				query=	"create table if not exists pagamento("
 						+ "id_op int primary key auto_increment,"
 						+ "metodo varchar(10),esito int ,"
-						+ "nomeUtente varchar(10),spesaTotale float ) ";
+						+ "nomeUtente varchar(10),spesaTotale float,"
+						+ "eMail varchar(100 ),"
+						+ "tipoAcquisto varchar(20),"
+						+ "id_prod int )";
+						
 						st.executeUpdate(query);
 				
 				query=	"Create table if not exists RIVISTA "
@@ -128,7 +133,9 @@ public class CreateDefaultDB
 				System.out.println("Tabelle create!");
 				if (PopulateDefaultDb.populateDefaultDb()) {
 					System.out.println("Tabella populata con valori di default");
-					if (createTrigger()) {
+					if (true)
+					{
+					//if (createTrigger()) {
 						ConnToDb.conn.close();
 						System.out.println("Trigger creati e connesione chiusa col db");
 					}
@@ -142,8 +149,8 @@ public class CreateDefaultDB
 				{
 					System.err.println("Ops..! qualcosa è andato storto nel populare il database!");
 				}
-				
 			}
+			
 			// Se trovo tutto  chiudo la connesione e vado avanti con l'esecuzione del programma
 			else if (status == false)
 			{

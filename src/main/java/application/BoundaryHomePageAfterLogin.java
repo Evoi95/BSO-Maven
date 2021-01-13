@@ -99,11 +99,12 @@ public class BoundaryHomePageAfterLogin {
 	private void profile() throws IOException {
 		// specificare controller logico
 		/*
-		 * Stage stage;
+		 */
+		Stage stage;
 		 
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("profile.fxml"));
+		root = FXMLLoader.load(getClass().getResource("visualizzaProfilo.fxml"));
 		stage.setTitle("Benvenuto nel tuo profilo qui puoi visualizzare le tue informazioni");
 	
 		
@@ -113,8 +114,8 @@ public class BoundaryHomePageAfterLogin {
 		stage.setScene(scene);
 
 		stage.show();
-		*/
-		System.out.println("Sto nel terzo caso d'urso lode");
+		
+		//System.out.println("Sto nel terzo caso d'urso lode");
 	}
 
 	// Usaiamo la Reflection!! no! 

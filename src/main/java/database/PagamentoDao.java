@@ -2,9 +2,14 @@ package database;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import factoryBook.Raccolta;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import pagamento.Pagamento;
+import usersSingelton.User;
 
 public class PagamentoDao {
 	private static String qInsert ;
@@ -18,19 +23,27 @@ public class PagamentoDao {
 		int esito=p.getEsito();
 		String nomeU=p.getNomeUtente();
 		float amm=p.getAmmontare();
+		String email=User.getInstance().getEmail();
+		String tipologia=p.getTipo();
+		int idProdotto=p.getId();
 		
 		try {
 					connPag=ConnToDb.generalConnection();
 
 		// TODO Auto-generated method stub
-		 qInsert="INSERT INTO pagamento (metodo,esito,nomeUtente,spesaTotale) values (?,?,?,?)";
+		 qInsert="INSERT INTO pagamento (metodo,esito,nomeUtente,spesaTotale,eMail,tipoAcquisto,id_prod) values (?,?,?,?,?,?,?)";
 		prepQ = connPag.prepareStatement(qInsert);
 		//prepQ.setInt(1,p.getEsito()); // numero pagine int
 		prepQ.setString(1,m); // 
 		prepQ.setInt(2,esito);
 		prepQ.setString(3, nomeU);
 		prepQ.setFloat(4,amm);
+		prepQ.setString(5, email);
+		prepQ.setString(6,tipologia);
+		prepQ.setInt(7, idProdotto);
 		prepQ.executeUpdate();
+		
+		connPag.close();
 		}catch(SQLException s)
 		{
 			s.getStackTrace();
@@ -57,6 +70,99 @@ public class PagamentoDao {
 		
 		 System.out.println("LibroDao. privilegi");
 
-}
+	}
+	
+public void aggiornaPagamentoCash(Pagamento p) throws SQLException {
+		
+		String m=p.getMetodo();
+		int esito=p.getEsito();
+		String nomeU=p.getNomeUtente();
+		float amm=p.getAmmontare();
+		String email=User.getInstance().getEmail();
+		
+		try {
+					connPag=ConnToDb.generalConnection();
+
+		// TODO Auto-generated method stub
+		 qInsert="update pagamento set metodo=?,esito=?,nomeUtente=?,spesaTotale=?,eMail=?  where 1+last_insert_id(id_op) order by id_op desc limit 1";
+		prepQ = connPag.prepareStatement(qInsert);
+		//prepQ.setInt(1,p.getEsito()); // numero pagine int
+		prepQ.setString(1,m); // 
+		prepQ.setInt(2,esito);
+		prepQ.setString(3, nomeU);
+		prepQ.setFloat(4,amm);
+		prepQ.setString(5, email);
+		prepQ.executeUpdate();
+		
+		connPag.close();
+		}catch(SQLException s)
+		{
+			s.getStackTrace();
+		}
+		}
+
+public void aggiornaPagamentoCC(Pagamento p) throws SQLException {
+	
+	String m=p.getMetodo();
+	int esito=p.getEsito();
+	String nomeU=p.getNomeUtente();
+	float amm=p.getAmmontare();
+	String email=User.getInstance().getEmail();
+	
+	try {
+				connPag=ConnToDb.generalConnection();
+
+	// TODO Auto-generated method stub
+	 qInsert="update pagamento set metodo=?,esito=?,nomeUtente=?,spesaTotale=?,eMail=?  where 1+last_insert_id(id_op) order by id_op desc limit 1";
+	prepQ = connPag.prepareStatement(qInsert);
+	//prepQ.setInt(1,p.getEsito()); // numero pagine int
+	prepQ.setString(1,m); // 
+	prepQ.setInt(2,esito);
+	prepQ.setString(3, nomeU);
+	prepQ.setFloat(4,amm);
+	prepQ.setString(5, email);
+	prepQ.executeUpdate();
+	
+	connPag.close();
+	}catch(SQLException s)
+	{
+		s.getStackTrace();
+	}
+	}
+public ObservableList<Pagamento> getPagamenti() throws SQLException {
+	// TODO Auto-generated method stub
+	
+		
+		Connection conn= ConnToDb.generalConnection();
+
+		ObservableList<Pagamento> catalogo=FXCollections.observableArrayList();
+		 
+		//ConnToDb.connection();
+        ResultSet rs=conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,id_prod from pagamento where eMail='"+User.getInstance().getEmail()+"'");
+
+        while(rs.next())
+        {
+           // System.out.println("res :"+rs);
+
+    		try {
+    			catalogo.add(new Pagamento (rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getFloat(5),rs.getString(6),rs.getInt(7)));
+    		} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+        }
+        conn.close();
+	
+	//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
+	
+	System.out.println(catalogo);
+	return catalogo;
+		}
 
 }
+
+
+
+
+

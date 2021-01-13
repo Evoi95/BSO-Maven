@@ -91,6 +91,8 @@ public class CartaCreditoDao {
 		//PreparedStatement stmt=null;
 		//Connection conn = null;
 		
+		
+		System.out.println("\t\tEntro in ins cc");
 		String n=cc.getUserNome();
 		 String c=cc.getUserCognome();
 		 String num=cc.getNumeroCC();
@@ -120,7 +122,7 @@ public class CartaCreditoDao {
     	        alert.showAndWait();
 
     	       
-
+    	        conn.close();
 	            
 	         }catch(SQLException e)
 	         {
@@ -128,7 +130,7 @@ public class CartaCreditoDao {
 	        	e.getMessage();
 
 	         }
-		 finally {conn.close();}
+		 //finally {conn.close();}
 		
 		
 		 System.out.println("LibroDao. questy");
@@ -145,13 +147,11 @@ public class CartaCreditoDao {
 	          {
 	        	  spesa=rs.getFloat("spesaTotale");
 	          }
+	          
+	          conn.close();
 		}catch(SQLException e)
 		{
 			e.getCause();
-		}
-		finally
-		{
-			conn.close();
 		}
 		
 		System.out.println("\n\n Spesa in cDao :"+spesa);

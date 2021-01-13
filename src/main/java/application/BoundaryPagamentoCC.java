@@ -78,7 +78,7 @@ public class BoundaryPagamentoCC implements Initializable {
 		String cod = codiceTF.getText();
 
 		esito = CPCC.controllaPag(scadTF.getText(), cod);
-		if (esito.equals(true)) {
+		if (esito==(true)) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
