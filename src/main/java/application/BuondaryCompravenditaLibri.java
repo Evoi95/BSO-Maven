@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -30,34 +31,16 @@ public class BuondaryCompravenditaLibri implements Initializable {
 	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> numPag = new TableColumn<>("NumPag");
-	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> isbn = new TableColumn<>("CodiceIsbn");
-	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> editore = new TableColumn<>("Editore");
 	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> autore = new TableColumn<>("Autore");
 	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> lingua = new TableColumn<>("Lingua");
-	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> categoria = new TableColumn<>("Categoria");
-	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> data = new TableColumn<>("DataPubblicazione");
-	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> recensione = new TableColumn<>("Recensione");
-	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> nrCopie = new TableColumn<>("Copie Vendute");
-	@FXML
-	TableColumn<Raccolta, SimpleStringProperty> desc = new TableColumn<>("Descrizione");
-	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> disponibilita = new TableColumn<>("Disponibilita");
 	@FXML
 	private TableColumn<Raccolta, SimpleFloatProperty> prezzo = new TableColumn<>("Prezzo");
 	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> copie = new TableColumn<>("CopieRimanenti");
-	/*
-	 * TODO sistemare altre righe tabella dal db
-	 */
+	private TableColumn<Raccolta, SimpleIntegerProperty> idLibro = new TableColumn<>("Id Libro");
+
 	@FXML
 	private Button buttonL;
 	@FXML
@@ -70,27 +53,77 @@ public class BuondaryCompravenditaLibri implements Initializable {
 	private Button buttonI;
 
 	private ControllerCompravenditaLibri CCV;
-
+	private ControllerVisualizzaLibro CVL;
+	
 	@FXML
-	private void verifica() throws SQLException {
-		CCV.disponibilitaLibro(entryText.getText());// verifico se libro e presente
+	private void verifica() throws  IOException, SQLException {
+		//CCV.disponibilitaLibro(entryText.getText());// verifico se libro e presente
 		// String libro=entryText.getText();
 		// return CCV.disponibilitaLibro( libro);
+		try
+		{
+			String i = entryText.getText();
+		if( CCV.disponibilitaLibro(i)) {
+			CVL.setID(i);
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonV.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("visualizzaBookPage.fxml"));
+			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
+
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+			
+		else
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore Id libro inserito");
+			alert.setHeaderText("Errore nei dati inseriti");
+			alert.setContentText("Ricontrolla i dati che hai inserito !");
+			alert.showAndWait();
+		}
+		}
+		catch (NumberFormatException e)
+		{
+			e.getMessage();
+		}
+
 	}
 
 	@FXML
-	private void procedi() throws IOException {
+	private void procedi() throws IOException, SQLException {
+		try
+		{
+			String i = entryText.getText();
+		if( CCV.disponibilitaLibro(i)) {
+			CVL.setID(i);
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonA.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
+			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonA.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		else
+		{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Errore Id libro non inserito");
+			alert.setHeaderText("Errore nei dati inseriti");
+			alert.setContentText("Ricontrolla i dati che hai inserito !");
+			alert.showAndWait();
+		}
+		}
+		catch (NumberFormatException e)
+		{
+			e.getMessage();
+		}
 
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-
+		
 	}
 
 	@FXML
@@ -102,26 +135,18 @@ public class BuondaryCompravenditaLibri implements Initializable {
 
 	public BuondaryCompravenditaLibri() {
 		CCV = new ControllerCompravenditaLibri();
+		CVL = new ControllerVisualizzaLibro();
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
-		numPag.setCellValueFactory(new PropertyValueFactory<>("numPag"));
-		isbn.setCellValueFactory(new PropertyValueFactory<>("codIsbn"));
 		editore.setCellValueFactory(new PropertyValueFactory<>("editore"));
 		autore.setCellValueFactory(new PropertyValueFactory<>("autore"));
-		lingua.setCellValueFactory(new PropertyValueFactory<>("lingua"));
 		categoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
-		data.setCellValueFactory(new PropertyValueFactory<>("dataPubb"));
-		recensione.setCellValueFactory(new PropertyValueFactory<>("recensione"));
-		nrCopie.setCellValueFactory(new PropertyValueFactory<>("nrCopie"));
-
-		desc.setCellValueFactory(new PropertyValueFactory<>("desc"));
-		disponibilita.setCellValueFactory(new PropertyValueFactory<>("disponibilita"));
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
-		copie.setCellValueFactory(new PropertyValueFactory<>("copieRim"));
+		idLibro.setCellValueFactory(new PropertyValueFactory<>("idBook"));
 
 
 	}

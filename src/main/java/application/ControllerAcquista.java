@@ -21,22 +21,24 @@ public class ControllerAcquista {
 	private Giornale g;
 	private Rivista r;
 	private Pagamento p;
-
+	private static singeltonVisualizzaLibro vis = singeltonVisualizzaLibro.getIstance() ;
+	private String name;
+	private int disp;
+	
 	public float totale(String isbn, int disp) {
 		float x = (float) 0.0;
 		try {
 			lD.daiPrivilegi();
-
-			l.setCodIsbn(isbn);
+			// se semo fermati qua 
+			l.setIdBook(vis.getIstance().getId());
 			l.setDisponibilita(disp);
 			x = lD.getCosto(l);
 
-			System.out.println("ControllerAcquist");
+			System.out.println("ControllerAcquista");
 			lD.aggiornaDisponibilita(l);
+			lD.aggiornaCopieVendute(l,disp);
 			
-			/*
-			 * TODO 
-			 */
+		
 			
 			
 
@@ -55,12 +57,7 @@ public class ControllerAcquista {
 			gD.daiPrivilegi();
 			y = gD.getCosto(g);
 			gD.aggiornaDisponibilita(g);
-			
-		/*	p=new Pagamento(0, null, 0, null, y, null, 0);
-			p.setId(gD.retId(g));
-			p.setTipo(gD.retTip(g));
-			pagD.inserisciPagamento(p);
-			*/
+
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -104,17 +101,6 @@ public class ControllerAcquista {
 		//p = new Pagamento(0);
 
 	}
-/*
-	public void returnSpesa(String amm) throws SQLException {
-		float totale = Float.parseFloat(amm);
-		p.setMetodo(null);
-		p.setEsito(-1);
-		p.setNomeUtente(null);
-		p.setAmmontare(totale);
-
-		pagD.inserisciPagamento(p);
-	}
-*/
 
 	public int getIdL(String text) throws SQLException {
 		l.setCodIsbn(text);
@@ -122,9 +108,10 @@ public class ControllerAcquista {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public String getTipL(String text) throws SQLException
 	{
-		l.setCodIsbn(text);
+		l.setIdBook(Integer.parseInt(text));
 		return lD.retTip(l);
 	}
 	
@@ -134,6 +121,7 @@ public class ControllerAcquista {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public String getTipG(String text) throws SQLException
 	{
 		g.setTitolo(text);	
@@ -146,6 +134,7 @@ public class ControllerAcquista {
 		// TODO Auto-generated method stub
 		
 	}
+	
 	public String getTipR(String text) throws SQLException
 	{
 		r.setTitolo(text);	
@@ -160,6 +149,7 @@ public class ControllerAcquista {
 		pagD.inserisciPagamento(p);
 
 	}
+	
 	public void inserisciAmmontareG(Float f) throws SQLException
 	{
 		p=new Pagamento(0, null, 0, null,  f, null, 0);
@@ -168,6 +158,7 @@ public class ControllerAcquista {
 		pagD.inserisciPagamento(p);
 
 	}
+
 	public void inserisciAmmontareR(Float f) throws SQLException
 	{
 		p=new Pagamento(0, null, 0, null,  f, null, 0);
@@ -176,8 +167,59 @@ public class ControllerAcquista {
 		pagD.inserisciPagamento(p);
 
 	}
-
-
 	
+	public String getType()
+	{
+		
+		String S = vis.getIstance().getType();
+		System.out.println(S);
+		return S;
+	}
+
+	public String getNomeById() throws SQLException
+	{
+		
+		int id = vis.getIstance().getId();
+		String type =vis.getIstance().getType();
+		if(type.equals("libro"))
+		{
+			l.setIdBook(id);
+			name = lD.getNome(l);
+		}
+		else if(type.equals("giornale")) {
+			g.setId(id);
+			name = gD.getNome(g);
+		}
+		else if(type.equals("rivista"))
+		{
+			r.setId(id);
+			name = rD.getNome(r);
+			
+		}
+		return name ;
+	}
+	
+	public int getDisp() throws SQLException
+	{
+		int id = vis.getIstance().getId();
+		String type =vis.getIstance().getType();
+		if(type.equals("libro"))
+		{
+		
+			l.setIdBook(id);
+			disp = lD.getQuantita(l);
+		}
+		else if(type.equals("giornale")) {
+			g.setId(id);
+			disp = gD.getQuantita(g);
+		}
+		else if(type.equals("rivista"))
+		{
+			r.setId(id);
+			disp = rD.getQuantita(r);
+			
+		}
+		return disp ;
+	}
 	
 	}

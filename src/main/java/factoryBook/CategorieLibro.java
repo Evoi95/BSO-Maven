@@ -7,7 +7,7 @@ enum BookCategory{
 	LinguisticaEScrittura,Politica,	Religione, RomanziRosa,	Scienze, TecnologiaEMedicina, Sport, Storia, TempoLibero, Viaggi, Altro
 	};
 
-public class categorieLibro {
+public class CategorieLibro {
 	
 
 	private BookCategory categoria;
@@ -15,11 +15,11 @@ public class categorieLibro {
 	
 	
 	
-	public categorieLibro() {
+	public CategorieLibro() {
 		isValid = false;
 	}
 	
-	public categorieLibro(String t) {
+	public CategorieLibro(String t) {
 		categoria = BookCategory.valueOf(t); 
 		isValid = true;
 		

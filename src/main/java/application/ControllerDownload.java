@@ -44,7 +44,7 @@ public class ControllerDownload {
 
 	public ControllerDownload() {
 		this.nrOrdine = UUID.randomUUID().toString();
-		l = new Libro();
+		//l = new Libro();
 	}
 
 }

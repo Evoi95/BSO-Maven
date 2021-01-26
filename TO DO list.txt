@@ -1,0 +1,14 @@
+To Do : 
+
+1) completare il controller del terzo caso d'uso classe libri
+2) Completar la boundary del terzo caso d'uso classe libri
+3) creare boundary e controller di modifica del libro 
+	per far fare la modifica ed eliminazione
+
+ 
+	// to do mettere funzione franco
+	// to do mettere funzione camilla
+4) sistemare cosa con gli id  di libro giornale rivista e utente
+5) creare file per populateDB
+
+6) crezione schremata per nogozio e gestione 

@@ -10,22 +10,29 @@ import javafx.collections.ObservableList;
 public class ControllerCompravenditaLibri {
 	private LibroDao lD;
 	private Libro l;
+	private int tempIdLib;
+	private ControllerVisualizzaLibro CVL;
 
-	public void disponibilitaLibro(String isbn) throws SQLException {
-		l.setCodIsbn(isbn);
 
-		lD.getDesc(l);
 
+	public boolean disponibilitaLibro(String i ) throws SQLException {
+	
+		int id = Integer.parseInt(i);
+		
+		return lD.checkDisp(l,id);
 	}
 
 	public ControllerCompravenditaLibri() {
 		lD = new LibroDao();
-		l = new Libro();
-
+		CVL = new ControllerVisualizzaLibro();
+	//	l = new Libro();
 	}
 
 	public ObservableList<Raccolta> getLibri() throws SQLException {
 		return lD.getLibri();
 	}
+	
 
+
+	
 }

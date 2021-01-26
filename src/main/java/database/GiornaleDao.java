@@ -16,11 +16,19 @@ import javafx.scene.control.Alert.AlertType;
 import factoryBook.Giornale;
 import factoryBook.Libro;
 import factoryBook.Raccolta;
+import factoryBook.Rivista;
 
 public class GiornaleDao {
 	private Factory f;
+	private String name;
+	private static Statement st = null ;
+	private static String query ;
+	private static String qTrigger ;
+	private static PreparedStatement prepQ = null; 
+	private static Connection conn ;
+	private static int q ; 
 	
-	public void getDesc(factoryBook.Giornale g) throws SQLException
+ 	public void getDesc(factoryBook.Giornale g) throws SQLException
 	{	           
 		Connection conn = ConnToDb.generalConnection();
 
@@ -119,6 +127,7 @@ public class GiornaleDao {
 		 System.out.println("LibroDao. questy");
 
 		}
+
 	public void daiPrivilegi() throws SQLException
 	{
 		Connection conn=null;
@@ -147,7 +156,6 @@ public class GiornaleDao {
 		 System.out.println("LibroDao. privilegi");
 
 }
-
 	
 	public ObservableList<Raccolta> getGiornali() throws SQLException {
 		// TODO Auto-generated method stub
@@ -157,14 +165,14 @@ public class GiornaleDao {
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
 		 
 		//ConnToDb.connection();
-        ResultSet rs=conn.createStatement().executeQuery("SELECT * FROM giornale");
+        ResultSet rs=conn.createStatement().executeQuery("SELECT * FROM ispw.giornale");
 
         while(rs.next())
         {
            // System.out.println("res :"+rs);
 
     		try {
-				catalogo.add(f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getBinaryStream(9)));
+				catalogo.add(f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
 				//rs=rs.next();
     		} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -174,17 +182,35 @@ public class GiornaleDao {
         }
         conn.close();
 	
-	//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	
 	System.out.println(catalogo);
 	return catalogo;
 		}
-		public GiornaleDao()
+	
+	public Giornale getGiornale(Giornale G,int id) throws SQLException
+	{
+
+		Connection c= ConnToDb.generalConnection();
+        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM giornale where id = "+id+" ");
+        if (rs.next())
+        {
+        	G = (Giornale) f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(), rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)) ;
+        	//(Rivista) f.createRivista("rivista", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)); 
+        	return G;
+        }
+        else {
+        	System.out.println("non ho torvato un cazzo e ritorno null");
+            return G;
+
+        }
+	}
+	
+	public GiornaleDao()
 	{
 		f=new Factory();
 	}
 		
-		public int retId(Giornale g) throws SQLException {
+	public int retId(Giornale g) throws SQLException {
 			int id = 0;
 			String titolo=g.getTitolo();
 			 Connection conn = ConnToDb.generalConnection();
@@ -209,7 +235,8 @@ public class GiornaleDao {
 			// TODO Auto-generated method stub
 			
 		}
-		public String retTip(Giornale g) throws SQLException {
+
+	public String retTip(Giornale g) throws SQLException {
 			// TODO Auto-generated method stub
 			String titolo=g.getTitolo();
 			String categoria=null;//=g.getTipologia();
@@ -234,9 +261,108 @@ public class GiornaleDao {
 
 			
 		}
-		
+			
+	public String getNome(Giornale G) throws SQLException
+	{
+	
+		Connection c= ConnToDb.generalConnection();
+        ResultSet rs=c.createStatement().executeQuery("SELECT titolo FROM giornale where id = "+G.getId()+" ");
+        if (rs.next())
+        {
+        	name = rs.getString(1);
+        	return name;
+        }
+        else {
+        	System.out.println("non ho torvato un cazzo e ritorno null");
+            return null;
 
+        }	
+   }
 
+	public int getDisp(Giornale G) throws SQLException
+	{
+		int disp;
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				rs=  stmt.executeQuery(
+						"SELECT `giornale`.`disp` FROM `ispw`.`giornale` where `id` = `"+G.getId()+"` ;");
+				disp = rs.getInt(1);
+				if (disp >= 1)
+					return disp;
+				else if (disp == 0)
+					return 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*if (l.getDisponibilita()>=1)
+		{
+			return true;
+		}*/
+		return -1;
 	}
+
+	public int getQuantita(Giornale G) throws SQLException
+	{
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				rs=  stmt.executeQuery(
+						"SELECT `giornale`.`copiRim` FROM `ispw`.`giornale` where `id` = "+G.getId()+" ;");
+				if (rs.next()) {
+					q = rs.getInt(1);
+				}			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return q;
+	}
+
+	public boolean checkDisp(Giornale g,int id) throws SQLException
+	{
+		int disp;
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				rs=  stmt.executeQuery("SELECT disp FROM giornale where id = '"+id+"' ;");
+				if(rs.next())
+					{
+					disp = rs.getInt(1);
+					if (disp >= 1)
+						return true;
+					}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+}
 
 

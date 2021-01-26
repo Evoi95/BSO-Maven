@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import factoryBook.Factory;
+import factoryBook.Giornale;
 import factoryBook.Libro;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,14 @@ import factoryBook.Rivista;
 
 public class RivistaDao {
 	private Factory f;
+	private String name;
+	private static Statement st = null ;
+	private static String query ;
+	private static String qTrigger ;
+	private static PreparedStatement prepQ = null; 
+	private static Connection conn ;
+	private static int q;
+	
 	
 	
 	public void getDesc(Rivista r)
@@ -107,6 +116,7 @@ public class RivistaDao {
 		 System.out.println("LibroDao. questy");
 
 		}
+
 	public void daiPrivilegi() throws SQLException
 	{
 		Connection conn=null;
@@ -135,7 +145,6 @@ public class RivistaDao {
 		 System.out.println("LibroDao. privilegi");
 
 }
-
 	
 	public ObservableList<Raccolta> getRiviste() throws SQLException
 	{
@@ -152,7 +161,7 @@ public class RivistaDao {
                // System.out.println("res :"+rs);
 
         		try {
-					catalogo.add(f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7), rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getBinaryStream(11),rs.getInt(12)));
+					catalogo.add(f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(), rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));
 					
 					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
 					//System.out.println("res: "+rs[i]);
@@ -169,6 +178,23 @@ public class RivistaDao {
 		System.out.println(catalogo);
 		return catalogo;
 		
+	}
+
+	public Rivista getRivista(Rivista R,int id) throws SQLException
+	{
+
+		Connection c= ConnToDb.generalConnection();
+        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista where id = "+id+" ");
+        if (rs.next())
+        {
+        	R = (Rivista) f.createRivista("rivista", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)); 
+        	return R;
+        }
+        else {
+        	System.out.println("non ho torvato un cazzo e ritorno null");
+            return R;
+
+        }
 	}
 
 	public RivistaDao()
@@ -201,6 +227,7 @@ public class RivistaDao {
 		// TODO Auto-generated method stub
 		
 	}
+
 	public String retTip(Rivista r) throws SQLException {
 		// TODO Auto-generated method stub
 		String categoria=null;
@@ -226,8 +253,108 @@ public class RivistaDao {
 		
 	}
 	
+	public String getNome(Rivista R) throws SQLException
+	{
 	
+		Connection c= ConnToDb.generalConnection();
+        ResultSet rs=c.createStatement().executeQuery("SELECT titolo FROM rivista where id = "+R.getId()+" ");
+        if (rs.next())
+        {
+        	name = rs.getString(1);
+        	return name;
+        }
+        else {
+        	System.out.println("non ho torvato un cazzo e ritorno null");
+            return null;
 
+        }	
+   }
+
+	public int getDisp(Rivista R) throws SQLException
+	{
+		int disp;
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				rs=  stmt.executeQuery(
+						"SELECT `rivista`.`disp` FROM `ispw`.`rivista` where `id` = `"+R.getId()+"` ;");
+				disp = rs.getInt(1);
+				if (disp >= 1)
+					return disp;
+				else if (disp == 0)
+					return 0;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		/*if (l.getDisponibilita()>=1)
+		{
+			return true;
+		}*/
+		return -1;
+	}
+	
+	public int getQuantita(Rivista R) throws SQLException
+	{
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				rs=  stmt.executeQuery(
+						"SELECT `rivista`.`copieRimanenti` FROM `ispw`.`rivista` where `id` = "+R.getId()+" ;");
+				if (rs.next()) {
+					q = rs.getInt(1);
+				}			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return q;
+	}
+
+	public boolean checkDisp(Rivista R,int id) throws SQLException
+	{
+		int disp;
+        ResultSet rs;
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				rs=  stmt.executeQuery("SELECT disp FROM ispw.rivista where id = '"+id+"' ;");
+				if(rs.next())
+					{
+					disp = rs.getInt(1);
+					if (disp >= 1)
+						return true;
+					}
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
+	}
+
+	
 
 
 }

@@ -42,8 +42,7 @@ public class CreateDefaultDB
 						+ "	idRuolo VARCHAR(1) NOT NULL DEFAULT 'U',"
 						+ "	Nome VARCHAR(40), Cognome VARCHAR(40),"
 						+ " Email VARCHAR(50) UNIQUE, pwd VARCHAR(16),"
-						+ " descrizione text, DataDiNascita date,"
-						+ " listDeiPreferiti Varchar(200) "
+						+ " descrizione text, DataDiNascita date"
 						+ "	);";
 				st.executeUpdate(query);
 				
@@ -76,7 +75,7 @@ public class CreateDefaultDB
 						+ " categoria Varchar(60), dataPubblicazione date,"
 						+ " recensione text, copieVendute int, breveDescrizione text,"
 						+ " disp int, prezzo float,"
-						+ " copieRimanenti int,img longblob,"
+						+ " copieRimanenti int,"
 						+ "id_prod int primary key auto_increment);";
 				st.executeUpdate(query);
 				
@@ -97,7 +96,7 @@ public class CreateDefaultDB
 						+ "	Descrizione text, dataPubblicazione date,"
 						+ " disp int,"
 						+ "	prezzo float,"
-						+ "	copieRimanenti int,img longblob,"
+						+ "	copieRimanenti int,"
 						+ "id int primary key not null auto_increment);";
 				st.executeUpdate(query);
 				
@@ -109,7 +108,6 @@ public class CreateDefaultDB
 						+ " copiRim int, "
 						+ "	disp int,"
 						+ "	prezzo float,"
-						+ " img longblob,"
 						+ " id int primary key not null auto_increment);";
 				st.executeUpdate(query);
 				
@@ -129,7 +127,13 @@ public class CreateDefaultDB
 						+ " ammontare float);";
 				st.executeUpdate(query);
 			
-				
+				query= "Create table if not exists NEGOZIO"
+						+ "( idNegozio int not null auto_increment primary key, "
+						+ "nome VARCHAR(100) , via VARCHAR(100),"
+						+ " isValid boolean, isOpen BOOLEAN"
+						+ ");";
+				st.executeUpdate(query);
+
 				System.out.println("Tabelle create!");
 				if (PopulateDefaultDb.populateDefaultDb()) {
 					System.out.println("Tabella populata con valori di default");

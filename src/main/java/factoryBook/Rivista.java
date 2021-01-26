@@ -1,7 +1,7 @@
 package factoryBook;
 
-import java.io.InputStream;
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 enum TipiRivista {
@@ -26,11 +26,10 @@ public class Rivista implements Raccolta  {
 	
 	
 	private String titolo,tipologia,autore,lingua,editore,descrizione;
-	private Date dataPubb;
+	private LocalDate dataPubb;
 	private int disp;
 	private float prezzo;
 	private int copieRim;
-	private InputStream foto;
 	private int id;
 	
 	public String getTitolo() {
@@ -51,7 +50,7 @@ public class Rivista implements Raccolta  {
 	public String getDescrizione() {
 		return this.descrizione;
 	}
-	public Date getDataPubb() {
+	public LocalDate getDataPubb() {
 		return this.dataPubb;
 	}
 	public int getDisp() {
@@ -62,9 +61,6 @@ public class Rivista implements Raccolta  {
 	}
 	public int getCopieRim() {
 		return this.copieRim;
-	}
-	public InputStream getFoto() {
-		return this.foto;
 	}
 	public int getId() {
 		return this.id;
@@ -87,7 +83,7 @@ public class Rivista implements Raccolta  {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public void setDataPubb(Date dataPubb) {
+	public void setDataPubb(LocalDate dataPubb) {
 		this.dataPubb = dataPubb;
 	}
 	public void setDisp(int disp) {
@@ -98,9 +94,6 @@ public class Rivista implements Raccolta  {
 	}
 	public void setCopieRim(int copieRim) {
 		this.copieRim = copieRim;
-	}
-	public void setFoto(InputStream foto) {
-		this.foto = foto;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -121,7 +114,7 @@ public class Rivista implements Raccolta  {
 		
 	}
 	public Rivista(String titolo, String tipologia, String autore, String lingua, String editore, String descrizione,
-			Date dataPubb, int disp, float prezzo, int copieRim, InputStream foto, int id) {
+			LocalDate dataPubb2, int disp, float prezzo, int copieRim,int id) {
 		//super();
 		this.titolo = titolo;
 		this.tipologia = tipologia;
@@ -129,11 +122,10 @@ public class Rivista implements Raccolta  {
 		this.lingua = lingua;
 		this.editore = editore;
 		this.descrizione = descrizione;
-		this.dataPubb = dataPubb;
+		this.dataPubb = dataPubb2;
 		this.disp = disp;
 		this.prezzo = prezzo;
 		this.copieRim = copieRim;
-		this.foto = foto;
 		this.id = id;
 	}
 	public Rivista() {
@@ -147,7 +139,6 @@ public class Rivista implements Raccolta  {
 		this.disp = 0;
 		this.prezzo =0;
 		this.copieRim = 0;
-		this.foto = null;
 		this.id = 0;
 		// TODO Auto-generated constructor stub
 	}

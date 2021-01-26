@@ -7,6 +7,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -23,17 +24,17 @@ public class Libro implements Raccolta {
 	private String titolo;
 	private int numPag;
 	private String codIsbn,editore,autore,lingua,categoria;
-	private Date dataPubb;
+	private LocalDate dataPubb;
 	private String recensione;
-	private int nrCopie;
+	private int nrCopie; // numero copie vendute
 	private String desc;
 	private int disponibilita;
 	private float prezzo;
 	private int copieRim;
-	private InputStream Img;
 	private Desktop desktop;
 	private File dirToOpen;
 	private String filename;
+	private int idBook;
 	//private PagamentoDao pD;
 	
 
@@ -60,7 +61,7 @@ public class Libro implements Raccolta {
 	public String getCategoria() {
 		return this.categoria;
 	}
-	public Date getDataPubb() {
+	public LocalDate getDataPubb() {
 		return this.dataPubb;
 	}
 	public String getRecensione() {
@@ -81,9 +82,7 @@ public class Libro implements Raccolta {
 	public int getCopieRim() {
 		return this.copieRim;
 	}
-	public InputStream getImg() {
-		return this.Img;
-	}
+	
 	public void setTitolo(String titolo) {
 		this.titolo = titolo;
 	}
@@ -105,7 +104,7 @@ public class Libro implements Raccolta {
 	public void setCategoria(String categoria) {
 		this.categoria = categoria;
 	}
-	public void setDataPubb(Date dataPubb) {
+	public void setDataPubb(LocalDate dataPubb) {
 		this.dataPubb = dataPubb;
 	}
 	public void setRecensione(String recensione) {
@@ -126,13 +125,18 @@ public class Libro implements Raccolta {
 	public void setCopieRim(int copieRim) {
 		this.copieRim = copieRim;
 	}
-	public void setImg(InputStream img) {
-		this.Img = img;
+
+	public int getIdBook() {
+		return idBook;
+	}
+	
+	public void setIdBook(int id)
+	{
+		this.idBook = id ;
 	}
 	public Libro(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
-			String categoria, Date dataPubb, String recensione, int nrCopie, String desc, int disponibilita,
-			float prezzo, int copieRim, InputStream img) {
-		//super();
+			String categoria, LocalDate dataPubb, String recensione, int nrCopie, String desc, int disponibilita,
+			float prezzo, int copieRim, int id) {
 		this.titolo = titolo;
 		this.numPag = numPag;
 		this.codIsbn = codIsbn;
@@ -147,8 +151,7 @@ public class Libro implements Raccolta {
 		this.disponibilita = disponibilita;
 		this.prezzo = prezzo;
 		this.copieRim = copieRim;
-		this.Img = img;
-		//pD=new PagamentoDao();
+		this.idBook=id;
 	}
 	@Override
 	public void compra() {
@@ -195,14 +198,14 @@ public class Libro implements Raccolta {
 	}
 	@Override
 	public void leggi() {
-		 filename= "C:\\libriScaricati\\prova2.pdf";
+		filename= "C:\\libriScaricati\\prova2.pdf";
 
-	      //definiamo il nome del nostro file di prova
-	        // Creiamo un Document
-	        Document document = new Document();
-	        // otteniamo una istanza di PdfWriter passando il document ed uno stream file
-	        try {
-				PdfWriter.getInstance(document, new FileOutputStream(filename));
+	    //definiamo il nome del nostro file di prova
+	    // Creiamo un Document
+	    Document document = new Document();
+	    // otteniamo una istanza di PdfWriter passando il document ed uno stream file
+	    try {
+			PdfWriter.getInstance(document, new FileOutputStream(filename));
 			} catch (FileNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -237,24 +240,9 @@ public class Libro implements Raccolta {
 		 */
 		
 	}
+	
 	public Libro() {
-		//super();
-		this.titolo =null;
-		this.numPag = 0;
-		this.codIsbn = null;
-		this.editore = null;
-		this.autore = null;
-		this.lingua = null;
-		this.categoria = null;
-		this.dataPubb = null;
-		this.recensione = null;
-		this.nrCopie = 0;
-		this.desc = null;
-		this.disponibilita = 0;
-		this.prezzo = 0;
-		this.copieRim = 0;
-		this.Img = null;
-		//pD=new PagamentoDao();
+
 	}
 	
 	

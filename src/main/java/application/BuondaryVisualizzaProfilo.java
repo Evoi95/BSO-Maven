@@ -96,10 +96,20 @@ public class BuondaryVisualizzaProfilo implements Initializable  {
 		
 	}
 	@FXML
-	private void modifica()
+	private void modifica() throws IOException
 	{
-		//terzo caso duso
-	}
+		Stage stage;
+		Parent root;
+		stage = (Stage) modificaB.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("modificaUtente.fxml"));
+		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
+
+		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
+
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+
+		stage.show();	}
 	@FXML
 	private void cronologia() throws IOException {
 		Stage stage;

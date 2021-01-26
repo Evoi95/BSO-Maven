@@ -33,11 +33,15 @@ public class BoundaryAcquista implements Initializable {
 	@FXML
 	private Label labelT;
 	@FXML
-	private TextField nome;
+	private Label  nome;
+	@FXML
+	private Label  dispLabel;
 	@FXML
 	private Label costo;
 	@FXML
 	private TextField quantita;
+	@FXML
+	private CheckBox ritiroN;
 
 	@FXML
 	private Label totale;
@@ -53,10 +57,12 @@ public class BoundaryAcquista implements Initializable {
 	private Button link;
 
 	private ControllerAcquista CA;
-	private Scanner input;
 	private String scelta;
 
+	
+	
 	@FXML
+
 	private void pagaCC() throws IOException {
 
 		Stage stage;
@@ -101,6 +107,8 @@ public class BoundaryAcquista implements Initializable {
 			buttonCC.setDisable(false);
 			buttonCash.setDisable(false);
 
+			scelta = CA.getType();
+			// qui mettere un controllo dal db oer il tipo di prodotto scelto usando l'istanza visualizza
 			if (scelta.equals("libro")) {
 				float x = CA.totale(nome.getText(), Integer.parseInt(quantita.getText()));
 				costo.setText("" + x);
@@ -108,15 +116,6 @@ public class BoundaryAcquista implements Initializable {
 				tot = x * (Float.parseFloat(quantita.getText()));
 				totale.setText("" + tot);
 				CA.inserisciAmmontareL(tot);
-				
-				//prendo id e tipologia
-				
-				//System.out.println("Id del libro : "+CA.getIdL(nome.getText()));
-				//System.out.println("categoria libro :"+CA.getTipL(nome.getText()));
-				
-				// CA.retAmmontare(totale.getText());
-				//CA.Paga();
-
 			} else if (scelta.equals("giornale")) {
 				labelN.setText("Leggere nome giornale");
 				float y = CA.totaleG(nome.getText(), Integer.parseInt(quantita.getText()));
@@ -127,11 +126,7 @@ public class BoundaryAcquista implements Initializable {
 				totale.setText("" + tot1);
 				CA.inserisciAmmontareG(tot1);
 
-				
-				//System.out.println("Id del giornale: "+CA.getIdG(nome.getText()));
-				//System.out.println("categoria giornale :"+CA.getTipG(nome.getText()));
-				
-				// CA.retAmmontare(totale.getText());
+
 
 			} else if (scelta.equals("rivista")) {
 				float z = CA.totaleR(nome.getText(), Integer.parseInt(quantita.getText()));
@@ -141,9 +136,6 @@ public class BoundaryAcquista implements Initializable {
 				totale.setText("" + tot2);
 				CA.inserisciAmmontareR(tot2);
 
-				
-				//System.out.println("Id del giornale: "+CA.getIdR(nome.getText()));
-				//System.out.println("categoria giornale :"+CA.getTipR(nome.getText()));
 				
 
 			} else {
@@ -170,7 +162,6 @@ public class BoundaryAcquista implements Initializable {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
-
 	}
 
 	@Override
@@ -178,24 +169,14 @@ public class BoundaryAcquista implements Initializable {
 		// TODO Auto-generated method stub
 		buttonCC.setDisable(true);
 		buttonCash.setDisable(true);
-
-		Alert a = new Alert(Alert.AlertType.INFORMATION);
-		a.setTitle("Leggere input corretto");
-		a.setContentText("Leggere da tastiera il tipo di rivista precedetemente scelta : " + "\n scelte possibili:"
-				+ "\n giornale - libro - rivista");
-		a.setHeaderText(null);
-		a.showAndWait();
-
-		System.out.println("\n\n\t-----Leggi tipologia tra giornale - rivista - libro ----- \n\n");
-		input = new Scanner(System.in);
-		scelta = input.nextLine();
-		if (scelta.equals("libro")) {
-			labelN.setText("Inserire  id del libro");
-		} else if (scelta.equals("giornale")) {
-			labelN.setText("Inserire titolo del giornale");
-		} else if (scelta.equals("rivista")) {
-			labelN.setText("Inserire titolo rivista");
-		}
+		try {
+			nome.setText(CA.getNomeById());
+			dispLabel.setText(""+CA.getDisp());
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 }

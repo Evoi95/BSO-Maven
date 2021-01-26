@@ -13,7 +13,6 @@ public class User {
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
 	// array di codici isbn presi dai libri 
-	private ArrayList<String> listaPreferiti = new ArrayList<String>();
 	
 	private static User instance = new User();
 	
@@ -123,13 +122,7 @@ private User( String nome, String cognome, String email, String password,LocalDa
 		this.dataDiNascita = dataDiNascita;
 	}
 
-	public ArrayList<String> getListaPreferiti() {
-		return listaPreferiti;
-	}
 
-	public void setListaPreferiti(ArrayList<String> listaPreferiti) {
-		this.listaPreferiti = listaPreferiti;
-	}
 
 	// end of setters and getters
 	
@@ -162,13 +155,4 @@ private User( String nome, String cognome, String email, String password,LocalDa
 
 
 	
-
-
-
-	
-	
-
-
-	
-
 }

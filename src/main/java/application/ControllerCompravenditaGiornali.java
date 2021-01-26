@@ -23,11 +23,11 @@ public class ControllerCompravenditaGiornali {
 
 	}
 
-	public void disponibilitaGiornale(String titolo) throws SQLException {
-		g.setTitolo(titolo);
-
-		gD.getDesc(g);
-
+	public boolean disponibilitaGiornale(String i ) throws SQLException {
+		
+		int id = Integer.parseInt(i);
+		
+		return gD.checkDisp(g,id);
 	}
 
 }

@@ -2,16 +2,18 @@ package factoryBook;
 
 import java.io.InputStream;
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class Giornale implements Raccolta {
 	
 	private String  titolo,tipologia,lingua,editore;
-	private Date dataPubb;
+	private LocalDate dataPubb;
 	private int copieRimanenti;
 	private int disponibilita;
 	private float prezzo;
-	private InputStream foto;
+	private int id;
+	
 
 	
 
@@ -47,11 +49,11 @@ public class Giornale implements Raccolta {
 		this.editore = editore;
 	}
 
-	public Date getDataPubb() {
+	public LocalDate getDataPubb() {
 		return dataPubb;
 	}
 
-	public void setDataPubb(Date dataPubb) {
+	public void setDataPubb(LocalDate dataPubb) {
 		this.dataPubb = dataPubb;
 	}
 
@@ -79,13 +81,7 @@ public class Giornale implements Raccolta {
 		this.prezzo = prezzo;
 	}
 
-	public InputStream getFoto() {
-		return this.foto;
-	}
 
-	public void setFoto(InputStream foto) {
-		this.foto = foto;
-	}
 
 	@Override
 	public void compra() {
@@ -105,18 +101,18 @@ public class Giornale implements Raccolta {
 		
 	}
 
-	public Giornale(String titolo, String tipologia, String lingua, String editore, Date dataPubb, int copieRimanenti,
-			int disponibilita, float prezzo, InputStream foto) {
+	public Giornale(String titolo, String tipologia, String lingua, String editore, LocalDate dataPubb2, int copieRimanenti,
+			int disponibilita, float prezzo, int id ) {
 	//	super();
 		this.titolo = titolo;
 		this.tipologia = tipologia;
 		this.lingua = lingua;
 		this.editore = editore;
-		this.dataPubb = dataPubb;
+		this.dataPubb = dataPubb2;
 		this.copieRimanenti = copieRimanenti;
 		this.disponibilita = disponibilita;
 		this.prezzo = prezzo;
-		this.foto = foto;
+		this.id = id;
 	}
 	
 	public Giornale()
@@ -129,9 +125,17 @@ public class Giornale implements Raccolta {
 		this.copieRimanenti=0;
 		this.disponibilita=0;
 		this.prezzo=0;
-		this.foto=null;
+		this.id = -1;
 		
 		
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
