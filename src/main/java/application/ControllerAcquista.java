@@ -21,7 +21,7 @@ public class ControllerAcquista {
 	private Giornale g;
 	private Rivista r;
 	private Pagamento p;
-	private static singeltonVisualizzaLibro vis = singeltonVisualizzaLibro.getIstance() ;
+	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
 	private String name;
 	private int disp;
 	
@@ -30,7 +30,7 @@ public class ControllerAcquista {
 		try {
 			lD.daiPrivilegi();
 			// se semo fermati qua 
-			l.setIdBook(vis.getIstance().getId());
+			l.setId(vis.getIstance().getId());
 			l.setDisponibilita(disp);
 			x = lD.getCosto(l);
 
@@ -111,7 +111,7 @@ public class ControllerAcquista {
 	
 	public String getTipL(String text) throws SQLException
 	{
-		l.setIdBook(Integer.parseInt(text));
+		l.setId(Integer.parseInt(text));
 		return lD.retTip(l);
 	}
 	
@@ -183,7 +183,7 @@ public class ControllerAcquista {
 		String type =vis.getIstance().getType();
 		if(type.equals("libro"))
 		{
-			l.setIdBook(id);
+			l.setId(id);
 			name = lD.getNome(l);
 		}
 		else if(type.equals("giornale")) {
@@ -206,7 +206,7 @@ public class ControllerAcquista {
 		if(type.equals("libro"))
 		{
 		
-			l.setIdBook(id);
+			l.setId(id);
 			disp = lD.getQuantita(l);
 		}
 		else if(type.equals("giornale")) {

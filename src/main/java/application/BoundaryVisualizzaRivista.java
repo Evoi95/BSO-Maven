@@ -63,7 +63,8 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	
 	private ControllerVisualizzaRivista CVR;
 	private int i;
-	
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+
 	public BoundaryVisualizzaRivista()
 	{
 		CVR = new ControllerVisualizzaRivista();
@@ -86,14 +87,27 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	@FXML
 	private void annulla() throws IOException
 	{
+		if (!vis.getIstance().getIsSearch()) {
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonBack.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("compravenditaRiviste.fxml"));
+		root = FXMLLoader.load(getClass().getResource("compravenditaGiornali.fxml"));
 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		}
+		else
+		{
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonBack.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
+
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -34,7 +34,7 @@ public class Libro implements Raccolta {
 	private Desktop desktop;
 	private File dirToOpen;
 	private String filename;
-	private int idBook;
+	private int id;
 	//private PagamentoDao pD;
 	
 
@@ -126,13 +126,13 @@ public class Libro implements Raccolta {
 		this.copieRim = copieRim;
 	}
 
-	public int getIdBook() {
-		return idBook;
+	public int getId() {
+		return id;
 	}
 	
-	public void setIdBook(int id)
+	public void setId(int id)
 	{
-		this.idBook = id ;
+		this.id = id ;
 	}
 	public Libro(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
 			String categoria, LocalDate dataPubb, String recensione, int nrCopie, String desc, int disponibilita,
@@ -151,7 +151,7 @@ public class Libro implements Raccolta {
 		this.disponibilita = disponibilita;
 		this.prezzo = prezzo;
 		this.copieRim = copieRim;
-		this.idBook=id;
+		this.id=id;
 	}
 	@Override
 	public void compra() {

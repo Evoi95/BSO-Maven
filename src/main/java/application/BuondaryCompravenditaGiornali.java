@@ -64,7 +64,8 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 	private Button buttonA;
 
 	private ControllerCompravenditaGiornali CCG;
-	private ControllerVisualizzaGionarle CVG;
+	private ControllerVisualizzaGiornale CVG;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	
 	@FXML
@@ -76,7 +77,7 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 
 	public BuondaryCompravenditaGiornali() {
 		CCG = new ControllerCompravenditaGiornali();
-		CVG = new ControllerVisualizzaGionarle();
+		CVG = new ControllerVisualizzaGiornale();
 	}
 
 	@Override
@@ -93,15 +94,25 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 
 	@FXML
 	private void torna() throws IOException {
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonI.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if( vis.getIstance().getIsLogged()) {
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonI.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			}
+			else
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
 	}
 
 	

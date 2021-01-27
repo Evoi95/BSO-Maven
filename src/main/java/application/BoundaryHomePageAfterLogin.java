@@ -41,12 +41,15 @@ public class BoundaryHomePageAfterLogin {
 	private Button buttonLogin;
 	@FXML
 	private Button buttonLogout;
+	@FXML
+	private Button buttonC;
 	
-	// private ControllerHomePageLibri cHPL;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	@FXML
 	private void getListaGiornali() throws IOException {
-		// stampa schermata giornali -> tabella;
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsDaily();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -63,7 +66,8 @@ public class BoundaryHomePageAfterLogin {
 
 	@FXML
 	private void getListaRiviste() throws IOException {
-		// stampa schermata riviste -> tabella;
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsMagazine();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -80,6 +84,8 @@ public class BoundaryHomePageAfterLogin {
 
 	@FXML
 	private void getListaLibri() throws IOException {
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsBook();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -143,8 +149,21 @@ public class BoundaryHomePageAfterLogin {
 			alert.showAndWait(); // line 5
 
 		}
-		
-			
-		
+	
+	}
+	
+	@FXML
+	private void cerca() throws IOException {
+		vis.getIstance().setIsSearch(true);
+
+		Stage stage;
+		Parent root;
+		stage = (Stage) buttonC.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+
+		stage.show();
+
 	}
 }

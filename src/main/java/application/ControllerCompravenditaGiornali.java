@@ -18,7 +18,7 @@ public class ControllerCompravenditaGiornali {
 
 	public ObservableList<Raccolta> getGiornali() throws SQLException {
 		// TODO Auto-generated method stub
-
+		
 		return gD.getGiornali();
 
 	}

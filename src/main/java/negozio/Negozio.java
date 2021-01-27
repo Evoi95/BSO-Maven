@@ -14,6 +14,9 @@ public class Negozio {
 		this.isValid = isValid;
 		this.isOpen = isOpen;
 	}
+	public Negozio() {
+		// TODO Auto-generated constructor stub
+	}
 	public String getNome() {
 		return nome;
 	}

@@ -98,7 +98,7 @@ public class LibroDao  {
          Statement stmt = conn.createStatement();
          ResultSet rs;
 
-         rs = stmt.executeQuery("select * from libro where id_prod ='"+l.getIdBook()+"'");
+         rs = stmt.executeQuery("select * from libro where id_prod ='"+l.getId()+"'");
          while ( rs.next() ) {
               prezzo=rs.getFloat("prezzo");
 
@@ -194,6 +194,33 @@ public class LibroDao  {
 		return catalogo;
 		
 	}
+
+	public ObservableList<Raccolta> getLibriByName(String S) throws SQLException
+	{
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where titolo = '"+S+"' OR autore = '"+S+"'");
+
+            while(rs.next())
+            {
+
+        		try {
+					catalogo.add(f.createLibro("libro",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15)));
+					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		
+		System.out.println(catalogo);
+		return catalogo;
+		
+	}
+
+
 	
 	public Libro getLibro(Libro L,int id) throws SQLException
 	{
@@ -370,7 +397,7 @@ public class LibroDao  {
 				query="USE ispw";
 				st.executeQuery(query);
 				rs=  stmt.executeQuery(
-						"SELECT `libro`.`disp` FROM `ispw`.`libro` where `id_prod` = `"+l.getIdBook()+"` ;");
+						"SELECT `libro`.`disp` FROM `ispw`.`libro` where `id_prod` = `"+l.getId()+"` ;");
 				disp = rs.getInt(1);
 				if (disp >= 1)
 					return disp;
@@ -399,7 +426,7 @@ public class LibroDao  {
 		        Statement stmt = conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
-				rs=  stmt.executeQuery(	"SELECT `libro`.`copieRimanenti` FROM `ispw`.`libro` where `id_prod` = "+l.getIdBook()+" ");
+				rs=  stmt.executeQuery(	"SELECT `libro`.`copieRimanenti` FROM `ispw`.`libro` where `id_prod` = "+l.getId()+" ");
 				if (rs.next()) {
 					q = rs.getInt(1);
 				}
@@ -448,7 +475,7 @@ public class LibroDao  {
 	public String getNome(Libro L) throws SQLException
 	{
 		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where id_prod = '"+L.getIdBook()+"' ");
+        ResultSet rs=c.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where id_prod = '"+L.getId()+"' ");
         if (rs.next())
         {
         	name = rs.getString(1);

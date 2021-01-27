@@ -59,12 +59,13 @@ package application;
 		@FXML
 		private Label copieRimanentiL;
 		
-		private ControllerVisualizzaGionarle CVG;
+		private ControllerVisualizzaGiornale CVG;
 		private int i;
-		
+		private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+
 		public BoundaryVisualizzaGiornale()
 		{
-			CVG = new ControllerVisualizzaGionarle();
+			CVG = new ControllerVisualizzaGiornale();
 		}
 		
 		@FXML
@@ -84,6 +85,7 @@ package application;
 		@FXML
 		private void annulla() throws IOException
 		{
+			if (!vis.getIstance().getIsSearch()) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonBack.getScene().getWindow();
@@ -92,6 +94,18 @@ package application;
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+			}
+			else
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonBack.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
+
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
 		}
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {

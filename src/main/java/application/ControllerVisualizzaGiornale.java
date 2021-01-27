@@ -7,14 +7,14 @@ import factoryBook.Giornale;
 
 
 
-public class ControllerVisualizzaGionarle {
+public class ControllerVisualizzaGiornale {
 	
 	private GiornaleDao gD;
 	private Giornale g;
 	private int tempIdGior;
-	private singeltonVisualizzaLibro vis = singeltonVisualizzaLibro.getIstance() ;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 	
-	public ControllerVisualizzaGionarle()
+	public ControllerVisualizzaGiornale()
 	{
 		gD = new GiornaleDao();
 	}

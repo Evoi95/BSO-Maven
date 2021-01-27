@@ -12,3 +12,8 @@ To Do :
 5) creare file per populateDB
 
 6) crezione schremata per nogozio e gestione 
+
+7) mettere l'is logged in ogni funzione di controllo e di boundary!
+8) controllare tutto i pulsanti torna per le varie schemate
+
+9) rifedere bopundary gionale page

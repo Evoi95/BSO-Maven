@@ -30,7 +30,9 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 
 	private ControllerCompravenditaRiviste CCR;
 	private ControllerVisualizzaRivista CVR;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
+	
 	@FXML
 	private Pane panel;
 	@FXML
@@ -60,6 +62,7 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 	@FXML
 	private Button buttonA;
 	@FXML
+	
 	private void vediListaRiviste() throws SQLException {
 		// System.out.println(CCR.getRivisteE());
 		table.setItems(CCR.getRiviste());
@@ -84,15 +87,25 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 
 	@FXML
 	private void torna() throws IOException {
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonI.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if( vis.getIstance().getIsLogged()) {
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonI.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			}
+			else
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
 	}
 	
 	@FXML

@@ -8,6 +8,7 @@ import usersSingelton.User;
 public class ControllerHomePageAfterLogin {
 	
 	private static User U = User.getInstance();
+	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	// qui ci va la funzione di logout
 	
@@ -21,6 +22,7 @@ public class ControllerHomePageAfterLogin {
 		if(U.getEmail() == null && U.getIdRuolo() == null)
 		{
 			System.out.println("Logout  utente" + U.getEmail());
+			vis.getIstance().setIsLogged(false);
 			return true;
 		}
 		

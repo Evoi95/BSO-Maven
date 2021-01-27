@@ -34,12 +34,18 @@ public class BuondaryHomePage {
 	private ImageView imageU;
 	@FXML
 	private Button buttonLogin;
+	@FXML
+	private Button buttonC;
+
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	// private ControllerHomePageLibri cHPL;
 
 	@FXML
 	private void getListaGiornali() throws IOException {
 		// stampa schermata giornali -> tabella;
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsDaily();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -57,6 +63,8 @@ public class BuondaryHomePage {
 	@FXML
 	private void getListaRiviste() throws IOException {
 		// stampa schermata riviste -> tabella;
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsMagazine();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -73,6 +81,8 @@ public class BuondaryHomePage {
 
 	@FXML
 	private void getListaLibri() throws IOException {
+		vis.getIstance().setIsSearch(false);
+		vis.getIstance().setTypeAsBook();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -99,6 +109,20 @@ public class BuondaryHomePage {
 
 		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
 
+		Scene scene = new Scene(root);
+		stage.setScene(scene);
+
+		stage.show();
+
+	}
+	
+	@FXML
+	private void cerca() throws IOException {
+		vis.getIstance().setIsSearch(true);
+		Stage stage;
+		Parent root;
+		stage = (Stage) buttonC.getScene().getWindow();
+		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 

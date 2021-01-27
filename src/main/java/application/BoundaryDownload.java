@@ -30,6 +30,7 @@ public class BoundaryDownload {
 	private Button buttonA;
 
 	private ControllerDownload CD;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	@FXML
 	private void scarica() throws IOException, DocumentException {
@@ -37,35 +38,51 @@ public class BoundaryDownload {
 		/*
 		 * TODO modifico alert
 		 */
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonI.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+		if( vis.getIstance().getIsLogged()) {
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonI.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			}
+			else
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
 
-		// stage.setTitle("Schermata download");
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
 	}
 
 	@FXML
 	private void pulisci() throws IOException {
 		CD.annullaOrdine();
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonA.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-		/*
-		 * TODO modificio alert
-		 */
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if( vis.getIstance().getIsLogged()) 
+		{
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonA.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
+		else
+		{
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonA.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
 	}
 
 	public BoundaryDownload() {

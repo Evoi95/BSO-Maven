@@ -54,6 +54,8 @@ public class BuondaryCompravenditaLibri implements Initializable {
 
 	private ControllerCompravenditaLibri CCV;
 	private ControllerVisualizzaLibro CVL;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+
 	
 	@FXML
 	private void verifica() throws  IOException, SQLException {
@@ -146,22 +148,32 @@ public class BuondaryCompravenditaLibri implements Initializable {
 		autore.setCellValueFactory(new PropertyValueFactory<>("autore"));
 		categoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
-		idLibro.setCellValueFactory(new PropertyValueFactory<>("idBook"));
+		idLibro.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 
 	}
 
 	@FXML
 	private void torna() throws IOException {
-		Stage stage;
-		Parent root;
-		stage = (Stage) buttonA.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-		stage.setTitle("Benvenuto nella schermata della home page");
-
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
+		if( vis.getIstance().getIsLogged()) {
+			Stage stage;
+			Parent root;
+			stage = (Stage) buttonI.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+			}
+			else
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
 	}
 
 }

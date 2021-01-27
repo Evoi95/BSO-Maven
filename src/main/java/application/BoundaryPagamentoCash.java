@@ -42,6 +42,7 @@ public class BoundaryPagamentoCash {
 	private ControllerPagamentoCash CPC;
 
 	private String n, c, v, com;
+	private static singeltonSystemState vis = singeltonSystemState.getIstance();
 
 	@FXML
 	private void procediCash() throws IOException {
@@ -64,9 +65,6 @@ public class BoundaryPagamentoCash {
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("pagamentoContrassegno.fxml"));
 				stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
-				// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
@@ -80,16 +78,28 @@ public class BoundaryPagamentoCash {
 				alert.setHeaderText("Esito pagamento contanti:");
 				alert.setContentText("eseguito");
 				alert.showAndWait();
-
+				if(vis.getIstance().getIsPickup()) 
+				{
+					Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("scegliNegozio.fxml"));
+					stage.setTitle("Benvenuto nella schermata per scegliere il negozio");
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();	
+				}
+				else
+				{
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("download.fxml"));
-				stage.setTitle("Benvenuto nella schermata del download");
-
+				stage.setTitle("Benvenuto nella schermata per il download");
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
+				}
 			}
 		} catch (Exception e) {
 			e.getCause();

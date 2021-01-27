@@ -71,24 +71,38 @@ public class BoundaryPagamentoCC implements Initializable {
 
 	private ControllerPagamentoCC CPCC;
 	private Boolean esito;
+	private static singeltonSystemState vis = singeltonSystemState.getIstance();
 
 	@FXML
 	private void procediCC() throws IOException {
 
 		String cod = codiceTF.getText();
-
+		
 		esito = CPCC.controllaPag(scadTF.getText(), cod);
+		
 		if (esito==(true)) {
+			if(vis.getIstance().getIsPickup()) 
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				root = FXMLLoader.load(getClass().getResource("scegliNegozio.fxml"));
+				stage.setTitle("Benvenuto nella schermata per il download");
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();	
+			}
+			else
+			{
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("download.fxml"));
-
 			stage.setTitle("Benvenuto nella schermata per il download");
-
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
+			}
 		} else {
 			System.out.println("riprovare");
 			Stage stage;

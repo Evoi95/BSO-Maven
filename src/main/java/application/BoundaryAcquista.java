@@ -58,22 +58,30 @@ public class BoundaryAcquista implements Initializable {
 
 	private ControllerAcquista CA;
 	private String scelta;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	
 	
 	@FXML
 
 	private void pagaCC() throws IOException {
+		if(ritiroN.isSelected()) {
+		vis.getIstance().setPickup(true);
 
+		}
+		else
+		{
+		vis.getIstance().setPickup(true);
+		}
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonCC.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("pagamentoCC.fxml"));
 		stage.setTitle("Benvenuto nella schermata dell'acquisto con carta credito");
-
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+
 
 	}
 
@@ -153,15 +161,25 @@ public class BoundaryAcquista implements Initializable {
 
 	@FXML
 	private void indietro() throws IOException {
-
+		if( vis.getIstance().getIsLogged()) {
 		Stage stage;
 		Parent root;
 		stage = (Stage) link.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-
+		root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+		}
+		else
+		{
+			Stage stage;
+			Parent root;
+			stage = (Stage) link.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+			Scene scene = new Scene(root);
+			stage.setScene(scene);
+			stage.show();
+		}
 	}
 
 	@Override

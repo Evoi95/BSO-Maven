@@ -1,10 +1,8 @@
 package usersSingelton;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
-import factoryBook.Libro;
+
 
 // Uso temp user per non compromettere lo stato dell'utente loggato 
 public class TempUser {

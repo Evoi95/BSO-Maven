@@ -8,6 +8,7 @@ import database.UsersDao;
 public class ControllerLogin {
 	
 	private User user = User.getInstance();
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	
 	public boolean controlla(String m, String p) throws SQLException
@@ -43,6 +44,7 @@ public class ControllerLogin {
 				// predno e li assegno all'oggetto user
 				UsersDao.pickData(user);
 				System.out.println("\n loggato come :" + r);
+				vis.getIstance().setIsLogged(true);
 				return esito = true;
 			}
 			else if (UsersDao.checkUser(user) == 0)

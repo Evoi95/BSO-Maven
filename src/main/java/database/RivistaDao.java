@@ -179,6 +179,41 @@ public class RivistaDao {
 		return catalogo;
 		
 	}
+	
+	public ObservableList<Raccolta> getRivisteByName(String S) throws SQLException
+	{
+		Connection c= ConnToDb.generalConnection();
+
+		
+		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
+		 
+			//ConnToDb.connection();
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM ispw.rivista where titolo = '"+S+"' OR autore = '"+S+"'");
+           // int i=0;
+            while(rs.next())
+            {
+               // System.out.println("res :"+rs);
+
+        		try {
+					catalogo.add(f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(), rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));
+					
+					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
+					//System.out.println("res: "+rs[i]);
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+        		//System.out.println("rivista nome"+rs.getString(1));
+
+            }
+		//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
+	
+			
+		System.out.println(catalogo);
+		return catalogo;
+		
+	}
+
 
 	public Rivista getRivista(Rivista R,int id) throws SQLException
 	{
