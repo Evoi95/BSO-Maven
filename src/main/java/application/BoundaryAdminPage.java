@@ -41,6 +41,8 @@ public class BoundaryAdminPage {
 	@FXML 
 	private void  raccolta() throws IOException
 	{
+		/*flusso di report qui*/
+
 		Stage stage;
 		Parent root;
 		stage = (Stage) raccoltaB.getScene().getWindow();
@@ -70,5 +72,7 @@ public class BoundaryAdminPage {
 		root = FXMLLoader.load(getClass().getResource("reportPage.fxml"));
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
-		stage.show();	}
+		stage.show();
+		
+	}
 }

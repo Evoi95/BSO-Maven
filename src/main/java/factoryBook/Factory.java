@@ -44,10 +44,10 @@ public class Factory {
 	}
 	
 	
-	public Raccolta createGiornale(String type,String titolo,String tipologia, String lingua, String editore, LocalDate dataPubb, int copieRimanenti, int disponibilita,
+	public Raccolta createGiornale(String type,String titolo,String tipologia, String lingua, String editore, LocalDate  date, int copieRimanenti, int disponibilita,
 			float prezzo, int id)
 	{
-		return new Giornale(titolo,tipologia,lingua,editore,dataPubb,copieRimanenti,disponibilita,prezzo,id);
+		return new Giornale(titolo,tipologia,lingua,editore,date,copieRimanenti,disponibilita,prezzo,id);
 			}
 
 

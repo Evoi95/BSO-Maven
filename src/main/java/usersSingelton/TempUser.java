@@ -3,6 +3,8 @@ package usersSingelton;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
+
 
 // Uso temp user per non compromettere lo stato dell'utente loggato 
 public class TempUser {
@@ -10,14 +12,16 @@ public class TempUser {
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
+	private int idU;
 	// array di codici isbn presi dai libri 
-	private ArrayList<String> listaPreferiti = new ArrayList<String>();
+	//private ArrayList<String> listaUtenti =new ArrayList<String>();
 	
 	private static TempUser instance = new TempUser();
 	
 	private  TempUser()
 	{
 		// manco la mia anima e' così vuota
+
 	}
  	
 	// end of construtor
@@ -79,15 +83,7 @@ public class TempUser {
 		this.dataDiNascita = dataDiNascita;
 	}
 
-	public ArrayList<String> getListaPreferiti() {
-		return listaPreferiti;
-	}
-
-	public void setListaPreferiti(ArrayList<String> listaPreferiti) {
-		this.listaPreferiti = listaPreferiti;
-	}
-
-	// end of setters and getters
+		// end of setters and getters
 	
 	// start method
 	
@@ -107,6 +103,16 @@ public class TempUser {
 		this.dataDiNascita =  null;
 		
 	}
+
+	public int getIdU() {
+		return idU;
+	}
+
+	public void setIdU(int idU) {
+		this.idU = idU;
+	}
+
+			
 }
 
 

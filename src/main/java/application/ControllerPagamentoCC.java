@@ -16,18 +16,34 @@ public class ControllerPagamentoCC {
 	private CartaCredito cc;
 	private PagamentoDao pD;
 
-	public boolean controllaPag(String d, String c) {
+	public boolean controllaPag(String d, String c,String civ) {
 
 		appoggio = appoggio + d;
-		// System.out.println("appoggio : "+appoggio);
 		int anno = Integer.parseInt((String) appoggio.subSequence(0, 4));
 		int mese = Integer.parseInt((String) appoggio.subSequence(5, 7));
 		int giorno = Integer.parseInt((String) appoggio.subSequence(8, 10));
-		// System.out.println("anno : \t"+anno +"\n mese : \t"+mese+"\ngiorno :
-		// \t"+giorno);
-
-		if (anno > 2020 && (mese >= 1 && mese <= 12) && (giorno >= 1 && giorno <= 31) && c.length() <= 20) {
-			state = true;
+		 int cont=0;
+		
+		if (anno > 2020 && (mese >= 1 && mese <= 12) && (giorno >= 1 && giorno <= 31) && c.length() <= 20 ) {
+			
+			if(civ.length()==3)
+				{
+					String verifica[]= c.split("-");
+					
+					for (int x=0; x<verifica.length; x++) {
+							if(verifica[x].length()==4)
+							{
+								cont++;
+							}
+					}
+					if (cont==4)
+					{
+						state=true;
+					}
+					else {
+						state=false;
+					}
+				}
 
 		} else {
 			state = false;
@@ -71,6 +87,13 @@ public class ControllerPagamentoCC {
 		// TODO Auto-generated method stub
 		// System.out.println("Chiamata nel controller :"+cDao.getCarteCredito(nomeU));
 		return cDao.getCarteCredito(nomeU);
+	}
+	
+	public CartaCredito tornaDalDb(String codiceCarta) throws SQLException
+	{
+		cc=new CartaCredito();
+		cc.setNumeroCC(codiceCarta);
+		return cDao.popolaDati(cc);
 	}
 
 }

@@ -38,9 +38,6 @@ public class BoundaryScegliNegozio implements Initializable {
 	private ControllerScegliNegozio CSN;
 	private ObservableList<Negozio> listOfNegozi;
 	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
 	
 	
 	public BoundaryScegliNegozio()
@@ -51,109 +48,233 @@ public class BoundaryScegliNegozio implements Initializable {
 	@FXML
 	private void verifica() throws SQLException, IOException 
 	{
-		listOfNegozi = CSN.getNegozi();
-		if(radio1.isSelected()) 
+		listOfNegozi=CSN.getNegozi();
+		
+		if(radio1.isSelected())
 		{
-			if (listOfNegozi.get(0).getIsOpen() && listOfNegozi.get(0).getIsValid())
+			if(listOfNegozi.get(0).getIsOpen() && listOfNegozi.get(0).getIsValid())
 			{
-				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Alert alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Ordine ricevuto!");
 				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!");
-				alert.showAndWait();
-			}	
-			else
-			{
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Negozio chiuso o non disponibile per il ritiro");
-				alert.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
-				alert.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
-				alert.showAndWait();
+				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				Optional<ButtonType> result = alert.showAndWait();
+				
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        	
+		        {
+		            System.out.println("ALL OK..!");
+		            if(vis.getIstance().getIsLogged())	
+					{
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePageAfterLogin.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            }
+		            else {
+		            	System.out.println("Sto in else");
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            	}
+				
+			
+		        			
+		        }
+		        else
+				{
+				
+					Alert alertE = new Alert(AlertType.WARNING);
+					alertE.setTitle("Negozio chiuso o non disponibile per il ritiro");
+					alertE.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
+					alertE.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
+				
+				}
 			}
-			//do things
-		}
+			
+			
+		} // qui si chiude check button1
 		else if(radio2.isSelected())
 		{
-			if (listOfNegozi.get(1).getIsOpen() && listOfNegozi.get(1).getIsValid())
+			if(listOfNegozi.get(1).getIsOpen() && listOfNegozi.get(1).getIsValid())
 			{
-				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Alert alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Ordine ricevuto!");
 				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!");
-				alert.showAndWait();
-			}	
-			else
-			{
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Negozio chiuso o non disponibile per il ritiro");
-				alert.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
-				alert.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
-				alert.showAndWait();
-			}		}
-		else if(radio3.isSelected())
-		{
-			if (listOfNegozi.get(2).getIsOpen() && listOfNegozi.get(2).getIsValid())
-			{
-				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Ordine ricevuto!");
-				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!");
-				alert.showAndWait();
-			}	
-			else
-			{
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Negozio chiuso o non disponibile per il ritiro");
-				alert.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
-				alert.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
-				alert.showAndWait();
+				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				Optional<ButtonType> result = alert.showAndWait();
+				
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        	
+		        {
+		            System.out.println("ALL OK..!");
+		            if(vis.getIstance().getIsLogged())	
+					{
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePageAfterLogin.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            }
+		            else {
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            	}
+				
+				
+		            //Open another window on clicking the OK button
+
+		        			
+		        }
+		        else
+				{
+				
+					Alert alertE = new Alert(AlertType.WARNING);
+					alertE.setTitle("Negozio chiuso o non disponibile per il ritiro");
+					alertE.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
+					alertE.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
+				
+				}
 			}
-		}
+			
+			
+		} // qui si chiude check button2
+		
+		if(radio3.isSelected())
+		{
+			if(listOfNegozi.get(2).getIsOpen() && listOfNegozi.get(2).getIsValid())
+			{
+				Alert alert=new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Ordine ricevuto!");
+				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
+				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				Optional<ButtonType> result = alert.showAndWait();
+				
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        	
+		        {
+		            System.out.println("ALL OK..!");
+		            if(vis.getIstance().getIsLogged())	
+					{
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePageAfterLogin.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            }
+		            else {
+		            	System.out.println("Sto in else");
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            	}
+				
+				
+		            //Open another window on clicking the OK button
+
+		        			
+		        }
+		        else
+				{
+				
+					Alert alertE = new Alert(AlertType.WARNING);
+					alertE.setTitle("Negozio chiuso o non disponibile per il ritiro");
+					alertE.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
+					alertE.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
+				
+				}
+			}
+			
+			
+		} // qui si chiude check button1
+		
 		else if(radio4.isSelected())
 		{
-			if (listOfNegozi.get(3).getIsOpen() && listOfNegozi.get(3).getIsValid())
+			if(listOfNegozi.get(3).getIsOpen() && listOfNegozi.get(3).getIsValid())
 			{
-				Alert alert = new Alert(AlertType.CONFIRMATION);
+				Alert alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Ordine ricevuto!");
 				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!");
+				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
 				Optional<ButtonType> result = alert.showAndWait();
-				ButtonType resButton = result.orElse(null);
-				if(vis.getIstance().getIsLogged())	
+				
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        	
+		        {
+		            System.out.println("ALL OK..!");
+		            if(vis.getIstance().getIsLogged())	
+					{
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePageAfterLogin.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            }
+		            else {
+		            	System.out.println("Sto in else");
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
+		                root = loader.load();
+		                Scene scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            	}
+				
+				
+		            //Open another window on clicking the OK button
+
+		        			
+		        }
+		        else
 				{
-					//FXMLLoader loader = new FXMLLoader(getClass().getResource("homePageAfterLogin.fxml"));
-					//Parent root = loader.load();
-//					Object page = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-//					Parent root = page.load();
-//
-//					Scene scene = new Scene(root);
-//					primaryStage.setScene(scene);
-//					primaryStage.show();
-					root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-					Scene scene = new Scene(root);
-					stage.setScene(scene);
-					stage.show();
+				
+					Alert alertE = new Alert(AlertType.WARNING);
+					alertE.setTitle("Negozio chiuso o non disponibile per il ritiro");
+					alertE.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
+					alertE.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
+				
 				}
-				else
-				{
-//					FXMLLoader loader = new FXMLLoader(getClass().getResource("homePage.fxml"));
-//					Parent root = loader.load();
-					root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-					scene = new Scene(root);
-					stage.setScene(scene);
-					stage.show();
-				}
-			}	
-			else
-			{
-				Alert alert = new Alert(AlertType.WARNING);
-				alert.setTitle("Negozio chiuso o non disponibile per il ritiro");
-				alert.setHeaderText("Il negozio seleziopnato non è al momento pronto per questo tipo di operazioni");
-				alert.setContentText("torna indietro e seleziona un'altro negozio fra quelli che ti vengono mostrati ! ");
-				alert.showAndWait();
 			}
-		}
+			
+			
+		} // qui si chiude check button1
+
+						
 	}
+	
+				
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

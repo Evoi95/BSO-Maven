@@ -7,10 +7,12 @@ import database.RivistaDao;
 import factoryBook.Raccolta;
 import factoryBook.Rivista;
 import javafx.collections.ObservableList;
+import usersSingelton.User;
 
 public class ControllerCompravenditaRiviste {
 	private RivistaDao rD;
 	private Rivista R;
+	private static User u=User.getInstance();
 
 	public ControllerCompravenditaRiviste() {
 		rD = new RivistaDao();
@@ -29,5 +31,9 @@ public class ControllerCompravenditaRiviste {
 		return rD.checkDisp(R,id);
 	}
 
+	public String tipoUtente()
+	{
+		return u.getInstance().getIdRuolo();
+	}
 
 }

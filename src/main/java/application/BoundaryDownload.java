@@ -1,19 +1,24 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 import com.itextpdf.text.DocumentException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class BoundaryDownload {
+public class BoundaryDownload implements Initializable {
 	@FXML
 	private SplitPane split;
 	@FXML
@@ -34,30 +39,43 @@ public class BoundaryDownload {
 
 	@FXML
 	private void scarica() throws IOException, DocumentException {
-		CD.scaricaLibro();
-		/*
-		 * TODO modifico alert
-		 */
-		if( vis.getIstance().getIsLogged()) {
-			Stage stage;
-			Parent root;
-			stage = (Stage) buttonI.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-			}
-			else
-			{
-				Stage stage;
+		
+		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		a.setTitle("Download effettuato");
+		a.setHeaderText("Premere ok per scaricarlo e leggerlo\n");
+		Optional<ButtonType> result = a.showAndWait();
+		
+		
+		 if ((result.isPresent()) && (result.get() == ButtonType.OK))
+	        	
+	        {
+	            System.out.println("ALL OK..!");
+	            if(vis.getIstance().getIsLogged())	
+				{
+	            	CD.scaricaLibro();
+	            	 	
+	            	
+				}
+	            else {
+	            	CD.scaricaLibro();
+
+	            }
+	            Stage stage;
 				Parent root;
-				stage = (Stage) buttonI.getScene().getWindow();
+				stage = (Stage) buttonA.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
-			}
-
+			
+			
+			
+	  		
+				/*
+		 * TODO modifico alert
+		 */
+		
+	        }
 	}
 
 	@FXML
@@ -85,8 +103,12 @@ public class BoundaryDownload {
 		}
 	}
 
-	public BoundaryDownload() {
-		CD = new ControllerDownload();
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+				CD = new ControllerDownload();
+
 	}
 
 }

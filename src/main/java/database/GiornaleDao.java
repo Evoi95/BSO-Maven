@@ -1,5 +1,9 @@
 package database;
 
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,6 +31,7 @@ public class GiornaleDao {
 	private static PreparedStatement prepQ = null; 
 	private static Connection conn ;
 	private static int q ; 
+	private static ResultSet rs;
 	
  	public void getDesc(factoryBook.Giornale g) throws SQLException
 	{	           
@@ -180,43 +185,15 @@ public class GiornaleDao {
 			}
 
         }
+    	//System.out.println(catalogo);
+
         conn.close();
 	
 	
-	System.out.println(catalogo);
 	return catalogo;
 		}
 	
-	public ObservableList<Raccolta> getGiornaliByName(String S) throws SQLException {
-		// TODO Auto-generated method stub
 		
-		Connection conn= ConnToDb.generalConnection();
-
-		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
-		 
-		//ConnToDb.connection();
-        ResultSet rs=conn.createStatement().executeQuery("SELECT * FROM ispw.giornale where titolo = '"+S+"' OR editore = '"+S+"'");
-
-        while(rs.next())
-        {
-           // System.out.println("res :"+rs);
-
-    		try {
-				catalogo.add(f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
-				//rs=rs.next();
-    		} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-        }
-        conn.close();
-	
-	
-	System.out.println(catalogo);
-	return catalogo;
-		}
-	
 	public Giornale getGiornale(Giornale G,int id) throws SQLException
 	{
 
@@ -393,6 +370,248 @@ public class GiornaleDao {
 		return false;
 	}
 
+	public ObservableList<Giornale> getLibriSingolo() throws SQLException {
+		// TODO Auto-generated method stub
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Giornale> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM giornale");
+
+            while(rs.next())
+            {
+
+        		try {
+        			catalogo.add((Giornale)f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+					//catalogo.add((Giornale) f.createGiornale("giornale",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15)));
+					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		//System.err.println(catalogo);
+            return catalogo;
+		
+	
+
+	}
+
+
+	public boolean creaGiornale(Giornale g) {
+		{
+
+
+			boolean state=false;
+	    	try 
+			{
+	    		if (ConnToDb.connection())
+				{
+					conn = ConnToDb.generalConnection();
+					query= "INSERT INTO `ispw`.`giornale`"
+				 			+ "(`titolo`,"
+				 			+ "`tipologia`,"
+				 			+ "`lingua`,"
+				 			+ "`editore`,"
+				 			+ "`dataPubblicazione`,"
+				 			+ "`copiRim`,"
+				 			+ "`disp`,"
+				 			+ "`prezzo`)"
+				 			+ "VALUES"
+				 			+ "(?,?,?,?,?,?,?,?);"
+				 			+ "";
+					prepQ = ConnToDb.conn.prepareStatement(query);	
+					prepQ.setString(1,g.getTitolo()); 
+					prepQ.setString(2,g.getTipologia());
+					prepQ.setString(3,g.getLingua());
+					prepQ.setString(4,g.getEditore());
+					prepQ.setDate(5, java.sql.Date.valueOf(g.getDataPubb().toString())); 
+					prepQ.setInt(6,g.getCopieRimanenti());
+					prepQ.setInt(7, g.getDisponibilita());
+					prepQ.setFloat(8, g.getPrezzo());
+					
+					prepQ.executeUpdate();
+					//conn.close();
+				 	System.out.println("Giornale Inserito con successo");
+				 	state= true; // true		 			 	
+				}
+				else {
+			    	System.err.print("Errore inserimento utenete");
+			    	state= false ;
+			    	}
+			}
+			catch (SQLException e1) {
+				e1.printStackTrace();
+				}
+
+	    	//conn.close();				 	
+			return state;
+			
+			
+		}
+		}
+
+	public void cancella(Giornale g) {
+		int row = 0;
+
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        //Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				PreparedStatement ps=conn.prepareStatement("delete  FROM ispw.giornale where id = "+g.getId()+" ;");
+				 row=ps.executeUpdate();
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Giornale cancellato : "+row);
+	}
+
+	public ObservableList<Giornale> getGiornaliSingoloById(Giornale g) throws SQLException {
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Giornale> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM giornale where id="+g.getId()+"");
+
+            while(rs.next())
+            {
+
+        		try {
+        			catalogo.add((Giornale)f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		
+		System.out.println(catalogo);
+		return catalogo;
+		
+	}
+
+	public ObservableList<Raccolta> getGiornaliByName(String s) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void aggiornaGiornale(Giornale g) throws SQLException {
+		
+		int rowAffected=0;
+		
+		
+		
+		//System.out.println("IdLibro prima del try nel dao:"+l.getId());
+
+		
+	 	 
+
+			 conn = ConnToDb.generalConnection();
+			st=conn.createStatement();
+			query="USE ispw";
+			
+
+			st.executeQuery(query);
+		 	String query=" UPDATE `ispw`.`giornale`"
+		 			+ "SET"
+		 			+ "`titolo` =?,"
+		 			+ "`tipologia` = ?,"
+		 			+ "`lingua` = ?,"
+		 			+ "`editore` = ?,"
+		 			+ "`dataPubblicazione` = ?,"
+		 			+ "`copiRim` = ?,"
+		 			+ "`disp` = ?,"
+		 			+ "`prezzo` = ?"
+		 			+ "WHERE `id` = "+g.getId()+"";
+			prepQ=conn.prepareStatement(query);
+			
+			prepQ.setString(1,g.getTitolo());
+			prepQ.setString(2,g.getTipologia());
+			prepQ.setString(3,g.getLingua());
+			prepQ.setString(4, g.getEditore());
+			prepQ.setString(5,g.getDataPubb().toString());
+			prepQ.setInt(6,g.getCopieRimanenti());
+			prepQ.setInt(7,g.getDisponibilita());
+			prepQ.setFloat(8,g.getPrezzo());
+			//prepQ.setInt(14,l.getCopieRim());
+		//	prepQ.setInt(15,l.getId());
+
+
+			rowAffected = prepQ.executeUpdate();
+			prepQ.close();
+			
+            System.out.println(("Row affected "+ rowAffected));
+
+	 }	
+
+	public void generaReport() throws SQLException, IOException
+	{
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				
+				rs=conn.createStatement().executeQuery("select titolo,editore,copiRim,prezzo as totale  from giornale;");
+				
+				 FileWriter w;
+		            w=new FileWriter("ReportFinale\\riepilogoGiornali.txt");
+
+		            BufferedWriter b;
+		            b=new BufferedWriter (w);
+		            while(rs.next())
+		            {
+		        		try {
+		        	
+
+				
+								rs.getString(1);
+								rs.getString(2);
+								rs.getInt(3);
+								rs.getFloat(4);
+								
+										
+				
+		        		b.write("Titolo :"+rs.getString(1)+"\t"+"Editore :"+rs.getString(2)+"\t"+"Ricavo totale :" +rs.getInt(3)*rs.getFloat(4)+"\n");
+
+
+
+
+		     			b.flush();
+
+
+		        			} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		        		
+		            }
+
+
+		          b.close();
+				}
+			
+	
+		
+	}
+
+		
 }
+
+
+		
+	
+
+
 
 

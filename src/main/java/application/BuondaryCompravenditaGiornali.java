@@ -75,14 +75,13 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 
 	}
 
-	public BuondaryCompravenditaGiornali() {
-		CCG = new ControllerCompravenditaGiornali();
-		CVG = new ControllerVisualizzaGiornale();
-	}
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		CCG = new ControllerCompravenditaGiornali();
+		CVG = new ControllerVisualizzaGiornale();
+
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
 		Tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		autore.setCellValueFactory(new PropertyValueFactory<>("editore"));
@@ -94,7 +93,8 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 
 	@FXML
 	private void torna() throws IOException {
-		if( vis.getIstance().getIsLogged()) {
+		String tipoU=CCG.tipoUtente();
+		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -103,17 +103,31 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			else
+			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+
 			{
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
-				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
+				}
 			}
-	}
+			else {
+				
+					Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();
+				}
+
+			}
+	
 
 	
 	@FXML

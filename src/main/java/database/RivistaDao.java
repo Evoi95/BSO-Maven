@@ -1,5 +1,8 @@
 package database;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Date;
@@ -27,6 +30,7 @@ public class RivistaDao {
 	private static PreparedStatement prepQ = null; 
 	private static Connection conn ;
 	private static int q;
+	private static ResultSet rs;
 	
 	
 	
@@ -389,7 +393,242 @@ public class RivistaDao {
 		return false;
 	}
 
+	public ObservableList<Rivista> getRivistaSingolo() throws SQLException {
+		// TODO Auto-generated method stub
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista");
+
+            while(rs.next())
+            {
+
+        		try {
+        			catalogo.add((Rivista) f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		
+		System.out.println(catalogo);
+		return catalogo;
+		
+	}
+
+	public Boolean creaRivista(Rivista r) {
+		boolean state=false;
+    	try 
+		{
+    		if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+			 	query= "INSERT INTO `ispw`.`rivista`"
+			 			+ "(`titolo`,"
+			 			+ "`tipologia`,"
+			 			+ "`autore`,"
+			 			+ "`lingua`,"
+			 			+ "`editore`,"
+			 			+ "`Descrizione`,"
+			 			+ "`dataPubblicazione`,"
+			 			+ "`disp`,"
+			 			+ "`prezzo`,"
+			 			+ "`copieRimanenti`)"
+			 			+ "VALUES (?,?,?,?,?,?,?,?,?,?)";
+			 	prepQ = ConnToDb.conn.prepareStatement(query);	
+				prepQ.setString(1,r.getTitolo()); 
+				prepQ.setString(2,r.getTipologia());
+				prepQ.setString(3,r.getAutore());
+				prepQ.setString(4,r.getLingua());
+				prepQ.setString(5,r.getEditore());
+				prepQ.setString(6,r.getDescrizione());
+				prepQ.setDate(7, java.sql.Date.valueOf(r.getDataPubb().toString()));  
+				prepQ.setInt(8, r.getDisp());
+				prepQ.setFloat(9, r.getPrezzo());
+				prepQ.setInt(10,r.getCopieRim());
+
+
+				
+				prepQ.executeUpdate();
+				//conn.close();
+			 	System.out.println("Libro Inserito con successo");
+			 	state= true; // true		 			 	
+			}
+			else {
+		    	System.err.print("Errore inserimento utenete");
+		    	state= false ;
+		    	}
+		}
+		catch (SQLException e1) {
+			e1.printStackTrace();
+			}
+
+    	//conn.close();				 	
+		return state;
+		
+		
+	}
+
+	public void cancella(Rivista r) {
+		int row = 0;
+
+		try {
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+		        //Statement stmt = conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				PreparedStatement ps=conn.prepareStatement("delete  FROM ispw.rivista where id = "+r.getId()+" ;");
+				 row=ps.executeUpdate();
+				}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		System.out.println("Rivista cancellata : "+row);
+
+		// TODO Auto-generated method stub
+		
+	}
+
+	public ObservableList<Rivista> getRivistaSingoloById(Rivista r) throws SQLException {
+		// TODO Auto-generated method stub
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista");
+
+            while(rs.next())
+            {
+
+        		try {
+        			catalogo.add((Rivista) f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));					//rs=rs.next();
+					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		
+		System.out.println(catalogo);
+		return catalogo;
+		
+	}
+
+	public void aggiornaRivista(Rivista r) throws SQLException {
+		int rowAffected=0;
+		
+					 conn = ConnToDb.generalConnection();
+			st=conn.createStatement();
+			query="USE ispw";
+			
+			//System.out.println("Titolo dopo use ispw:"+l.getTitolo());
+
+			st.executeQuery(query);
+		 	String query="UPDATE `ispw`.`rivista`"
+		 			+ "SET"
+		 			+ "`titolo` = ?,"
+		 			+ "`tipologia` =?,"
+		 			+ "`autore` = ?,"
+		 			+ "`lingua` = ?,"
+		 			+ "`editore` = ?,"
+		 			+ "`Descrizione` =?,"
+		 			+ "`dataPubblicazione` =?,"
+		 			+ "`disp` = ?,"
+		 			+ "`prezzo` = ?,"
+		 			+ "`copieRimanenti` =?"
+		 			+ "WHERE `id` = "+r.getId()+";";
+		 		
+		 	prepQ=conn.prepareStatement(query);
+			
+			prepQ.setString(1,r.getTitolo());
+			prepQ.setString(2,r.getTipologia());
+			prepQ.setString(3,r.getAutore());
+			prepQ.setString(4,r.getLingua());
+			prepQ.setString(5,r.getEditore());
+			prepQ.setString(6,r.getDescrizione());
+			prepQ.setString(7,r.getDataPubb().toString());
+			prepQ.setInt(8,r.getDisp());
+			prepQ.setFloat(9,r.getPrezzo());
+			prepQ.setInt(10,r.getCopieRim());
+		
+
+			rowAffected = prepQ.executeUpdate();
+			prepQ.close();
+			
+            System.out.println(("Row affected "+ rowAffected));
+
+	 }	
+	
+	public void generaReport() throws SQLException, IOException
+	{
+			if (ConnToDb.connection())
+			{
+				conn = ConnToDb.generalConnection();
+				st=conn.createStatement();
+				query="USE ispw";
+				st.executeQuery(query);
+				
+				
+				rs=conn.createStatement().executeQuery("select titolo,editore,copieRimanenti,prezzo as totale  from rivista;");
+				
+				 FileWriter w;
+		            w=new FileWriter("ReportFinale\\riepilogoRiviste.txt");
+
+		            BufferedWriter b;
+		            b=new BufferedWriter (w);
+		            while(rs.next())
+		            {
+		        		try {
+		        	
+
+				
+								rs.getString(1);
+								rs.getString(2);
+								rs.getInt(3);
+								rs.getFloat(4);
+								
+										
+				
+		        		b.write("Titolo :"+rs.getString(1)+"\t"+"Editore :"+rs.getString(2)+"\t"+"Ricavo totale :" +rs.getInt(3)*rs.getFloat(4)+"\n");
+
+
+
+
+		     			b.flush();
+
+
+		        			} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+		        		
+		            }
+
+
+		          b.close();
+				}
+			
+	
+	}
+
+
+		
+}
+
+		
+	
+
 	
 
 
-}
+

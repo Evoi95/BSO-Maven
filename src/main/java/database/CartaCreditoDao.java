@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -39,7 +40,7 @@ public class CartaCreditoDao {
             	
 
         		try {             
-        			System.out.println("Stringhe : "+n+cog+cod);
+        		//	System.out.println("Stringhe : "+n+cog+cod);
         			// System.out.println("res :"+rs.getString(1));
 
 					catalogo.add(new CartaCredito(n,cog,cod, null, cod,0));
@@ -84,7 +85,7 @@ public class CartaCreditoDao {
 
 		 System.out.println("LibroDao. privilegi");
 
-}
+	}
 	public void insCC(CartaCredito cc) throws SQLException
 	{
 		
@@ -158,8 +159,45 @@ public class CartaCreditoDao {
 		return spesa;
 	}
 	  
+	
+	public CartaCredito  popolaDati(CartaCredito cc) throws SQLException
+	{
+		String codice=cc.getNumeroCC();
+		String n = null,cog = null,cod = null;
+		Date scad = null;
+		Connection conn= ConnToDb.generalConnection();
+		    rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta,scad from cartacredito where codiceCarta='"+codice+"'");
+
+            while(rs.next())
+            {
+            	n=rs.getString(1);
+            	 cog=rs.getString(2);
+            	 cod=rs.getString(3);
+            	 scad=rs.getDate(4);
+            	
+            	
+
+            }
+            
+            cc.setNomeUser(n);
+            cc.setCognomeUser(cog);
+            cc.setNumeroCC(cod);
+            cc.setScadenza(scad);
+            conn.close();
+			return cc;
+
+	
+	}
+}
+
+           
+		 //  return catalogo;
 
 		
 	
 
-}
+
+		
+	
+
+

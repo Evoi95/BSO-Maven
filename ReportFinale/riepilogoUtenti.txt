@@ -1,0 +1,4 @@
+1	a	Gianni	Morandi	bigHand@gmail.com	Grande uomo grandi mani grande cuore	1944-12-11
+2	a	Admin	Admin	Admin@Admin.com	Grande uomo grandi mani grande cuore	1970-01-01
+4	W	lucio	dalla	luciodalla@gmail.com	grande uomo	2021-02-08
+5	w	dani	cinu	danicinu10@gmail.com	non lo so	2021-02-08

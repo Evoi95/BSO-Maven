@@ -1,9 +1,12 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -11,7 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 
-public class BoundaryRicercaPerTipo {
+public class BoundaryRicercaPerTipo implements Initializable {
 	
 	@FXML
 	private Pane pane;
@@ -30,10 +33,6 @@ public class BoundaryRicercaPerTipo {
 	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
 
 	
-	public BoundaryRicercaPerTipo()
-	{
-		CRPT = new  ControllerRicercaPerTipo();
-	}
 	
 	@FXML
 	private void torna() throws IOException
@@ -130,5 +129,13 @@ public class BoundaryRicercaPerTipo {
 			alert.setContentText("Riavvia il programma se l'errore persiste!");
 			alert.showAndWait();
 		}
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+
+		CRPT = new  ControllerRicercaPerTipo();
+	
 	}
 }

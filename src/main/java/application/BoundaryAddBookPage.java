@@ -1,10 +1,15 @@
 package application;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -20,7 +25,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
 
-public class BoundaryAddBookPage {
+public class BoundaryAddBookPage implements Initializable {
 	
 	@FXML
 	private Pane pane;
@@ -39,7 +44,7 @@ public class BoundaryAddBookPage {
 	@FXML
 	private TextField linguaT;
 	@FXML
-	private ListView categoriaList ;
+	private ListView<String> categoriaList ;
 	@FXML
 	private DatePicker dataP;
 	@FXML
@@ -85,27 +90,51 @@ public class BoundaryAddBookPage {
 	
 	private ControllerAddBookPage cABP;
 	
+	private ObservableList<String> items = FXCollections.observableArrayList();
+
 	@FXML
 	private void conferma()
 	{
 		
-		int nPagine;
-		try {
-			nPagine= Integer.parseInt(numeroPagineT.getText());
-		}
-		catch (NumberFormatException e)
-		{
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Warning Dialog");
-			alert.setHeaderText("Look, a Warning Dialog");
-			alert.setContentText("Careful with the next step!");
+		
+		String t=titoloT.getText();
+		int np=Integer.parseInt(numeroPagineT.getText());
+		String cod=codeIsbnT.getText();
+		String ed=editoreT.getText();
+		String a=autoreT.getText();
+		String l=linguaT.getText();
+		String c=(String) categoriaList.getSelectionModel().getSelectedItem();
 
-			alert.showAndWait();
+		LocalDate d=dataP.getValue();
+		String r=recensioneT.getText();
+		String desc=descrizioneA.getText();
+		boolean disp=disponibilitaC.isPressed();
+		
+		int dispo;
+		
+		if(disp==true)
+		{
+			dispo=1;
+			//disponibile
 		}
-		/*if (cABP.checkData(titoloT.getText(), nPagine , codeIsbnT.getText(), editoreT.getText(), autoreT.getText(), linguaT.getText(),
-				categoriaList, dataP, recensioneT.getText(), descrizioneA.getText(), disponibilitaC, prezzoT.getText(), copieRimanentiT.getText())
+		else {
+			dispo=0;
+		}
+		float prezzo=Float.parseFloat(prezzoT.getText());
+		int copie=Integer.parseInt(copieRimanentiT.getText());
+		
+		System.out.println("Categoria scleta : "+c);
+		
+		System.out.println("dispo :"+dispo);
+
+		boolean esito=cABP.checkData(t,np,cod,ed,a,l,c,d,r,desc,dispo,prezzo,copie);
+		
+		System.out.println("Esito : "+esito);
+		/*
 		{
 			System.out.println(" dati inseriti conrretti");
+			
+			//cABP.addlibro();
 		}
 		else
 		{
@@ -124,6 +153,19 @@ public class BoundaryAddBookPage {
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		cABP=new ControllerAddBookPage();
+		// TODO Auto-generated method stub
+		categoriaList.setItems(items);
+		items.add("horror");
+		items.add("thriller");
+		items.add("fantasy");
+		items.add("avventura");
+		
+		
 	}
 	
 			

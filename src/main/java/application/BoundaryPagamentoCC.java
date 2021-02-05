@@ -77,8 +77,10 @@ public class BoundaryPagamentoCC implements Initializable {
 	private void procediCC() throws IOException {
 
 		String cod = codiceTF.getText();
+		String civ=codiceTFCiv.getText();
 		
-		esito = CPCC.controllaPag(scadTF.getText(), cod);
+		
+		esito = CPCC.controllaPag(scadTF.getText(), cod,civ);
 		
 		if (esito==(true)) {
 			if(vis.getIstance().getIsPickup()) 
@@ -134,7 +136,7 @@ public class BoundaryPagamentoCC implements Initializable {
 
 	public BoundaryPagamentoCC() throws Exception {
 		CPCC = new ControllerPagamentoCC();
-
+		
 	}
 
 	@FXML
@@ -159,6 +161,12 @@ public class BoundaryPagamentoCC implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		codiceCC.setCellValueFactory(new PropertyValueFactory<>("numeroCC"));
+		if(!vis.getIstance().getIsLogged())
+		{
+			buttonPrendi.setDisable(true);
+			buttonReg.setDisable(true);
+		}
+
 
 	}
 
@@ -181,4 +189,14 @@ public class BoundaryPagamentoCC implements Initializable {
 		buttonPrendi.setDisable(false);
 	}
 
+	@FXML
+	private void prova() throws SQLException
+	{
+		nomeTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserNome());
+		cognomeTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserCognome());
+		codiceTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getNumeroCC());
+		scadTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getScadenza().toString());
+
+
+	}
 }

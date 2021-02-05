@@ -12,6 +12,7 @@ public class User {
 
 	private String idRuolo,nome,cognome,email,password,descrizione;
 	private LocalDate dataDiNascita;
+	private int idU;
 	// array di codici isbn presi dai libri 
 	
 	private static User instance = new User();
@@ -150,7 +151,16 @@ private User( String nome, String cognome, String email, String password,LocalDa
 		this.email = null;
 		this.password = null;
 		this.dataDiNascita =  null;
+		this.idU=0;
 		
+	}
+
+	public int getIdU() {
+		return idU;
+	}
+
+	public void setIdU(int idU) {
+		this.idU = idU;
 	}
 
 

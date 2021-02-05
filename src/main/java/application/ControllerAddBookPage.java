@@ -1,28 +1,59 @@
 package application;
 
-import java.awt.Desktop;
-import java.io.File;
 import java.time.LocalDate;
 
+import database.LibroDao;
+import factoryBook.Libro;
+
 public class ControllerAddBookPage {
+	private LibroDao ld;
+	private Libro l;
 
 	
 	//funzione di aggiunta dei libri
 	//e verifica dei dati inseriti 
 	
 	public boolean checkData(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
-			String categoria, LocalDate dataPubb, String recensione,String desc, int disponibilita,
-			float prezzo, int copieRim)
+			String categoria, LocalDate data, String recensione,String desc, int disp,	float prezzo, int copieRim)
 	{
-		return false;
+		
+		
+		if(codIsbn.length()>10 && data.equals(null) )
+		{
+			return false;
+
+		}
+		else {
+			
+		
+		l.setTitolo(titolo);
+		l.setNumPag(numPag);
+		l.setCodIsbn(codIsbn);
+		l.setEditore(editore);
+		l.setAutore(autore);
+		l.setLingua(lingua);
+		l.setCategoria(categoria);
+		l.setDataPubb(data);
+		l.setRecensione(recensione);
+		l.setDesc(desc);
+		l.setDisponibilita(disp);
+		l.setPrezzo(prezzo);
+		l.setCopieRim(copieRim);
+		
+		ld.creaLibrio(l);
+		
+		
+		return true;
+		}
 	}
 	
 	
 	// qui chiamo la funzione del dao
-	public boolean addlibro()
-	{
-		return false;
-	}
 	
+	public ControllerAddBookPage()
+	{
+		ld=new LibroDao();
+		l=new Libro();
+	}
 
 }

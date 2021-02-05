@@ -6,10 +6,12 @@ import database.GiornaleDao;
 import factoryBook.Giornale;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
+import usersSingelton.User;
 
 public class ControllerCompravenditaGiornali {
 	private GiornaleDao gD;
 	private Giornale g;
+	private User u=User.getInstance();
 
 	public ControllerCompravenditaGiornali() {
 		gD = new GiornaleDao();
@@ -28,6 +30,10 @@ public class ControllerCompravenditaGiornali {
 		int id = Integer.parseInt(i);
 		
 		return gD.checkDisp(g,id);
+	}
+	public String tipoUtente()
+	{
+		return u.getInstance().getIdRuolo();
 	}
 
 }

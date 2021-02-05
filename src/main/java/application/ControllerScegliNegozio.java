@@ -3,6 +3,10 @@ package application;
 import java.sql.SQLException;
 import database.NegozioDao;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import negozio.Negozio;
 
 public class ControllerScegliNegozio {
@@ -10,6 +14,8 @@ public class ControllerScegliNegozio {
 	private NegozioDao nD;
 	private Negozio N;
 	private ObservableList<Negozio> listOfNegozi;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+
 	
 	public ControllerScegliNegozio()
 	{
@@ -23,7 +29,8 @@ public class ControllerScegliNegozio {
 		return listOfNegozi;
 	}
 	
-	
-	
-
+	public boolean isLogged()
+	{
+		return vis.getIstance().getIsLogged();
+	}
 }

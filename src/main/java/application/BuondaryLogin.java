@@ -64,21 +64,95 @@ public class BuondaryLogin implements Initializable {
 		
 
 		v=cL.controlla(u,p);
+		
+		String ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
+		System.out.println("Ruolo tempUser :"+ruolo);
 
 		if (v) {
 		
-			Stage stage;
-			Parent root;
-			stage = (Stage) buttonI.getScene().getWindow();
-			/*
-			 * modificare schermata
-			 */
-			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+			if(ruolo.equals("e") || ruolo.equals("E"))
+			{
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				/*
+				 * modificare schermata
+				 */
+				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
+				stage.setTitle("Benvenuto nella schermata del catalogo libri ");
 
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+
+			}
+			else if(ruolo.equals("w") || ruolo.equals("W"))
+			{
+					Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					/*
+					 * modificare schermata
+					 */
+					root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
+					stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();
+
+				
+
+			}
+			else if(ruolo.equals("a") || ruolo.equals("A"))
+			{
+					Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					/*
+					 * modificare schermata
+					 */
+					root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
+					stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();
+
+				
+
+			}
+			else if(ruolo.equals("u") || ruolo.equals("U"))
+			{			
+			
+				Stage stage;
+				Parent root;
+				stage = (Stage) buttonI.getScene().getWindow();
+				/*
+				 * modificare schermata
+				 */
+				root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+				stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+			
+				Scene scene = new Scene(root);
+				stage.setScene(scene);
+				stage.show();
+			}
+			
+			/*
+			 * 
+			 * Carico schermata AfterLoginSE 
+			 * 
+			 * Stage stage;
+			Parent root;
+			stage = (Stage) buttonLogout.getScene().getWindow();
+			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
+
 			stage.show();
+
+			 */
 
 		} 
 		else {

@@ -46,7 +46,7 @@
             <Button fx:id="buttonReg" mnemonicParsing="false" onAction="#registraCC" prefHeight="88.0" prefWidth="247.0" text="Registra carta credito e paga" textFill="#1100ff" GridPane.columnIndex="1" GridPane.rowIndex="8" />
          </children>
       </GridPane>
-      <TableView fx:id="tableCC" layoutX="24.0" layoutY="435.0" prefHeight="200.0" prefWidth="164.0">
+      <TableView fx:id="tableCC" layoutX="24.0" layoutY="435.0" onMouseClicked="#prova" prefHeight="200.0" prefWidth="164.0">
         <columns>
             <TableColumn fx:id="codiceCC" prefWidth="165.0" text="CodiceCarta" />
         </columns>

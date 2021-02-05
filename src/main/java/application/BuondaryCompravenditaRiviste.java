@@ -71,6 +71,9 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		CCR = new ControllerCompravenditaRiviste();
+		CVR = new ControllerVisualizzaRivista();
+
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
 		editore.setCellValueFactory(new PropertyValueFactory<>("editore"));
 		dataPubb.setCellValueFactory(new PropertyValueFactory<>("dataPubb"));
@@ -80,14 +83,11 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 
 	}
 
-	public BuondaryCompravenditaRiviste() {
-		CCR = new ControllerCompravenditaRiviste();
-		CVR = new ControllerVisualizzaRivista();
-	}
-
+	
 	@FXML
 	private void torna() throws IOException {
-		if( vis.getIstance().getIsLogged()) {
+		String tipoU=CCR.tipoUtente();
+		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -96,17 +96,31 @@ public class BuondaryCompravenditaRiviste implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			else
+			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+
 			{
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
-				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
 				Scene scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
+				}
 			}
+			else {
+				
+					Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
+					Scene scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();
+				}
+
 	}
+
 	
 	@FXML
 	private void verifica() throws  IOException, SQLException {
