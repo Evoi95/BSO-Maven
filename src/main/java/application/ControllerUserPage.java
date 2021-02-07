@@ -10,15 +10,7 @@ public class ControllerUserPage {
 	private UsersDao ud;
 	
 	public void getUtenti()  {
-		 try {
-			 
-	          // System.out.println("Scrivo nel Controller");
-
-			ud.getListaUtenti();
-		} catch (SQLException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		 ud.getListaUtenti();
 	}
 	
 	public ControllerUserPage()
