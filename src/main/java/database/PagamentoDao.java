@@ -49,16 +49,16 @@ public class PagamentoDao {
 			s.getStackTrace();
 		}
 		}
-	public void daiPrivilegi() throws SQLException
+	public void daiPrivilegi() 
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
+		 connPag=null;
+		 prepQ=null;
 	//	Double d=(double) disp;
 
 		 try {
-			  conn = ConnToDb.generalConnection();
-			  stmt = conn.prepareStatement(" SET SQL_SAFE_UPDATES=0");
-			         stmt.executeUpdate();
+			  connPag = ConnToDb.generalConnection();
+			  prepQ = connPag.prepareStatement(" SET SQL_SAFE_UPDATES=0");
+			         prepQ.executeUpdate();
 
 	            
 	         }catch(SQLException e)
@@ -67,6 +67,14 @@ public class PagamentoDao {
 	        	e.getMessage();
 
 	         }	
+		 finally{
+			 try {
+				connPag.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 		
 		 System.out.println("LibroDao. privilegi");
 
@@ -129,7 +137,7 @@ public void aggiornaPagamentoCC(Pagamento p) throws SQLException {
 		s.getStackTrace();
 	}
 	}
-public ObservableList<Pagamento> getPagamenti() throws SQLException {
+public ObservableList<Pagamento> getPagamenti()  {
 	// TODO Auto-generated method stub
 	
 		
@@ -138,8 +146,10 @@ public ObservableList<Pagamento> getPagamenti() throws SQLException {
 		ObservableList<Pagamento> catalogo=FXCollections.observableArrayList();
 		 
 		//ConnToDb.connection();
-        ResultSet rs=conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,id_prod from pagamento where eMail='"+User.getInstance().getEmail()+"'");
-
+        ResultSet rs;
+		try {
+			rs = conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,id_prod from pagamento where eMail='"+User.getInstance().getEmail()+"'");
+		
         while(rs.next())
         {
            // System.out.println("res :"+rs);
@@ -152,7 +162,18 @@ public ObservableList<Pagamento> getPagamenti() throws SQLException {
 			}
 
         }
-        conn.close();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		finally {
+        try {
+			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 	
 	//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	

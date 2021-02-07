@@ -8,22 +8,17 @@ import java.sql.SQLException;
 import pagamento.Fattura;
 
 public class ContrassegnoDao {
+	private Connection conn;
+	private static PreparedStatement stmt;
 	
 	//private boolean esito=false;
 	
-	public void inserisciFattura(Fattura f) throws SQLException
+	public void inserisciFattura(Fattura f) 
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
+		 conn=null;
+		 stmt=null;
 		
-		/*System.out.println("\n\n");
- 		System.out.println("n vale :"+nome);
- 		System.out.println("c vale :"+cognome);
-
- 		System.out.println("via vale :"+via);
- 		System.out.println("com vale :"+com);
- 		*/
- 		String par1=f.getNome();
+		String par1=f.getNome();
  		String par2=f.getCognome();
  		String par3=f.getVia();
  		String par4=f.getCom();
@@ -60,10 +55,10 @@ public class ContrassegnoDao {
          
         	 
 	}  
-	public void daiPrivilegi() throws SQLException
+	public void daiPrivilegi() 
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
+		conn=null;
+		 stmt=null;
 	//	Double d=(double) disp;
 
 		 try {
@@ -80,7 +75,12 @@ public class ContrassegnoDao {
 	         }	
 		 finally {
 			// stmt.close();
-			 conn.close();
+			 try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			 System.out.println("Ho chiuso tutto");
 			 
 		 }
@@ -89,7 +89,7 @@ public class ContrassegnoDao {
 
 		}
 	
-	public float prendiSpesa() throws SQLException
+	public float prendiSpesa() 
 	{
 		float spesa=0;
 		Connection conn = null;
@@ -106,7 +106,12 @@ public class ContrassegnoDao {
 		}
 		finally
 		{
-			conn.close();
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		System.out.println("\n\n Spesa in cDao :"+spesa);

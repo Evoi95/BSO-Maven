@@ -1007,12 +1007,14 @@ public class UsersDao  {
 	    	
 	    }
 
-	public void getListaUtenti() throws SQLException, IOException {
+	public void getListaUtenti()  {
 		// TODO Auto-generated method stub
-		Connection c= ConnToDb.generalConnection();
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM users");
-            //C:\\Users\\dani\\git\\BSO-Maven\\src\\main\\java\\scrittura.txt
-            
+		conn= ConnToDb.generalConnection();
+            ResultSet rs;
+			try {
+				
+					rs = conn.createStatement().executeQuery("SELECT * FROM users");
+				
             FileWriter w;
             w=new FileWriter("ReportFinale\\riepilogoUtenti.txt");
 
@@ -1022,8 +1024,6 @@ public class UsersDao  {
             
            while(rs.next())
             {
-        		try {
-        			
         			 
         		Ut.getInstance().setIdU(rs.getInt(1));
         		Ut.getInstance().setIdRuolo(rs.getString(2));
@@ -1042,22 +1042,32 @@ public class UsersDao  {
 
 
 
-       		//	i++;
-     			//.flush();
-     			//b.write("\n");
        			b.flush();
+       			b.close();
 
 
-        			} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+        			
         		
             }
+            }catch(IOException e)
+        		{
+					e.getMessage();
+        		} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+            
+           finally {
 
-
-          b.close();
+        	   try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}           
+           }
 		}
+            
 	
 	
 	public  TempUser getTempUserSingolo(TempUser uT) throws SQLException

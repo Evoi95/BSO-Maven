@@ -49,20 +49,13 @@ public class ControllerAcquista {
 		return x;
 	}
 
-	public float totaleG(String titolo, int disp) {
+	public float totaleG(String titolo, int disp) throws SQLException {
 		float y = (float) 0.0;
 		g.setTitolo(titolo);
 		g.setDisponibilita(disp);
-		try {
-			gD.daiPrivilegi();
-			y = gD.getCosto(g);
-			gD.aggiornaDisponibilita(g);
-
-
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		gD.daiPrivilegi();
+		y = gD.getCosto(g);
+		gD.aggiornaDisponibilita(g);
 		return y;
 
 	}

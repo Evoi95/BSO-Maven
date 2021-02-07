@@ -1,7 +1,7 @@
 package application;
 
 import java.io.BufferedReader;
-import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -46,16 +46,27 @@ public class BuondaryReportPage implements Initializable {
 	
 	
 	@FXML
-	private void totale() throws IOException, SQLException
+	private void totale() throws SQLException
 	{
 		ta.clear();
-		cRL.generaReportLibri();
+		try {
+			cRL.generaReportLibri();
 		cRG.generaReportGiornali();
 		cRR.generaReportRiviste();
 		cUP.getUtenti();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		BufferedReader readerL = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
-        String line = readerL.readLine();
+		
+		BufferedReader readerL = null;
+		try {
+			readerL = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
+		String line = readerL.readLine();
         while(line!=null) {
             ta.appendText(line.concat("\n"));
             
@@ -63,10 +74,28 @@ public class BuondaryReportPage implements Initializable {
             System.out.println(line);
             line = readerL.readLine();
         }
-        readerL.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			        try {
+						readerL.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
-		BufferedReader readerG = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
-        String line1 = readerG.readLine();
+		}
+        
+
+		BufferedReader readerG = null;
+		try {
+			readerG = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
+		String line1 = readerG.readLine();
         while(line1!=null) {
             ta.appendText(line1.concat("\n"));
             
@@ -74,29 +103,93 @@ public class BuondaryReportPage implements Initializable {
             System.out.println(line1);
             line1 = readerG.readLine();
         }
-        readerG.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			// TODO Auto-generated catch block
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+        
+        try {
+			readerG.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 
-		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
-        String line2 = reader.readLine();
-        while(line2!=null) {
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        String line2 = null;
+		try {
+			line2 = reader.readLine();
+		while(line2!=null) {
             ta.appendText(line2.concat("\n"));
             
 
             System.out.println(line2);
-            line2 = reader.readLine();
+            try {
+				line2 = reader.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}catch(IOException e)
+        {
+        	e.getCause();
         }
-        reader.close();
         
-        BufferedReader reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-        String line3 = reader3.readLine();
-        while(line3!=null) {
+        finally {
+        try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        }
+        
+        BufferedReader reader3 = null;
+		try {
+			reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        String line3 = null;
+		try {
+			line3 = reader3.readLine();
+		while(line3!=null) {
             ta.appendText(line3.concat("\n"));
             
 
             System.out.println(line3);
-            line3 = reader3.readLine();
-        }
-        reader3.close();
+            try {
+				line3 = reader3.readLine();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}}catch(IOException e)
+		{
+			e.getMessage();
+		}
+	finally {
+        try {
+			reader3.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 		

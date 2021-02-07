@@ -20,7 +20,7 @@ public class CartaCreditoDao {
 	private ResultSet rs;
 	
 	
-	public ObservableList<CartaCredito> getCarteCredito(String nome) throws SQLException
+	public ObservableList<CartaCredito> getCarteCredito(String nome) 
 	{
 		Connection conn= ConnToDb.generalConnection();
 		/*
@@ -29,8 +29,9 @@ public class CartaCreditoDao {
 		ObservableList<CartaCredito> catalogo=FXCollections.observableArrayList();
 		 
 			//ConnToDb.connection();
-            rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'");
-
+            try {
+				rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'");
+			
             while(rs.next())
             {
             	String n=rs.getString(1);
@@ -51,8 +52,19 @@ public class CartaCreditoDao {
 				}
         		
             }
-           
-            conn.close();
+            } catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+            finally {
+                try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
 		   return catalogo;
 
 		
@@ -138,7 +150,7 @@ public class CartaCreditoDao {
 
 		}
 	
-	public float prendiSpesa() throws SQLException
+	public float prendiSpesa() 
 	{
 		float spesa=0;
 		try {

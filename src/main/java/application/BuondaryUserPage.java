@@ -131,13 +131,14 @@ public class BuondaryUserPage implements Initializable {
 
 	}
 	@FXML
-	private void prendi() throws SQLException, IOException
-	{
+	private void prendi() throws SQLException{
 		cUP.getUtenti();
 		elencoUtenti.clear();
 		
-		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-        String line = reader.readLine();
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
+		String line = reader.readLine();
         while(line!=null) {
             elencoUtenti.appendText(line.concat("\n"));
             
@@ -145,7 +146,19 @@ public class BuondaryUserPage implements Initializable {
             System.out.println(line);
             line = reader.readLine();
         }
-        reader.close();
+		}
+        catch(IOException e)
+        {
+        	e.getCause();
+        }
+        finally {
+        try {
+			reader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        }
 
 		    	    
 	}
