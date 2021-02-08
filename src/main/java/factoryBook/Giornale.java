@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class Giornale implements Raccolta {
 	
+	
 	private String  titolo,tipologia,lingua,editore;
 	private LocalDate dataPubb;
 	private int copieRimanenti;
@@ -101,7 +102,7 @@ public class Giornale implements Raccolta {
 
 	public Giornale(String titolo, String tipologia, String lingua, String editore, LocalDate dataPubb2, int copieRimanenti,
 			int disponibilita, float prezzo, int id ) {
-	//	super();
+		super();
 		this.titolo = titolo;
 		this.tipologia = tipologia;
 		this.lingua = lingua;
@@ -115,6 +116,7 @@ public class Giornale implements Raccolta {
 	
 	public Giornale()
 	{
+		super();
 		this.titolo=null;
 		this.tipologia=null;
 		this.lingua=null;

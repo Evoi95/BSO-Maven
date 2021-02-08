@@ -863,7 +863,7 @@ public class UsersDao  {
 		e1.printStackTrace();
 		}
 	// errore
-	return null;
+	return U.getInstance();
 }
    
 	public TempUser aggiornaTempPass(TempUser U) {

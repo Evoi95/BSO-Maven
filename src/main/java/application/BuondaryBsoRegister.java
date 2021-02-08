@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import abstractFactoryLoginDEPRECATO.User;
 import database.UsersDao;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

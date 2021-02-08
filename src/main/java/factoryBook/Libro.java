@@ -242,6 +242,22 @@ public class Libro implements Raccolta {
 	}
 	
 	public Libro() {
+		this.titolo = null;
+		this.numPag = 0;
+		this.codIsbn = null;
+		this.editore = null;
+		this.autore = null;
+		this.lingua = null;
+		this.categoria =null;
+		this.dataPubb = null;
+		this.recensione = null;
+		this.nrCopie = 0;
+		this.desc = null;
+		this.disponibilita = -1;
+		this.prezzo = (float) 0.0;
+		this.copieRim = -1;
+		this.id=-1;
+	
 
 	}
 	

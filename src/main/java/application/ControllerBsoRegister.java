@@ -45,7 +45,7 @@ public class ControllerBsoRegister {
 	
 	
 	//le chiamo protected perchele uso nel controller stesso e basta 
-	private boolean checkData (String n, String c, String email, String pwd, String pwdC)
+	public boolean checkData (String n, String c, String email, String pwd, String pwdC)
 	// controll  all data
 	{
 		if(checkEmail(email) && checkPassword(pwd,pwdC) && checkNomeCognome(n,c))
@@ -58,7 +58,7 @@ public class ControllerBsoRegister {
 		}
 	}
 	
-	private boolean checkEmail(String email)
+	public boolean checkEmail(String email)
 	{
 		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
                 "[a-zA-Z0-9_+&*-]+)*@" + 
@@ -71,7 +71,7 @@ public class ControllerBsoRegister {
 		return pat.matcher(email).matches();
 	}
     
-	private boolean checkPassword(String pwd, String pwdC )
+	public boolean checkPassword(String pwd, String pwdC )
 	{
 		if(pwd.length()>=8 && pwdC.length()>=8 && pwd.equals(pwdC)) {
 			return true;
@@ -83,7 +83,7 @@ public class ControllerBsoRegister {
 		}
 	}
 	
-	private boolean checkNomeCognome(String n, String c)
+	public boolean checkNomeCognome(String n, String c)
 	{
 		if (n != null && c != null)
 		{

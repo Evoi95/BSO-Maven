@@ -139,7 +139,7 @@ public class Rivista implements Raccolta  {
 		this.disp = 0;
 		this.prezzo =0;
 		this.copieRim = 0;
-		this.id = 0;
+		this.id = -1;
 		// TODO Auto-generated constructor stub
 	}
 	
