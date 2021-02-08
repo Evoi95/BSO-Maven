@@ -128,14 +128,13 @@ public class CartaCreditoDao {
 			    stmt.executeUpdate();
 			    
 			   
-			    Alert alert = new Alert(AlertType.INFORMATION);
+			   /* Alert alert = new Alert(AlertType.INFORMATION);
     	        alert.setTitle("  Riepilogo inserimento carta ");
     	        alert.setHeaderText("Risultato ");
     	        alert.setContentText(" Inserimento avvenuto con successo!!\n\n Digitare nome utente in apposito spazio sottostante ");
     	        alert.showAndWait();
-
+*/
     	       
-    	        conn.close();
 	            
 	         }catch(SQLException e)
 	         {
@@ -143,7 +142,7 @@ public class CartaCreditoDao {
 	        	e.getMessage();
 
 	         }
-		 //finally {conn.close();}
+		 finally {conn.close();}
 		
 		
 		 System.out.println("LibroDao. questy");
