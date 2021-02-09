@@ -8,6 +8,7 @@ import factoryBook.Giornale;
 public class ControllerAddGiornalePage {
 	private Giornale g;
 	private GiornaleDao gD;
+	private boolean status = false;
 	
 	
 	public boolean checkData(String titolo, String tipologia, String editore, String lingua, LocalDate data, int disp, float prezzo, int copieRim)
@@ -16,12 +17,11 @@ public class ControllerAddGiornalePage {
 		
 		if(data.equals(null) )
 		{
-			return false;
+			return status;
 
 		}
-		else {
-			
-		
+		else
+		{
 		g.setTitolo(titolo);
 		g.setTipologia(tipologia);
 		g.setLingua(lingua);
@@ -30,11 +30,11 @@ public class ControllerAddGiornalePage {
 		g.setCopieRimanenti(copieRim);
 		g.setDisponibilita(disp);
 		g.setPrezzo(prezzo);
-		
 		gD.creaGiornale(g);
 		
+		status = true;
 		
-		return true;
+		return status;
 		}
 	}
 	

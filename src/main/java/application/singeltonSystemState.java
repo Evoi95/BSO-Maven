@@ -19,6 +19,10 @@ public class singeltonSystemState {
 	 
 	 public static singeltonSystemState getIstance()
 	 {
+		 if (instance == null) 
+		 {
+			 return instance;
+		 }
 		 return instance;
 	 }
 

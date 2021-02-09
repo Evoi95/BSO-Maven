@@ -8,13 +8,14 @@ import factoryBook.Rivista;
 public class ControllerAddRivistaPage {
 	private RivistaDao rd;
 	private Rivista r;
-
+	private boolean status = false; 
+	
 	public boolean checkData(String t, String tipologia, String a, String l, String ed, String desc, LocalDate data,
 			int dispo, float prezzo, int copie) {
 		
 		if(data.equals(null) )
 		{
-			return false;
+			return status;
 
 		}
 		r.setTitolo(t);
@@ -29,9 +30,10 @@ public class ControllerAddRivistaPage {
 		r.setCopieRim(copie);
 
 		rd.creaRivista(r);
-
-		// TODO Auto-generated method stub
-		return true;
+		
+		status = true ;
+		
+		return status;
 	}
 	
 	public ControllerAddRivistaPage()

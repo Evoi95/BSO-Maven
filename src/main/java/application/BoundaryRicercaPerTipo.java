@@ -29,16 +29,20 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	@FXML
 	private Button buttonB;
 	
+	private String title = "Benvenuto nella schermata del riepilogo ordine";
+	private String pageFxml = "ricercaPage.fxml";
+	private String errorTitle = "Errore!" ;
+	private String errorHeaderText = "Errore nel caricamento della schermata ";
+	private String errorContentText = "Riavvia il programma se l'errore persiste!";
 	private ControllerRicercaPerTipo CRPT;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
-
+	
 	
 	
 	@FXML
 	private void torna() throws IOException
 	{
 		
-		if( vis.getIstance().getIsLogged()) {
+		if(singeltonSystemState.getIstance().getIsLogged()) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonB.getScene().getWindow();
@@ -66,8 +70,8 @@ public class BoundaryRicercaPerTipo implements Initializable {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonL.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
+			root = FXMLLoader.load(getClass().getResource(pageFxml));
+			stage.setTitle(title);
 
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -76,9 +80,9 @@ public class BoundaryRicercaPerTipo implements Initializable {
 		else
 		{
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Errore!");
-			alert.setHeaderText("Errore nel caricamento della schermata ");
-			alert.setContentText("Riavvia il programma se l'errore persiste!");
+			alert.setTitle(errorTitle);
+			alert.setHeaderText(errorHeaderText);
+			alert.setContentText(errorContentText);
 			alert.showAndWait();
 		}
 	}
@@ -90,8 +94,8 @@ public class BoundaryRicercaPerTipo implements Initializable {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonG.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
+			root = FXMLLoader.load(getClass().getResource(pageFxml));
+			stage.setTitle(title);
 
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -100,9 +104,9 @@ public class BoundaryRicercaPerTipo implements Initializable {
 		else
 		{
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Errore!");
-			alert.setHeaderText("Errore nel caricamento della schermata ");
-			alert.setContentText("Riavvia il programma se l'errore persiste!");
+			alert.setTitle(errorTitle);
+			alert.setHeaderText(errorHeaderText);
+			alert.setContentText(errorContentText);
 			alert.showAndWait();
 		}
 	}
@@ -114,8 +118,8 @@ public class BoundaryRicercaPerTipo implements Initializable {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonR.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
+			root = FXMLLoader.load(getClass().getResource(pageFxml));
+			stage.setTitle(title);
 
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -124,9 +128,9 @@ public class BoundaryRicercaPerTipo implements Initializable {
 		else
 		{
 			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Errore!");
-			alert.setHeaderText("Errore nel caricamento della schermata ");
-			alert.setContentText("Riavvia il programma se l'errore persiste!");
+			alert.setTitle(errorTitle);
+			alert.setHeaderText(errorHeaderText);
+			alert.setContentText(errorContentText);
 			alert.showAndWait();
 		}
 	}

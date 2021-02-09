@@ -44,6 +44,7 @@ public class BoundaryRicercaPage  implements Initializable{
 	private Button buttonB;
 	
 	private String i;
+	private String title = "Benvenuto nella schermata del riepilogo ordine";
 	private ControllerRicercaPage CRP;
 	private ControllerVisualizzaLibro CVL;
 	private ControllerVisualizzaGiornale CVG;
@@ -77,8 +78,7 @@ public class BoundaryRicercaPage  implements Initializable{
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaBookPage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
+			stage.setTitle(title);
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
@@ -90,8 +90,7 @@ public class BoundaryRicercaPage  implements Initializable{
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaDailyPage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
+			stage.setTitle(title);
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
@@ -103,8 +102,7 @@ public class BoundaryRicercaPage  implements Initializable{
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaMagazinePage.fxml"));
-			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
+			stage.setTitle(title);
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
@@ -125,8 +123,7 @@ public class BoundaryRicercaPage  implements Initializable{
 		Parent root;
 		stage = (Stage) buttonB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
+		stage.setTitle(title);
 		Scene scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();

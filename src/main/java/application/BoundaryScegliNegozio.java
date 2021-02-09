@@ -37,9 +37,15 @@ public class BoundaryScegliNegozio implements Initializable {
 	
 	private ControllerScegliNegozio CSN;
 	private ObservableList<Negozio> listOfNegozi;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
-	
-	
+	private String alertTitle = "Ordine ricevuto!";
+	private String alertHeaderTexr = "Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto";
+	private String alertContentText = "Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n";
+	private Boolean r1IsSelected = false;
+	private Boolean r2IsSelected = false;
+	private Boolean r3IsSelected = false;
+	private Boolean r4IsSelected = false;
+	private Boolean statusA = false ;
+	private Boolean statusB = false ;
 	public BoundaryScegliNegozio()
 	{
 		CSN = new ControllerScegliNegozio();
@@ -49,22 +55,29 @@ public class BoundaryScegliNegozio implements Initializable {
 	private void verifica() throws SQLException, IOException 
 	{
 		listOfNegozi=CSN.getNegozi();
-		
-		if(radio1.isSelected())
+		r1IsSelected = radio1.isSelected();
+		r2IsSelected = radio2.isSelected();
+		r3IsSelected = radio3.isSelected();
+		r4IsSelected = radio4.isSelected();
+
+		if(r1IsSelected)
 		{
-			if(listOfNegozi.get(0).getIsOpen() && listOfNegozi.get(0).getIsValid())
+			statusA = listOfNegozi.get(0).getIsOpen();
+			statusB =  listOfNegozi.get(0).getIsValid();
+			
+		
+			if( statusA && statusB)
 			{
 				Alert alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Ordine ricevuto!");
-				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				alert.setTitle(alertTitle);
+				alert.setHeaderText(alertHeaderTexr);
+				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
-		            System.out.println("ALL OK..!");
-		            if(vis.getIstance().getIsLogged())	
+		            if(singeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
 		                Parent root;
@@ -76,7 +89,6 @@ public class BoundaryScegliNegozio implements Initializable {
 		                stage.show();
 		            }
 		            else {
-		            	System.out.println("Sto in else");
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();
@@ -103,21 +115,20 @@ public class BoundaryScegliNegozio implements Initializable {
 			
 			
 		} // qui si chiude check button1
-		else if(radio2.isSelected())
+		else if(r2IsSelected)
 		{
 			if(listOfNegozi.get(1).getIsOpen() && listOfNegozi.get(1).getIsValid())
 			{
 				Alert alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Ordine ricevuto!");
-				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				alert.setTitle(alertTitle);
+				alert.setHeaderText(alertHeaderTexr);
+				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
-		            System.out.println("ALL OK..!");
-		            if(vis.getIstance().getIsLogged())	
+		            if(singeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
 		                Parent root;
@@ -158,21 +169,21 @@ public class BoundaryScegliNegozio implements Initializable {
 			
 		} // qui si chiude check button2
 		
-		if(radio3.isSelected())
+		if(r3IsSelected)
 		{
 			if(listOfNegozi.get(2).getIsOpen() && listOfNegozi.get(2).getIsValid())
 			{
 				Alert alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Ordine ricevuto!");
-				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				alert.setTitle(alertTitle);
+				alert.setHeaderText(alertHeaderTexr);
+				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
 		            System.out.println("ALL OK..!");
-		            if(vis.getIstance().getIsLogged())	
+		            if(singeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
 		                Parent root;
@@ -214,21 +225,21 @@ public class BoundaryScegliNegozio implements Initializable {
 			
 		} // qui si chiude check button1
 		
-		else if(radio4.isSelected())
+		else if(r4IsSelected)
 		{
 			if(listOfNegozi.get(3).getIsOpen() && listOfNegozi.get(3).getIsValid())
 			{
 				Alert alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Ordine ricevuto!");
-				alert.setHeaderText("Il negozio che hai selezionato ha ricevuto il tuo ordine. \n Presentati dopo 3 giorni lavorativi per ritirare il tuo acquisto");
-				alert.setContentText("Ricordati di presentarti con le credenziali con le quali accedi al sito e ti verrà consegnato il tuo ordine!\n");
+				alert.setTitle(alertTitle);
+				alert.setHeaderText(alertHeaderTexr);
+				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
 		            System.out.println("ALL OK..!");
-		            if(vis.getIstance().getIsLogged())	
+		            if(singeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
 		                Parent root;

@@ -8,7 +8,7 @@ import factoryBook.Libro;
 public class ControllerAddBookPage {
 	private LibroDao ld;
 	private Libro l;
-
+	private boolean status = false;
 	
 	//funzione di aggiunta dei libri
 	//e verifica dei dati inseriti 
@@ -16,16 +16,13 @@ public class ControllerAddBookPage {
 	public boolean checkData(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
 			String categoria, LocalDate data, String recensione,String desc, int disp,	float prezzo, int copieRim)
 	{
-		
-		
 		if(codIsbn.length()>10 && data.equals(null) )
 		{
-			return false;
+			return status;
 
 		}
-		else {
-			
-		
+		else
+		{
 		l.setTitolo(titolo);
 		l.setNumPag(numPag);
 		l.setCodIsbn(codIsbn);
@@ -41,13 +38,11 @@ public class ControllerAddBookPage {
 		l.setCopieRim(copieRim);
 		
 		ld.creaLibrio(l);
+		status = true;
 		
-		
-		return true;
+		return status;
 		}
 	}
-	
-	
 	// qui chiamo la funzione del dao
 	
 	public ControllerAddBookPage()
