@@ -15,7 +15,7 @@ public class User {
 	private int idU;
 	// array di codici isbn presi dai libri 
 	
-	private static User instance = new User();
+	private static User instance ;
 	
 	private  User()
 	{
@@ -131,6 +131,9 @@ private User( String nome, String cognome, String email, String password,LocalDa
 	
 	public static User getInstance()
 	{
+		if (instance == null ) {
+			return new User() ;
+		}
 		return instance;
 	}
 	public User login( String a) {

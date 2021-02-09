@@ -292,7 +292,7 @@ public class UsersDao  {
     }
     
     //
-    public static Object findUser(User U)
+    public static Object findUser(TempUser U)
     {
     	String r = U.getInstance().getIdRuolo();
     	if(r.contentEquals("U"))

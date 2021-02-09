@@ -1,7 +1,6 @@
 package usersSingelton;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Scrittore {
 
@@ -16,14 +15,14 @@ public class Scrittore {
 	}
 	
 	
-	public Scrittore(User u) {
-		this.idRuolo = u.getInstance().getIdRuolo();
-		this.nome = u.getInstance().getNome();
-		this.cognome = u.getInstance().getCognome();
-		this.email = u.getInstance().getEmail();
-		this.password = u.getInstance().getPassword();
-		this.descrizione = u.getInstance().getDescrizione();
-		this.dataDiNascita =u.getInstance().getDataDiNascita();
+	public Scrittore(TempUser u) {
+		this.idRuolo = TempUser.getInstance().getIdRuolo();
+		this.nome = TempUser.getInstance().getNome();
+		this.cognome = TempUser.getInstance().getCognome();
+		this.email = TempUser.getInstance().getEmail();
+		this.password = TempUser.getInstance().getPassword();
+		this.descrizione = TempUser.getInstance().getDescrizione();
+		this.dataDiNascita =TempUser.getInstance().getDataDiNascita();
 	}
 
 

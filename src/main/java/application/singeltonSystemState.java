@@ -10,7 +10,7 @@ public class singeltonSystemState {
 	 private boolean isLogged ;
 	 private boolean isSearch;
 	 private boolean isPickup;
-	 private static singeltonSystemState instance = new singeltonSystemState();
+	 private static singeltonSystemState instance ;
 	 
 	 private singeltonSystemState()
 	 {
@@ -21,7 +21,7 @@ public class singeltonSystemState {
 	 {
 		 if (instance == null) 
 		 {
-			 return instance;
+			 return new singeltonSystemState();
 		 }
 		 return instance;
 	 }
