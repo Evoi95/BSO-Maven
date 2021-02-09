@@ -33,7 +33,7 @@ services:
   - mysql
    
 script:
-    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
     - mvn clean compile verify
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
+    - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
     - ant build

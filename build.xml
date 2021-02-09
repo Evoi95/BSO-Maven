@@ -53,12 +53,12 @@
         <pathelement location="../../.m2/repository/org/ow2/asm/asm-analysis/6.0/asm-analysis-6.0.jar"/>
         <pathelement location="../../.m2/repository/org/ow2/asm/asm-util/6.0/asm-util-6.0.jar"/>
         <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.report/0.8.1/org.jacoco.report-0.8.1.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.4.2/junit-jupiter-engine-5.4.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.0.3/junit-jupiter-engine-5.0.3.jar"/>
         <pathelement location="../../.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.4.2/junit-platform-engine-1.4.2.jar"/>
-        <pathelement location="../../.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-commons/1.4.2/junit-platform-commons-1.4.2.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.4.2/junit-jupiter-api-5.4.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.0.3/junit-platform-engine-1.0.3.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-commons/1.0.3/junit-platform-commons-1.0.3.jar"/>
+        <pathelement location="../../.m2/repository/org/opentest4j/opentest4j/1.0.0/opentest4j-1.0.0.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.0.3/junit-jupiter-api-5.0.3.jar"/>
         <pathelement location="../../.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
         <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar"/>
         <pathelement location="../../.m2/repository/com/itextpdf/itextpdf/5.5.9/itextpdf-5.5.9.jar"/>
