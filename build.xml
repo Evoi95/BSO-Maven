@@ -137,19 +137,9 @@
         <pathelement location="../../.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar"/>
         <pathelement location="../../.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar"/>
     </path>
-    <path id="JUnit 5.libraryclasspath">
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.api_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.engine_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.migrationsupport_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.jupiter.params_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.commons_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.engine_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.launcher_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.runner_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.platform.suite.api_1.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.junit.vintage.engine_5.7.0.v20201026-1537.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.opentest4j_1.2.0.v20190826-0900.jar"/>
-        <pathelement location="../../.p2/pool/plugins/org.apiguardian_1.1.0.v20190826-0900.jar"/>
+    <path id="Web App Libraries.libraryclasspath"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="JUnit 4.libraryclasspath">
         <pathelement location="../../.p2/pool/plugins/org.junit_4.13.0.v20200204-1500.jar"/>
         <pathelement location="../../.p2/pool/plugins/org.hamcrest.core_1.3.0.v20180420-1519.jar"/>
     </path>
@@ -157,7 +147,9 @@
         <pathelement location="target/classes"/>
         <pathelement location="target/test-classes"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
-        <path refid="JUnit 5.libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
+        <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
     </path>
     <path id="run.HelloWorld (1).classpath">
         <path refid="BSO-Maven.classpath"/>
@@ -175,7 +167,6 @@
                 <exclude name="**/*.launch"/>
                 <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
-                <exclude name="images/"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="target/test-classes">
@@ -197,7 +188,6 @@
         <echo message="${ant.project.name}: ${ant.file}"/>
         <javac debug="true" debuglevel="${debuglevel}" destdir="target/classes" includeantruntime="false" source="${source}" target="${target}">
             <src path="src/main/java"/>
-            <exclude name="images/"/>
             <classpath refid="BSO-Maven.classpath"/>
         </javac>
         <javac debug="true" debuglevel="${debuglevel}" destdir="target/test-classes" includeantruntime="false" source="${source}" target="${target}">
