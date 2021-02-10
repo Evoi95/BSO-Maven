@@ -1,7 +1,8 @@
 package test;
 
 import static org.junit.Assert.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+
 
 import java.time.LocalDate;
 
@@ -57,10 +58,7 @@ class TestFactory {
 		   
 		
 		assertEquals(false,statoFinale);
-		//fail("Not yet implemented");
-
-		//fail("Not yet implemented");
-	}
+			}
 
 
 
