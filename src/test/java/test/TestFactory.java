@@ -15,7 +15,7 @@ import factoryBook.Rivista;
 class TestFactory {
 
 	@Test
-	void testCreateRaccolta() {
+	public void testCreateRaccolta() {
 		Factory f=new Factory();
 		Libro l=new Libro();
 		Rivista r1=new Rivista();
@@ -65,7 +65,7 @@ class TestFactory {
 
 
 	@Test
-	void testCreateLibro() {
+	public void testCreateLibro() {
 
 		Factory f=new Factory();
 		Libro l=new Libro();
@@ -100,7 +100,7 @@ class TestFactory {
 	}
 
 	@Test
-	void testCreateRivista() {
+	public void testCreateRivista() {
 		Rivista r=new Rivista();
 		Factory f=new Factory();
 		
@@ -131,7 +131,7 @@ class TestFactory {
 	
 
 	@Test
-	void testCreateGiornale() {LocalDate ld=LocalDate.of(2021,8,8);
+	public void testCreateGiornale() {LocalDate ld=LocalDate.of(2021,8,8);
 	int id=-1;
 	
 	Giornale g =new Giornale();
