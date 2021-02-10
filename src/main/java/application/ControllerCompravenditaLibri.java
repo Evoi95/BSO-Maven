@@ -11,8 +11,6 @@ import usersSingelton.User;
 public class ControllerCompravenditaLibri {
 	private LibroDao lD;
 	private Libro l;
-	private int tempIdLib;
-	private ControllerVisualizzaLibro CVL;
 	private static User u=User.getInstance();
 
 
@@ -26,8 +24,6 @@ public class ControllerCompravenditaLibri {
 
 	public ControllerCompravenditaLibri() {
 		lD = new LibroDao();
-		CVL = new ControllerVisualizzaLibro();
-	//	l = new Libro();
 	}
 
 	public ObservableList<Raccolta> getLibri() throws SQLException {
@@ -39,7 +35,10 @@ public class ControllerCompravenditaLibri {
 		
 		// usato per torare tipo utente e 
 		//switchare schermata opportuna
-		return u.getInstance().getIdRuolo();
+		
+		//provo a forzare
+		u.setIdRuolo("u");
+		return u.getIdRuolo();
 	}
 
 

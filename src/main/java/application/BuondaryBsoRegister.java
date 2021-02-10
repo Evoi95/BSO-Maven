@@ -2,6 +2,7 @@ package application;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -70,11 +71,13 @@ public class BuondaryBsoRegister implements Initializable {
 		/*
 		 * TODO opzionale mettere StrongPWDGen vedi skype
 		 */
+		LocalDate data=calendarL.getValue();
+		System.out.println("Data "+data);
 		
-		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(),calendarL.getValue())==true)
+		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(),data)==true)
 		{
 
-			System.out.println("Data inserita : " + calendarL.getValue());
+			System.out.println("Data inserita in procedi : " + calendarL.getValue().toString());
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonReg.getScene().getWindow();
@@ -121,7 +124,6 @@ public class BuondaryBsoRegister implements Initializable {
 				cR=new ControllerBsoRegister();
 
 	}
-	
 	
 	
 

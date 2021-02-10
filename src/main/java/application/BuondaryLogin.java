@@ -42,6 +42,7 @@ public class BuondaryLogin implements Initializable {
 
 	
 	private ControllerLogin cL;
+	private String ruolo;
 
 	// private Stage stage;
 
@@ -65,7 +66,7 @@ public class BuondaryLogin implements Initializable {
 
 		v=cL.controlla(u,p);
 		
-		String ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
+		 ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
 		System.out.println("Ruolo tempUser :"+ruolo);
 
 		if (v) {

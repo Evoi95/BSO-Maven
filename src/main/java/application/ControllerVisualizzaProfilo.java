@@ -7,12 +7,11 @@ import usersSingelton.User;
 
 public class ControllerVisualizzaProfilo {
 	private UsersDao ud;
-	private User u;
 	private boolean status=false;
 
 	public User getCredenziali() {
 		
-		return ud.pickData(u.getInstance());
+		return UsersDao.pickData(User.getInstance());
 		
 	}
 	
@@ -22,25 +21,25 @@ public class ControllerVisualizzaProfilo {
 	}
 
 	public boolean cancellaUtente() {
-		if(ud.deleteUser(u.getInstance())==true )
+		if(UsersDao.deleteUser(User.getInstance())==true )
 		{
-		
+		/*
 				Alert alert=new Alert(AlertType.INFORMATION);
 				alert.setTitle("Cancellazione profilo");// line 2
 				alert.setHeaderText("cancellazione");// line 3
 				alert.setContentText("!--Utente  cancellato--!");// line 4
 				alert.showAndWait(); // line 5
+				*/
 				
-				
-				u.getInstance().setNull();
-				return true;
+				User.getInstance().setNull();
+				status=true;
 				//System.out.println("USer @"+u.getInstance());
 
 				/*
 				 * TODO settare istanze a null oppure checkuser
 				 */
 		}
-		return false;
+		return status;
 				
 				//		return status;
 

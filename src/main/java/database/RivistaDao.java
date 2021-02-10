@@ -222,18 +222,13 @@ public class RivistaDao {
 	public Rivista getRivista(Rivista R,int id) throws SQLException
 	{
 
-		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista where id = "+id+" ");
-        if (rs.next())
+		 conn= ConnToDb.generalConnection();
+         rs=conn.createStatement().executeQuery("SELECT * FROM rivista where id = "+id+" ");
+        while (rs.next())
         {
         	R = (Rivista) f.createRivista("rivista", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)); 
-        	return R;
         }
-        else {
-        	System.out.println("non ho torvato un cazzo e ritorno null");
-            return R;
-
-        }
+             return R;
 	}
 
 	public RivistaDao()

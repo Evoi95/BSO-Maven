@@ -1,22 +1,20 @@
 package application;
 
 import database.UsersDao;
-import usersSingelton.User;
+import usersSingelton.TempUser;
 
 public class ControllerCancUser {
-	private UsersDao ud;
-	private User u;
+	private static TempUser u=TempUser.getInstance();
 	
 
 	public void cancellaUtente(int id)
 	{
-		u.getInstance().setIdU(id);
-		ud.deleteUser(u);
+		u.setIdU(id);
+		UsersDao.deleteTempUser(u);
 	}
 	
 	public ControllerCancUser()
 	{
-		ud=new UsersDao();
 		
 	}
 }

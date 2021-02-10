@@ -65,6 +65,8 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	@FXML
 	private void cercaL() throws IOException
 	{
+		singeltonSystemState.getIstance().setTypeAsBook();
+
 		if(CRPT.setRicercaL())
 		{
 			Stage stage;
@@ -140,6 +142,8 @@ public class BoundaryRicercaPerTipo implements Initializable {
 		// TODO Auto-generated method stub
 
 		CRPT = new  ControllerRicercaPerTipo();
+		//singeltonSystemState vis=singeltonSystemState.getIstance();
+
 	
 	}
 }

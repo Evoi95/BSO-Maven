@@ -76,18 +76,8 @@ public class LibroDao  {
 
 
 	                
-	                Alert alert = new Alert(AlertType.INFORMATION);
-	    	        alert.setTitle("  Riepilogo  ");
-	    	        alert.setHeaderText("Ecco il riepigolo del libro");
-	    	        alert.setContentText("  Titolo : "+titolo+"\n"+"numero pagine : "+pagine+"\n"+"codice isbn :"+codice
-	    	        		+"\n"+"editore : "+editore+ "\n"+"autore :"+autore+"\n"+"lingua :"+lingua+"\n"+"categoria :"+categoria+
-	    	        		"\n"+"data pubblicazione : "+data+"\n"+"recensione :"+recensione+"\n"+"numero copie vendute :"+copie
-	    	        		+"\n"+"descrizione :"+desc+"\n"+"copie disponibili :"+disp+"\n"+"prezzo :"+prezzo
-	    	        		+"\n"+"copieRimanenti : "+copieR+"\n");
-	    	        alert.showAndWait();
-	    	        
+	                
 	            }
-	            conn.close();
 	        } catch (Exception e) {
 	            System.err.println("Got an exception! ");
 	            System.err.println(e.getMessage());
@@ -221,7 +211,7 @@ public class LibroDao  {
 				}
 
             }
-		
+		c.close();
 		System.out.println(catalogo);
 		return catalogo;
 		
@@ -481,18 +471,21 @@ public class LibroDao  {
 	
 	public String getNome(Libro L) throws SQLException
 	{
-		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where id_prod = '"+L.getId()+"' ");
+		conn= ConnToDb.generalConnection();
+        ResultSet rs=conn.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where id_prod = '"+L.getId()+"' ");
         if (rs.next())
         {
         	name = rs.getString(1);
-        	return name;
+        	//return name;
         }
         else {
         	System.out.println("non ho torvato un cazzo e ritorno null");
-            return null;
+            //return null;
+        	name=null;
 
         }	
+        conn.close();
+        return name;
    }
 	
 	public ObservableList<Libro> getLibriSingolo() throws SQLException

@@ -40,7 +40,7 @@ public class ControllerPagamentoCash {
 
 	}
 
-	public ControllerPagamentoCash() throws Exception {
+	public ControllerPagamentoCash()  {
 		pD = new ContrassegnoDao();
 		f = new Fattura();
 		pagD=new PagamentoDao();

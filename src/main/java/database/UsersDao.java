@@ -4,10 +4,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -35,10 +37,11 @@ public class UsersDao  {
 	private static String query ;
 	private static ResultSet rs;
 	private static PreparedStatement prepQ = null;
-    private Connection  conn;
-	private User U = User.getInstance();
-	private TempUser Ut = TempUser.getInstance();
+    private static Connection  conn;
+	private static User U = User.getInstance();
+	private static TempUser Ut = TempUser.getInstance();
 	private int max;
+	private static String r;
 
 
     // use this function on controller after you had check the email
@@ -47,6 +50,9 @@ public class UsersDao  {
     public boolean createUser(User U) throws SQLException
     {
     	boolean state=false;
+    	LocalDate d=U.getDataDiNascita();
+    	System.out.println("\nD vale : "+d);
+    	
     	try 
 		{
 			if (ConnToDb.connection())
@@ -65,13 +71,15 @@ public class UsersDao  {
 			 			+" "
 			 			+ "(?,?,?,?,?)";
 				prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,U.getInstance().getNome()); // titolo
-				prepQ.setString(2,U.getInstance().getCognome()); //
-				prepQ.setString(3,U.getInstance().getEmail());
-		 		prepQ.setString(4, U.getInstance().getPassword());
+				prepQ.setString(1,User.getInstance().getNome()); // titolo
+				prepQ.setString(2,User.getInstance().getCognome()); //
+				prepQ.setString(3,User.getInstance().getEmail());
+		 		prepQ.setString(4, User.getInstance().getPassword());
+		 		
+		 		//System.out.println("\n\n\nData \n"+User.getInstance().getDataDiNascita());
 		 		// alternativa NO se rompe tutto se passi un oggetto di tipo data java lui
 		 		// vuole un oggetto di tipo data sql 
-				prepQ.setDate(5, java.sql.Date.valueOf(U.getInstance().getDataDiNascita().toString()));  
+				prepQ.setDate(5, java.sql.Date.valueOf(d));  
 				prepQ.executeUpdate();
 				//conn.close();
 			 	System.out.println("utente Inserito con successo");
@@ -86,6 +94,9 @@ public class UsersDao  {
 			e1.printStackTrace();
 			}
     	// errore
+    	finally {
+    		conn.close();
+    	}
 		//conn.close();				 	
 		return state;
     	
@@ -95,6 +106,9 @@ public class UsersDao  {
     //tramite il terzo caso d'uso per la gestione del sito  
     public boolean createUser2(TempUser Ut) throws SQLException
     {
+    	
+    	//System.out.println("Data in create User2:"+Ut.getDataDiNascita());
+    	LocalDate d=Ut.getDataDiNascita();
     	boolean state=false;
     	try 
 		{
@@ -114,15 +128,15 @@ public class UsersDao  {
 			 			+ "`DataDiNascita`)"
 			 			+ "VALUES (?,?,?,?,?,?,?)";
 			 	prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,Ut.getInstance().getIdRuolo());
-			 	prepQ.setString(2,Ut.getInstance().getNome()); // titolo
-				prepQ.setString(3,Ut.getInstance().getCognome()); //
-				prepQ.setString(4,Ut.getInstance().getEmail());
-		 		prepQ.setString(5, Ut.getInstance().getPassword());
-		 		prepQ.setString(6, Ut.getInstance().getDescrizione());
+				prepQ.setString(1,Ut.getIdRuolo());
+			 	prepQ.setString(2,Ut.getNome()); // titolo
+				prepQ.setString(3,Ut.getCognome()); //
+				prepQ.setString(4,Ut.getEmail());
+		 		prepQ.setString(5, Ut.getPassword());
+		 		prepQ.setString(6, Ut.getDescrizione());
 		 		// alternativa NO se rompe tutto se passi un oggetto di tipo data java lui
 		 		// vuole un oggetto di tipo data sql 
-				prepQ.setDate(7, java.sql.Date.valueOf(U.getInstance().getDataDiNascita().toString())); 
+				prepQ.setDate(7, java.sql.Date.valueOf(d)); 
 				//prepQ.setString(7,U.getInstance())
 				prepQ.executeUpdate();
 				//conn.close();
@@ -149,12 +163,14 @@ public class UsersDao  {
     {
     	// ritorna int per motivi legati al controller
     	// anche se lo tratto come boolean
-    	String email = U.getInstance().getEmail();
+    	String email = U.getEmail();
+    	
+    	System.out.println("\n\n\n\tEmail in check user :"+email);
     	try 
 		{
 			if (ConnToDb.connection())
 			{
-				Connection conn = ConnToDb.generalConnection();
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
@@ -162,14 +178,14 @@ public class UsersDao  {
 			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
-				 	conn.close();				 	
+				 	//conn.close();				 	
 			 		System.out.println("utente già registarto");
 			 		return 1; // true
 			 		// account al ready exists
 			 	}
 			 	else
 			 	{
-				 	conn.close();				 	
+				 	//conn.close();				 	
 			 		return 0; // false
 			 		// new account
 			 	}
@@ -180,6 +196,9 @@ public class UsersDao  {
 			e1.printStackTrace();
 			}
     	// errore
+    	finally {
+    		conn.close();
+    	}
     	return -1 ;
     }
      
@@ -188,7 +207,7 @@ public class UsersDao  {
     {
     	// ritorna int per motivi legati al controller
     	// anche se lo tratto come boolean
-    	String email = Ut.getInstance().getEmail();
+    	String email = TempUser.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -224,14 +243,15 @@ public class UsersDao  {
      
     public static String getRuolo (User U)
     {
-    	String r = null ;
+    	//String r = null ;
 
-    	String email = U.getInstance().getEmail();
+    	String email = U.getEmail();
+    	System.out.println("Eai:"+email);
     	try 
 		{
 			if (ConnToDb.connection())
 			{
-				Connection conn = ConnToDb.generalConnection();
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
@@ -240,14 +260,14 @@ public class UsersDao  {
 			 	if(rs.next())
 			 	{
 			 		r =rs.getString(1);
-			 		U.getInstance().setIdRuolo(r);
+			 		User.getInstance().setIdRuolo(r);
 				 	conn.close();				 	
 			 		System.out.println("Ruolo utente : "+r);
-			 		return r; // true
+			 		//return r; // true
 			 	}
 			 	else
 			 	{
-				 	conn.close();				 	
+				 	//conn.close();				 	
 			 		return null; // Errore
 			 	}
 
@@ -257,6 +277,14 @@ public class UsersDao  {
 			e1.printStackTrace();
 			}
     	// errore
+    	finally {
+    		try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
 
     	return r;
     	
@@ -294,7 +322,7 @@ public class UsersDao  {
     //
     public static Object findUser(TempUser U)
     {
-    	String r = U.getInstance().getIdRuolo();
+    	String r = TempUser.getInstance().getIdRuolo();
     	if(r.contentEquals("U"))
     	{
     		return  U;
@@ -325,35 +353,33 @@ public class UsersDao  {
     
     // delete a user from db  terzo caso d'uso
    
-    public static boolean deleteUser(User U)
+    public static boolean deleteUser(User user)
     {
-    	String Email = U.getInstance().getEmail();
-    	String ruolo=U.getInstance().getIdRuolo();
+    	String Email = User.getInstance().getEmail();
+    	String ruolo=User.getInstance().getIdRuolo();
     	try 
 		{
 			if (ConnToDb.connection()  && ruolo.equals("U"))
 			{
-	    		Connection conn = ConnToDb.generalConnection();
+	    		 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
 			 	query="DELETE FROM users WHERE "+
 				"Email = '"+ Email +"'";
 			 	st.executeUpdate(query);
-			 	conn.close();
 			 	return true;
 			 	
 			}
 			else if (ConnToDb.connection()  && ruolo.equals("a"))
 				{
-		    		Connection conn = ConnToDb.generalConnection();
+		    		 conn = ConnToDb.generalConnection();
 					st=conn.createStatement();
 					query="USE ispw";
 					st.executeQuery(query);
 				 	query="DELETE FROM users WHERE "+
-					"idUser = '"+U.getInstance().getIdU() +"'";
+					"idUser = '"+User.getInstance().getIdU() +"'";
 				 	st.executeUpdate(query);
-				 	conn.close();
 				 	return true;
 				 	
 				}
@@ -364,12 +390,20 @@ public class UsersDao  {
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
+    	finally {
+    		try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     	return false ;
     }
 
     public static boolean deleteTempUser(TempUser Ut)
     {
-    	String Email = Ut.getInstance().getEmail();
+    	String Email = TempUser.getInstance().getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
@@ -397,12 +431,12 @@ public class UsersDao  {
     // e poi il controller lo specializza nelle 4 classi 
     public static User pickData(User U)
     {
-    	String email = U.getInstance().getEmail();
+    	String email = U.getEmail();
     	try 
 		{
 			if (ConnToDb.connection())
 			{
-				Connection conn = ConnToDb.generalConnection();
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
@@ -414,17 +448,16 @@ public class UsersDao  {
 			 			+ "    `DataDiNascita` "
 			 			+ "		FROM users where Email = '"+email+"' ;";
 			 	rs = st.executeQuery(query);
-			 	if(rs.next())
+			 	while(rs.next())
 			 	{
 			 		// setto i vari dati 
-			 		U.getInstance().setIdRuolo(rs.getString(1));
-			 		U.getInstance().setNome(rs.getString(2));
-			 		U.getInstance().setCognome(rs.getString(3));
-			 		U.getInstance().setEmail(rs.getString(4));
-			 		U.getInstance().setDescrizione(rs.getString(5));
-			 		U.getInstance().setDataDiNascita(rs.getDate(6).toLocalDate());
+			 		U.setIdRuolo(rs.getString(1));
+			 		U.setNome(rs.getString(2));
+			 		U.setCognome(rs.getString(3));
+			 		U.setEmail(rs.getString(4));
+			 		U.setDescrizione(rs.getString(5));
+			 		U.setDataDiNascita(rs.getDate(6).toLocalDate());
 			 				 		
-			 		conn.close();	
 			 	//	sono delle print messe per controllo 
 			 	//	System.out.println("U: "+U+"\n Con i campi :\n Cognome "
 			 	//			+ U.getCognome() + "\n email " + U .getEmail() + "\n ");
@@ -432,25 +465,27 @@ public class UsersDao  {
 			 		 // true
 			 		// account already exists
 			 	}
-			 	else
-			 	{
-				 	conn.close();				 	
-				 	// false
-			 		// new account
-			 	}
-
+			 	
 			}
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
+    	finally{
+    		try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	}
     	// errore
     	return null;
     }
          
     public static User aggiornaNome(User U)
     {
-        String email = U.getInstance().getEmail();
+        String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -458,7 +493,7 @@ public class UsersDao  {
     		if (ConnToDb.connection())
     		{
     			
-    			Connection conn = ConnToDb.generalConnection();
+    			conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
     			query="USE ispw";
     			st.executeQuery(query);
@@ -468,7 +503,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getNome() );
+       		 	prepQ.setString(1,User.getInstance().getNome() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -484,7 +519,7 @@ public class UsersDao  {
     
     public static User aggiornaCognome(User U)
     {
-        String email = U.getInstance().getEmail();
+        String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -502,7 +537,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getCognome() );
+       		 	prepQ.setString(1,User.getInstance().getCognome() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -518,7 +553,7 @@ public class UsersDao  {
     
     public static User aggiornaEmail(User U,String m)
     {
-        String email = U.getInstance().getEmail();
+        String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -532,11 +567,11 @@ public class UsersDao  {
     			st.executeQuery(query);
     		 	query="UPDATE users set Email=? where Email='"+email+"'";
     		 	
-    		 	U.getInstance().setEmail(m);
+    		 	User.getInstance().setEmail(m);
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getEmail() );
+       		 	prepQ.setString(1,User.getInstance().getEmail() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -553,7 +588,7 @@ public class UsersDao  {
     public static User aggiornaUtente(User U, String emailN)
     {
     
-    String email = U.getInstance().getEmail();
+    String email = User.getInstance().getEmail();
    
 	try 
 	{
@@ -568,20 +603,20 @@ public class UsersDao  {
 		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
 		 			+ "where Email='"+email+"'";
 		 	
-			U.getInstance().setEmail(emailN);
+			User.getInstance().setEmail(emailN);
 
 		 	
 			prepQ = conn.prepareStatement(query);
 
 		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,U.getInstance().getIdRuolo());
-		 	prepQ.setString(2,U.getInstance().getNome() );
-		 	prepQ.setString(3, U.getInstance().getCognome());
-		 	prepQ.setString(4, U.getInstance().getEmail());
-		 	prepQ.setString(5, U.getInstance().getPassword());
-		 	prepQ.setString(6, U.getInstance().getDescrizione());
-		 	prepQ.setString(7, U.getInstance().getDataDiNascita().toString());
+		 	prepQ.setString(1,User.getInstance().getIdRuolo());
+		 	prepQ.setString(2,User.getInstance().getNome() );
+		 	prepQ.setString(3, User.getInstance().getCognome());
+		 	prepQ.setString(4, User.getInstance().getEmail());
+		 	prepQ.setString(5, User.getInstance().getPassword());
+		 	prepQ.setString(6, User.getInstance().getDescrizione());
+		 	prepQ.setString(7, User.getInstance().getDataDiNascita().toString());
 
 
 
@@ -608,7 +643,7 @@ public class UsersDao  {
 
 	public User aggiornaPass(User U) {
 		
-		String email = U.getInstance().getEmail();
+		String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -626,7 +661,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getPassword());
+       		 	prepQ.setString(1,User.getInstance().getPassword());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -641,7 +676,7 @@ public class UsersDao  {
     }
 
 	public User aggiornaDesc(User U) {
-		String email = U.getInstance().getEmail();
+		String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -659,7 +694,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getDescrizione());
+       		 	prepQ.setString(1,User.getInstance().getDescrizione());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -674,7 +709,7 @@ public class UsersDao  {
     }
 
 	public User aggiornaData(User U) {
-		String email = U.getInstance().getEmail();
+		String email = User.getInstance().getEmail();
         
         try 
     	{
@@ -692,7 +727,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getDataDiNascita().toString());
+       		 	prepQ.setString(1,User.getInstance().getDataDiNascita().toString());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -710,7 +745,7 @@ public class UsersDao  {
 	
     public static TempUser aggiornaTempNome(TempUser U)
     {
-        String email = U.getInstance().getEmail();
+        String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -728,7 +763,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getNome() );
+       		 	prepQ.setString(1,TempUser.getInstance().getNome() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -744,7 +779,7 @@ public class UsersDao  {
     
     public static TempUser aggiornaCognome(TempUser U)
     {
-        String email = U.getInstance().getEmail();
+        String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -762,7 +797,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getCognome() );
+       		 	prepQ.setString(1,TempUser.getInstance().getCognome() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -778,7 +813,7 @@ public class UsersDao  {
     
     public static TempUser aggiornaEmail(TempUser U,String m)
     {
-        String email = U.getInstance().getEmail();
+        String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -792,11 +827,11 @@ public class UsersDao  {
     			st.executeQuery(query);
     		 	query="UPDATE users set Email=? where Email='"+email+"'";
     		 	
-    		 	U.getInstance().setEmail(m);
+    		 	TempUser.getInstance().setEmail(m);
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getEmail() );
+       		 	prepQ.setString(1,TempUser.getInstance().getEmail() );
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -813,7 +848,7 @@ public class UsersDao  {
     public static TempUser aggiornaTempUtente(TempUser U, String emailN)
     {
     
-    String email = U.getInstance().getEmail();
+    String email = TempUser.getInstance().getEmail();
    
 	try 
 	{
@@ -828,20 +863,20 @@ public class UsersDao  {
 		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
 		 			+ "where Email='"+email+"'";
 		 	
-			U.getInstance().setEmail(emailN);
+			TempUser.getInstance().setEmail(emailN);
 
 		 	
 			prepQ = conn.prepareStatement(query);
 
 		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,U.getInstance().getIdRuolo());
-		 	prepQ.setString(2,U.getInstance().getNome() );
-		 	prepQ.setString(3, U.getInstance().getCognome());
-		 	prepQ.setString(4, U.getInstance().getEmail());
-		 	prepQ.setString(5, U.getInstance().getPassword());
-		 	prepQ.setString(6, U.getInstance().getDescrizione());
-		 	prepQ.setString(7, U.getInstance().getDataDiNascita().toString());
+		 	prepQ.setString(1,TempUser.getInstance().getIdRuolo());
+		 	prepQ.setString(2,TempUser.getInstance().getNome() );
+		 	prepQ.setString(3, TempUser.getInstance().getCognome());
+		 	prepQ.setString(4, TempUser.getInstance().getEmail());
+		 	prepQ.setString(5, TempUser.getInstance().getPassword());
+		 	prepQ.setString(6, TempUser.getInstance().getDescrizione());
+		 	prepQ.setString(7, TempUser.getInstance().getDataDiNascita().toString());
 
 
 
@@ -863,12 +898,12 @@ public class UsersDao  {
 		e1.printStackTrace();
 		}
 	// errore
-	return U.getInstance();
+	return TempUser.getInstance();
 }
    
 	public TempUser aggiornaTempPass(TempUser U) {
 		
-		String email = U.getInstance().getEmail();
+		String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -886,7 +921,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getPassword());
+       		 	prepQ.setString(1,TempUser.getInstance().getPassword());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -901,7 +936,7 @@ public class UsersDao  {
     }
 
 	public TempUser aggiornaTempDesc(TempUser U) {
-		String email = U.getInstance().getEmail();
+		String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -919,7 +954,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getDescrizione());
+       		 	prepQ.setString(1,TempUser.getInstance().getDescrizione());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -934,7 +969,7 @@ public class UsersDao  {
     }
 
 	public TempUser aggiornaTempData(TempUser U) {
-		String email = U.getInstance().getEmail();
+		String email = TempUser.getInstance().getEmail();
         
         try 
     	{
@@ -952,7 +987,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,U.getInstance().getDataDiNascita().toString());
+       		 	prepQ.setString(1,TempUser.getInstance().getDataDiNascita().toString());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -966,17 +1001,18 @@ public class UsersDao  {
     	return null;
     }
 	
-	
-	 public static String getRuoloTemp (TempUser U)
+/*	
+	 public static String getRuoloTemp (User U)
 	    {
-	    	String r = null ;
 
-	    	String email = U.getInstance().getEmail();
+	    	String email =User.getInstance().getEmail();
+	    	
+	    	System.out.println("Emal dell caz :"+email);
 	    	try 
 			{
 				if (ConnToDb.connection())
 				{
-					Connection conn = ConnToDb.generalConnection();
+					conn = ConnToDb.generalConnection();
 					st=conn.createStatement();
 					query="USE ispw";
 					st.executeQuery(query);
@@ -985,17 +1021,10 @@ public class UsersDao  {
 				 	if(rs.next())
 				 	{
 				 		r =rs.getString(1);
-				 		U.getInstance().setIdRuolo(r);
-					 	conn.close();				 	
-				 		System.out.println("Ruolo utente : "+r);
-				 		return r; // true
+				 		TempUser.getInstance().setIdRuolo(r);
+				 		System.out.println("Ruolo utente in dao : "+r);
 				 	}
-				 	else
-				 	{
-					 	conn.close();				 	
-				 		return null; // Errore
-				 	}
-
+				 	
 				}
 			}
 			catch (SQLException e1) {
@@ -1003,10 +1032,18 @@ public class UsersDao  {
 				}
 	    	// errore
 
+	    	finally {
+	    		try {
+					conn.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
 	    	return r;
 	    	
 	    }
-
+*/
 	public void getListaUtenti()  {
 		// TODO Auto-generated method stub
 		conn= ConnToDb.generalConnection();
@@ -1025,18 +1062,18 @@ public class UsersDao  {
            while(rs.next())
             {
         			 
-        		Ut.getInstance().setIdU(rs.getInt(1));
-        		Ut.getInstance().setIdRuolo(rs.getString(2));
-       			Ut.getInstance().setNome(rs.getString(3));
-       			Ut.getInstance().setCognome(rs.getString(4));
-       			Ut.getInstance().setEmail(rs.getString(5));
-       			Ut.getInstance().setDescrizione(rs.getString(7));
-       			Ut.getInstance().setDataDiNascita(rs.getDate(8).toLocalDate());
+        		TempUser.getInstance().setIdU(rs.getInt(1));
+        		TempUser.getInstance().setIdRuolo(rs.getString(2));
+       			TempUser.getInstance().setNome(rs.getString(3));
+       			TempUser.getInstance().setCognome(rs.getString(4));
+       			TempUser.getInstance().setEmail(rs.getString(5));
+       			TempUser.getInstance().setDescrizione(rs.getString(7));
+       			TempUser.getInstance().setDataDiNascita(rs.getDate(8).toLocalDate());
        			
        			
        			
-       			b.write(""+Ut.getInstance().getIdU()+"\t"+Ut.getInstance().getIdRuolo()+"\t"+Ut.getInstance().getNome()+"\t"+Ut.getInstance().getCognome()+
-       					"\t"+Ut.getInstance().getEmail()+"\t"+Ut.getInstance().getDescrizione()+"\t"+Ut.getInstance().getDataDiNascita().toString()+"\n");
+       			b.write(""+TempUser.getInstance().getIdU()+"\t"+TempUser.getInstance().getIdRuolo()+"\t"+TempUser.getInstance().getNome()+"\t"+TempUser.getInstance().getCognome()+
+       					"\t"+TempUser.getInstance().getEmail()+"\t"+TempUser.getInstance().getDescrizione()+"\t"+TempUser.getInstance().getDataDiNascita().toString()+"\n");
        			//b.write("\t");
 
 
@@ -1072,14 +1109,14 @@ public class UsersDao  {
 	
 	public  TempUser getTempUserSingolo(TempUser uT) throws SQLException
 	{
-		int id=uT.getInstance().getIdU();
+		int id=TempUser.getInstance().getIdU();
 		
-		System.out.println("Id passato nel dao di tempUser :"+uT.getInstance().getIdU());
+		System.out.println("Id passato nel dao di tempUser :"+TempUser.getInstance().getIdU());
 		System.out.println("Id passato nel dao di singletonBattona :"+singeltonSystemState.getIstance().getId());
 		
 		
 		
-		Connection conn = ConnToDb.generalConnection();
+		 conn = ConnToDb.generalConnection();
 		st=conn.createStatement();
 		query="USE ispw";
 		st.executeQuery(query);
@@ -1093,19 +1130,19 @@ public class UsersDao  {
             while(rs.next())
             {
             	
-            	uT.getInstance().setIdRuolo(rs.getString(2));
-            	uT.getInstance().setNome(rs.getString(3));
-            	uT.getInstance().setCognome(rs.getString(4));
-            	uT.getInstance().setEmail(rs.getString(5));
-            	uT.getInstance().setPassword(rs.getString(6));
-            	uT.getInstance().setDescrizione(rs.getString(7));
-            	uT.getInstance().setDataDiNascita(rs.getDate(8).toLocalDate());
+            	Ut.setIdRuolo(rs.getString(2));
+            	Ut.setNome(rs.getString(3));
+            	Ut.setCognome(rs.getString(4));
+            	Ut.setEmail(rs.getString(5));
+            	Ut.setPassword(rs.getString(6));
+            	Ut.setDescrizione(rs.getString(7));
+            	Ut.setDataDiNascita(rs.getDate(8).toLocalDate());
             	
             	System.out.println("Nel while del dao :"+rs.getString(2));//u.getInstance().getIdU());
 
             }
             
-		
+		conn.close();
 		return uT;
 	}
 	
@@ -1124,7 +1161,7 @@ public class UsersDao  {
 			query="USE ispw";
 			st.executeQuery(query);
 		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where idUser="+U.getInstance().getIdU()+"";
+		 			+ "where idUser="+User.getInstance().getIdU()+"";
 		 	
 			//U.getInstance().setEmail(emailN);
 
@@ -1133,13 +1170,13 @@ public class UsersDao  {
 
 		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,U.getInstance().getIdRuolo());
-		 	prepQ.setString(2,U.getInstance().getNome() );
-		 	prepQ.setString(3, U.getInstance().getCognome());
-		 	prepQ.setString(4, U.getInstance().getEmail());
-		 	prepQ.setString(5, U.getInstance().getPassword());
-		 	prepQ.setString(6, U.getInstance().getDescrizione());
-		 	prepQ.setString(7, U.getInstance().getDataDiNascita().toString());
+		 	prepQ.setString(1,User.getInstance().getIdRuolo());
+		 	prepQ.setString(2,User.getInstance().getNome() );
+		 	prepQ.setString(3, User.getInstance().getCognome());
+		 	prepQ.setString(4, User.getInstance().getEmail());
+		 	prepQ.setString(5, User.getInstance().getPassword());
+		 	prepQ.setString(6, User.getInstance().getDescrizione());
+		 	prepQ.setString(7, User.getInstance().getDataDiNascita().toString());
 
 
 
@@ -1185,11 +1222,11 @@ public class UsersDao  {
 			 			+" "
 			 			+ "(?,?,?,?,?)";
 				prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,U.getInstance().getNome()); // titolo
-				prepQ.setString(2,U.getInstance().getCognome()); //
-				prepQ.setString(3,U.getInstance().getEmail());
-		 		prepQ.setString(4, U.getInstance().getPassword());
-		 		prepQ.setDate(5, java.sql.Date.valueOf(U.getInstance().getDataDiNascita().toString()));  
+				prepQ.setString(1,TempUser.getInstance().getNome()); // titolo
+				prepQ.setString(2,TempUser.getInstance().getCognome()); //
+				prepQ.setString(3,TempUser.getInstance().getEmail());
+		 		prepQ.setString(4, TempUser.getInstance().getPassword());
+		 		prepQ.setDate(5, java.sql.Date.valueOf(TempUser.getInstance().getDataDiNascita().toString()));  
 				prepQ.executeUpdate();
 				System.out.println("utente Inserito da admin con successo");
 			 	state= true; // true		 			 	
@@ -1223,22 +1260,22 @@ public class UsersDao  {
 		return max;
 }
 	
-	public static TempUser aggiornaUtenteTemp(TempUser U) throws NullPointerException
+	public static TempUser aggiornaUtenteTemp(TempUser TU) throws NullPointerException
     {
     
-		int id=U.getInstance().getIdU();
+		int id=TU.getIdU();
 	try 
 	{
 		
 		if (ConnToDb.connection())
 		{
 			
-			Connection conn = ConnToDb.generalConnection();
+			 conn = ConnToDb.generalConnection();
 			st=conn.createStatement();
 			query="USE ispw";
 			st.executeQuery(query);
 		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where idUser="+U.getInstance().getIdU()+"";
+		 			+ "where idUser="+TempUser.getInstance().getIdU()+"";
 		 	
 			//U.getInstance().setEmail(emailN);
 
@@ -1247,13 +1284,13 @@ public class UsersDao  {
 
 		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,U.getInstance().getIdRuolo());
-		 	prepQ.setString(2,U.getInstance().getNome() );
-		 	prepQ.setString(3, U.getInstance().getCognome());
-		 	prepQ.setString(4, U.getInstance().getEmail());
-		 	prepQ.setString(5, U.getInstance().getPassword());
-		 	prepQ.setString(6, U.getInstance().getDescrizione());
-		 	prepQ.setString(7, U.getInstance().getDataDiNascita().toString());
+		 	prepQ.setString(1,TU.getIdRuolo());
+		 	prepQ.setString(2,TU.getNome() );
+		 	prepQ.setString(3, TU.getCognome());
+		 	prepQ.setString(4, TU.getEmail());
+		 	prepQ.setString(5, TU.getPassword());
+		 	prepQ.setString(6, TU.getDescrizione());
+		 	prepQ.setString(7, TU.getDataDiNascita().toString());
 
 
 

@@ -1,3 +1,16 @@
-Titolo :Republica	Editore :Republica	Ricavo totale :20.0
-Titolo :La stampa	Editore :La stampa	Ricavo totale :30.0
+Titolo :Republica	Editore :Republica	Ricavo totale :-480.0
 Titolo :Il fatto quotidiano	Editore :BHO	Ricavo totale :15.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0

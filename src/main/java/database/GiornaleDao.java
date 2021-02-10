@@ -622,9 +622,31 @@ public class GiornaleDao {
 		
 	}
 
-	public ObservableList<Raccolta> getGiornaliByName(String s) {
+	public ObservableList<Raccolta> getGiornaliByName(String s) throws SQLException {
 		// TODO Auto-generated method stub
-		return null;
+		Connection c= ConnToDb.generalConnection();
+		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
+		 
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM giornale where titolo = '"+s+"' OR editore = '"+s+"'");
+
+            while(rs.next())
+            {
+
+        		try {
+        			catalogo.add(f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+					//catalogo.add(f.createLibro("libro",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15)));
+					//rs=rs.next();
+        		} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+            }
+		c.close();
+		System.out.println(catalogo);
+		return catalogo;
+		
+
 	}
 
 	public void aggiornaGiornale(Giornale g)  {

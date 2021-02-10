@@ -9,29 +9,32 @@ import database.UsersDao;
 
 public class ControllerBsoRegister {
 	private Boolean state=false;
-	private User U ;
 	private UsersDao Ud ;
+	private User u=User.getInstance();
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		U.getInstance().setEmail(email);
-		U.getInstance().setPassword(pwd);
+		u.setEmail(email);
+		u.setPassword(pwd);
+		u.setDataDiNascita(LocalDate);
 		//U = new User(email,pwd);
 		
 		if(checkData ( n,c,email,pwd,pwdC) )
 		{
-			if (UsersDao.checkUser(U) == 0)
+			if (UsersDao.checkUser(u) == 0)
 			{
 				// nuovo utente creo l'account
-				U.getInstance().setNome(n);
-				U.getInstance().setCognome(c);
-				U.getInstance().setDataDiNascita(LocalDate);
+				u.setNome(n);
+				u.setCognome(c);
+				//User.getInstance().setDataDiNascita(LocalDate);
 				//User U1 = new User( n,c,email,pwd,LocalDate);
-				state=Ud.createUser(U);
+				
+				System.out.println("\n\n\ndata in controller"+u.getDataDiNascita());
+				state=Ud.createUser(u);
 				//state=true;
 			}
-			else if (UsersDao.checkUser(U) == 1 || UsersDao.checkUser(U) == -1)
+			else if (UsersDao.checkUser(u) == 1 || UsersDao.checkUser(u) == -1)
 			{
 				// utente gia registrato o errore 
 				state = false;

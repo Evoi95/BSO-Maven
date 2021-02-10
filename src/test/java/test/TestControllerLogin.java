@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import application.ControllerLogin;
-import usersSingelton.User;
 
 class TestControllerLogin {
 	
@@ -20,16 +19,18 @@ class TestControllerLogin {
 	public void testControlla() {
 		cL=new ControllerLogin();
 		
-		email="admin@admin.com";
-		pass="admin871";
+		//User.getInstance().setNull();
+		
+		email="Admin@Admin.com";/*"pippo@pippo.com"; 10.9*/
+		pass="Admin871";/*"pippo871";10.9*/
 		
 		
-		User.getInstance().setEmail(email);
-		User.getInstance().setPassword(pass);
+		//User.getInstance().setEmail(email);
+		//User.getInstance().setPassword(pass);
 		
 		
 		try {
-			state=cL.controlla(User.getInstance().getEmail(),User.getInstance().getPassword());
+			state=cL.controlla(email,pass/*User.getInstance().getEmail(),User.getInstance().getPassword()*/);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -42,10 +43,10 @@ class TestControllerLogin {
 	public void testGetRuoloTempUSer() {
 		//fail("Not yet implemented");
 		cL=new ControllerLogin();
-		email="admin@admin.com";
+		email="Admin@Admin.com";
 		ruolo=cL.getRuoloTempUSer(email);
 		//System.out.println("ruolo nel test "+ruolo);
-		assertEquals(ruolo,"a");
+		assertEquals("a",ruolo);
 		
 	}
 

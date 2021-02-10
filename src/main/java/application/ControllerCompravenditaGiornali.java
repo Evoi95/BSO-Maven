@@ -33,7 +33,8 @@ public class ControllerCompravenditaGiornali {
 	}
 	public String tipoUtente()
 	{
-		return u.getInstance().getIdRuolo();
+		u.setIdRuolo("a");
+		return u.getIdRuolo();
 	}
 
 }

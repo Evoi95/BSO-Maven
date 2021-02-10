@@ -39,7 +39,7 @@
                </image>
             </ImageView>
             <Label fx:id="nomeL" prefHeight="87.0" prefWidth="134.0" text="Inserire nome" GridPane.rowIndex="2" />
-            <Label fx:id="cognommeL" prefHeight="84.0" prefWidth="143.0" text="Inserire Cognome" GridPane.rowIndex="3" />
+            <Label fx:id="cognomeL" prefHeight="84.0" prefWidth="143.0" text="Inserire Cognome" GridPane.rowIndex="3" />
             <Label fx:id="emailL" prefHeight="81.0" prefWidth="146.0" text="Inserire Email" GridPane.rowIndex="4" />
             <Label fx:id="passwordL" prefHeight="83.0" prefWidth="164.0" text="Inserire Password" GridPane.rowIndex="5" />
             <Label fx:id="confermaPassL" prefHeight="70.0" prefWidth="139.0" text="Conferma Password" GridPane.rowIndex="6" />

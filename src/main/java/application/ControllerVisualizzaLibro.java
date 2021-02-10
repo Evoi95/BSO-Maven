@@ -19,17 +19,17 @@ public class ControllerVisualizzaLibro {
 	public void setID(String i)
 	{		
 		tempIdLib = Integer.parseInt(i) ;
-		vis.getIstance().setId(tempIdLib);
+		vis.setId(tempIdLib);
 	}
 	public int getID()
 	{
-		System.out.println(vis.getIstance().getId());
-		return vis.getIstance().getId();
+		System.out.println(vis.getId());
+		return vis.getId();
 	}
 	public Libro getData(int i) throws SQLException
 	{
 		// imposto che è un libro nel controller
-		vis.getIstance().setTypeAsBook();
+		vis.setTypeAsBook();
 		return  ld.getLibro(b,i);
 		//return L;
 	}

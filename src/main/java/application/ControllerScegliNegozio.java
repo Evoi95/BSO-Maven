@@ -31,6 +31,6 @@ public class ControllerScegliNegozio {
 	
 	public boolean isLogged()
 	{
-		return vis.getIstance().getIsLogged();
+		return vis.getIsLogged();
 	}
 }

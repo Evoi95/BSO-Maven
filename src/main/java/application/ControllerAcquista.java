@@ -30,7 +30,7 @@ public class ControllerAcquista {
 		try {
 			lD.daiPrivilegi();
 			// se semo fermati qua 
-			l.setId(vis.getIstance().getId());
+			l.setId(vis.getId());
 			l.setDisponibilita(disp);
 			x = lD.getCosto(l);
 
@@ -68,12 +68,7 @@ public class ControllerAcquista {
 			rD.daiPrivilegi();
 			z = rD.getCosto(r);
 			rD.aggiornaDisponibilita(r);
-			/*
-			p=new Pagamento(0, null, 0, null, z, null, 0);
-			p.setId(rD.retId(r));
-			p.setTipo(rD.retTip(r));
-			pagD.inserisciPagamento(p);
-*/
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -82,7 +77,7 @@ public class ControllerAcquista {
 
 	}
 
-	public ControllerAcquista() throws SQLException {
+	public ControllerAcquista()  {
 		lD = new LibroDao();
 		gD = new GiornaleDao();
 		rD = new RivistaDao();
@@ -91,7 +86,6 @@ public class ControllerAcquista {
 		r = new Rivista();
 		pagD = new PagamentoDao();
 		pagD.daiPrivilegi();
-		//p = new Pagamento(0);
 
 	}
 
@@ -164,7 +158,7 @@ public class ControllerAcquista {
 	public String getType()
 	{
 		
-		String S = vis.getIstance().getType();
+		String S = vis.getType();
 		System.out.println(S);
 		return S;
 	}
@@ -172,8 +166,8 @@ public class ControllerAcquista {
 	public String getNomeById() throws SQLException
 	{
 		
-		int id = vis.getIstance().getId();
-		String type =vis.getIstance().getType();
+		int id = vis.getId();
+		String type =vis.getType();
 		if(type.equals("libro"))
 		{
 			l.setId(id);
@@ -194,8 +188,8 @@ public class ControllerAcquista {
 	
 	public int getDisp() throws SQLException
 	{
-		int id = vis.getIstance().getId();
-		String type =vis.getIstance().getType();
+		int id = vis.getId();
+		String type =vis.getType();
 		if(type.equals("libro"))
 		{
 		

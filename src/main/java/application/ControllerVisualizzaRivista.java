@@ -10,7 +10,7 @@ public class ControllerVisualizzaRivista {
 	private RivistaDao rD;
 	private Rivista R;
 	private int tempIdMag;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaRivista()
 	{
@@ -19,17 +19,17 @@ public class ControllerVisualizzaRivista {
 	public void setID(String i)
 	{		
 		tempIdMag = Integer.parseInt(i) ;
-		vis.getIstance().setId(tempIdMag);
+		vis.setId(tempIdMag);
 	}
 	public int getID()
 	{
-		System.out.println(vis.getIstance().getId());
-		return vis.getIstance().getId();
+		System.out.println(vis.getId());
+		return vis.getId();
 	}
 	public Rivista getData(int i) throws SQLException
 	{
 		// imposto che è un libro nel controller
-		vis.getIstance().setTypeAsMagazine();
+		vis.setTypeAsMagazine();
 		return  rD.getRivista(R,i);
 		//return L;
 	}

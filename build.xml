@@ -6,6 +6,7 @@
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="BSO-Maven">
     <property environment="env"/>
     <property name="ECLIPSE_HOME" value="../../eclipse/jee-2020-09/eclipse/"/>
+    <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
@@ -151,11 +152,59 @@
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="JUnit 4.libraryclasspath"/>
     </path>
-    <path id="run.HelloWorld (1).classpath">
+    <path id="run.BSO-Maven (1).classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
-    <path id="run.Main (7).classpath">
+    <path id="run.java.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.Main (2).classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.test.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestContollerRegista.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerLogin.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerPagamentoCC.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerPagamentoCC1.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestFactory.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestFactoryGiornale.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestFactoryLibro.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestFactoryRivista.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestModifUtente.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestPagamentoCC.classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
@@ -164,15 +213,11 @@
         <mkdir dir="target/test-classes"/>
         <copy includeemptydirs="false" todir="target/classes">
             <fileset dir="src/main/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="target/test-classes">
             <fileset dir="src/test/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -209,14 +254,131 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="HelloWorld (1)">
-        <java classname="BSO.BSOMaven.HelloWorld" failonerror="true" fork="yes">
-            <classpath refid="run.HelloWorld (1).classpath"/>
+    <target name="BSO-Maven (1)">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.BSO-Maven (1).classpath"/>
+        </junit>
+    </target>
+    <target name="java">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.java.classpath"/>
+        </junit>
+    </target>
+    <target name="Main (2)">
+        <java classname="application.Main" failonerror="true" fork="yes">
+            <classpath refid="run.Main (2).classpath"/>
         </java>
     </target>
-    <target name="Main (7)">
-        <java classname="application.Main" failonerror="true" fork="yes">
-            <classpath refid="run.Main (7).classpath"/>
-        </java>
+    <target name="test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.test.classpath"/>
+        </junit>
+    </target>
+    <target name="TestContollerRegista">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestContollerRegista" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestContollerRegista.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerLogin">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestControllerLogin" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerLogin.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerPagamentoCC">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestControllerPagamentoCC" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerPagamentoCC.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerPagamentoCC1">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestControllerPagamentoCC1" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerPagamentoCC1.classpath"/>
+        </junit>
+    </target>
+    <target name="TestFactory">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestFactory" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestFactory.classpath"/>
+        </junit>
+    </target>
+    <target name="TestFactoryGiornale">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestFactoryGiornale" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestFactoryGiornale.classpath"/>
+        </junit>
+    </target>
+    <target name="TestFactoryLibro">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestFactoryLibro" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestFactoryLibro.classpath"/>
+        </junit>
+    </target>
+    <target name="TestFactoryRivista">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestFactoryRivista" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestFactoryRivista.classpath"/>
+        </junit>
+    </target>
+    <target name="TestModifUtente">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestModifUtente" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestModifUtente.classpath"/>
+        </junit>
+    </target>
+    <target name="TestPagamentoCC">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="test.TestPagamentoCC" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestPagamentoCC.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
     </target>
 </project>

@@ -2,33 +2,34 @@ package application;
 
 public class ControllerRicercaPerTipo {
 
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
- 
+	private singeltonSystemState vis=singeltonSystemState.getIstance();
+	
 	public ControllerRicercaPerTipo() 
 	{
-		
+		//singeltonSystemState vis=singeltonSystemState.getIstance();
+
 	}
 	
 	public boolean setRicercaL()
 	{
-		vis.getIstance().setTypeAsBook();
-		if (vis.getIstance().getType().equals("libro"))
+		
+		if (vis.getType().equals("libro"))
 			return true;
 		else
 			return false;
 	}
 	public boolean setRicercaG()
 	{
-		vis.getIstance().setTypeAsDaily();
-		if (vis.getIstance().getType().equals("giornale"))
+		singeltonSystemState.getIstance().setTypeAsDaily();
+		if (singeltonSystemState.getIstance().getType().equals("giornale"))
 			return true;
 		else
 			return false;
 	}
 	public boolean setRicercaR()
 	{
-		vis.getIstance().setTypeAsMagazine();
-		if (vis.getIstance().getType().equals("rivista"))
+		singeltonSystemState.getIstance().setTypeAsMagazine();
+		if (singeltonSystemState.getIstance().getType().equals("rivista"))
 			return true;
 		else
 			return false;

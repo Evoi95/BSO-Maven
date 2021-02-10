@@ -9,7 +9,7 @@ import usersSingelton.User;
 
 public class ControllerModifUserPage {
 	private UsersDao ud;
-	private TempUser uT=TempUser.getInstance();
+	private static TempUser uT=TempUser.getInstance();
 	
 	
 	
@@ -24,7 +24,7 @@ public class ControllerModifUserPage {
 	public TempUser prendiLista(int id) throws SQLException {
 		System.out.println("id in controllerMUP :"+ id);
 		
-		uT.getInstance().setIdU(id);
+		uT.setIdU(id);
 		
 		return ud.getTempUserSingolo(uT);
 		// TODO Auto-generated method stub
@@ -40,15 +40,15 @@ public class ControllerModifUserPage {
 
 	public void aggiornaUtenteByAdmin(String n, String c, String e, String p, String d, LocalDate data, String r) throws NullPointerException {
 		// TODO Auto-generated method stub
-		uT.getInstance().setNome(n);
-		uT.getInstance().setCognome(c);
-		uT.getInstance().setEmail(e);
-		uT.getInstance().setPassword(p);
-		uT.getInstance().setDescrizione(d);
-		uT.getInstance().setDataDiNascita(data);
-		uT.getInstance().setIdRuolo(r);
+		uT.setNome(n);
+		uT.setCognome(c);
+		uT.setEmail(e);
+		uT.setPassword(p);
+		uT.setDescrizione(d);
+		uT.setDataDiNascita(data);
+		uT.setIdRuolo(r);
 		
-		ud.aggiornaUtenteTemp(uT);
+		UsersDao.aggiornaUtenteTemp(uT);
 		
 		
 	}

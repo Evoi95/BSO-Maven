@@ -7,10 +7,9 @@ import database.UsersDao;
 
 public class ControllerLogin {
 	
-	private User user = User.getInstance();
+	private static User user = User.getInstance();
 	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
-	private TempUser tU=TempUser.getInstance();
-	private UsersDao ud;
+	//private User tU=User.getInstance();
 
 	
 	public boolean controlla(String m, String p) throws SQLException
@@ -62,19 +61,15 @@ public class ControllerLogin {
 	
 	public String getRuoloTempUSer(String email)
 	{
-		//UD che torna oggetto di tipotempUSer
-		tU.getInstance().setEmail(email);
+		System.out.println(" sto nwl controller");
 		String ruolo;
-		
-		ruolo=ud.getRuoloTemp(tU);
-		return ruolo;
+		user.setEmail(email);
+		System.out.println("USer.getInstance.setEmail "+user.getEmail());
+		 ruolo= UsersDao.getRuolo(user);
+		 return ruolo;
 		
 	}
 	
 	//set
-	public ControllerLogin()
-	{
-		ud=new UsersDao();
-	}
-
+	
 }

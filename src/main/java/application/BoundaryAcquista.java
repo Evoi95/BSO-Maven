@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,12 +65,12 @@ public class BoundaryAcquista implements Initializable {
 
 	private void pagaCC() throws IOException {
 		if(ritiroN.isSelected()) {
-		vis.getIstance().setPickup(true);
+		vis.setPickup(true);
 
 		}
 		else
 		{
-		vis.getIstance().setPickup(true);
+		vis.setPickup(true);
 		}
 		Stage stage;
 		Parent root;
@@ -161,7 +160,7 @@ public class BoundaryAcquista implements Initializable {
 
 	@FXML
 	private void indietro() throws IOException {
-		if( vis.getIstance().getIsLogged()) {
+		if( vis.getIsLogged()) {
 		Stage stage;
 		Parent root;
 		stage = (Stage) link.getScene().getWindow();

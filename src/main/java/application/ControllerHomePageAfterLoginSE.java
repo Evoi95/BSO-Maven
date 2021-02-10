@@ -19,7 +19,7 @@ public class ControllerHomePageAfterLoginSE {
 		if(U.getEmail() == null && U.getIdRuolo() == null)
 		{
 			System.out.println("Logout  utente" + U.getEmail());
-			vis.getIstance().setIsLogged(false);
+			vis.setIsLogged(false);
 			return true;
 		}
 		
