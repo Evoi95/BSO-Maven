@@ -77,7 +77,7 @@ public class PopulateDefaultDb {
 			 //&& preso come terminatore-> eseguito;	
 			 sr.setSendFullScript(true);
 		      //Creating a reader object
-		      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsGiornaliw.sql"));
+		      Reader reader = new BufferedReader(new FileReader("FileSql/stroredInsGiornali.sql"));
 		      //Running the script
 		      sr.runScript(reader);
 			
