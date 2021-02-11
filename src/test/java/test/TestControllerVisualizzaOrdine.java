@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerVisualizzaOrdine;
+import controllerApp.ControllerVisualizzaOrdine;
 import javafx.collections.ObservableList;
 import pagamento.Pagamento;
 

@@ -271,7 +271,7 @@
         </junit>
     </target>
     <target name="Main (2)">
-        <java classname="application.Main" failonerror="true" fork="yes">
+        <java classname="boundaryLaptop.Main" failonerror="true" fork="yes">
             <classpath refid="run.Main (2).classpath"/>
         </java>
     </target>

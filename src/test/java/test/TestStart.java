@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerPagamentoCC;
+import controllerApp.ControllerPagamentoCC;
 
 public class TestStart {
 

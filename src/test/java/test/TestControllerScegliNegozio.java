@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerScegliNegozio;
-import application.singeltonSystemState;
+import controllerApp.ControllerScegliNegozio;
+import controllerApp.singeltonSystemState;
 import javafx.collections.ObservableList;
 import negozio.Negozio;
 

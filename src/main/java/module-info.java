@@ -10,8 +10,8 @@ module com.example.test {
 	requires javafx.base;
 	requires mybatis;
 	
-	exports application;
-	opens application to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
+	exports boundaryLaptop;
+	opens boundaryLaptop to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	exports factoryBook;
 	opens factoryBook to javafx.graphics,javafx.base,javafx.controls,javafx.fxml;
 	exports pagamento;

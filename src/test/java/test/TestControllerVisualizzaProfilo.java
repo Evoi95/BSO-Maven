@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerVisualizzaProfilo;
+import controllerApp.ControllerVisualizzaProfilo;
 import usersSingelton.User;
 
 class TestControllerVisualizzaProfilo {

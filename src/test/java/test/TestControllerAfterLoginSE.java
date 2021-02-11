@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerHomePageAfterLoginSE;
+import controllerApp.ControllerHomePageAfterLoginSE;
 import usersSingelton.User;
 
 class TestControllerAfterLoginSE {

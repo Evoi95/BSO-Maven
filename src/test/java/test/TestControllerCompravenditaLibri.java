@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerCompravenditaLibri;
+import controllerApp.ControllerCompravenditaLibri;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
 import usersSingelton.User;

@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerBsoRegister;
+import controllerApp.ControllerBsoRegister;
 import usersSingelton.User;
 
 class TestControllerRegister {

@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerCancellaGiornale;
+import controllerApp.ControllerCancellaGiornale;
 
 class TestControllerCancGiornali {
 	private ControllerCancellaGiornale cCG=new ControllerCancellaGiornale();

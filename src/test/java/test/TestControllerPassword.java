@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerPassword;
+import controllerApp.ControllerPassword;
 
 class TestControllerPassword {
 	private ControllerPassword cP;

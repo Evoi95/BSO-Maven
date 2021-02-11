@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerPagamentoCash;
+import controllerApp.ControllerPagamentoCash;
 
 class TestControllerPagamentoCash {
 	private ControllerPagamentoCash cPC=new ControllerPagamentoCash();

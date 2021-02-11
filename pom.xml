@@ -340,7 +340,7 @@
   <version>2.22.1</version>
   <configuration>
     <argLine>
-      --add-exports javafx.graphics/com.sun.javafx.application=ALL-UNNAMED
+      --add-exports javafx.graphics/com.sun.javafx.boundaryLaptop=ALL-UNNAMED
     </argLine>
   </configuration>
 				

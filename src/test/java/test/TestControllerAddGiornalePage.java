@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerAddGiornalePage;
+import controllerApp.ControllerAddGiornalePage;
 
 class TestControllerAddGiornalePage {
 	private ControllerAddGiornalePage cAGP=new ControllerAddGiornalePage();

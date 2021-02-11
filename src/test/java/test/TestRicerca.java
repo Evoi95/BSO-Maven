@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import application.ControllerRicercaPage;
-import application.singeltonSystemState;
+import controllerApp.ControllerRicercaPage;
+import controllerApp.singeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
 
