@@ -21,7 +21,7 @@ class TestControllercompravenditaRiviste {
 
 
 	@Test
-	public void testGetRiviste() throws SQLException {
+	void testGetRiviste() throws SQLException {
 		cCR=new ControllerCompravenditaRiviste();
 		String i="2";
 		state=cCR.disponibilitaRiviste(i);
@@ -30,7 +30,7 @@ class TestControllercompravenditaRiviste {
 	}
 
 	@Test
-	public void testDisponibilitaRiviste() throws SQLException {
+	void testDisponibilitaRiviste() throws SQLException {
 		cCR=new ControllerCompravenditaRiviste();
 		catalogo=cCR.getRiviste();
 		state=catalogo.isEmpty();
@@ -39,7 +39,7 @@ class TestControllercompravenditaRiviste {
 	}
 
 	@Test
-	public void testTipoUtente() {
+	void testTipoUtente() {
 		cCR=new ControllerCompravenditaRiviste();
 		//u.setIdRuolo("W");
 

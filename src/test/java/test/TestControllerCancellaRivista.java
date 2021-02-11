@@ -10,7 +10,7 @@ class TestControllerCancellaRivista {
 	private ControllerCancellaRivista cCR=new ControllerCancellaRivista();
 
 	@Test
-	public void testCancella() {
+	void testCancella() {
 		int id=1;
 		cCR.cancella(id);
 		assertNotEquals(-1,id);

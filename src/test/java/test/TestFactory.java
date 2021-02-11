@@ -15,7 +15,7 @@
 //class TestFactory {
 //
 //	@Test
-//	public void testCreateRaccolta() {
+//	void testCreateRaccolta() {
 //		Factory f=new Factory();
 //		Libro l=new Libro();
 //		Rivista r1=new Rivista();
@@ -62,7 +62,7 @@
 //
 //
 //	@Test
-//	public void testCreateLibro() {
+//	void testCreateLibro() {
 //
 //		Factory f=new Factory();
 //		Libro l=new Libro();
@@ -97,7 +97,7 @@
 //	}
 //
 //	@Test
-//	public void testCreateRivista() {
+//	void testCreateRivista() {
 //		Rivista r=new Rivista();
 //		Factory f=new Factory();
 //		
@@ -128,7 +128,7 @@
 //	
 //
 //	@Test
-//	public void testCreateGiornale() {LocalDate ld=LocalDate.of(2021,8,8);
+//	void testCreateGiornale() {LocalDate ld=LocalDate.of(2021,8,8);
 //	int id=-1;
 //	
 //	Giornale g =new Giornale();

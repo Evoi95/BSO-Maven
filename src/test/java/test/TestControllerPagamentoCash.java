@@ -13,7 +13,7 @@ class TestControllerPagamentoCash {
 	private ControllerPagamentoCash cPC=new ControllerPagamentoCash();
 
 	@Test
-	public void testControlla() {
+	void testControlla() {
 		boolean state=false;
 		String nome="pippo";
 		String cognome="pluto";

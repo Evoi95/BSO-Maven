@@ -16,7 +16,7 @@ class TestControllerLogin {
 	String email,pass;
 
 	@Test
-	public void testControlla() {
+	void testControlla() {
 		cL=new ControllerLogin();
 		
 		//User.getInstance().setNull();
@@ -40,7 +40,7 @@ class TestControllerLogin {
 	}
 
 	@Test
-	public void testGetRuoloTempUSer() {
+	void testGetRuoloTempUSer() {
 		//fail("Not yet implemented");
 		cL=new ControllerLogin();
 		email="admin@admin.com";

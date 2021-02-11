@@ -23,7 +23,7 @@ class TestUsersDao {
 	
 
 	@Test
-	public void testCreateUser() throws SQLException {
+	void testCreateUser() throws SQLException {
 		u.setNome("lucio");
 		u.setCognome("dalla");
 		u.setEmail("luciodalla@gmail.com");
@@ -34,7 +34,7 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testCreateUser2() throws SQLException {
+	void testCreateUser2() throws SQLException {
 		tu.setNome("aldo");
 		tu.setCognome("baglio");
 		tu.setEmail("aldobaglio@gmail.com");
@@ -48,7 +48,7 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testCheckUser() throws SQLException {
+	void testCheckUser() throws SQLException {
 		u.setEmail("luciodalla@gmail.com");
 		state1=UsersDao.checkUser(u);
 		assertEquals(-1,state1);
@@ -56,41 +56,41 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testCheckTempUser() throws SQLException {
+	void testCheckTempUser() throws SQLException {
 		tu.setEmail("aldobaglio@gmail.com");
 		state1=UsersDao.checkTempUser(tu);
 		assertNotEquals(-1,state1);
 	}
 
 	@Test
-	public void testGetRuolo() {
+	void testGetRuolo() {
 		u.setEmail("admin@admin.com");
 		ruolo=UsersDao.getRuolo(u);
 		assertNotNull(ruolo);
 	}
 
 	@Test
-	public void testCheckResetpass() {
+	void testCheckResetpass() {
 		state=UsersDao.checkResetpass(u, "lucio852","luciodalla@gmail.com");
 		assertNotEquals(false,state);
 
 	}
 
 	@Test
-	public void testFindUser() {
+	void testFindUser() {
 		// vedere come fare
 		tu.setIdRuolo("w");
 	}
 
 	@Test
-	public void testDeleteUser() {
+	void testDeleteUser() {
 		u.setEmail("luciodalla@gmail.com");
 		state=UsersDao.deleteUser(u);
 		assertNotEquals(false,state);
 	}
 
 	@Test
-	public void testDeleteTempUser() {
+	void testDeleteTempUser() {
 		u.setEmail("aldobaglio@gmail.com");
 		u.setIdRuolo("U");
 		state=UsersDao.deleteUser(u);
@@ -98,27 +98,27 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testPickData() {
+	void testPickData() {
 		u.setEmail("luciodalla@gmail.com");
 		assertNotNull(UsersDao.pickData(u));
 }
 
 	@Test
-	public void testAggiornaNome() {
+	void testAggiornaNome() {
 		u.setNome("lucio1");
 		u.setEmail("luciodalla@gmail.com");
 		assertNotNull(UsersDao.aggiornaNome(u));
 }
 
 	@Test
-	public void testAggiornaCognomeUser() {
+	void testAggiornaCognomeUser() {
 		u.setCognome("dalla1");
 		u.setEmail("luciodalla@gmail.com");
 		assertNotNull(UsersDao.aggiornaCognome(u));
 }
 
 	@Test
-	public void testAggiornaEmailUserString() {
+	void testAggiornaEmailUserString() {
 		u.setEmail("luciodalla@gmail.com");
 		assertNotNull(UsersDao.aggiornaEmail(u,"lucio1dalla1@gmail.com"));
 		
@@ -126,21 +126,21 @@ class TestUsersDao {
 
 	
 	@Test
-	public void testAggiornaPass() {
+	void testAggiornaPass() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setPassword("lucione963");
 		assertNotNull(ud.aggiornaPass(u));
 	}
 
 	@Test
-	public void testAggiornaDesc() {
+	void testAggiornaDesc() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setDescrizione("musica spettacolare");
 		assertNotNull(ud.aggiornaDesc(u));
 	}
 
 	@Test
-	public void testAggiornaData() {
+	void testAggiornaData() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setDataDiNascita(LocalDate.of(1940, 5, 6));
 		assertNotNull(ud.aggiornaData(u));
@@ -148,7 +148,7 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testAggiornaTempNome() {
+	void testAggiornaTempNome() {
 		tu.setEmail("albobaglio@gmail.com");
 		tu.setNome("aldino");
 		assertNotNull(UsersDao.aggiornaTempNome(tu));
@@ -156,20 +156,20 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testAggiornaCognomeTempUser() {
+	void testAggiornaCognomeTempUser() {
 		tu.setEmail("albobaglio@gmail.com");
 		tu.setCognome("baglino");
 		assertNotNull(UsersDao.aggiornaCognome(tu));
 	}
 
 	@Test
-	public void testAggiornaEmailTempUserString() {
+	void testAggiornaEmailTempUserString() {
 		tu.setEmail("aldobaglio@gmail.com");
 		assertNotNull(UsersDao.aggiornaEmail(tu, "aldinobaglino@gmail.com"));
 	}
 
 	@Test
-	public void testAggiornaTempUtente() {
+	void testAggiornaTempUtente() {
 		tu.setNome("aldo2");
 		tu.setCognome("baglio2");
 		tu.setEmail("aldobaglio2@gmail.com");
@@ -181,14 +181,14 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testAggiornaTempPass() {
+	void testAggiornaTempPass() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setPassword("aldo142");
 		assertNotNull(ud.aggiornaTempPass(tu));
 	}
 
 	@Test
-	public void testAggiornaTempDesc() {
+	void testAggiornaTempDesc() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setDescrizione("non ci arrivo a pc");
 		assertNotNull(ud.aggiornaTempDesc(tu));
@@ -196,7 +196,7 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testAggiornaTempData() {
+	void testAggiornaTempData() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setDataDiNascita(LocalDate.of(1976,5,2));
 		assertNotNull(ud.aggiornaTempDesc(tu));
@@ -204,18 +204,18 @@ class TestUsersDao {
 	}
 
 	@Test
-	public void testGetListaUtenti() {
+	void testGetListaUtenti() {
 		ud.getListaUtenti();
 	}
 
 	@Test
-	public void testGetTempUserSingolo() throws SQLException {
+	void testGetTempUserSingolo() throws SQLException {
 		tu.setIdU(2);
 		assertNotNull(ud.getTempUserSingolo(tu));		//fail("Not yet implemented");
 	}
 
 	@Test
-	public void testAggiornaUtenteUser() {
+	void testAggiornaUtenteUser() {
 		u.setIdU(3);
 		u.setIdRuolo("a");
 	 	u.setNome("pippo");//prepQ.setString(2,User.getInstance().getNome() );
@@ -228,7 +228,7 @@ class TestUsersDao {
 	}
 
 /*	@Test
-	public void testCreateTempUser() throws SQLException {
+	void testCreateTempUser() throws SQLException {
 		vis.setIsLogged(true);
 		
 		tu.setNome("giulio");
@@ -243,7 +243,7 @@ class TestUsersDao {
 	}
 */
 	@Test
-	public void testMaxIdUSer() throws SQLException {
+	void testMaxIdUSer() throws SQLException {
 		state1=ud.maxIdUSer();
 		assertNotEquals(-1,state1);
 	}

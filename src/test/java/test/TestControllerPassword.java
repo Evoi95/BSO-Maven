@@ -13,7 +13,7 @@ class TestControllerPassword {
 	boolean status=false;
 
 	@Test
-	public void testControllerPassword() throws SQLException {
+	void testControllerPassword() throws SQLException {
 		cP=new ControllerPassword();
 		
 		String email="Admin@Admin.com";

@@ -10,7 +10,7 @@ import usersSingelton.User;
 class TestControllerAfterLoginSE {
 
 	@Test
-	public void testLogout() throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
+	void testLogout() throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException {
 		boolean state;
 		User.getInstance().setNome("pippo");
 		

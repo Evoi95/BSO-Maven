@@ -14,7 +14,7 @@ class TestControllerReportLibri {
 	
 
 	@Test
-	public void testGeneraReportLibri() {
+	void testGeneraReportLibri() {
 		try {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {

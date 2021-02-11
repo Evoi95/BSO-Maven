@@ -15,7 +15,7 @@ class TestControllerModifUserPageAdmin {
 	private ControllerModifUserPage cMUP=new ControllerModifUserPage();
 
 	@Test
-	public void testPrendiLista() {
+	void testPrendiLista() {
 		u.setIdU(2);
 		try {
 			cMUP.prendiLista(u.getIdU());
@@ -26,13 +26,13 @@ class TestControllerModifUserPageAdmin {
 	}
 
 	@Test
-	public void testPrendiIdMax() throws SQLException {
+	void testPrendiIdMax() throws SQLException {
 		int x=cMUP.prendiIdMax();
 		assertNotEquals(-1,x);
 			}
 
 	@Test
-	public void testAggiornaUtenteByAdmin() throws SQLException {
+	void testAggiornaUtenteByAdmin() throws SQLException {
 		u.setNome("alberto");
 		u.setCognome("rossi");
 		u.setEmail("albertorossi@gmail.com");

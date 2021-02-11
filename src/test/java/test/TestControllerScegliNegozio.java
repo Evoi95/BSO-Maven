@@ -18,7 +18,7 @@ class TestControllerScegliNegozio {
 
 
 	@Test
-	public void testGetNegozi() throws SQLException {
+	void testGetNegozi() throws SQLException {
 		boolean state=false;
 		listOfNegozi=cSN.getNegozi();
 		System.out.println("\n\n\n-----NEgozi "+listOfNegozi);
@@ -30,7 +30,7 @@ class TestControllerScegliNegozio {
 	}
 
 	@Test
-	public void testIsLogged() {
+	void testIsLogged() {
 		vis.setIsLogged(true);
 	}
 

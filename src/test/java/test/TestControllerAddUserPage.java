@@ -15,7 +15,7 @@ class TestControllerAddUserPage {
 	private static TempUser tu=TempUser.getInstance();
 
 	@Test
-	public void testInsUtenteAsAdmin() throws SQLException {
+	void testInsUtenteAsAdmin() throws SQLException {
 		//public void insUtenteAsAdmin(String nome, String cognome, String email, String pwd, String desc, LocalDate data, String ruolo) throws SQLException
 
 		tu.setNome("pippo");

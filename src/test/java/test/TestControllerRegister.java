@@ -16,7 +16,7 @@ class TestControllerRegister {
 	private boolean state=false;
 
 	@Test
-	public void testRegistra() throws SQLException {
+	void testRegistra() throws SQLException {
 		bReg=new ControllerBsoRegister();
 		//boolean state = false;
 		u.setNome("pippo");
@@ -36,7 +36,7 @@ class TestControllerRegister {
 	}
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		bReg=new ControllerBsoRegister();
 		boolean state=false;
 		state=bReg.checkData( u.getNome(),u.getCognome(),u.getEmail(), "pippo745", u.getPassword());
@@ -49,7 +49,7 @@ class TestControllerRegister {
 	}
 
 	@Test
-	public void testCheckEmail() {
+	void testCheckEmail() {
 		bReg=new ControllerBsoRegister();
 		
 		u.setEmail("pluto10@gmail.com");
@@ -60,7 +60,7 @@ class TestControllerRegister {
 	}
 
 	@Test
-	public void testCheckPassword() {
+	void testCheckPassword() {
 		bReg=new ControllerBsoRegister();
 		
 		String pwd="pluto723";
@@ -72,7 +72,7 @@ class TestControllerRegister {
 	}
 
 	@Test
-	public void testCheckNomeCognome() {
+	void testCheckNomeCognome() {
 		bReg=new ControllerBsoRegister();
 		state=bReg.checkNomeCognome(u.getNome(),u.getCognome() );
 		assertEquals(true,state);

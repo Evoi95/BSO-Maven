@@ -22,7 +22,7 @@ class TestControllerCompravenditaGiornali {
 
 
 	@Test
-	public void testGetGiornali() throws SQLException {
+	void testGetGiornali() throws SQLException {
 		cCG=new ControllerCompravenditaGiornali();
 		String i="4";
 		state=cCG.disponibilitaGiornale(i);
@@ -31,7 +31,7 @@ class TestControllerCompravenditaGiornali {
 	}
 
 	@Test
-	public void testDisponibilitaGiornale() throws SQLException {
+	void testDisponibilitaGiornale() throws SQLException {
 		cCG=new ControllerCompravenditaGiornali();
 		catalogo=cCG.getGiornali();
 		state=catalogo.isEmpty();
@@ -40,7 +40,7 @@ class TestControllerCompravenditaGiornali {
 	}
 
 	@Test
-	public void testTipoUtente() {
+	void testTipoUtente() {
 		cCG=new ControllerCompravenditaGiornali();
 
 		tipo=cCG.tipoUtente();

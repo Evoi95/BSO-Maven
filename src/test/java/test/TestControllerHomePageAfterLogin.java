@@ -12,7 +12,7 @@ class TestControllerHomePageAfterLogin {
 	private static User u=User.getInstance();
 
 	@Test
-	public void testLogout() {
+	void testLogout() {
 		boolean state = false;
 		u.setNome("pippo");
 		try {

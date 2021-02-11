@@ -18,7 +18,7 @@ class TestRicerca {
 
 
 	@Test
-	public void testCercaPerTipo() {
+	void testCercaPerTipo() {
 		ObservableList<Raccolta> elencoL = null;
 		ObservableList<Raccolta> elencoG = null;
 		ObservableList<Raccolta> elencoR = null;
@@ -75,7 +75,7 @@ class TestRicerca {
 	}
 
 	@Test
-	public void testReturnType() {
+	void testReturnType() {
 		//singeltonSystemState vis=singeltonSystemState.getIstance();
 
 		ControllerRicercaPage cRP=new ControllerRicercaPage();

@@ -12,7 +12,7 @@ class TestControllerAddGiornalePage {
 	private ControllerAddGiornalePage cAGP=new ControllerAddGiornalePage();
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		boolean status;
 		String titolo="il messagero";
 		String tipologia="giornaliero";

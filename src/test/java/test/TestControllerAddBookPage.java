@@ -12,7 +12,7 @@ class TestControllerAddBookPage {
 	private ControllerAddBookPage cABP=new ControllerAddBookPage();
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		boolean state;
 		String titolo="ricette a base di pessce";
 		int numPag=100;

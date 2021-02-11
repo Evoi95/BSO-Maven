@@ -13,7 +13,7 @@ class TestControllerCancUser {
 	private ControllerCancUser cCU=new ControllerCancUser();
 
 	@Test
-	public void testCancellaUtente() {
+	void testCancellaUtente() {
 		u.setIdU(1);
 		cCU.cancellaUtente(u.getIdU());
 	}

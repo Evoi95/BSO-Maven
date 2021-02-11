@@ -13,7 +13,7 @@ class TestControllerVisualizzaProfilo {
 	
 
 	@Test
-	public void testGetCredenziali() {
+	void testGetCredenziali() {
 		u.setNull();
 		u.setNome("pippo");
 		u.setEmail("Admin@Admin.com");
@@ -23,7 +23,7 @@ class TestControllerVisualizzaProfilo {
 	}
 
 	@Test
-	public void testCancellaUtente() {
+	void testCancellaUtente() {
 		//boolean state;
 		//cVP.cancellaUtente();
 		//assertNotEquals(false,state);

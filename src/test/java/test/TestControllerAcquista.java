@@ -14,7 +14,7 @@ class TestControllerAcquista {
 	private static singeltonSystemState vis=singeltonSystemState.getIstance();
 
 	@Test
-	public void testTotale() {
+	void testTotale() {
 		float x;
 		String cod="88541425";
 		int disp=10;
@@ -25,7 +25,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testTotaleG() throws SQLException {
+	void testTotaleG() throws SQLException {
 		float y;
 		String titolo="Republica";
 		int disp=10;
@@ -36,7 +36,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testTotaleR() {
+	void testTotaleR() {
 		float z;
 		String titolo="cioe";
 		int disp=10;
@@ -47,7 +47,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetIdL() throws SQLException {
+	void testGetIdL() throws SQLException {
 		int x;
 		String isbn="8832734591";
 		x=cA.getIdL(isbn);
@@ -57,7 +57,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetTipL() throws SQLException {
+	void testGetTipL() throws SQLException {
 		String x;
 		String isbn="1";
 		x=cA.getTipL(isbn);
@@ -68,7 +68,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetIdG() {
+	void testGetIdG() {
 		int y = 0;
 		String titolo="Republica";
 		try {
@@ -82,7 +82,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetTipG() {
+	void testGetTipG() {
 		String y = null;
 		String titolo="La Republica";
 		try {
@@ -96,7 +96,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetIdR() {
+	void testGetIdR() {
 		int z = 0;
 		String titolo="cioe";
 		try {
@@ -110,7 +110,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetTipR() {
+	void testGetTipR() {
 		String z = null;
 		String titolo="Republica";
 		try {
@@ -126,7 +126,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testInserisciAmmontareL() throws SQLException {
+	void testInserisciAmmontareL() throws SQLException {
 		float spesa=(float) 100.0;
 		cA.inserisciAmmontareG(spesa);
 		assertNotEquals(0.0,spesa);
@@ -134,7 +134,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testInserisciAmmontareG() throws SQLException {
+	void testInserisciAmmontareG() throws SQLException {
 		float spesa=(float) 101.0;
 		cA.inserisciAmmontareG(spesa);
 		assertNotEquals(0.0,spesa);
@@ -143,7 +143,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testInserisciAmmontareR() throws SQLException {
+	void testInserisciAmmontareR() throws SQLException {
 		float spesa=(float) 99.0;
 		cA.inserisciAmmontareR(spesa);
 		assertNotEquals(0.0,spesa);
@@ -152,7 +152,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetType() {
+	void testGetType() {
 		boolean state=false;
 		String tipo;
 		tipo=cA.getType();
@@ -164,7 +164,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetNomeById() throws SQLException {
+	void testGetNomeById() throws SQLException {
 		vis.setTypeAsBook();
 		vis.setId(1);
 		String nome=cA.getNomeById();
@@ -174,7 +174,7 @@ class TestControllerAcquista {
 	}
 
 	@Test
-	public void testGetDisp() throws SQLException {
+	void testGetDisp() throws SQLException {
 		int disp=cA.getDisp();
 		assertNotEquals(-1,disp);
 

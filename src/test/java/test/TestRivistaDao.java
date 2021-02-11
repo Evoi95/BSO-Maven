@@ -17,13 +17,13 @@ class TestRivistaDao {
 	private boolean state=false;
 
 	@Test
-	public void testGetDesc() {
+	void testGetDesc() {
 		r.setTitolo("cioe");
 		rd.getDesc(r);
 	}
 
 	@Test
-	public void testGetCosto() throws SQLException {
+	void testGetCosto() throws SQLException {
 		float prezzo=0;
 		r.setTitolo("focus");
 		prezzo=rd.getCosto(r);
@@ -31,7 +31,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testAggiornaDisponibilita() {
+	void testAggiornaDisponibilita() {
 		r.setTitolo("cioe");
 		r.setCopieRim(100);
 		try {
@@ -43,7 +43,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testDaiPrivilegi() {
+	void testDaiPrivilegi() {
 		try {
 			rd.daiPrivilegi();
 		} catch (SQLException e) {
@@ -53,7 +53,7 @@ class TestRivistaDao {
 		}
 
 	@Test
-	public void testGetRiviste() {
+	void testGetRiviste() {
 		try {
 			state=rd.getRiviste().isEmpty();
 		} catch (SQLException e) {
@@ -65,7 +65,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testGetRivisteByName() {
+	void testGetRivisteByName() {
 		//r.setAutore("garzanti");
 		r.setTitolo("cioe");
 		try {
@@ -78,7 +78,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testGetRivista() {
+	void testGetRivista() {
 		r.setId(2);
 		try {
 			assertNotNull(rd.getRivista(r, r.getId()));
@@ -90,7 +90,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testRetId() {
+	void testRetId() {
 		r.setTitolo("Rivista A");
 		int status = 0;
 		try {
@@ -103,7 +103,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testRetTip() {
+	void testRetTip() {
 		String tipo=null;
 		r.setTitolo("Rivista B");
 		try {
@@ -116,7 +116,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testGetNome() {
+	void testGetNome() {
 		String nome=null;
 		r.setId(2);
 		try {
@@ -130,7 +130,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testGetDisp() {
+	void testGetDisp() {
 		int disp=0;
 		r.setId(1);
 		try {
@@ -143,7 +143,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testGetQuantita() {
+	void testGetQuantita() {
 		int quantita=0;
 		r.setId(5);
 		try {
@@ -170,7 +170,7 @@ class TestRivistaDao {
 		}
 
 	@Test
-	public void testGetRivistaSingolo() {
+	void testGetRivistaSingolo() {
 		
 		try {
 			state=rd.getRivistaSingolo().isEmpty();
@@ -182,7 +182,7 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testCreaRivista() {
+	void testCreaRivista() {
 		r.setTitolo("focus");
 		r.setTipologia("fantascienza");
 		r.setAutore("mondadori");
@@ -198,13 +198,13 @@ class TestRivistaDao {
 	}
 
 	@Test
-	public void testCancella() {
+	void testCancella() {
 		r.setId(3);
 		rd.cancella(r);
 	}
 
 	@Test
-	public void testGetRivistaSingoloById() {
+	void testGetRivistaSingoloById() {
 		try {
 			assertNotNull(rd.getRivistaSingoloById(r));
 		} catch (SQLException e) {

@@ -12,20 +12,20 @@ class TestControllerVisualizzaRiviste {
 	private ControllerVisualizzaRivista cVR=new ControllerVisualizzaRivista();
 
 	@Test
-	public void testSetID() {
+	void testSetID() {
 		String id="1";
 		cVR.setID(id);
 	
 	}
 
 	@Test
-	public void testGetID() {
+	void testGetID() {
 		int x=cVR.getID();
 		assertNotEquals(-1,x);
 		}
 
 	@Test
-	public void testGetData() throws SQLException {
+	void testGetData() throws SQLException {
 		int i=1;
 		cVR.getData(i);
 		assertNotEquals(-1,i);
