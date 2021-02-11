@@ -22,7 +22,6 @@ public class PopulateDefaultDb {
 	
 	private static String qInsert ;
 	private static PreparedStatement prepQ = null;
-    private BufferedImage slate;
     private static Connection conn;
 	
 	public static boolean populateDefaultDb() throws FileNotFoundException
@@ -49,7 +48,7 @@ public class PopulateDefaultDb {
 			 //&& preso come terminatore-> eseguito;	
 			 sr.setSendFullScript(true);
 		      //Creating a reader object
-		      Reader reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\storedInsLibri.sql"));
+		      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsLibri.sql"));
 		      //Running the script
 		      sr.runScript(reader);
 			
@@ -78,7 +77,7 @@ public class PopulateDefaultDb {
 			 //&& preso come terminatore-> eseguito;	
 			 sr.setSendFullScript(true);
 		      //Creating a reader object
-		      Reader reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\stroredInsGiornali.sql"));
+		      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsGiornaliw.sql"));
 		      //Running the script
 		      sr.runScript(reader);
 			
@@ -156,7 +155,7 @@ public class PopulateDefaultDb {
 			      //Creating a reader object
 			      Reader reader;
 				try {
-					reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\storedInsUtenti.sql"));
+					reader = new BufferedReader(new FileReader("FileSql/storedInsUtenti.sql"));
 					sr.runScript(reader);
 
 				} catch (FileNotFoundException e) {
