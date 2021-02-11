@@ -1,26 +1,9 @@
 package factoryBook;
 
-import java.sql.Date;
 import java.time.LocalDate;
 
 
-enum TipiRivista {
-	
-	settimanale,
-	bisettimanale,
-	mensile,
-	bimestrale,
-	trimestrale,
-	annuale,
-	estivo,
-	invernale,
-	sportivo,
-	cinematografica,
-	gossip,
-	televisivo,
-	militare,
-	informatica
-}
+
 public class Rivista implements Raccolta  {
 	
 	

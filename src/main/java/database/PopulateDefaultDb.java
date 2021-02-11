@@ -80,9 +80,7 @@ public class PopulateDefaultDb {
 		      Reader reader = new BufferedReader(new FileReader("FileSql/stroredInsGiornali.sql"));
 		      //Running the script
 		      sr.runScript(reader);
-			
-
-		return true;
+		      return true;
 		} 
 		catch (RuntimeSqlException e) {
 			// TODO Auto-generated catch block
@@ -95,51 +93,33 @@ public class PopulateDefaultDb {
 	}
 
 	private static boolean createRivista() throws FileNotFoundException
-	
 	{
-		try 
-		{
-		qInsert = "INSERT INTO `ispw`.`rivista`"
-				+ "(`titolo`,"
-				+ "`tipologia`,"
-				+ "`autore`,"
-				+ "`lingua`,"
-				+ "`editore`,"
-				+ "`Descrizione`,"
-				+ "`dataPubblicazione`,"
-				+ "`disp`,"
-				+ "`prezzo`,"
-				+ "`copieRimanenti`)"
-				//+ "`img`)"
-				+ "	"
-				+ "VALUES"
-				+ " (?,?,?,?,?,?,?,?,?,?)";
-		prepQ = ConnToDb.conn.prepareStatement(qInsert);
-		prepQ.setString(1,"cioe"); // titolo varchar
-		prepQ.setString(2, "settimanale");
-		prepQ.setString(3,"Mondadori");
-		prepQ.setString(4,"Italiano");
-		prepQ.setString(5,"Mondadori");
-		prepQ.setString(6, "Che feeels"); // breve drescizione
-		//ps.setDate(2, new java.sql.Date(endDate.getTime());
-		prepQ.setDate(7, java.sql.Date.valueOf("2020-09-04"));  // date
-		prepQ.setInt(8,1);
-		prepQ.setFloat(9, 12);
-		prepQ.setInt(10, 2000); // copie rimaneti
-		/*
-		FileInputStream fin = new FileInputStream("img/icon.png");
-
-
-
-		prepQ.setBinaryStream(11, fin);*/
-		prepQ.executeUpdate();
+	System.out.println("---------Chiamo stored insRiviste---------\n\n");
+	try 
+	{
 		
+		conn=ConnToDb.generalConnection();
+		 ScriptRunner sr = new ScriptRunner(conn);
+		 
+		 //&& preso come terminatore-> eseguito;	
+		 sr.setSendFullScript(true);
+	      //Creating a reader object
+	      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsRiviste.sql"));
+	      //Running the script
+	      sr.runScript(reader);
+		
+
 		return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return false;
+	}
+
+	catch(FileNotFoundException | RuntimeSqlException e1) 
+	{
+		e1.printStackTrace();
+		System.err.println("ERRORE DI SQL ");
+	
+	}
+	
+	return false;
 	}
 
 	private static boolean createUser()

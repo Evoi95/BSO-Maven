@@ -1,5 +1,3 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertUtenti`()
-BEGIN
 INSERT INTO `ispw`.`users`
 (`idRuolo`,`Nome`,`Cognome`,`Email`,`pwd`,`DataDiNascita`)
 VALUES
@@ -10,4 +8,3 @@ VALUES
 ("W","Zerocalcare","Zerocalcare","zerocalcare@gmail.com","Zerocalcare21","1980-05-20"),
 ("E","Bao Publishing","Bao Publishing","baoPublishing@gmail.com","BaoPub2021","1960-11-21");
 
-END

@@ -1,5 +1,4 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `insertGiornali`()
-BEGIN
+
 INSERT INTO `ispw`.`giornale`
 (`titolo`,`tipologia`,`lingua`,`editore`,`dataPubblicazione`,`copiRim`,`disp`,`prezzo`)
 VALUES
@@ -16,5 +15,3 @@ VALUES
 ("Il Fatto Quotidiano","Quotidiano","Italiano","Il Fatto Quotidiano","2021-02-03",16,1,2.0);
 
 
-
-END

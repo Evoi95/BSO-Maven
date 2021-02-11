@@ -1,5 +1,4 @@
-CREATE DEFINER=`root`@`localhsot` PROCEDURE `insertNegozio`()
-BEGIN
+
 INSERT INTO `ispw`.`negozio`
 (`nome`,`via`,`isValid`,`isOpen`)
 VALUES
@@ -8,4 +7,5 @@ VALUES
 ("Negozio C","via C",false,true),
 ("Negozio D","via D",false,false);
 
-END
+
+

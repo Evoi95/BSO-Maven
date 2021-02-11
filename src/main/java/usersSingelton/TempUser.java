@@ -16,7 +16,7 @@ public class TempUser {
 	// array di codici isbn presi dai libri 
 	//private ArrayList<String> listaUtenti =new ArrayList<String>();
 	
-	private static TempUser instance ;
+	private static TempUser instance = new TempUser();
 	
 	private  TempUser()
 	{
@@ -89,9 +89,6 @@ public class TempUser {
 	
 	public static TempUser getInstance()
 	{
-		if(instance == null ) {
-			return new TempUser();
-		}
 		return instance;
 	}
 
