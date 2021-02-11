@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-public class BuondaryAddUserPage implements Initializable{
+public class BoundaryAddUserPage implements Initializable{
 	@FXML
 	private  Pane pane;
 	@FXML
@@ -63,7 +63,7 @@ public class BuondaryAddUserPage implements Initializable{
 		try {
 			cAUP.insUtenteAsAdmin(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),pwdTF.getText(),descTA.getText(),dataN.getValue(),ruoloTF.getText());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		

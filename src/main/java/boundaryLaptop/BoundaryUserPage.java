@@ -28,7 +28,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class BuondaryUserPage implements Initializable {
+public class BoundaryUserPage implements Initializable {
 	@FXML
 	private Pane pane;
 	@FXML
@@ -106,7 +106,7 @@ public class BuondaryUserPage implements Initializable {
 		else {
 			
 		
-		System.out.println("Id in buondaryUserPage : "+vis.getIstance().getId());
+		System.out.println("Id in BoundaryUserPage : "+vis.getIstance().getId());
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonM.getScene().getWindow();
@@ -159,7 +159,7 @@ public class BuondaryUserPage implements Initializable {
         try {
 			reader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
         }

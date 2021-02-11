@@ -111,7 +111,7 @@ public class BoundaryVisualizzaLibro implements Initializable {
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonBack.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("compravenditaGiornali.fxml"));
+		root = FXMLLoader.load(getClass().getResource("compravenditaLibri.fxml"));
 
 		Scene scene = new Scene(root);
 		stage.setScene(scene);

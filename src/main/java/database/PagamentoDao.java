@@ -71,7 +71,7 @@ public class PagamentoDao {
 			 try {
 				connPag.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		 }
@@ -157,20 +157,20 @@ public ObservableList<Pagamento> getPagamenti()  {
     		try {
     			catalogo.add(new Pagamento (rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getFloat(5),rs.getString(6),rs.getInt(7)));
     		} catch (Exception e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 
         }
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		 
 			e1.printStackTrace();
 		}
 		finally {
         try {
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		}

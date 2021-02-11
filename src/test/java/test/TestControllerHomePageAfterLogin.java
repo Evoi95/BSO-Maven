@@ -18,7 +18,7 @@ class TestControllerHomePageAfterLogin {
 		try {
 			state=ControllerHomePageAfterLogin.logout();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertEquals(true,state);

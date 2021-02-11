@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-public class BuondaryAddRivistaPage implements Initializable{
+public class BoundaryAddRivistaPage implements Initializable{
 	@FXML
 	private Pane pane;
 	@FXML

@@ -27,7 +27,7 @@ class TestControllerPagamentoCash {
 			try {
 				cPC.controlla(nome, cognome, via, com, ammontare);
 			} catch (IOException | SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			state=true;

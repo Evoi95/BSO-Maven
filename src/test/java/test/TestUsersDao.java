@@ -64,7 +64,7 @@ class TestUsersDao {
 
 	@Test
 	public void testGetRuolo() {
-		u.setEmail("Admin@Admin.com");
+		u.setEmail("admin@admin.com");
 		ruolo=UsersDao.getRuolo(u);
 		assertNotNull(ruolo);
 	}

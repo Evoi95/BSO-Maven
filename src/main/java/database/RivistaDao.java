@@ -71,7 +71,7 @@ public class RivistaDao {
 			 try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		 }
@@ -167,7 +167,7 @@ public class RivistaDao {
 					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
 					//System.out.println("res: "+rs[i]);
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
         		//System.out.println("rivista nome"+rs.getString(1));
@@ -201,7 +201,7 @@ public class RivistaDao {
 					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
 					//System.out.println("res: "+rs[i]);
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
         		//System.out.println("rivista nome"+rs.getString(1));
@@ -320,7 +320,7 @@ public class RivistaDao {
 					return 0;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		/*if (l.getDisponibilita()>=1)
@@ -348,7 +348,7 @@ public class RivistaDao {
 				}			
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 
@@ -376,7 +376,7 @@ public class RivistaDao {
 					}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		return false;
@@ -395,7 +395,7 @@ public class RivistaDao {
         		try {
         			catalogo.add((Rivista) f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 
@@ -478,7 +478,7 @@ public class RivistaDao {
 				 row=ps.executeUpdate();
 				}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		
@@ -502,7 +502,7 @@ public class RivistaDao {
         			catalogo.add((Rivista) f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));					//rs=rs.next();
 					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 
@@ -597,7 +597,7 @@ public class RivistaDao {
 
 
 		        			} catch (Exception e) {
-							// TODO Auto-generated catch block
+						 
 							e.printStackTrace();
 						}
 		        		

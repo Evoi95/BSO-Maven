@@ -47,20 +47,20 @@ public class CartaCreditoDao {
 					catalogo.add(new CartaCredito(n,cog,cod, null, cod,0));
 					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
         		
             }
             } catch (SQLException e1) {
-				// TODO Auto-generated catch block
+			 
 				e1.printStackTrace();
 			}
             finally {
                 try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 

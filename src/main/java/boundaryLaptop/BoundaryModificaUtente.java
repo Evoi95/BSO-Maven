@@ -15,7 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class BuondaryModificaUtente implements Initializable {
+public class BoundaryModificaUtente implements Initializable {
 	
 	private ControllerModificaUtente cMU;
 	@FXML

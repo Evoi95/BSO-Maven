@@ -23,7 +23,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class BuondaryModifRivista implements Initializable{
+public class BoundaryModifRivista implements Initializable{
 		@FXML
 		private Pane pane;
 		@FXML
@@ -176,7 +176,7 @@ public class BuondaryModifRivista implements Initializable{
 
 
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 

@@ -37,7 +37,7 @@ class TestRivistaDao {
 		try {
 			rd.aggiornaDisponibilita(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}
@@ -47,7 +47,7 @@ class TestRivistaDao {
 		try {
 			rd.daiPrivilegi();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}	
 		}
@@ -57,7 +57,7 @@ class TestRivistaDao {
 		try {
 			state=rd.getRiviste().isEmpty();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(true,state);
@@ -71,7 +71,7 @@ class TestRivistaDao {
 		try {
 			state=rd.getRivistaSingoloById(r).isEmpty();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(true,state);
@@ -83,7 +83,7 @@ class TestRivistaDao {
 		try {
 			assertNotNull(rd.getRivista(r, r.getId()));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 
@@ -96,7 +96,7 @@ class TestRivistaDao {
 		try {
 			status=rd.retId(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(0,status);
@@ -109,7 +109,7 @@ class TestRivistaDao {
 		try {
 			tipo=rd.retTip(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertEquals("sportivo",tipo);
@@ -122,7 +122,7 @@ class TestRivistaDao {
 		try {
 			nome=rd.getNome(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotNull(nome);
@@ -136,7 +136,7 @@ class TestRivistaDao {
 		try {
 			disp=rd.getDisp(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(0,disp);
@@ -149,7 +149,7 @@ class TestRivistaDao {
 		try {
 			quantita=rd.getQuantita(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(0,quantita);
@@ -162,7 +162,7 @@ class TestRivistaDao {
 		try {
 			state=rd.checkDisp(r, r.getId());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		//String x=""+state;
@@ -175,7 +175,7 @@ class TestRivistaDao {
 		try {
 			state=rd.getRivistaSingolo().isEmpty();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(true,state);
@@ -208,7 +208,7 @@ class TestRivistaDao {
 		try {
 			assertNotNull(rd.getRivistaSingoloById(r));
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}
@@ -229,7 +229,7 @@ class TestRivistaDao {
 		try {
 			rd.aggiornaRivista(r);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		}
@@ -239,7 +239,7 @@ class TestRivistaDao {
 		try {
 			rd.generaReport();
 		} catch (SQLException | IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}

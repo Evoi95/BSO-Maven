@@ -17,7 +17,7 @@ class TestControllerReportRiviste {
 		try {
 			cRR.generaReportRiviste();
 		} catch (IOException | SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		}

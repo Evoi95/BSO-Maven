@@ -16,7 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class BuondaryRaccoltaPage implements Initializable {
+public class BoundaryRaccoltaPage implements Initializable {
 	@FXML
 	private Pane pane;
 	@FXML

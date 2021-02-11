@@ -26,7 +26,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class BuondaryRivistaPage implements Initializable {
+public class BoundaryRivistaPage implements Initializable {
 	@FXML
 	private Pane pane;
 	@FXML
@@ -74,7 +74,7 @@ public class BuondaryRivistaPage implements Initializable {
 		try {
 			table.setItems(cRP.getRivistaS());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}

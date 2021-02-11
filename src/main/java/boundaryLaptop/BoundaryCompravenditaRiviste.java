@@ -5,8 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerCompravenditaGiornali;
-import controllerApp.ControllerVisualizzaGiornale;
+import controllerApp.ControllerCompravenditaRiviste;
+import controllerApp.ControllerVisualizzaRivista;
 import controllerApp.singeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.beans.property.SimpleFloatProperty;
@@ -29,8 +29,13 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class BuondaryCompravenditaGiornali implements Initializable {
+public class BoundaryCompravenditaRiviste implements Initializable {
 
+	private ControllerCompravenditaRiviste CCR;
+	private ControllerVisualizzaRivista CVR;
+	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+
+	
 	@FXML
 	private Pane panel;
 	@FXML
@@ -40,21 +45,15 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> Tipologia = new TableColumn<>("Tipologia");
+	private TableColumn<Raccolta, SimpleStringProperty> editore = new TableColumn<>("Editore");
+		@FXML
+	private TableColumn<Raccolta, SimpleStringProperty> dataPubb = new TableColumn<>("DataPubblicazione");
 	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> autore = new TableColumn<>("Autore");
-	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> dataPub = new TableColumn<>("Data Pubblicazione");
+	private TableColumn<Raccolta, SimpleIntegerProperty> categoria = new TableColumn<>("tipologia");
 	@FXML
 	private TableColumn<Raccolta, SimpleFloatProperty> prezzo = new TableColumn<>("Prezzo");
 	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> idGiornale = new TableColumn<>("Id Giornale");
-	
-	@FXML
-	private TableColumn<Raccolta, SimpleIntegerProperty> disponibilita = new TableColumn<>("Disponibilita");
-	/*
-	 * TODO sistemare altre righe tabella dal db
-	 */
+	private TableColumn<Raccolta, SimpleIntegerProperty> idRivista = new TableColumn<>("Id Rivista" );
 	@FXML
 	private Button buttonL;
 	@FXML
@@ -65,38 +64,32 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 	private Button buttonI;
 	@FXML
 	private Button buttonA;
-
-	private ControllerCompravenditaGiornali CCG;
-	private ControllerVisualizzaGiornale CVG;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
-
-	
 	@FXML
-	private void vediListaGiornali() throws SQLException {
-
-		table.setItems(CCG.getGiornali());
-
+	
+	private void vediListaRiviste() throws SQLException {
+		// System.out.println(CCR.getRivisteE());
+		table.setItems(CCR.getRiviste());
 	}
 
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		CCG = new ControllerCompravenditaGiornali();
-		CVG = new ControllerVisualizzaGiornale();
+		CCR = new ControllerCompravenditaRiviste();
+		CVR = new ControllerVisualizzaRivista();
 
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
-		Tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
-		autore.setCellValueFactory(new PropertyValueFactory<>("editore"));
-		dataPub.setCellValueFactory(new PropertyValueFactory<>("dataPubb"));
+		editore.setCellValueFactory(new PropertyValueFactory<>("editore"));
+		dataPubb.setCellValueFactory(new PropertyValueFactory<>("dataPubb"));
+		categoria.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
-		idGiornale.setCellValueFactory(new PropertyValueFactory<>("id"));
+		idRivista.setCellValueFactory(new PropertyValueFactory<>("id"));
 
 	}
 
+	
 	@FXML
 	private void torna() throws IOException {
-		String tipoU=CCG.tipoUtente();
+		String tipoU=CCR.tipoUtente();
 		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
@@ -129,8 +122,7 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 					stage.show();
 				}
 
-			}
-	
+	}
 
 	
 	@FXML
@@ -138,12 +130,12 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 		try
 		{
 			String i = entryText.getText();
-		if( CCG.disponibilitaGiornale(i)) {
-			CVG.setID(i);
+		if( CCR.disponibilitaRiviste(i)) {
+			CVR.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("visualizzaDailyPage.fxml"));
+			root = FXMLLoader.load(getClass().getResource("visualizzaMagazinePage.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
 			Scene scene = new Scene(root);
@@ -154,7 +146,7 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 		else
 		{
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Errore Id libro inserito");
+			alert.setTitle("Errore Id rivista inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
 			alert.showAndWait();
@@ -172,8 +164,8 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 		try
 		{
 			String i = entryText.getText();
-		if( CCG.disponibilitaGiornale(i)) {
-			CVG.setID(i);
+		if( CCR.disponibilitaRiviste(i)) {
+			CVR.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonA.getScene().getWindow();
@@ -200,7 +192,6 @@ public class BuondaryCompravenditaGiornali implements Initializable {
 
 		
 	}
-
 
 
 }

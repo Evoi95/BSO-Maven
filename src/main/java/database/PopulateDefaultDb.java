@@ -83,7 +83,7 @@ public class PopulateDefaultDb {
 		      return true;
 		} 
 		catch (RuntimeSqlException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		
@@ -139,7 +139,7 @@ public class PopulateDefaultDb {
 					sr.runScript(reader);
 
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			      //Running the script
@@ -148,7 +148,7 @@ public class PopulateDefaultDb {
 			return true;
 			} 
 			catch (RuntimeSqlException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			
@@ -177,7 +177,7 @@ public class PopulateDefaultDb {
 					sr.runScript(reader);
 
 				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			      //Running the script
@@ -186,7 +186,7 @@ public class PopulateDefaultDb {
 			return true;
 			} 
 			catch (RuntimeSqlException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			

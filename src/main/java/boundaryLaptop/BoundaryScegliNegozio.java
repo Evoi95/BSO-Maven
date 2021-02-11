@@ -297,7 +297,7 @@ public class BoundaryScegliNegozio implements Initializable {
 			radio3.setText(CSN.getNegozi().get(2).getNome());
 			radio4.setText(CSN.getNegozi().get(3).getNome());
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}

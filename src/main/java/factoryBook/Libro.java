@@ -188,7 +188,7 @@ public class Libro implements Raccolta {
 	            try {
 					desktop.open(dirToOpen);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 	        } catch (IllegalArgumentException iae) {
@@ -207,10 +207,10 @@ public class Libro implements Raccolta {
 	    try {
 			PdfWriter.getInstance(document, new FileOutputStream(filename));
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 	        // apriamo il documento
@@ -227,7 +227,7 @@ public class Libro implements Raccolta {
 						+ "\n"
 						+ "Aenean pharetra tortor semper, laoreet dui sed, porta lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum purus cursus venenatis mollis. Donec venenatis bibendum ullamcorper. Phasellus porttitor, mauris eget placerat imperdiet, tellus purus aliquet mauris, eget laoreet quam nibh eget nisi. Nam volutpat urna vitae eros porttitor efficitur. Etiam mi velit, vulputate sed lacinia rutrum, viverra sed nulla. Sed sem mi, tempus ut lacus faucibus, congue dignissim dolor. Praesent sed quam feugiat, condimentum eros non, luctus dui."));
 			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 	        // chiudiamo il documento

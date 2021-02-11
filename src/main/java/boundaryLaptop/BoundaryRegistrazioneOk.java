@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class BuondaryRegistrazioneOk {
+public class BoundaryRegistrazioneOk {
 	@FXML
 	private Pane pane;
 	@FXML 

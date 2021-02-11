@@ -18,7 +18,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class BuondaryVisualizzaProfilo implements Initializable  {
+public class BoundaryVisualizzaProfilo implements Initializable  {
 	@FXML
 	private Pane pane;
 	@FXML
@@ -132,7 +132,7 @@ public class BuondaryVisualizzaProfilo implements Initializable  {
 		
 	}
 	
-	public BuondaryVisualizzaProfilo()
+	public BoundaryVisualizzaProfilo()
 	{
 		cVP=new ControllerVisualizzaProfilo();
 	}

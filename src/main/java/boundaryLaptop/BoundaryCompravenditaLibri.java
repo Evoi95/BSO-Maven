@@ -24,7 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class BuondaryCompravenditaLibri implements Initializable {
+public class BoundaryCompravenditaLibri implements Initializable {
 	@FXML
 	private Pane panel;
 	@FXML

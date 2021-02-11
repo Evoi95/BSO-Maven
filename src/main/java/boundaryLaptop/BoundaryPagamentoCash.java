@@ -132,7 +132,7 @@ public class BoundaryPagamentoCash implements Initializable{
 				try {
 					CPC = new ControllerPagamentoCash();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 

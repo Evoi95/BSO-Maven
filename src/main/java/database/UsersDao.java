@@ -252,7 +252,7 @@ public class UsersDao  {
     	//String r = null ;
 
     	String email = U.getEmail();
-    	System.out.println("Eai:"+email);
+    	System.out.println("Email:"+email);
     	try 
 		{
 			if (ConnToDb.connection())
@@ -287,7 +287,7 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
     	}
@@ -400,7 +400,7 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
     	}
@@ -481,7 +481,7 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
     	}
@@ -975,7 +975,7 @@ public class UsersDao  {
         	try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
         }
@@ -1051,7 +1051,7 @@ public class UsersDao  {
 	    		try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 	    	}
@@ -1105,7 +1105,7 @@ public class UsersDao  {
         		{
 					e.getMessage();
         		} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
             
@@ -1114,7 +1114,7 @@ public class UsersDao  {
         	   try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}           
            }

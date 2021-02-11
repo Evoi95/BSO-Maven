@@ -23,7 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class BuondaryGiornaliPage implements Initializable{
+public class BoundaryGiornaliPage implements Initializable{
 	@FXML
 	private Pane pane;
 	@FXML

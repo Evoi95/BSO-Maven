@@ -29,7 +29,7 @@
 //			else
 //				stateR=false;
 //		} catch (Exception e) {
-//			// TODO Auto-generated catch block
+//		 
 //			e.printStackTrace();
 //		}
 //		
@@ -42,7 +42,7 @@
 //			else
 //			stateL=false;
 //		} catch (Exception e) {
-//			// TODO Auto-generated catch block
+//		 
 //			e.printStackTrace();
 //		}
 //		
@@ -87,7 +87,7 @@
 //		try {
 //			f.createRaccolta("libro",l.getTitolo(),l.getNumPag(),l.getCodIsbn(),l.getEditore(),l.getAutore(),l.getLingua(),l.getCategoria(),l.getDataPubb(),l.getRecensione(),l.getNrCopie(),l.getDesc(),l.getDisponibilita(),l.getPrezzo(), l.getCopieRim(),l.getId());
 //		} catch (Exception e) {
-//			// TODO Auto-generated catch block
+//		 
 //			e.printStackTrace();
 //		}
 //		
@@ -116,7 +116,7 @@
 //		try {
 //			f.createRaccolta("rivista",r.getTitolo(),0,null,r.getEditore(),r.getAutore(),r.getLingua(), "", r.getDataPubb(),null,0, null,r.getDisp() ,r.getPrezzo(),r.getCopieRim(),r.getId());
 //		} catch (Exception e) {
-//			// TODO Auto-generated catch block
+//		 
 //			e.printStackTrace();
 //		}
 //		

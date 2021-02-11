@@ -43,7 +43,7 @@ public class ControllerAcquista {
 			
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		return x;
@@ -70,7 +70,7 @@ public class ControllerAcquista {
 			rD.aggiornaDisponibilita(r);
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		return z;

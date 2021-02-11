@@ -11,17 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 
 public class Main extends Application {
-	// private static Libro l;
 	@Override
 	public void start(Stage primaryStage) {
 
 		try {
-			// FXMLLoader loader = FXMLLoader();
-			// loader.setLocation(new
-			// URL("file:///C:/Users/dani/eclipse-workspace/prova/src/boundaryLaptop/Login.fxml"));
-
 			Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-
 			Scene scene = new Scene(root);
 			primaryStage.setTitle("Benvenuto nella homePage");
 			primaryStage.setScene(scene);
@@ -37,17 +31,14 @@ public class Main extends Application {
 		try {
 			CreateDefaultDB.createDefaultDB();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		// l=new Libro();
-		// l.scarica();
 
 		launch(args);
 

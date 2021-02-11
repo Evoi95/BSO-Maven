@@ -18,7 +18,7 @@ class TestControllerReportLibri {
 		try {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}

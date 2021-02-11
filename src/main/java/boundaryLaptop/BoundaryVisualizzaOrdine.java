@@ -22,7 +22,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import pagamento.Pagamento;
 
-public class BuondaryVisualizzaOrdine implements Initializable {
+public class BoundaryVisualizzaOrdine implements Initializable {
 	
 	@FXML
 	private Pane panel;
@@ -80,7 +80,7 @@ public class BuondaryVisualizzaOrdine implements Initializable {
 		
 	}
 	
-	public BuondaryVisualizzaOrdine()
+	public BoundaryVisualizzaOrdine()
 	{
 		cVO=new ControllerVisualizzaOrdine();
 	}

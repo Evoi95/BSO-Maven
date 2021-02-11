@@ -32,7 +32,7 @@ class TestControllerLogin {
 		try {
 			state=cL.controlla(email,pass/*User.getInstance().getEmail(),User.getInstance().getPassword()*/);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}	
 		System.out.println("Sate :"+ state);

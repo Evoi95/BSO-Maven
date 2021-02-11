@@ -193,7 +193,7 @@ public class BoundaryAcquista implements Initializable {
 			dispLabel.setText(""+CA.getDisp());
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} 
 	}

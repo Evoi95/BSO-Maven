@@ -79,7 +79,7 @@ public class GiornaleDao {
 			 try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		 }
@@ -107,7 +107,7 @@ public class GiornaleDao {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -139,7 +139,7 @@ public class GiornaleDao {
 			 try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			 System.out.println("Ho chiuso tutto");
@@ -173,7 +173,7 @@ public class GiornaleDao {
 			 try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			 System.out.println("Ho chiuso tutto");
@@ -204,13 +204,13 @@ public class GiornaleDao {
 				catalogo.add(f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
 				//rs=rs.next();
     		} catch (Exception e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 
         }
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
+		 
 			e1.printStackTrace();
 		}
 		finally {
@@ -219,7 +219,7 @@ public class GiornaleDao {
         try {
 			conn.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		}
@@ -246,14 +246,14 @@ public class GiornaleDao {
 
         }
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -312,7 +312,7 @@ public class GiornaleDao {
 					try {
 						conn.close();
 					} catch (SQLException e) {
-						// TODO Auto-generated catch block
+					 
 						e.printStackTrace();
 					}
 				}
@@ -339,14 +339,14 @@ public class GiornaleDao {
 
         }	
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
         finally {
         	try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
         }
@@ -374,14 +374,14 @@ public class GiornaleDao {
 					return 0;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -406,14 +406,14 @@ public class GiornaleDao {
 				}			
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -443,14 +443,14 @@ public class GiornaleDao {
 					}
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -474,20 +474,20 @@ public class GiornaleDao {
 					//catalogo.add((Giornale) f.createGiornale("giornale",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15)));
 					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 
             }
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+			 
 				e1.printStackTrace();
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			}
@@ -569,14 +569,14 @@ public class GiornaleDao {
 				 row=ps.executeUpdate();
 				}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -599,20 +599,20 @@ public class GiornaleDao {
         			catalogo.add((Giornale)f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
 					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 
             }
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
+			 
 				e1.printStackTrace();
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			}
@@ -638,7 +638,7 @@ public class GiornaleDao {
 					//catalogo.add(f.createLibro("libro",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15)));
 					//rs=rs.next();
         		} catch (Exception e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 
@@ -699,14 +699,14 @@ public class GiornaleDao {
             System.out.println(("Row affected "+ rowAffected));
             
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			}
@@ -753,7 +753,7 @@ public class GiornaleDao {
 
 
 				    			} catch (Exception e) {
-								// TODO Auto-generated catch block
+							 
 								e.printStackTrace();
 							}
 				    		
@@ -763,14 +763,14 @@ public class GiornaleDao {
 				      b.close();
 					}
 			} catch (SQLException | IOException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
+				 
 					e.printStackTrace();
 				}
 			}

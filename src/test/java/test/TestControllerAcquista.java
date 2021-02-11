@@ -74,7 +74,7 @@ class TestControllerAcquista {
 		try {
 			y=cA.getIdG(titolo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(-1,y);
@@ -88,7 +88,7 @@ class TestControllerAcquista {
 		try {
 			y=cA.getTipG(titolo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(null,y);
@@ -102,7 +102,7 @@ class TestControllerAcquista {
 		try {
 			z=cA.getIdR(titolo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals(-1,z);
@@ -116,7 +116,7 @@ class TestControllerAcquista {
 		try {
 			z=cA.getTipR(titolo);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		assertNotEquals("",z);

@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 
 
 
-public class BuondaryLogin implements Initializable {
+public class BoundaryLogin implements Initializable {
 	@FXML
 	private Label labelUser, labelPwd,labelB;
 	@FXML

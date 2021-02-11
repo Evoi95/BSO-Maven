@@ -21,7 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
-public class BuondaryReportPage implements Initializable {
+public class BoundaryReportPage implements Initializable {
 	
 	@FXML
 	private Pane pane;
@@ -59,10 +59,10 @@ public class BuondaryReportPage implements Initializable {
 		cRR.generaReportRiviste();
 		cUP.getUtenti();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		
@@ -79,17 +79,17 @@ public class BuondaryReportPage implements Initializable {
             line = readerL.readLine();
         }
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
 			        try {
 						readerL.close();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
+					 
 						e.printStackTrace();
 					}
 
@@ -108,11 +108,11 @@ public class BuondaryReportPage implements Initializable {
             line1 = readerG.readLine();
         }
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
-			// TODO Auto-generated catch block
+		 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		finally {
@@ -120,7 +120,7 @@ public class BuondaryReportPage implements Initializable {
         try {
 			readerG.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		}
@@ -129,7 +129,7 @@ public class BuondaryReportPage implements Initializable {
 		try {
 			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
         String line2 = null;
@@ -143,7 +143,7 @@ public class BuondaryReportPage implements Initializable {
             try {
 				line2 = reader.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}
@@ -156,7 +156,7 @@ public class BuondaryReportPage implements Initializable {
         try {
 			reader.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
         }
@@ -165,7 +165,7 @@ public class BuondaryReportPage implements Initializable {
 		try {
 			reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
         String line3 = null;
@@ -179,7 +179,7 @@ public class BuondaryReportPage implements Initializable {
             try {
 				line3 = reader3.readLine();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+			 
 				e.printStackTrace();
 			}
 		}}catch(IOException e)
@@ -190,7 +190,7 @@ public class BuondaryReportPage implements Initializable {
         try {
 			reader3.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 	}
@@ -208,7 +208,7 @@ public class BuondaryReportPage implements Initializable {
 		try {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
@@ -277,10 +277,10 @@ public class BuondaryReportPage implements Initializable {
 		try {
 			cRG.generaReportGiornali();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
@@ -320,10 +320,10 @@ public class BuondaryReportPage implements Initializable {
 		try {
 			cRR.generaReportRiviste();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+		 
 			e.printStackTrace();
 		}
 

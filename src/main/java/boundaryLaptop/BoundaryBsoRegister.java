@@ -27,7 +27,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class BuondaryBsoRegister implements Initializable {
+public class BoundaryBsoRegister implements Initializable {
 	@FXML
 	private Pane pane;
 	@FXML
