@@ -1,12 +1,21 @@
 package database;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.Blob;
+import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import org.apache.ibatis.jdbc.RuntimeSqlException;
+import org.apache.ibatis.jdbc.ScriptRunner;
 
 public class PopulateDefaultDb {
 
@@ -14,6 +23,7 @@ public class PopulateDefaultDb {
 	private static String qInsert ;
 	private static PreparedStatement prepQ = null;
     private BufferedImage slate;
+    private static Connection conn;
 	
 	public static boolean populateDefaultDb() throws FileNotFoundException
 	{
@@ -27,185 +37,59 @@ public class PopulateDefaultDb {
 		}
 	}
 	
-	private static boolean createLibri() throws FileNotFoundException
+	private static boolean createLibri() 
 	{
+		System.out.println("---------Chiamo stored insLibri---------\n\n");
 		try 
 		{
-			// ibnserisco dei libri per il db
-			qInsert="INSERT INTO `ispw`.`libro`"
-					+ "(`titolo`,"
-					+ "`numeroPagine`,"
-					+ "`Cod_isbn`,"
-					+ "`editore`,"
-					+ "`autore`,"
-					+ "`lingua`,"
-					+ "`categoria`,"
-					+ "`dataPubblicazione`,"
-					+ "`recensione`,"
-					+ "`copieVendute`,"
-					+ "`breveDescrizione`,"
-					+ "`disp`,"
-					+ "`prezzo`,"
-					+ "`copieRimanenti`"
-					+ ")"
-					+ "  "
-					+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
-			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1,"Kobane calling. Oggi"); // titolo varchar 
-			prepQ.setInt(2, 312); // numero pagine int
-			prepQ.setString(3,"8832734591"); // 
-			prepQ.setString(4, "Bao Publishing");
-			prepQ.setString(5,"Zerocalcare");
-			prepQ.setString(6,"Italiano");
-			prepQ.setString(7,"FumettiEManga");
-			//ps.setDate(2, new java.sql.Date(endDate.getTime());
-			prepQ.setDate(8, java.sql.Date.valueOf("2020-09-04"));  // date
-			prepQ.setString(9,"assurdo"); // recensione
-			prepQ.setInt(10, 2000); // copie vendute
-			prepQ.setString(11, "ciao"); // breve drescizione
-			prepQ.setInt(12,1);
-			prepQ.setFloat(13, 12);
-			prepQ.setInt (14, 15);
-		/*	FileInputStream fin = new FileInputStream("img/icon.png");//file:///C:/Users/dani/git/BSO-Maven/src/main/java/images/icon.png");
-			prepQ.setBinaryStream(15, fin);*/
-			prepQ.executeUpdate();
-
-			//libro 2
-			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1,"A babbo morto. Una storia di Natale "); // titolo varchar 
-			prepQ.setInt(2, 0); // numero pagine int
-			prepQ.setString(3,"8832735512"); // 
-			prepQ.setString(4, "Bao Publishing");
-			prepQ.setString(5,"Zerocalcare");
-			prepQ.setString(6,"Italiano");
-			prepQ.setString(7,"FumettiEManga");
-			//ps.setDate(2, new java.sql.Date(endDate.getTime());
-			prepQ.setDate(8, java.sql.Date.valueOf("2020-11-12"));  // date
-			prepQ.setString(9,"100"); // recensione
-			prepQ.setInt(10, 2000); // copie vendute
-			prepQ.setString(11, "ciao"); // breve drescizione
-			prepQ.setInt(12,1);
-			prepQ.setFloat(13, 12);
-			prepQ.setInt (14, 15);
-
-			//fin = new FileInputStream("img/icon.png");
-
-			//fin = new FileInputStream("main/java/images/icon.png");
-
-			//prepQ.setBinaryStream(15, fin);
-			prepQ.executeUpdate();
 			
+			conn=ConnToDb.generalConnection();
+			 ScriptRunner sr = new ScriptRunner(conn);
+			 
+			 //&& preso come terminatore-> eseguito;	
+			 sr.setSendFullScript(true);
+		      //Creating a reader object
+		      Reader reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\storedInsLibri.sql"));
+		      //Running the script
+		      sr.runScript(reader);
 			
-			//libro 3
-			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1,"Scheletri"); // titolo varchar 
-			prepQ.setInt(2, 240); // numero pagine int
-			prepQ.setString(3,"8832734893"); // 
-			prepQ.setString(4, "Bao Publishing");
-			prepQ.setString(5,"Zerocalcare");
-			prepQ.setString(6,"Italiano");
-			prepQ.setString(7,"FumettiEManga");
-			//ps.setDate(2, new java.sql.Date(endDate.getTime());
-			prepQ.setDate(8, java.sql.Date.valueOf("2020-11-12"));  // date
-			prepQ.setString(9,"vai ragazza"); // recensione
-			prepQ.setInt(10, 2000); // copie vendute
-			prepQ.setString(11, "aaer"); // breve drescizione
-			prepQ.setInt(12,11);
-			prepQ.setFloat(13, 121);
-			prepQ.setInt (14, 1522);
 
-			//fin = new FileInputStream("img/icon.png");
-
-			//fin = new FileInputStream("main/java/images/icon.png");
-
-			//prepQ.setBinaryStream(15, fin);
-			prepQ.executeUpdate();
-			// popolo il db con utenti e dati 
 			return true;
 		}
 	
-		catch(SQLException e1) 
+		catch(FileNotFoundException | RuntimeSqlException e1) 
 		{
 			e1.printStackTrace();
 			System.err.println("ERRORE DI SQL ");
 		
 		}
+		
 		return false;
 	}
 
 	private static boolean createGiornale() throws FileNotFoundException
 	{
+		System.out.println("---------Chiamo stored insGiornali---------\n\n");
+
 		try {
-		qInsert = "INSERT INTO `ispw`.`giornale`"
-				+ "(`titolo`,"
-				+ "`tipologia`,"
-				+ "`lingua`,"
-				+ "`editore`,"
-				+ "`dataPubblicazione`,"
-				+ "`copiRim`,"
-				+ "`disp`,"
-				+ "`prezzo`)"
-				//+ "`img`)"
-				+ "VALUES"
-				+ "	"
-				+ "(?,?,?,?,?,?,?,?)";
-		prepQ = ConnToDb.conn.prepareStatement(qInsert);	
-		prepQ.setString(1,"Republica"); // titolo
-		prepQ.setString(2,"Giornale"); //
-		prepQ.setString(3,"Italiano");
- 		prepQ.setString(4, "Republica");
-		prepQ.setDate(5, java.sql.Date.valueOf("2020-09-04"));  // date
-		prepQ.setInt(6, 20); // copie rimanenti
-		prepQ.setInt(7,1);
-		prepQ.setFloat(8, 1);
+			conn=ConnToDb.generalConnection();
+			 ScriptRunner sr = new ScriptRunner(conn);
+			 
+			 //&& preso come terminatore-> eseguito;	
+			 sr.setSendFullScript(true);
+		      //Creating a reader object
+		      Reader reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\stroredInsGiornali.sql"));
+		      //Running the script
+		      sr.runScript(reader);
+			
 
-		//FileInputStream fin = new FileInputStream("img/icon.png");
-
-
-
-		//prepQ.setBinaryStream(9, fin);
-		prepQ.executeUpdate();
-		
-		//giornale 2
-		prepQ = ConnToDb.conn.prepareStatement(qInsert);	
-		prepQ.setString(1,"La stampa"); // titolo
-		prepQ.setString(2,"Giornale"); //
-		prepQ.setString(3,"Italiano");
- 		prepQ.setString(4, "La stampa");
-		prepQ.setDate(5, java.sql.Date.valueOf("2020-09-04"));  // date
-		prepQ.setInt(6, 30); // copie rimanenti
-		prepQ.setInt(7,1);
-		prepQ.setFloat(8, 1);
-
-		//fin = new FileInputStream("img/icon.png");
-
-
-		//prepQ.setBinaryStream(9, fin);
-		prepQ.executeUpdate();
-		
-		//giornale 3
-		prepQ = ConnToDb.conn.prepareStatement(qInsert);	
-		prepQ.setString(1,"Il fatto quotidiano"); // titolo
-		prepQ.setString(2,"Giornale"); //
-		prepQ.setString(3,"Italiano");
- 		prepQ.setString(4, "BHO");
-		prepQ.setDate(5, java.sql.Date.valueOf("2020-09-04"));  // date
-		prepQ.setInt(6, 15); // copie rimanenti
-		prepQ.setInt(7,1);
-		prepQ.setFloat(8, 1);
-
-		//fin = new FileInputStream("img/icon.png");
-
-
-		//prepQ.setBinaryStream(9, fin);
-		prepQ.executeUpdate();
-		
 		return true;
 		} 
-		catch (SQLException e) {
+		catch (RuntimeSqlException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 
 		return false;
 		
@@ -261,49 +145,39 @@ public class PopulateDefaultDb {
 
 	private static boolean createUser()
 	{
-		try {
-			qInsert ="INSERT INTO `ispw`.`users`"
-				+ "(`idRuolo`,"
-				+ "`Nome`,`Cognome`,"
-				+ "`Email`,`pwd`,"
-				+ "`descrizione`,`DataDiNascita`)"
-				+ "VALUES"
-				+ "(?,?,?,?,?,?,?);";
+			System.out.println("---------Chiamo stored insUtenti---------\n\n");
+
+			try {
+				conn=ConnToDb.generalConnection();
+				 ScriptRunner sr = new ScriptRunner(conn);
 				 
-			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1, "a");
-			prepQ.setString(2,"Gianni"); // nome
-			prepQ.setString(3, "Morandi"); // cognome
-			prepQ.setString(4, "bigHand@gmail.com"); // email 
-			prepQ.setString(5,"bigHand97"); // password
-			prepQ.setString(6,"Grande uomo grandi mani grande cuore");
-			prepQ.setDate(7, java.sql.Date.valueOf("1944-12-11"));  // date
-			prepQ.executeUpdate();
-			
-			qInsert ="INSERT INTO `ispw`.`users`"
-					+ "(`idRuolo`,"
-					+ "`Nome`,`Cognome`,"
-					+ "`Email`,`pwd`,"
-					+ "`descrizione`,`DataDiNascita`)"
-					+ "VALUES\r\n"
-					+ "(?,?,?,?,?,?,?);";
-					 
-			prepQ = ConnToDb.conn.prepareStatement(qInsert);
-			prepQ.setString(1, "a");
-			prepQ.setString(2,"Admin"); // nome
-			prepQ.setString(3, "Admin"); // cognome
-			prepQ.setString(4, "Admin@Admin.com"); // email 
-			prepQ.setString(5,"Admin871"); // password
-			prepQ.setString(6,"Grande uomo grandi mani grande cuore");
-			prepQ.setDate(7, java.sql.Date.valueOf("1970-01-01"));  // date
-			prepQ.executeUpdate();
-			
+				 //&& preso come terminatore-> eseguito;	
+				 sr.setSendFullScript(true);
+			      //Creating a reader object
+			      Reader reader;
+				try {
+					reader = new BufferedReader(new FileReader("C:\\Users\\dani\\Desktop\\fxml per ispw\\storedInsUtenti.sql"));
+					sr.runScript(reader);
+
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			      //Running the script
+				
+
 			return true;
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return false;
-		}
+			} 
+			catch (RuntimeSqlException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		
+		
+				return false;
+
 		
 	}
 }

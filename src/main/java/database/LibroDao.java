@@ -90,7 +90,7 @@ public class LibroDao  {
 	public float getCosto(Libro l) throws SQLException
 	{
 		float prezzo=(float) 0.0;
-		 Connection conn = ConnToDb.generalConnection();
+		  conn = ConnToDb.generalConnection();
 		 try {
          Statement stmt = conn.createStatement();
          ResultSet rs;

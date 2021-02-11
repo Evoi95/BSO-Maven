@@ -128,3 +128,8 @@ Titolo :focus	Editore :hoepli	Ricavo totale :330.0
 Titolo :focus	Editore :hoepli	Ricavo totale :330.0
 Titolo :focus	Editore :hoepli	Ricavo totale :330.0
 Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
