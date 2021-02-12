@@ -1,6 +1,5 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -18,8 +17,7 @@ class TestControllerReportRiviste {
 			cRR.generaReportRiviste();
 		} catch (IOException | SQLException e) {
 		 
-			e.printStackTrace();
-		}
+			}
 		}
 
 }

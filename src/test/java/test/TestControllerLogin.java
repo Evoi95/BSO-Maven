@@ -46,7 +46,7 @@ class TestControllerLogin {
 		email="baoPublishing@gmail.com";
 		ruolo=cL.getRuoloTempUSer(email);
 		//System.out.println("ruolo nel test "+ruolo);
-		assertEquals("A",ruolo);
+		assertEquals("E",ruolo);
 		
 	}
 
