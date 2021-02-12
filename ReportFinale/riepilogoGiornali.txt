@@ -14,3 +14,4 @@ Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
