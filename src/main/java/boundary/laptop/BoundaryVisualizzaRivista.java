@@ -124,7 +124,7 @@ public class BoundaryVisualizzaRivista implements Initializable{
 			LabelPrezzo.setText(CVR.getData(i).getPrezzo()+"");
 			LabelCopieRimanenti.setText(CVR.getData(i).getCopieRim()+"");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 		
 

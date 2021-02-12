@@ -47,7 +47,7 @@ public class NegozioDao {
         	catch (Exception e) 
         	{
 			 
-				e.printStackTrace();
+				
 			}
         }
 		return listOfNegozi;

@@ -48,7 +48,7 @@ public class CartaCreditoDao {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
         		
             }
@@ -61,7 +61,7 @@ public class CartaCreditoDao {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }

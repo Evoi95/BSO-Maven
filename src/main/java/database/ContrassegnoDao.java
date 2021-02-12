@@ -79,7 +79,7 @@ public class ContrassegnoDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			 System.out.println("Ho chiuso tutto");
 			 
@@ -110,7 +110,7 @@ public class ContrassegnoDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		

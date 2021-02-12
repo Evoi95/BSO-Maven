@@ -160,7 +160,7 @@ public class BoundaryUserPage implements Initializable {
 			reader.close();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		}
         }
 

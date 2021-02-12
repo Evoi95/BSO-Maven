@@ -60,10 +60,10 @@ public class BoundaryReportPage implements Initializable {
 		cUP.getUtenti();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		
 		
@@ -80,17 +80,17 @@ public class BoundaryReportPage implements Initializable {
         }
 		} catch (FileNotFoundException e) {
 		 
-			e.printStackTrace();
+			
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			        try {
 						readerL.close();
 					} catch (IOException e) {
 					 
-						e.printStackTrace();
+						
 					}
 
 		}
@@ -109,7 +109,7 @@ public class BoundaryReportPage implements Initializable {
         }
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		 
 		} 
 		finally {
@@ -118,7 +118,7 @@ public class BoundaryReportPage implements Initializable {
 			readerG.close();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		}
 
@@ -127,7 +127,7 @@ public class BoundaryReportPage implements Initializable {
 			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
 		} catch (FileNotFoundException e) {
 		 
-			e.printStackTrace();
+			
 		}
         String line2 = null;
 		try {
@@ -141,7 +141,7 @@ public class BoundaryReportPage implements Initializable {
 				line2 = reader.readLine();
 			} catch (IOException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		}catch(IOException e)
@@ -154,7 +154,7 @@ public class BoundaryReportPage implements Initializable {
 			reader.close();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		}
         }
         
@@ -163,7 +163,7 @@ public class BoundaryReportPage implements Initializable {
 			reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
 		} catch (FileNotFoundException e) {
 		 
-			e.printStackTrace();
+			
 		}
         String line3 = null;
 		try {
@@ -177,7 +177,7 @@ public class BoundaryReportPage implements Initializable {
 				line3 = reader3.readLine();
 			} catch (IOException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}}catch(IOException e)
 		{
@@ -188,7 +188,7 @@ public class BoundaryReportPage implements Initializable {
 			reader3.close();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 
@@ -206,7 +206,7 @@ public class BoundaryReportPage implements Initializable {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
         String line = reader.readLine();
@@ -275,7 +275,7 @@ public class BoundaryReportPage implements Initializable {
 			cRG.generaReportGiornali();
 		} catch (IOException|SQLException e) {
 		 
-			e.printStackTrace();
+			
 		} 
 		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
         String line = reader.readLine();
@@ -315,10 +315,10 @@ public class BoundaryReportPage implements Initializable {
 			cRR.generaReportRiviste();
 		} catch (IOException e) {
 		 
-			e.printStackTrace();
+			
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 
 		        BufferedReader readerR = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));

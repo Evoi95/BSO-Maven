@@ -72,7 +72,7 @@ public class RivistaDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		 }
 	    }
@@ -168,7 +168,7 @@ public class RivistaDao {
 					//System.out.println("res: "+rs[i]);
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
         		//System.out.println("rivista nome"+rs.getString(1));
 
@@ -202,7 +202,7 @@ public class RivistaDao {
 					//System.out.println("res: "+rs[i]);
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
         		//System.out.println("rivista nome"+rs.getString(1));
 
@@ -321,7 +321,7 @@ public class RivistaDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		/*if (l.getDisponibilita()>=1)
 		{
@@ -349,7 +349,7 @@ public class RivistaDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 
 		return q;
@@ -377,7 +377,7 @@ public class RivistaDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		return false;
 	}
@@ -396,7 +396,7 @@ public class RivistaDao {
         			catalogo.add((Rivista) f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -479,7 +479,7 @@ public class RivistaDao {
 				}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		
 		System.out.println("Rivista cancellata : "+row);
@@ -503,7 +503,7 @@ public class RivistaDao {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -598,7 +598,7 @@ public class RivistaDao {
 
 		        			} catch (Exception e) {
 						 
-							e.printStackTrace();
+							
 						}
 		        		
 		            }

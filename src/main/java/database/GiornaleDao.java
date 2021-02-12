@@ -80,7 +80,7 @@ public class GiornaleDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		 }
 	    }
@@ -108,7 +108,7 @@ public class GiornaleDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		return prezzo;
@@ -140,7 +140,7 @@ public class GiornaleDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			 System.out.println("Ho chiuso tutto");
 			 
@@ -174,7 +174,7 @@ public class GiornaleDao {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			 System.out.println("Ho chiuso tutto");
 			 
@@ -205,7 +205,7 @@ public class GiornaleDao {
 				//rs=rs.next();
     		} catch (Exception e) {
 			 
-				e.printStackTrace();
+				
 			}
 
         }
@@ -220,7 +220,7 @@ public class GiornaleDao {
 			conn.close();
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		}
 	
@@ -247,14 +247,14 @@ public class GiornaleDao {
         }
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		return G;
@@ -313,7 +313,7 @@ public class GiornaleDao {
 						conn.close();
 					} catch (SQLException e) {
 					 
-						e.printStackTrace();
+						
 					}
 				}
 				
@@ -340,14 +340,14 @@ public class GiornaleDao {
         }	
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
         finally {
         	try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
         }
 		return name;
@@ -375,14 +375,14 @@ public class GiornaleDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		return -1;
@@ -407,14 +407,14 @@ public class GiornaleDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 
@@ -444,14 +444,14 @@ public class GiornaleDao {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		return false;
@@ -475,7 +475,7 @@ public class GiornaleDao {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -488,7 +488,7 @@ public class GiornaleDao {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			}
 
@@ -570,14 +570,14 @@ public class GiornaleDao {
 				}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		finally {
 			try {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		}
 		
@@ -600,7 +600,7 @@ public class GiornaleDao {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -613,7 +613,7 @@ public class GiornaleDao {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			}
 
@@ -639,7 +639,7 @@ public class GiornaleDao {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -700,14 +700,14 @@ public class GiornaleDao {
             
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			}
 
@@ -754,7 +754,7 @@ public class GiornaleDao {
 
 				    			} catch (Exception e) {
 							 
-								e.printStackTrace();
+								
 							}
 				    		
 				        }
@@ -764,14 +764,14 @@ public class GiornaleDao {
 					}
 			} catch (SQLException | IOException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			finally {
 				try {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			}
 			

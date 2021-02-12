@@ -149,7 +149,7 @@ public class BoundaryVisualizzaLibro implements Initializable {
 			LabelPrezzo.setText(CVB.getData(i).getPrezzo()+"");
 			LabelCopieRimanenti.setText(CVB.getData(i).getCopieRim()+"");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 		
 

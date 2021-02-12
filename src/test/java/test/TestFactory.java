@@ -30,7 +30,7 @@
 //				stateR=false;
 //		} catch (Exception e) {
 //		 
-//			e.printStackTrace();
+//			
 //		}
 //		
 //		
@@ -43,7 +43,7 @@
 //			stateL=false;
 //		} catch (Exception e) {
 //		 
-//			e.printStackTrace();
+//			
 //		}
 //		
 //		   f.createGiornale("giornale", g1.getTitolo(),g1.getTipologia(),g1.getLingua(),g1.getEditore(),g1.getDataPubb(),g1.getCopieRimanenti(),g1.getDisponibilita(),g1.getPrezzo(),g1.getId());
@@ -88,7 +88,7 @@
 //			f.createRaccolta("libro",l.getTitolo(),l.getNumPag(),l.getCodIsbn(),l.getEditore(),l.getAutore(),l.getLingua(),l.getCategoria(),l.getDataPubb(),l.getRecensione(),l.getNrCopie(),l.getDesc(),l.getDisponibilita(),l.getPrezzo(), l.getCopieRim(),l.getId());
 //		} catch (Exception e) {
 //		 
-//			e.printStackTrace();
+//			
 //		}
 //		
 //		
@@ -117,7 +117,7 @@
 //			f.createRaccolta("rivista",r.getTitolo(),0,null,r.getEditore(),r.getAutore(),r.getLingua(), "", r.getDataPubb(),null,0, null,r.getDisp() ,r.getPrezzo(),r.getCopieRim(),r.getId());
 //		} catch (Exception e) {
 //		 
-//			e.printStackTrace();
+//			
 //		}
 //		
 //		

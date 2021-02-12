@@ -72,7 +72,7 @@ public class PagamentoDao {
 				connPag.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 		 }
 		
@@ -158,7 +158,7 @@ public ObservableList<Pagamento> getPagamenti()  {
     			catalogo.add(new Pagamento (rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getFloat(5),rs.getString(6),rs.getInt(7)));
     		} catch (Exception e) {
 			 
-				e.printStackTrace();
+				
 			}
 
         }
@@ -171,7 +171,7 @@ public ObservableList<Pagamento> getPagamenti()  {
 			conn.close();
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		}
 	

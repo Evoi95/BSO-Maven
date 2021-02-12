@@ -85,7 +85,7 @@ public class ControllerModificaUtente {
 		}
 		catch(NullPointerException e)
 		{
-			//e.printStackTrace();
+			//
 			//System.err.println("Something went wrong.");
 			System.out.println("Ho torvato LocalDate come : "+localDate);
 			// commento di test per vedere quale dato si rompe

@@ -75,7 +75,7 @@ public class BoundaryRivistaPage implements Initializable {
 			table.setItems(cRP.getRivistaS());
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 	@FXML

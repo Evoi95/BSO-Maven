@@ -21,7 +21,7 @@ class TestControllerModifUserPageAdmin {
 			cMUP.prendiLista(u.getIdU());
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 

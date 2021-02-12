@@ -189,7 +189,7 @@ public class BoundaryAcquista implements Initializable {
 			
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		} 
 	}
 

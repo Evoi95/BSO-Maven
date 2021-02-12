@@ -177,7 +177,7 @@ public class BoundaryModifRivista implements Initializable{
 
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 
 	

@@ -19,7 +19,7 @@ class TestControllerHomePageAfterLogin {
 			state=ControllerHomePageAfterLogin.logout();
 		} catch (Exception e) {
 		 
-			e.printStackTrace();
+			
 		}
 		assertEquals(true,state);
 		

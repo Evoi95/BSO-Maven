@@ -28,7 +28,7 @@ class TestControllerPagamentoCash {
 				cPC.controlla(nome, cognome, via, com, ammontare);
 			} catch (IOException | SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			state=true;
 		}

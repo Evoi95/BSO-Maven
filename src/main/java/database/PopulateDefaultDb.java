@@ -84,7 +84,7 @@ public class PopulateDefaultDb {
 		} 
 		catch (RuntimeSqlException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		
 
@@ -140,7 +140,7 @@ public class PopulateDefaultDb {
 
 				} catch (FileNotFoundException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			      //Running the script
 				
@@ -149,7 +149,7 @@ public class PopulateDefaultDb {
 			} 
 			catch (RuntimeSqlException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			
 
@@ -178,7 +178,7 @@ public class PopulateDefaultDb {
 
 				} catch (FileNotFoundException e) {
 				 
-					e.printStackTrace();
+					
 				}
 			      //Running the script
 				
@@ -187,7 +187,7 @@ public class PopulateDefaultDb {
 			} 
 			catch (RuntimeSqlException e) {
 			 
-				e.printStackTrace();
+				
 			}
 			
 

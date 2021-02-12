@@ -64,7 +64,7 @@ public class BoundaryAddUserPage implements Initializable{
 			cAUP.insUtenteAsAdmin(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),pwdTF.getText(),descTA.getText(),dataN.getValue(),ruoloTF.getText());
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		
 	}

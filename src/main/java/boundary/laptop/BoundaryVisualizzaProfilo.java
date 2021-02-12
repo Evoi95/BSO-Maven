@@ -189,7 +189,7 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 				}
 			}catch(NullPointerException e)
 			{
-				e.printStackTrace();
+				
 			}*/
 
 

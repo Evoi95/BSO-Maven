@@ -19,7 +19,7 @@ class TestControllerReportLibri {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 

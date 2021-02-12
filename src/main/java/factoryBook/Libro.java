@@ -189,7 +189,7 @@ public class Libro implements Raccolta {
 					desktop.open(dirToOpen);
 				} catch (IOException e) {
 				 
-					e.printStackTrace();
+					
 				}
 	        } catch (IllegalArgumentException iae) {
 	            System.out.println("File Not Found");
@@ -208,7 +208,7 @@ public class Libro implements Raccolta {
 			PdfWriter.getInstance(document, new FileOutputStream(filename));
 			} catch (FileNotFoundException|DocumentException e) {
 			 
-				e.printStackTrace();
+				
 			} 
 	        document.open();
 	        // aggiungiamo un paragrafo
@@ -224,7 +224,7 @@ public class Libro implements Raccolta {
 						+ "Aenean pharetra tortor semper, laoreet dui sed, porta lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum purus cursus venenatis mollis. Donec venenatis bibendum ullamcorper. Phasellus porttitor, mauris eget placerat imperdiet, tellus purus aliquet mauris, eget laoreet quam nibh eget nisi. Nam volutpat urna vitae eros porttitor efficitur. Etiam mi velit, vulputate sed lacinia rutrum, viverra sed nulla. Sed sem mi, tempus ut lacus faucibus, congue dignissim dolor. Praesent sed quam feugiat, condimentum eros non, luctus dui."));
 			} catch (DocumentException e) {
 			 
-				e.printStackTrace();
+				
 			}
 	        // chiudiamo il documento
 	        document.close();

@@ -273,7 +273,7 @@ public class UsersDao  {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
     	}
 
@@ -386,7 +386,7 @@ public class UsersDao  {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
     	}
     	return false ;
@@ -467,7 +467,7 @@ public class UsersDao  {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
     	}
     	// errore
@@ -959,7 +959,7 @@ public class UsersDao  {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
         }
     	// errore
@@ -1035,7 +1035,7 @@ public class UsersDao  {
 					conn.close();
 				} catch (SQLException e) {
 				 
-					e.printStackTrace();
+					
 				}
 	    	}
 	    	return r;
@@ -1089,7 +1089,7 @@ public class UsersDao  {
 					e.getMessage();
         		} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}
             
            finally {
@@ -1098,7 +1098,7 @@ public class UsersDao  {
 				conn.close();
 			} catch (SQLException e) {
 			 
-				e.printStackTrace();
+				
 			}           
            }
 		}

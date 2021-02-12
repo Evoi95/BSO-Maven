@@ -33,7 +33,7 @@ class TestRicerca {
 			elencoL=cRP.cercaPerTipo("libro");
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		statoL=elencoL.isEmpty();
 		}
@@ -47,7 +47,7 @@ class TestRicerca {
 			elencoG=cRP.cercaPerTipo("giornale");
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		statoG=elencoG.isEmpty();
 		}
@@ -61,7 +61,7 @@ class TestRicerca {
 			elencoR=cRP.cercaPerTipo("rivista");
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		statoR=elencoR.isEmpty();
 		}

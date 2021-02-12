@@ -205,7 +205,7 @@ public class BoundaryModifBook implements Initializable {
 
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 
 	}

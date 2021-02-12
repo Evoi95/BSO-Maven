@@ -21,7 +21,7 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			
 		}
 
 	}
@@ -32,12 +32,12 @@ public class Main extends Application {
 			CreateDefaultDB.createDefaultDB();
 		} catch (ClassNotFoundException e) {
 		 
-			e.printStackTrace();
+			
 		} catch (FileNotFoundException e) {
 		 
-			e.printStackTrace();
+			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
 		}
 
 		launch(args);

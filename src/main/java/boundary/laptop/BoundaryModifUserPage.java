@@ -149,7 +149,7 @@ public class BoundaryModifUserPage implements Initializable{
 
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 	

@@ -182,7 +182,7 @@ public class LibroDao  {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -207,7 +207,7 @@ public class LibroDao  {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -403,7 +403,7 @@ public class LibroDao  {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		/*if (l.getDisponibilita()>=1)
 		{
@@ -431,7 +431,7 @@ public class LibroDao  {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 
 		return q;
@@ -461,7 +461,7 @@ public class LibroDao  {
 			}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		return false;
 	}
@@ -503,7 +503,7 @@ public class LibroDao  {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -531,7 +531,7 @@ public class LibroDao  {
 				}
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		
 		System.out.println("Libro cancellato : "+row);
@@ -552,7 +552,7 @@ public class LibroDao  {
 					//rs=rs.next();
         		} catch (Exception e) {
 				 
-					e.printStackTrace();
+					
 				}
 
             }
@@ -673,7 +673,7 @@ public class LibroDao  {
 
 		        			} catch (Exception e) {
 						 
-							e.printStackTrace();
+							
 						}
 		        		
 		            }

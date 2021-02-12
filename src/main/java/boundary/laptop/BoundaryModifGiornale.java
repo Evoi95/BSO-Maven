@@ -147,7 +147,7 @@ public class BoundaryModifGiornale implements Initializable {
 
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 
 

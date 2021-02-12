@@ -122,7 +122,7 @@ import javafx.fxml.FXML;
 				LabelPrezzo.setText(CVG.getData(i).getPrezzo()+"");
 				LabelCopieRimanenti.setText(CVG.getData(i).getCopieRimanenti()+"");
 			} catch (SQLException e) {
-				e.printStackTrace();
+				
 			}
 			
 

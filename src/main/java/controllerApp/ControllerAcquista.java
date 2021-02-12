@@ -44,7 +44,7 @@ public class ControllerAcquista {
 
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		return x;
 	}
@@ -71,7 +71,7 @@ public class ControllerAcquista {
 			
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 		return z;
 

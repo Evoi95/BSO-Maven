@@ -33,7 +33,7 @@ class TestControllerLogin {
 			state=cL.controlla(email,pass/*User.getInstance().getEmail(),User.getInstance().getPassword()*/);
 		} catch (SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}	
 		System.out.println("Sate :"+ state);
 		assertEquals(true,state);//fail("Not yet implemented");

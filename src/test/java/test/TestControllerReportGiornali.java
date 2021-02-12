@@ -18,7 +18,7 @@ class TestControllerReportGiornali {
 			cRG.generaReportGiornali();
 		} catch (IOException | SQLException e) {
 		 
-			e.printStackTrace();
+			
 		}
 	}
 
