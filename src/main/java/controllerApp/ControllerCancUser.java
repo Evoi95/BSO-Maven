@@ -1,7 +1,7 @@
 package controllerApp;
 
 import database.UsersDao;
-import usersSingelton.TempUser;
+import users.singelton.TempUser;
 
 public class ControllerCancUser {
 	private static TempUser u=TempUser.getInstance();

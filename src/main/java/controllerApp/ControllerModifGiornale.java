@@ -29,7 +29,7 @@ public class ControllerModifGiornale {
 			g.setPrezzo(prezzo);
 			g.setCopieRimanenti(copie);
 			gd.aggiornaGiornale(g);
-			// TODO Auto-generated method stub
+			
 			return false;
 		}
 		

@@ -11,7 +11,7 @@ public class ControllerCancLibro {
 	public void cancella(int id) {
 		l.setId(id);
 		lD.cancella(l);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

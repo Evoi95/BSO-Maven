@@ -4,32 +4,18 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
 
-import controllerApp.singeltonSystemState;
-import factoryBook.Libro;
-import javafx.beans.InvalidationListener;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import usersSingelton.Admin;
-import usersSingelton.Editore;
-import usersSingelton.Scrittore;
-import usersSingelton.TempUser;
-import usersSingelton.User;
-
-
+import controllerApp.SingeltonSystemState;
+import users.singelton.Admin;
+import users.singelton.Editore;
+import users.singelton.Scrittore;
+import users.singelton.TempUser;
+import users.singelton.User;
 
 public class UsersDao  {
 	
@@ -43,7 +29,6 @@ public class UsersDao  {
 	private int max;
 	private static String r;
 	private boolean state=false;
-
 
     // use this function on controller after you had check the email
     // add an user on db after registration
@@ -854,8 +839,6 @@ public class UsersDao  {
     
     public static TempUser aggiornaTempUtente(TempUser U, String emailN)
     {
-        LocalDate d=U.getDataDiNascita();
-
     String email = TempUser.getInstance().getEmail();
    
 	try 
@@ -1060,7 +1043,7 @@ public class UsersDao  {
 	    }
 */
 	public void getListaUtenti()  {
-		// TODO Auto-generated method stub
+		
 		conn= ConnToDb.generalConnection();
             ResultSet rs;
 			try {
@@ -1127,7 +1110,7 @@ public class UsersDao  {
 		int id=TempUser.getInstance().getIdU();
 		
 		System.out.println("Id passato nel dao di tempUser :"+TempUser.getInstance().getIdU());
-		System.out.println("Id passato nel dao di singletonBattona :"+singeltonSystemState.getIstance().getId());
+		System.out.println("Id passato nel dao di singletonBattona :"+SingeltonSystemState.getIstance().getId());
 		
 		
 		
@@ -1279,7 +1262,6 @@ public class UsersDao  {
 	public static TempUser aggiornaUtenteTemp(TempUser TU) throws NullPointerException
     {
     
-		int id=TU.getIdU();
 	try 
 	{
 		

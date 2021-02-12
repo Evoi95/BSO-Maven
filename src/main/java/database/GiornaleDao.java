@@ -185,7 +185,7 @@ public class GiornaleDao {
 }
 	
 	public ObservableList<Raccolta> getGiornali()  {
-		// TODO Auto-generated method stub
+		
 		
 		Connection conn= ConnToDb.generalConnection();
 
@@ -288,12 +288,12 @@ public class GiornaleDao {
 			 //return id;
 			return id;
 
-			// TODO Auto-generated method stub
+			
 			
 		}
 
 	public String retTip(Giornale g)  {
-			// TODO Auto-generated method stub
+			
 			String titolo=g.getTitolo();
 			  conn = ConnToDb.generalConnection();
 			 try {
@@ -458,7 +458,7 @@ public class GiornaleDao {
 	}
 
 	public ObservableList<Giornale> getLibriSingolo()  {
-		// TODO Auto-generated method stub
+		
 		Connection c= ConnToDb.generalConnection();
 		ObservableList<Giornale> catalogo=FXCollections.observableArrayList();
 		 
@@ -624,7 +624,7 @@ public class GiornaleDao {
 	}
 
 	public ObservableList<Raccolta> getGiornaliByName(String s) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		Connection c= ConnToDb.generalConnection();
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
 		 

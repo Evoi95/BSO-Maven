@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.UsersDao;
-import usersSingelton.TempUser;
+import users.singelton.TempUser;
 
 public class ControllerAddUserPage {
 	private UsersDao ud;

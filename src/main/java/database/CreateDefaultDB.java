@@ -37,13 +37,7 @@ public class CreateDefaultDB
 						+ "Database creato \n"
 						+ " Chiamo la Stored Procedure, per creare le tabelle");
 				
-				query=	"CREATE TABLE if not exists USERS "
-						+ "	(	idUser INT primary key not null auto_increment,"
-						+ "	idRuolo VARCHAR(1) NOT NULL DEFAULT 'U',"
-						+ "	Nome VARCHAR(40), Cognome VARCHAR(40),"
-						+ " Email VARCHAR(50) UNIQUE, pwd VARCHAR(16),"
-						+ " descrizione text, DataDiNascita date"
-						+ "	);";
+				query=	"CREATE TABLE if not exists USERS (	idUser INT primary key not null auto_increment, idRuolo VARCHAR(1) NOT NULL DEFAULT 'U, Nome VARCHAR(40), Cognome VARCHAR(40),Email VARCHAR(50) UNIQUE , pwd VARCHAR(16),descrizione text, DataDiNascita date);";
 				st.executeUpdate(query);
 				
 				query=	"Create table  if not exists AMMINISTRATORE"

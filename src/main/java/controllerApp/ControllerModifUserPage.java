@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.UsersDao;
-import usersSingelton.TempUser;
-import usersSingelton.User;
+import users.singelton.TempUser;
+import users.singelton.User;
 
 public class ControllerModifUserPage {
 	private UsersDao ud;
@@ -27,7 +27,7 @@ public class ControllerModifUserPage {
 		uT.setIdU(id);
 		
 		return ud.getTempUserSingolo(uT);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
@@ -39,7 +39,7 @@ public class ControllerModifUserPage {
 
 
 	public void aggiornaUtenteByAdmin(String n, String c, String e, String p, String d, LocalDate data, String r) throws NullPointerException {
-		// TODO Auto-generated method stub
+		
 		uT.setNome(n);
 		uT.setCognome(c);
 		uT.setEmail(e);

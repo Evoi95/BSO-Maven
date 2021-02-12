@@ -3,7 +3,7 @@ package controllerApp;
 import database.UsersDao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerVisualizzaProfilo {
 	private UsersDao ud;
@@ -23,32 +23,17 @@ public class ControllerVisualizzaProfilo {
 	public boolean cancellaUtente() {
 		if(UsersDao.deleteUser(User.getInstance())==true )
 		{
-		/*
-				Alert alert=new Alert(AlertType.INFORMATION);
-				alert.setTitle("Cancellazione profilo");// line 2
-				alert.setHeaderText("cancellazione");// line 3
-				alert.setContentText("!--Utente  cancellato--!");// line 4
-				alert.showAndWait(); // line 5
-				*/
-				
-				User.getInstance().setNull();
-				status=true;
-				//System.out.println("USer @"+u.getInstance());
-
-				/*
-				 * TODO settare istanze a null oppure checkuser
-				 */
+			User.getInstance().setNull();
+			status=true;
+			//System.out.println("USer @"+u.getInstance());
 		}
 		return status;
-				
-				//		return status;
-
 
 		}
 }
 		
 		
-		// TODO Auto-generated method stub
+		
 		
 	
 

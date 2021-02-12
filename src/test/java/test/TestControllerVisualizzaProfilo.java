@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerVisualizzaProfilo;
-import usersSingelton.User;
+import users.singelton.User;
 
 class TestControllerVisualizzaProfilo {
 	private ControllerVisualizzaProfilo cVP=new ControllerVisualizzaProfilo();

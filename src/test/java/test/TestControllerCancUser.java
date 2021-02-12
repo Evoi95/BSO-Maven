@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerCancUser;
-import usersSingelton.TempUser;
+import users.singelton.TempUser;
 
 class TestControllerCancUser {
 	private static TempUser u=TempUser.getInstance();

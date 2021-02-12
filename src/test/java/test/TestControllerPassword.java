@@ -16,9 +16,9 @@ class TestControllerPassword {
 	void testControllerPassword() throws SQLException {
 		cP=new ControllerPassword();
 		
-		String email="Admin@Admin.com";
-		String vecchiaP="Admin871";
-		String nuovaP="Admin872";
+		String email="baoPublishing@gmail.com";
+		String vecchiaP="BaoPub2021";
+		String nuovaP="BaoPub2022";
 		status=cP.aggiornaPass(email, vecchiaP, nuovaP);
 		
 		assertEquals(true,status);

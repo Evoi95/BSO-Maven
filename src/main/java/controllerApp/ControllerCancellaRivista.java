@@ -11,7 +11,7 @@ public class ControllerCancellaRivista {
 		r.setId(id);
 		rd.cancella(r);
 		
-		// TODO Auto-generated method stub
+		
 		
 	}
 	public ControllerCancellaRivista()

@@ -4,8 +4,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.regex.Pattern;
 
-import usersSingelton.User;
 import database.UsersDao;
+import users.singelton.User;
 
 public class ControllerBsoRegister {
 	private Boolean state=false;
@@ -13,7 +13,7 @@ public class ControllerBsoRegister {
 	private User u=User.getInstance();
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		
 		u.setEmail(email);
 		u.setPassword(pwd);

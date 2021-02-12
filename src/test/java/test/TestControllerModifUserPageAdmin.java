@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerModifUserPage;
-import usersSingelton.TempUser;
+import users.singelton.TempUser;
 
 class TestControllerModifUserPageAdmin {
 	private static TempUser u=TempUser.getInstance();

@@ -15,7 +15,6 @@ public class Negozio {
 		this.isOpen = isOpen;
 	}
 	public Negozio() {
-		// TODO Auto-generated constructor stub
 	}
 	public String getNome() {
 		return nome;

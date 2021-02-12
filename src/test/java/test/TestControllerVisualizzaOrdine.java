@@ -18,7 +18,7 @@ class TestControllerVisualizzaOrdine {
 	private Pagamento p;
 	private PagamentoDao pD=new PagamentoDao();
 	@Test
-	public void  testGetDati() throws SQLException {
+	void  testGetDati() throws SQLException {
 		boolean state;
 		p=new Pagamento(0, null, 0, null, 0, null, 0);
 		pD.inserisciPagamento(p);

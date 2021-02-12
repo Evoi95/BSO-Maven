@@ -17,26 +17,26 @@ public class ControllerRicercaPage {
 		gD = new GiornaleDao();
 		rD =new RivistaDao();
 		//singeltonSystemState.getIstance();
-		singeltonSystemState.getIstance().setIsSearch(true);
-		System.out.println("vis nel costruttore"+singeltonSystemState.getIstance());
+		SingeltonSystemState.getIstance().setIsSearch(true);
+		System.out.println("vis nel costruttore"+SingeltonSystemState.getIstance());
 		
 	}
 	
 	public ObservableList<Raccolta> cercaPerTipo (String S) throws SQLException
 	{
 		//3 if per i tipi 
-		System.out.println("Tipo e confronto :"+singeltonSystemState.getIstance().getType().equals("libro"));
-		if(singeltonSystemState.getIstance().getType().equals("libro"))
+		System.out.println("Tipo e confronto :"+SingeltonSystemState.getIstance().getType().equals("libro"));
+		if(SingeltonSystemState.getIstance().getType().equals("libro"))
 		{
 			//serach in libro dao
 			return lD.getLibriByName(S);
 		}
-		else if(singeltonSystemState.getIstance().getType().equals("giornale"))
+		else if(SingeltonSystemState.getIstance().getType().equals("giornale"))
 		{
 			//search in giornale dao
 			return gD.getGiornaliByName(S);
 		}
-		else if(singeltonSystemState.getIstance().getType().equals("rivista"))
+		else if(SingeltonSystemState.getIstance().getType().equals("rivista"))
 		{
 			//search in rivista dao
 			return rD.getRivisteByName(S);
@@ -48,7 +48,7 @@ public class ControllerRicercaPage {
 	
 	public String returnType()
 	{
-		return singeltonSystemState.getIstance().getType();
+		return SingeltonSystemState.getIstance().getType();
 	}
 	
 	

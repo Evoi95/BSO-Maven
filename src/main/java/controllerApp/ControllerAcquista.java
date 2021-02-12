@@ -21,7 +21,7 @@ public class ControllerAcquista {
 	private Giornale g;
 	private Rivista r;
 	private Pagamento p;
-	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private static SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	private String name;
 	private int disp;
 	
@@ -92,7 +92,7 @@ public class ControllerAcquista {
 	public int getIdL(String text) throws SQLException {
 		l.setCodIsbn(text);
 		return lD.retId( l);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
@@ -105,7 +105,7 @@ public class ControllerAcquista {
 	public int getIdG(String text) throws SQLException {
 		g.setTitolo(text);//l.setCodIsbn(text);
 		return gD.retId( g);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
@@ -118,7 +118,7 @@ public class ControllerAcquista {
 	public int getIdR(String text) throws SQLException {
 		r.setTitolo(text);//l.setCodIsbn(text);
 		return rD.retId( r);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

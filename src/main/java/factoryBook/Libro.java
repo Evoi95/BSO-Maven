@@ -206,14 +206,10 @@ public class Libro implements Raccolta {
 	    // otteniamo una istanza di PdfWriter passando il document ed uno stream file
 	    try {
 			PdfWriter.getInstance(document, new FileOutputStream(filename));
-			} catch (FileNotFoundException e) {
+			} catch (FileNotFoundException|DocumentException e) {
 			 
 				e.printStackTrace();
-			} catch (DocumentException e) {
-			 
-				e.printStackTrace();
-			}
-	        // apriamo il documento
+			} 
 	        document.open();
 	        // aggiungiamo un paragrafo
 	        try {
@@ -232,13 +228,7 @@ public class Libro implements Raccolta {
 			}
 	        // chiudiamo il documento
 	        document.close();
-	        
 
-		// TODO Auto-generated method stub
-		/*
-		 * apertutra file pdf(p.d.)
-		 */
-		
 	}
 	
 	public Libro() {

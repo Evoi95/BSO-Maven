@@ -7,16 +7,16 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.singeltonSystemState;
+import controllerApp.SingeltonSystemState;
 import database.UsersDao;
-import usersSingelton.TempUser;
-import usersSingelton.User;
+import users.singelton.TempUser;
+import users.singelton.User;
 
 class TestUsersDao {
 	private UsersDao ud=new UsersDao();
 	private static User u=User.getInstance();
 	private static TempUser tu=TempUser.getInstance();
-	private static controllerApp.singeltonSystemState vis=controllerApp.singeltonSystemState.getIstance();
+	private static controllerApp.SingeltonSystemState vis=controllerApp.SingeltonSystemState.getIstance();
 	private boolean state=false;
 	private int state1;
 	private String ruolo;
@@ -64,7 +64,7 @@ class TestUsersDao {
 
 	@Test
 	void testGetRuolo() {
-		u.setEmail("admin@admin.com");
+		u.setEmail("baoPublishing@gmail.com");
 		ruolo=UsersDao.getRuolo(u);
 		assertNotNull(ruolo);
 	}

@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerBsoRegister;
-import usersSingelton.User;
+import users.singelton.User;
 
 class TestControllerRegister {
 	private static User u=User.getInstance();

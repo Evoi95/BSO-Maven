@@ -10,7 +10,7 @@ public class ControllerCancellaGiornale {
 	public void cancella(int id) {
 		g.setId(id);
 		gD.cancella(g);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

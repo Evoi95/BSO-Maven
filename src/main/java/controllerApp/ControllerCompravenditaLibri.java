@@ -6,7 +6,7 @@ import database.LibroDao;
 import factoryBook.Libro;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerCompravenditaLibri {
 	private LibroDao lD;

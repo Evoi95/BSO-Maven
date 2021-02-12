@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import database.UsersDao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerPassword {
 	private User U = User.getInstance();

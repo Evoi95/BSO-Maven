@@ -116,7 +116,7 @@ public class CartaCredito {
 				this.prezzoTransazine=prezzo;
 			}
 	public String getCodicePin() {
-		// TODO Auto-generated method stub
+		
 		return this.civ;
 	}
 	public void setCodicePin(String pin)

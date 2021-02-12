@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 
-import controllerApp.singeltonSystemState;
+import controllerApp.SingeltonSystemState;
 import factoryBook.Factory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -262,12 +262,12 @@ public class LibroDao  {
 		 //return id;
 		return id;
 
-		// TODO Auto-generated method stub
+		
 		
 	}
 	
 	public String retTip(Libro l) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		String categoria=l.getCategoria();
 		  conn = ConnToDb.generalConnection();
 		 try {
@@ -514,7 +514,7 @@ public class LibroDao  {
 	}
 
 	public void cancella(Libro l) {
-		// TODO Auto-generated method stub
+		
 		int row = 0;
 
 		try {

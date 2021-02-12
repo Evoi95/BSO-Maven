@@ -84,19 +84,19 @@ public class Giornale implements Raccolta {
 
 	@Override
 	public void compra() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void scarica() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void leggi() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

@@ -2,13 +2,13 @@ package controllerApp;
 
 import java.sql.SQLException;
 
-import usersSingelton.*;
 import database.UsersDao;
+import users.singelton.*;
 
 public class ControllerLogin {
 	
 	private static User user = User.getInstance();
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	//private User tU=User.getInstance();
 
 	

@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerAcquista;
-import controllerApp.singeltonSystemState;
+import controllerApp.SingeltonSystemState;
 
 class TestControllerAcquista {
 	private ControllerAcquista cA=new ControllerAcquista();
-	private static singeltonSystemState vis=singeltonSystemState.getIstance();
+	private static SingeltonSystemState vis=SingeltonSystemState.getIstance();
 
 	@Test
 	void testTotale() {

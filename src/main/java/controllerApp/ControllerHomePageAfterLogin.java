@@ -1,13 +1,13 @@
 package controllerApp;
 
 
-import usersSingelton.User;
+import users.singelton.User;
 
 
 public class ControllerHomePageAfterLogin {
 	
 	private static User U = User.getInstance();
-	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private static SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	// qui ci va la funzione di logout
 	

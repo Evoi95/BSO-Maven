@@ -10,7 +10,7 @@ public class ControllerVisualizzaLibro {
 	private LibroDao ld;
 	private Libro b;
 	private int tempIdLib;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaLibro()
 	{

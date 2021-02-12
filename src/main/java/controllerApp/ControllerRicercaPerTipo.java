@@ -2,7 +2,7 @@ package controllerApp;
 
 public class ControllerRicercaPerTipo {
 
-	private singeltonSystemState vis=singeltonSystemState.getIstance();
+	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	
 	public ControllerRicercaPerTipo() 
 	{
@@ -20,16 +20,16 @@ public class ControllerRicercaPerTipo {
 	}
 	public boolean setRicercaG()
 	{
-		singeltonSystemState.getIstance().setTypeAsDaily();
-		if (singeltonSystemState.getIstance().getType().equals("giornale"))
+		SingeltonSystemState.getIstance().setTypeAsDaily();
+		if (SingeltonSystemState.getIstance().getType().equals("giornale"))
 			return true;
 		else
 			return false;
 	}
 	public boolean setRicercaR()
 	{
-		singeltonSystemState.getIstance().setTypeAsMagazine();
-		if (singeltonSystemState.getIstance().getType().equals("rivista"))
+		SingeltonSystemState.getIstance().setTypeAsMagazine();
+		if (SingeltonSystemState.getIstance().getType().equals("rivista"))
 			return true;
 		else
 			return false;

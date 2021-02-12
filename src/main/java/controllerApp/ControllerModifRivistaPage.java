@@ -42,7 +42,7 @@ public class ControllerModifRivistaPage {
 		r.setId(id);
 		
 		rd.aggiornaRivista(r);
-		// TODO Auto-generated method stub
+		
 		
 	}
 	

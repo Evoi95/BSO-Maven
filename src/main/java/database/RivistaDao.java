@@ -255,12 +255,12 @@ public class RivistaDao {
 		 //return id;
 		return id;
 
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public String retTip(Rivista r) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		String categoria=null;
 		  conn = ConnToDb.generalConnection();
 		 try {
@@ -383,7 +383,7 @@ public class RivistaDao {
 	}
 
 	public ObservableList<Rivista> getRivistaSingolo() throws SQLException {
-		// TODO Auto-generated method stub
+		
 		conn= ConnToDb.generalConnection();
 		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
 		 
@@ -484,12 +484,12 @@ public class RivistaDao {
 		
 		System.out.println("Rivista cancellata : "+row);
 
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	public ObservableList<Rivista> getRivistaSingoloById(Rivista r) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		conn= ConnToDb.generalConnection();
 		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
 		 

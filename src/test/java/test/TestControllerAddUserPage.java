@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerAddUserPage;
-import usersSingelton.TempUser;
+import users.singelton.TempUser;
 
 class TestControllerAddUserPage {
 	private ControllerAddUserPage cAUP=new ControllerAddUserPage();

@@ -83,17 +83,17 @@ public class Rivista implements Raccolta  {
 	}
 	@Override
 	public void compra() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
 	public void scarica() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	@Override
 	public void leggi() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 	public Rivista(String titolo, String tipologia, String autore, String lingua, String editore, String descrizione,
@@ -123,7 +123,6 @@ public class Rivista implements Raccolta  {
 		this.prezzo =0;
 		this.copieRim = 0;
 		this.id = -1;
-		// TODO Auto-generated constructor stub
 	}
 	
 	

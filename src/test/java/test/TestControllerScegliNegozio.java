@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerScegliNegozio;
-import controllerApp.singeltonSystemState;
+import controllerApp.SingeltonSystemState;
 import javafx.collections.ObservableList;
 import negozio.Negozio;
 
 class TestControllerScegliNegozio {
 	private ControllerScegliNegozio cSN=new ControllerScegliNegozio();
 	private ObservableList<Negozio> listOfNegozi;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 
 	@Test

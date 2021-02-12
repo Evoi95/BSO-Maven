@@ -84,7 +84,7 @@ public class ControllerPagamentoCC {
 	}
 
 	public ObservableList<CartaCredito> ritornaElencoCC(String nomeU) throws SQLException {
-		// TODO Auto-generated method stub
+		
 		// System.out.println("Chiamata nel controller :"+cDao.getCarteCredito(nomeU));
 		return cDao.getCarteCredito(nomeU);
 	}

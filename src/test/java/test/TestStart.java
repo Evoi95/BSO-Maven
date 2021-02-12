@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerPagamentoCC;
 
-public class TestStart {
+class TestStart {
 
 	@Test
 	void testControllaPag() throws Exception {

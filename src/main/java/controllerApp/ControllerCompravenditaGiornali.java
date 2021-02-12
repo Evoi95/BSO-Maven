@@ -6,7 +6,7 @@ import database.GiornaleDao;
 import factoryBook.Giornale;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerCompravenditaGiornali {
 	private GiornaleDao gD;
@@ -19,7 +19,7 @@ public class ControllerCompravenditaGiornali {
 	}
 
 	public ObservableList<Raccolta> getGiornali() throws SQLException {
-		// TODO Auto-generated method stub
+		
 		
 		return gD.getGiornali();
 

@@ -7,7 +7,7 @@ import database.ContrassegnoDao;
 import database.PagamentoDao;
 import pagamento.Fattura;
 import pagamento.Pagamento;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerPagamentoCash {
 	private ContrassegnoDao pD;

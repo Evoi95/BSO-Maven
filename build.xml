@@ -236,7 +236,7 @@
         </junit>
     </target>
     <target name="Main (7)">
-        <java classname="boundaryLaptop.Main" failonerror="true" fork="yes">
+        <java classname="boundary.laptop.Main" failonerror="true" fork="yes">
             <classpath refid="run.Main (7).classpath"/>
         </java>
     </target>

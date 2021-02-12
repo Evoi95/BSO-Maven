@@ -1,6 +1,6 @@
 package controllerApp;
 
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerReportRaccolta {
 	private static User u=User.getInstance();

@@ -11,3 +11,5 @@ Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0

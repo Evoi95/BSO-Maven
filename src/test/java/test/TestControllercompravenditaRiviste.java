@@ -10,7 +10,7 @@ import controllerApp.ControllerCompravenditaLibri;
 import controllerApp.ControllerCompravenditaRiviste;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
-import usersSingelton.User;
+import users.singelton.User;
 
 class TestControllercompravenditaRiviste {
 	private ControllerCompravenditaRiviste cCR;

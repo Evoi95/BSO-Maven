@@ -7,7 +7,7 @@ import database.RivistaDao;
 import factoryBook.Raccolta;
 import factoryBook.Rivista;
 import javafx.collections.ObservableList;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerCompravenditaRiviste {
 	private RivistaDao rD;

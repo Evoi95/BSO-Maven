@@ -9,7 +9,7 @@ import factoryBook.Raccolta;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pagamento.Pagamento;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class PagamentoDao {
 	private static String qInsert ;
@@ -30,7 +30,7 @@ public class PagamentoDao {
 		try {
 					connPag=ConnToDb.generalConnection();
 
-		// TODO Auto-generated method stub
+		
 		 qInsert="INSERT INTO pagamento (metodo,esito,nomeUtente,spesaTotale,eMail,tipoAcquisto,id_prod) values (?,?,?,?,?,?,?)";
 		prepQ = connPag.prepareStatement(qInsert);
 		//prepQ.setInt(1,p.getEsito()); // numero pagine int
@@ -91,7 +91,7 @@ public void aggiornaPagamentoCash(Pagamento p) throws SQLException {
 		try {
 					connPag=ConnToDb.generalConnection();
 
-		// TODO Auto-generated method stub
+		
 		 qInsert="update pagamento set metodo=?,esito=?,nomeUtente=?,spesaTotale=?,eMail=?  where 1+last_insert_id(id_op) order by id_op desc limit 1";
 		prepQ = connPag.prepareStatement(qInsert);
 		//prepQ.setInt(1,p.getEsito()); // numero pagine int
@@ -120,7 +120,7 @@ public void aggiornaPagamentoCC(Pagamento p) throws SQLException {
 	try {
 				connPag=ConnToDb.generalConnection();
 
-	// TODO Auto-generated method stub
+	
 	 qInsert="update pagamento set metodo=?,esito=?,nomeUtente=?,spesaTotale=?,eMail=?  where 1+last_insert_id(id_op) order by id_op desc limit 1";
 	prepQ = connPag.prepareStatement(qInsert);
 	//prepQ.setInt(1,p.getEsito()); // numero pagine int
@@ -138,7 +138,7 @@ public void aggiornaPagamentoCC(Pagamento p) throws SQLException {
 	}
 	}
 public ObservableList<Pagamento> getPagamenti()  {
-	// TODO Auto-generated method stub
+	
 	
 		
 		Connection conn= ConnToDb.generalConnection();

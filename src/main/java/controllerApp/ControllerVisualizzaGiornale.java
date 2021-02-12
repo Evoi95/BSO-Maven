@@ -12,7 +12,7 @@ public class ControllerVisualizzaGiornale {
 	private GiornaleDao gD;
 	private Giornale g;
 	private int tempIdGior;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaGiornale()
 	{

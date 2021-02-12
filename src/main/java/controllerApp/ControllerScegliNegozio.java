@@ -14,7 +14,7 @@ public class ControllerScegliNegozio {
 	private NegozioDao nD;
 	private Negozio N;
 	private ObservableList<Negozio> listOfNegozi;
-	private singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	
 	public ControllerScegliNegozio()

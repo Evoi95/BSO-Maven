@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerHomePageAfterLogin;
-import usersSingelton.User;
+import users.singelton.User;
 
 class TestControllerHomePageAfterLogin {
 	//private ControllerHomePageAfterLogin cHAL=new ControllerHomePageAfterLogin();

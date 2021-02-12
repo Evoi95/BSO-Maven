@@ -7,12 +7,12 @@ import java.sql.SQLException;
 import org.junit.jupiter.api.Test;
 
 import controllerApp.ControllerRicercaPage;
-import controllerApp.singeltonSystemState;
+import controllerApp.SingeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
 
 class TestRicerca {
-	private static 		singeltonSystemState vis=singeltonSystemState.getIstance();
+	private static 		SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	boolean statoL = false,statoG = false,statoR = false,statoTotale=false;
 
 

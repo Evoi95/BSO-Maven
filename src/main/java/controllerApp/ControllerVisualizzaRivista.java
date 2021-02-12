@@ -10,7 +10,7 @@ public class ControllerVisualizzaRivista {
 	private RivistaDao rD;
 	private Rivista R;
 	private int tempIdMag;
-	private static singeltonSystemState vis = singeltonSystemState.getIstance() ;
+	private static SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaRivista()
 	{

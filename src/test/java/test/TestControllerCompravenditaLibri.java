@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import controllerApp.ControllerCompravenditaLibri;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
-import usersSingelton.User;
+import users.singelton.User;
 
 class TestControllerCompravenditaLibri {
 	private ControllerCompravenditaLibri cCL;

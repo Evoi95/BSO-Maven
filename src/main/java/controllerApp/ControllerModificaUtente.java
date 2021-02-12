@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import database.UsersDao;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import usersSingelton.User;
+import users.singelton.User;
 
 public class ControllerModificaUtente {
 	private UsersDao ud;
@@ -23,7 +23,7 @@ public class ControllerModificaUtente {
 	public User prendi() {
 		
 		return ud.pickData(User.getInstance());
-		// TODO Auto-generated method stub
+		
 		
 	}
 
