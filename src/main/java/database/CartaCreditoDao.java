@@ -176,7 +176,7 @@ public class CartaCreditoDao {
 		String codice=cc.getNumeroCC();
 		String n = null,cog = null,cod = null;
 		Date scad = null;
-		Connection conn= ConnToDb.generalConnection();
+		conn= ConnToDb.generalConnection();
 		    rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta,scad from cartacredito where codiceCarta='"+codice+"'");
 
             while(rs.next())

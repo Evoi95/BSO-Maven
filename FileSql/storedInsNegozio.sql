@@ -1,4 +1,3 @@
-
 INSERT INTO `ispw`.`negozio`
 (`nome`,`via`,`isValid`,`isOpen`)
 VALUES

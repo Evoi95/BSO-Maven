@@ -38,11 +38,11 @@ public class RivistaDao {
 	{
 		 try {
 	            //String url = "jdbc:msql://200.210.220.1:1114/Demo";
-	            Connection conn = ConnToDb.generalConnection();
-	            Statement stmt = conn.createStatement();
+	             conn = ConnToDb.generalConnection();
+	             st = conn.createStatement();
 	            ResultSet rs;
 	 
-	            rs = stmt.executeQuery("select * from rivista where titolo ='"+r.getTitolo()+"'");
+	            rs = st.executeQuery("select * from rivista where titolo ='"+r.getTitolo()+"'");
 	            while ( rs.next() ) {
 	                String titolo = rs.getString("titolo");
 	                String tipologia=rs.getString("tipologia");
@@ -60,30 +60,31 @@ public class RivistaDao {
 
 
 	                
-	                Alert alert = new Alert(AlertType.INFORMATION);
-	    	        alert.setTitle("  Riepilogo  ");
-	    	        alert.setHeaderText("Ecco il riepigolo del libro");
-	    	        alert.setContentText("  Titolo : "+titolo+"\n"+"tipologia : "+tipologia+"\n"+"codice isbn :"+ "\n"+"autore :"+autore+"\n"+"lingua :"+lingua+"\n"+
-	    	        "\n"+"editore : "+editore+"\n"+"descrizione :"+desc+"\n"+"data pubblicazione : "+data+"\n"+"disponibilita :"+ disp
-	    	        		+"\n"+"prezzo :"+prezzo+"\n"+"copieRimanenti : "+copieR+"\n");
-	    	        alert.showAndWait();
+	                
 	    	        
 	            }
-	            conn.close();
 	        } catch (Exception e) {
 	            System.err.println("Got an exception! ");
 	            System.err.println(e.getMessage());
 	        }
+		 finally {
+			 try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 }
 	    }
 	
 	public float getCosto(Rivista r) throws SQLException
 	{
 		float prezzo=(float) 0.0;
-		 Connection conn = ConnToDb.generalConnection();
-         Statement stmt = conn.createStatement();
-         ResultSet rs;
+		  conn = ConnToDb.generalConnection();
+         st = conn.createStatement();
+         //ResultSet rs;
 
-         rs = stmt.executeQuery("select * from rivista  where titolo='"+r.getTitolo()+"'");
+         rs = st.executeQuery("select * from rivista  where titolo='"+r.getTitolo()+"'");
          while ( rs.next() ) {
               prezzo=rs.getFloat("prezzo");
 
@@ -94,14 +95,12 @@ public class RivistaDao {
 	
 	public void aggiornaDisponibilita(Rivista r) throws SQLException
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
 		int d=r.getCopieRim();
 
 		 try {
 			  conn = ConnToDb.generalConnection();
-		      stmt = conn.prepareStatement("update rivista set copieRimanenti=copieRimanenti-'"+d+"' where titolo='"+r.getTitolo()+"'");
-			  stmt.executeUpdate();
+		      prepQ = conn.prepareStatement("update rivista set copieRimanenti=copieRimanenti-'"+d+"' where titolo='"+r.getTitolo()+"'");
+			  prepQ.executeUpdate();
 
 	            
 	         }catch(SQLException e)
@@ -111,7 +110,7 @@ public class RivistaDao {
 
 	         }	
 		 finally {
-			 stmt.close();
+			 prepQ.close();
 			 conn.close();
 			 System.out.println("Ho chiuso tutto");
 			 
@@ -123,14 +122,12 @@ public class RivistaDao {
 
 	public void daiPrivilegi() throws SQLException
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
 	//	Double d=(double) disp;
 
 		 try {
 			  conn = ConnToDb.generalConnection();
-			  stmt = conn.prepareStatement(" SET SQL_SAFE_UPDATES=0");
-			         stmt.executeUpdate();
+			  prepQ = conn.prepareStatement(" SET SQL_SAFE_UPDATES=0");
+			         prepQ.executeUpdate();
 
 	            
 	         }catch(SQLException e)
@@ -140,7 +137,7 @@ public class RivistaDao {
 
 	         }	
 		 finally {
-			 stmt.close();
+			 prepQ.close();
 			 conn.close();
 			 System.out.println("Ho chiuso tutto");
 			 
@@ -152,13 +149,13 @@ public class RivistaDao {
 	
 	public ObservableList<Raccolta> getRiviste() throws SQLException
 	{
-		Connection c= ConnToDb.generalConnection();
+		 conn= ConnToDb.generalConnection();
 
 		
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
 		 
 			//ConnToDb.connection();
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista");
+             rs=conn.createStatement().executeQuery("SELECT * FROM rivista");
            // int i=0;
             while(rs.next())
             {
@@ -186,13 +183,13 @@ public class RivistaDao {
 	
 	public ObservableList<Raccolta> getRivisteByName(String S) throws SQLException
 	{
-		Connection c= ConnToDb.generalConnection();
+		 conn= ConnToDb.generalConnection();
 
 		
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
 		 
 			//ConnToDb.connection();
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM ispw.rivista where titolo = '"+S+"' OR autore = '"+S+"'");
+             rs=conn.createStatement().executeQuery("SELECT * FROM ispw.rivista where titolo = '"+S+"' OR autore = '"+S+"'");
            // int i=0;
             while(rs.next())
             {
@@ -265,12 +262,11 @@ public class RivistaDao {
 	public String retTip(Rivista r) throws SQLException {
 		// TODO Auto-generated method stub
 		String categoria=null;
-		 Connection conn = ConnToDb.generalConnection();
+		  conn = ConnToDb.generalConnection();
 		 try {
-         Statement stmt = conn.createStatement();
-         ResultSet rs;
+          st = conn.createStatement();
 
-         rs = stmt.executeQuery("select tipologia from rivista where titolo ='"+r.getTitolo()+"'");
+         rs = st.executeQuery("select tipologia from rivista where titolo ='"+r.getTitolo()+"'");
          while ( rs.next() ) {
               categoria=rs.getString("tipologia");
 
@@ -289,9 +285,8 @@ public class RivistaDao {
 	
 	public String getNome(Rivista R) throws SQLException
 	{
-	
-		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT titolo FROM rivista where id = "+R.getId()+" ");
+	 conn= ConnToDb.generalConnection();
+         rs=conn.createStatement().executeQuery("SELECT titolo FROM rivista where id = "+R.getId()+" ");
         if (rs.next())
         {
         	name = rs.getString(1);
@@ -307,7 +302,7 @@ public class RivistaDao {
 	public int getDisp(Rivista R) throws SQLException
 	{
 		int disp;
-        ResultSet rs;
+        //ResultSet rs;
 		try {
 			if (ConnToDb.connection())
 			{
@@ -337,7 +332,7 @@ public class RivistaDao {
 	
 	public int getQuantita(Rivista R) throws SQLException
 	{
-        ResultSet rs;
+        
 		try {
 			if (ConnToDb.connection())
 			{
@@ -363,7 +358,6 @@ public class RivistaDao {
 	public boolean checkDisp(Rivista R,int id) throws SQLException
 	{
 		int disp;
-        ResultSet rs;
 		try {
 			if (ConnToDb.connection())
 			{
@@ -390,10 +384,10 @@ public class RivistaDao {
 
 	public ObservableList<Rivista> getRivistaSingolo() throws SQLException {
 		// TODO Auto-generated method stub
-		Connection c= ConnToDb.generalConnection();
+		conn= ConnToDb.generalConnection();
 		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
 		 
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista");
+             rs=conn.createStatement().executeQuery("SELECT * FROM rivista");
 
             while(rs.next())
             {
@@ -496,10 +490,10 @@ public class RivistaDao {
 
 	public ObservableList<Rivista> getRivistaSingoloById(Rivista r) throws SQLException {
 		// TODO Auto-generated method stub
-		Connection c= ConnToDb.generalConnection();
+		conn= ConnToDb.generalConnection();
 		ObservableList<Rivista> catalogo=FXCollections.observableArrayList();
 		 
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM rivista");
+            ResultSet rs=conn.createStatement().executeQuery("SELECT * FROM rivista");
 
             while(rs.next())
             {

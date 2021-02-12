@@ -42,6 +42,7 @@ public class UsersDao  {
 	private static TempUser Ut = TempUser.getInstance();
 	private int max;
 	private static String r;
+	private boolean state=false;
 
 
     // use this function on controller after you had check the email
@@ -166,6 +167,8 @@ public class UsersDao  {
     	String email = U.getEmail();
     	
     	System.out.println("\n\n\n\tEmail in check user :"+email);
+    	int id;
+
     	try 
 		{
 			if (ConnToDb.connection())
@@ -178,10 +181,13 @@ public class UsersDao  {
 			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
-				 	//conn.close();				 	
-			 		System.out.println("utente già registarto");
-			 		return 1; // true
-			 		// account al ready exists
+			 		id=rs.getInt(1);
+				 	//conn.close();	
+			 		
+			 		if(id>0)
+			 		{
+			 			System.out.println("utente già registarto");
+			 			return 1;
 			 	}
 			 	else
 			 	{
@@ -190,8 +196,8 @@ public class UsersDao  {
 			 		// new account
 			 	}
 
-			}
-		}
+			}}}
+		
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
@@ -480,7 +486,7 @@ public class UsersDao  {
 			}
     	}
     	// errore
-    	return null;
+    	return U;
     }
          
     public static User aggiornaNome(User U)
@@ -514,7 +520,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
     
     public static User aggiornaCognome(User U)
@@ -548,7 +554,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
     
     public static User aggiornaEmail(User U,String m)
@@ -582,9 +588,9 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
-
+/*
     public static User aggiornaUtente(User U, String emailN)
     {
     
@@ -640,7 +646,7 @@ public class UsersDao  {
 	// errore
 	return null;
 }
-
+*/
 	public User aggiornaPass(User U) {
 		
 		String email = User.getInstance().getEmail();
@@ -672,7 +678,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
 
 	public User aggiornaDesc(User U) {
@@ -705,12 +711,13 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
 
 	public User aggiornaData(User U) {
 		String email = User.getInstance().getEmail();
-        
+		LocalDate data=U.getDataDiNascita();
+
         try 
     	{
     		
@@ -727,7 +734,7 @@ public class UsersDao  {
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,User.getInstance().getDataDiNascita().toString());
+       		 	prepQ.setString(1,data.toString());
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
@@ -738,7 +745,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
 
 	// Per il terzo caso d'uso creo e uso sempre il temp user per appoggiarmi all'utente che modifico  e quindi 
@@ -774,7 +781,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return Ut;
     }
     
     public static TempUser aggiornaCognome(TempUser U)
@@ -808,7 +815,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
     
     public static TempUser aggiornaEmail(TempUser U,String m)
@@ -842,12 +849,13 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
     
     public static TempUser aggiornaTempUtente(TempUser U, String emailN)
     {
-    
+        LocalDate d=U.getDataDiNascita();
+
     String email = TempUser.getInstance().getEmail();
    
 	try 
@@ -932,7 +940,7 @@ public class UsersDao  {
     		e1.printStackTrace();
     		}
     	// errore
-    	return null;
+    	return U;
     }
 
 	public TempUser aggiornaTempDesc(TempUser U) {
@@ -944,7 +952,7 @@ public class UsersDao  {
     		if (ConnToDb.connection())
     		{
     			
-    			Connection conn = ConnToDb.generalConnection();
+    			 conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
     			query="USE ispw";
     			st.executeQuery(query);
@@ -957,15 +965,22 @@ public class UsersDao  {
        		 	prepQ.setString(1,TempUser.getInstance().getDescrizione());
        			prepQ.executeUpdate();  		 		
     		 				 		
-    		 		conn.close();	
     		 	}
     		 
     	}
     	catch (SQLException e1) {
     		e1.printStackTrace();
     		}
+        finally {
+        	try {
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+        }
     	// errore
-    	return null;
+    	return U;
     }
 
 	public TempUser aggiornaTempData(TempUser U) {
@@ -977,7 +992,7 @@ public class UsersDao  {
     		if (ConnToDb.connection())
     		{
     			
-    			Connection conn = ConnToDb.generalConnection();
+    			 conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
     			query="USE ispw";
     			st.executeQuery(query);
@@ -1149,7 +1164,8 @@ public class UsersDao  {
 	public static User aggiornaUtente(User U)
     {
     
-   
+		LocalDate d=U.getDataDiNascita();
+
 	try 
 	{
 		
@@ -1176,7 +1192,7 @@ public class UsersDao  {
 		 	prepQ.setString(4, User.getInstance().getEmail());
 		 	prepQ.setString(5, User.getInstance().getPassword());
 		 	prepQ.setString(6, User.getInstance().getDescrizione());
-		 	prepQ.setString(7, User.getInstance().getDataDiNascita().toString());
+		 	prepQ.setString(7,d.toString());
 
 
 
@@ -1198,9 +1214,9 @@ public class UsersDao  {
 		e1.printStackTrace();
 		}
 	// errore
-	return null;
+	return U;
 }
-
+/*
 	public boolean createTempUser(TempUser U) throws SQLException
     {
     	boolean state=false;
@@ -1244,7 +1260,7 @@ public class UsersDao  {
 		return state;
     	
     }
-    
+    */
 
 	public int maxIdUSer() throws SQLException
 	{
@@ -1312,7 +1328,7 @@ public class UsersDao  {
 		e1.printStackTrace();
 		}
 	// errore
-	return null;
+	return TU;
 }
 
 

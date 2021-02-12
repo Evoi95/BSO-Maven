@@ -84,7 +84,7 @@ class TestControllerAcquista {
 	@Test
 	public void testGetTipG() {
 		String y = null;
-		String titolo="Republica";
+		String titolo="La Republica";
 		try {
 			y=cA.getTipG(titolo);
 		} catch (SQLException e) {

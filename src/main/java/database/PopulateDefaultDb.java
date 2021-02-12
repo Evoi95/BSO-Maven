@@ -26,7 +26,7 @@ public class PopulateDefaultDb {
 	
 	public static boolean populateDefaultDb() throws FileNotFoundException
 	{
-		if(	createLibri() && createGiornale() && createRivista() && createUser())
+		if(	createLibri() && createGiornale() && createRivista() && createUser() && createNegozio())
 		{
 			return true;
 		}
@@ -136,6 +136,44 @@ public class PopulateDefaultDb {
 			      Reader reader;
 				try {
 					reader = new BufferedReader(new FileReader("FileSql/storedInsUtenti.sql"));
+					sr.runScript(reader);
+
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			      //Running the script
+				
+
+			return true;
+			} 
+			catch (RuntimeSqlException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+
+		
+		
+				return false;
+
+		
+	}
+	
+	private static boolean createNegozio()
+	{
+			System.out.println("---------Chiamo stored insNEgozi---------\n\n");
+
+			try {
+				conn=ConnToDb.generalConnection();
+				 ScriptRunner sr = new ScriptRunner(conn);
+				 
+				 //&& preso come terminatore-> eseguito;	
+				 sr.setSendFullScript(true);
+			      //Creating a reader object
+			      Reader reader;
+				try {
+					reader = new BufferedReader(new FileReader("FileSql/storedInsNegozio.sql"));
 					sr.runScript(reader);
 
 				} catch (FileNotFoundException e) {

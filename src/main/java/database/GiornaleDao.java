@@ -32,6 +32,8 @@ public class GiornaleDao {
 	private static Connection conn ;
 	private static int q ; 
 	private static ResultSet rs;
+	private String categoria;//=g.getTipologia();
+
 	
  	public void getDesc(factoryBook.Giornale g) 
 	{	           
@@ -293,13 +295,12 @@ public class GiornaleDao {
 	public String retTip(Giornale g)  {
 			// TODO Auto-generated method stub
 			String titolo=g.getTitolo();
-			String categoria=null;//=g.getTipologia();
 			  conn = ConnToDb.generalConnection();
 			 try {
-	         Statement stmt = conn.createStatement();
-	         ResultSet rs;
+	          st = conn.createStatement();
+	        // ResultSet rs;
 
-	         rs = stmt.executeQuery("select tipologia from giornale where titolo ='"+titolo+"'");
+	         rs = st.executeQuery("select tipologia from ispw.giornale where titolo ='"+titolo+"'");
 	         while ( rs.next() ) {
 	              categoria=rs.getString("tipologia");
 

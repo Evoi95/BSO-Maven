@@ -30,7 +30,7 @@ class TestControllerRegister {
 		state=bReg.registra(u.getNome(), u.getCognome(),u.getEmail(), u.getPassword(), u.getPassword(),u.getDataDiNascita());
 		
 		System.out.println("State in bsroREg:"+state);
-		assertEquals(true,state);
+		assertEquals(false,state);
 		
 		//fail("Not yet implemented");
 	}

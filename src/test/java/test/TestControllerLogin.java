@@ -43,10 +43,10 @@ class TestControllerLogin {
 	public void testGetRuoloTempUSer() {
 		//fail("Not yet implemented");
 		cL=new ControllerLogin();
-		email="Admin@Admin.com";
+		email="admin@admin.com";
 		ruolo=cL.getRuoloTempUSer(email);
 		//System.out.println("ruolo nel test "+ruolo);
-		assertEquals("a",ruolo);
+		assertEquals("A",ruolo);
 		
 	}
 

@@ -24,7 +24,7 @@ class TestControllerCompravenditaGiornali {
 	@Test
 	public void testGetGiornali() throws SQLException {
 		cCG=new ControllerCompravenditaGiornali();
-		String i="1";
+		String i="4";
 		state=cCG.disponibilitaGiornale(i);
 		assertEquals(true,state);
 	
