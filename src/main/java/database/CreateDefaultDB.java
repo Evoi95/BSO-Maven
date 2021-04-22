@@ -37,7 +37,7 @@ public class CreateDefaultDB
 						+ "Database creato \n"
 						+ " Chiamo la Stored Procedure, per creare le tabelle");
 				
-				query=	"CREATE TABLE if not exists USERS (	idUser INT primary key not null auto_increment, idRuolo VARCHAR(1) NOT NULL DEFAULT 'U, Nome VARCHAR(40), Cognome VARCHAR(40),Email VARCHAR(50) UNIQUE , pwd VARCHAR(16),descrizione text, DataDiNascita date);";
+				query=	"CREATE TABLE if not exists USERS (	idUser INT primary key not null auto_increment, idRuolo VARCHAR(1) NOT NULL DEFAULT 'U', Nome VARCHAR(40), Cognome VARCHAR(40),Email VARCHAR(50) UNIQUE , pwd VARCHAR(16),descrizione text, DataDiNascita date);";
 				st.executeUpdate(query);
 				
 				query=	"Create table  if not exists AMMINISTRATORE"
@@ -129,6 +129,7 @@ public class CreateDefaultDB
 				st.executeUpdate(query);
 
 				System.out.println("Tabelle create!");
+				
 				if (PopulateDefaultDb.populateDefaultDb()) {
 					System.out.println("Tabella populata con valori di default");
 					if (true)
@@ -176,6 +177,7 @@ public class CreateDefaultDB
 	{
 		try 
 		{		st = ConnToDb.conn.createStatement();
+
 				query = "USE ispw ";
 				st.execute(query);
 				//0 regolare 1 irregolare
@@ -186,7 +188,8 @@ public class CreateDefaultDB
 						+ "insert into  pagamento values(0,'fattura',0,new.nome,new.ammontare); "
 						+ "end; //";
 				
-				prepQ = ConnToDb.conn.prepareStatement(qTrigger);	
+				prepQ = ConnToDb.conn.prepareStatement(qTrigger);
+				
 
 				
 				System.out.println("Trigger pagamento triggerato");

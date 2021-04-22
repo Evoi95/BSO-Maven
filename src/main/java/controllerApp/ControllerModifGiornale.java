@@ -30,7 +30,7 @@ public class ControllerModifGiornale {
 			g.setCopieRimanenti(copie);
 			gd.aggiornaGiornale(g);
 			
-			return false;
+			return true;
 		}
 		
 		public ControllerModifGiornale()

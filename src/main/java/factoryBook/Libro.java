@@ -155,20 +155,22 @@ public class Libro implements Raccolta {
 	}
 	@Override
 	public void compra() {
+		/*
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("  Riepilogo download  ");
         alert.setHeaderText("RIsultato download:");
         alert.setContentText("Libro Acquistato");
         alert.showAndWait();
+        */
 	}
 	@Override
 	public void scarica() throws DocumentException, FileNotFoundException {
-		
+		/*
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("  Riepilogo download  ");
         alert.setHeaderText("RIsultato download:");
         alert.setContentText("Scaricato nella cartella C:\\libriScaricati");
-        alert.showAndWait();
+        alert.showAndWait();*/
 		
 	      File file = new File("C:\\libriScaricati");
 	      boolean bool = file.mkdir();

@@ -383,7 +383,7 @@ public class LibroDao  {
 	//inserito la quantita da acquistare
 	public int getDisp(Libro l) throws SQLException
 	{
-		int disp;
+		int disp =0;
         ResultSet rs;
 		try {
 			if (ConnToDb.connection())
@@ -397,10 +397,10 @@ public class LibroDao  {
 						"SELECT `libro`.`disp` FROM `ispw`.`libro` where `id_prod` = `"+l.getId()+"` ;");
 				disp = rs.getInt(1);
 				if (disp >= 1)
-					return disp;
+					disp=1;
 				else if (disp == 0)
-					return 0;
-			}
+						disp=0;	
+				}
 		} catch (SQLException e) {
 		 
 			
@@ -409,7 +409,7 @@ public class LibroDao  {
 		{
 			return true;
 		}*/
-		return -1;
+		return disp;
 	}
 	
 	public int getQuantita(Libro l) throws SQLException
@@ -442,6 +442,7 @@ public class LibroDao  {
 	{
 		int disp;
         ResultSet rs;
+        boolean state=false;
 		try {
 			if (ConnToDb.connection())
 			{
@@ -456,14 +457,14 @@ public class LibroDao  {
 					{
 					disp = rs.getInt(1);
 					if (disp >= 1)
-						return true;
+						state=true;
 					}
 			}
 		} catch (SQLException e) {
 		 
 			
 		}
-		return false;
+		return state;
 	}
 
 	//fare singoli get dal db con associazione alle funzioni 

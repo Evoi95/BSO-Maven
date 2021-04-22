@@ -16,13 +16,15 @@ public class ControllerDownload {
 	private String nrOrdine;
 	private static Libro l;
 
-	public void scaricaLibro() throws FileNotFoundException, DocumentException {
+	public void scaricaLibro(Libro l) throws FileNotFoundException, DocumentException {
 		
 		l.scarica();
 		l.leggi();
 	}
 
-	public void annullaOrdine() {
+	public void annullaOrdine(Libro l) {
+		
+		/*
 		Alert a = new Alert(Alert.AlertType.WARNING);
 		a.setTitle("Annulla ordine");
 		a.setContentText("Stai annullando l'ordine");
@@ -30,6 +32,7 @@ public class ControllerDownload {
 
 		a.setHeaderText(null);
 		a.showAndWait();
+		*/
 	}
 
 	public ControllerDownload() {

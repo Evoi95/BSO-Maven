@@ -1,17 +1,190 @@
-Titolo :La Republica	Editore :La Republica	Ricavo totale :0.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :20.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :28.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :20.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :30.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-560.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-540.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-532.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-560.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-840.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-540.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-532.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-540.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-530.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-520.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-780.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-500.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-492.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-500.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-490.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-480.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-720.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-460.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-452.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-460.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-450.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-440.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-660.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-420.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-412.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-420.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-410.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-400.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-600.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-380.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-372.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-380.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-370.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-360.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-540.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-340.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-332.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-340.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-330.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-320.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-480.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-300.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-292.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-300.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-290.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-280.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-420.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-260.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-252.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-260.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-250.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-240.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-360.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-220.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-212.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-220.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-210.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-200.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-300.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-180.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-172.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-180.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-170.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-160.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-240.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-140.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-132.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-140.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-130.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-120.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-180.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-100.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-92.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-100.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-90.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-80.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-120.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-52.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-50.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
+Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-40.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-20.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-12.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-20.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-10.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
+Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
+Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0

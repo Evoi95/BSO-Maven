@@ -1,1 +1,1 @@
-1	e	alberto	rossi	albertorossi@gmail.com	pelato	1984-05-02
+1	A	admin	admin	admin@admin.com	null	1980-10-26

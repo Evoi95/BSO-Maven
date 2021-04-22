@@ -60,7 +60,7 @@ public class GiornaleDao {
 
 
 
-	                
+	               /* 
 	                Alert alert = new Alert(AlertType.INFORMATION);
 	    	        alert.setTitle("  Riepilogo  ");
 	    	        alert.setHeaderText("Ecco il riepigolo del libro");
@@ -68,6 +68,7 @@ public class GiornaleDao {
 	    	        "data pubblicazione : "+data+"\n"+"numero copie rimanenti :"+copieR+"\n"+"disponibilita :"+disp+"\n"+"prezzo :"+prezzo
 	    	        		+"\n"+"foto copertina : "+"\n");
 	    	        alert.showAndWait();
+	    	        */
 	    	       
 	    	        
 	            }
@@ -229,7 +230,7 @@ public class GiornaleDao {
 		}
 	
 		
-	public Giornale getGiornale(Giornale G,int id) 
+	public Giornale getGiornale(Giornale g,int id) 
 	{
 
 		Connection c= ConnToDb.generalConnection();
@@ -238,7 +239,7 @@ public class GiornaleDao {
 			rs = c.createStatement().executeQuery("SELECT * FROM giornale where id = "+id+" ");
 		if (rs.next())
         {
-        	G = (Giornale) f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(), rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)) ;
+        	g = (Giornale) f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(), rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)) ;
         	//(Rivista) f.createRivista("rivista", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(),rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)); 
         }
         else {
@@ -251,13 +252,15 @@ public class GiornaleDao {
 		}
 		finally {
 			try {
-				conn.close();
+				c.close();	
+
 			} catch (SQLException e) {
 			 
 				
-			}
+			}		
+
 		}
-		return G;
+		return g;
         
 	}
 	
@@ -425,6 +428,7 @@ public class GiornaleDao {
 	{
 		int disp;
         ResultSet rs;
+        boolean state=false;
 		try {
 			if (ConnToDb.connection())
 			{
@@ -439,7 +443,7 @@ public class GiornaleDao {
 					{
 					disp = rs.getInt(1);
 					if (disp >= 1)
-						return true;
+						state= true;
 					}
 			}
 		} catch (SQLException e) {
@@ -454,7 +458,7 @@ public class GiornaleDao {
 				
 			}
 		}
-		return false;
+		return state;
 	}
 
 	public ObservableList<Giornale> getLibriSingolo()  {
@@ -485,7 +489,7 @@ public class GiornaleDao {
 			}
 			finally {
 				try {
-					conn.close();
+					c.close();
 				} catch (SQLException e) {
 				 
 					
@@ -610,7 +614,7 @@ public class GiornaleDao {
 			}
 			finally {
 				try {
-					conn.close();
+					c.close();
 				} catch (SQLException e) {
 				 
 					

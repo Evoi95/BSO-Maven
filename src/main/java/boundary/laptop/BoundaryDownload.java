@@ -54,12 +54,12 @@ public class BoundaryDownload implements Initializable {
 	            System.out.println("ALL OK..!");
 	            if(vis.getIstance().getIsLogged())	
 				{
-	            	CD.scaricaLibro();
+	            	CD.scaricaLibro(null);
 	            	 	
 	            	
 				}
 	            else {
-	            	CD.scaricaLibro();
+	            	CD.scaricaLibro(null);
 
 	            }
 	            Stage stage;
@@ -75,7 +75,7 @@ public class BoundaryDownload implements Initializable {
 
 	@FXML
 	private void pulisci() throws IOException {
-		CD.annullaOrdine();
+		CD.annullaOrdine(null);
 		if( vis.getIstance().getIsLogged()) 
 		{
 			Stage stage;
