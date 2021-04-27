@@ -12,7 +12,7 @@ class TestNegozioDao {
 	private NegozioDao nD=new NegozioDao();
 
 	@Test
-	public void testGetNegozi() throws SQLException {
+	void testGetNegozi() throws SQLException {
 		assertNotNull(nD.getNegozi());
 	}
 

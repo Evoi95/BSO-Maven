@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerHomePageAfterLoginSE;
+import controller_app.ControllerHomePageAfterLoginSE;
 import users.singelton.User;
 
 class TestControllerHomePageAfterloginSE {
@@ -13,7 +13,7 @@ class TestControllerHomePageAfterloginSE {
 
 
 	@Test
-	public void testLogout() {
+	void testLogout() {
 		u.setNome("pippo");
 		try {
 			assertNotEquals(state,ControllerHomePageAfterLoginSE.logout());

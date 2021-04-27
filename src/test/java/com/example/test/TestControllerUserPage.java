@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerUserPage;
+import controller_app.ControllerUserPage;
 
 class TestControllerUserPage {
 	private ControllerUserPage cUP=new ControllerUserPage();

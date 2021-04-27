@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.SingeltonSystemState;
+import controller_app.SingeltonSystemState;
 import database.UsersDao;
 import users.singelton.TempUser;
 import users.singelton.User;
@@ -16,7 +16,7 @@ class TestUsersDao {
 	private UsersDao ud=new UsersDao();
 	private static User u=User.getInstance();
 	private static TempUser tu=TempUser.getInstance();
-	private static controllerApp.SingeltonSystemState vis=controllerApp.SingeltonSystemState.getIstance();
+	private static controller_app.SingeltonSystemState vis=controller_app.SingeltonSystemState.getIstance();
 	private boolean state=false;
 	private int state1;
 	private String ruolo;

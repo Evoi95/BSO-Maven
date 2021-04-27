@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerAddBookPage;
+import controller_app.ControllerAddBookPage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.scene.control.Label;
+import logger.Log;
 
 public class BoundaryAddBookPage implements Initializable {
 	
@@ -89,6 +91,10 @@ public class BoundaryAddBookPage implements Initializable {
 	
 	private ControllerAddBookPage cABP;
 	
+	protected int np;
+	protected Scene scene; 
+	protected float prezzo;
+	protected int copie;
 	private ObservableList<String> items = FXCollections.observableArrayList();
 
 	@FXML
@@ -97,7 +103,7 @@ public class BoundaryAddBookPage implements Initializable {
 		
 		
 		String t=titoloT.getText();
-		int np=Integer.parseInt(numeroPagineT.getText());
+		np=Integer.parseInt(numeroPagineT.getText());
 		String cod=codeIsbnT.getText();
 		String ed=editoreT.getText();
 		String a=autoreT.getText();
@@ -119,16 +125,15 @@ public class BoundaryAddBookPage implements Initializable {
 		else {
 			dispo=0;
 		}
-		float prezzo=Float.parseFloat(prezzoT.getText());
-		int copie=Integer.parseInt(copieRimanentiT.getText());
+		prezzo=Float.parseFloat(prezzoT.getText());
+		copie=Integer.parseInt(copieRimanentiT.getText());
 		
-		System.out.println("Categoria scleta : "+c);
-		
-		System.out.println("dispo :"+dispo);
+		Log.logger.log(Level.INFO,"Categoria scleta : {0}",c);
 
+		Log.logger.log(Level.INFO,"dispo :{0}",dispo);
 		boolean esito=cABP.checkData(t,np,cod,ed,a,l,c,d,r,desc,dispo,prezzo,copie);
 		
-		System.out.println("Esito : "+esito);
+		Log.logger.log(Level.INFO,"Esito : {0}",esito);
 
 	}
 	
@@ -139,7 +144,7 @@ public class BoundaryAddBookPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("bookPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}

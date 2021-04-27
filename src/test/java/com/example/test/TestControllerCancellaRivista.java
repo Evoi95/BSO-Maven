@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerCancellaRivista;
+import controller_app.ControllerCancellaRivista;
 
 class TestControllerCancellaRivista {
 	private ControllerCancellaRivista cCR=new ControllerCancellaRivista();

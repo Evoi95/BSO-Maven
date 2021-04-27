@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerBsoRegister;
+import controller_app.ControllerBsoRegister;
 import users.singelton.User;
 
 class TestControllerRegister {
@@ -25,11 +25,11 @@ class TestControllerRegister {
 		u.setPassword("pluto723");
 		u.setDataDiNascita(LocalDate.of(1995,10,31));
 		
-		System.out.println("Data in testControllerReg :"+u.getDataDiNascita());
+		//Log.logger.log(Level.INFO,"Data in testControllerReg :"+u.getDataDiNascita());
 		
 		state=bReg.registra(u.getNome(), u.getCognome(),u.getEmail(), u.getPassword(), u.getPassword(),u.getDataDiNascita());
 		
-		System.out.println("State in bsroREg:"+state);
+		//Log.logger.log(Level.INFO,"State in bsroREg:"+state);
 		assertEquals(false,state);
 		
 		//fail("Not yet implemented");

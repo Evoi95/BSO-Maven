@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerScegliNegozio;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerScegliNegozio;
+import controller_app.SingeltonSystemState;
 import javafx.collections.ObservableList;
 import negozio.Negozio;
 
@@ -21,7 +21,7 @@ class TestControllerScegliNegozio {
 	void testGetNegozi() throws SQLException {
 		boolean state=false;
 		listOfNegozi=cSN.getNegozi();
-		System.out.println("\n\n\n-----NEgozi "+listOfNegozi);
+		//Log.logger.log(Level.INFO,"\n\n\n-----NEgozi "+listOfNegozi);
 		if(listOfNegozi.isEmpty())
 			state=false;
 		else

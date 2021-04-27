@@ -1,9 +1,11 @@
 package boundary.laptop;
 
 import java.io.IOException;
+import java.util.logging.Level;
 
-import controllerApp.ControllerHomePageAfterLogin;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerHomePageAfterLogin;
+import controller_app.SingeltonSystemState;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,20 +48,20 @@ public class BoundaryHomePageAfterLogin {
 	private Button buttonC;
 	
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
-
+	protected String message;
+	protected Scene scene;
+	protected Alert alert;
+	
 	@FXML
 	private void getListaGiornali() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsDaily();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsDaily();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaGiornali.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -67,17 +69,14 @@ public class BoundaryHomePageAfterLogin {
 
 	@FXML
 	private void getListaRiviste() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsMagazine();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsMagazine();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaRivista.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo delle riviste");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -85,17 +84,14 @@ public class BoundaryHomePageAfterLogin {
 
 	@FXML
 	private void getListaLibri() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsBook();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsBook();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaLibri.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo dei libri");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -108,24 +104,19 @@ public class BoundaryHomePageAfterLogin {
 		/*
 		 */
 		Stage stage;
-		 
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("visualizzaProfilo.fxml"));
 		stage.setTitle("Benvenuto nel tuo profilo qui puoi visualizzare le tue informazioni");
-	
-		
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
 		
-		//System.out.println("Sto nel terzo caso d'urso lode");
+		message = "Sto nel terzo caso d'urso lode";		
+		Log.logger.log(Level.INFO,"-> {0}",message);
 	}
 
-	// Usaiamo la Reflection!! no! 
 	@FXML
 	private void logout() throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException 
 	{
@@ -136,14 +127,14 @@ public class BoundaryHomePageAfterLogin {
 			Parent root;
 			stage = (Stage) buttonLogout.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 
 			stage.show();
 		}
 		else
 		{
-			Alert alert=new Alert(AlertType.ERROR);
+			alert=new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Logout");// line 2
 			alert.setHeaderText("Errore Logout");// line 3
 			alert.setContentText("!--Errore Logout--!");// line 4
@@ -155,15 +146,13 @@ public class BoundaryHomePageAfterLogin {
 	
 	@FXML
 	private void cerca() throws IOException {
-		vis.getIstance().setIsSearch(true);
-
+		SingeltonSystemState.getIstance().setIsSearch(true);
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonC.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
-
 		stage.show();
 
 	}

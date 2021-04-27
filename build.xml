@@ -59,7 +59,7 @@
         <pathelement location="../../.m2/repository/org/apache/maven/maven-model/3.6.0/maven-model-3.6.0.jar"/>
         <pathelement location="../../.m2/repository/org/apache/maven/maven-artifact/3.6.0/maven-artifact-3.6.0.jar"/>
         <pathelement location="../../.m2/repository/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.3/org.eclipse.sisu.plexus-0.3.3.jar"/>
-        <pathelement location="../../.m2/repository/javax/enterprise/cdi-api/1.0/cdi-api-1.0.jar"/>
+        <pathelement location="../../.m2/repository/javax/enterprise/Cdi-api/1.0/Cdi-api-1.0.jar"/>
         <pathelement location="../../.m2/repository/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar"/>
         <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-classworlds/2.5.2/plexus-classworlds-2.5.2.jar"/>
         <pathelement location="../../.m2/repository/org/apache/maven/plugin-tools/maven-plugin-annotations/3.6.0/maven-plugin-annotations-3.6.0.jar"/>

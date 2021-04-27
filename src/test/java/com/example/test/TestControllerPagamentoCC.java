@@ -8,7 +8,7 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerPagamentoCC;
+import controller_app.ControllerPagamentoCC;
 import pagamento.CartaCredito;
 
 class TestControllerPagamentoCC {
@@ -18,7 +18,7 @@ class TestControllerPagamentoCC {
 	private String c="1965-6325-4521-6333";
 	private String civ="965";
 	@Test
-	public void testControllaPag() {
+	void testControllaPag() {
 		
 		try {
 			cPCC=new ControllerPagamentoCC();
@@ -31,7 +31,7 @@ class TestControllerPagamentoCC {
 	}
 
 	@Test
-	public void testAggiungiCartaDB() {
+	void testAggiungiCartaDB() {
 		try {
 			cPCC=new ControllerPagamentoCC();
 		
@@ -44,14 +44,14 @@ class TestControllerPagamentoCC {
 	}
 
 	@Test
-	public void testRitornaElencoCC() throws Exception {
+	void testRitornaElencoCC() throws Exception {
 		cPCC=new ControllerPagamentoCC();
 
 		assertNotNull(cPCC.ritornaElencoCC("pippo"));
 	}
 
 	@Test
-	public void testTornaDalDb() throws Exception {
+	void testTornaDalDb() throws Exception {
 		
 		
 		

@@ -18,7 +18,7 @@ class TestFactory {
 	private Giornale g1=new Giornale();
 	boolean stateR=false,stateG=false,stateL=false;
 	@Test
-	public void testCreateRaccolta() {
+	void testCreateRaccolta() {
 		
 		r1.setTitolo("focus1");
 		r1.setTipologia("fantascienza");
@@ -48,7 +48,7 @@ class TestFactory {
 	}
 
 	@Test
-	public void testCreateRaccolta1() {
+	void testCreateRaccolta1() {
 		
 		l.setTitolo("errori in economia");
 		l.setNumPag(100);		
@@ -85,7 +85,7 @@ class TestFactory {
 	
 
 	@Test
-	public void testCreateRaccolta2() {
+	void testCreateRaccolta2() {
 		
 		g1.setTitolo("il corriere della sera");
 		g1.setTipologia("quotidiano");
@@ -104,7 +104,7 @@ class TestFactory {
 		   else
 			   stateG=false;
 		
-		   //System.out.println("StatoL+StatoG+StatoR"+ stateL+ stateR+ stateG);
+		   //Log.logger.log(Level.INFO,"StatoL+StatoG+StatoR"+ stateL+ stateR+ stateG);
 		   //boolean statoFinale=(stateG&&stateR&&stateL);
 		   
 		
@@ -114,7 +114,7 @@ class TestFactory {
 
 
 	@Test
-	public void testCreateLibro() {
+	void testCreateLibro() {
 
 		
 		l.setTitolo("Il mago di oz");
@@ -147,7 +147,7 @@ class TestFactory {
 	}
 
 	@Test
-	public void testCreateRivista() {
+	void testCreateRivista() {
 		
 		
 		r1.setTitolo("Hello");
@@ -177,7 +177,7 @@ class TestFactory {
 	
 
 	@Test
-	public void testCreateGiornale() {
+	void testCreateGiornale() {
 		LocalDate ld=LocalDate.of(2021,8,8);
 	
 	

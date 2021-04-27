@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerModifRivistaPage;
+import controller_app.ControllerModifRivistaPage;
 import factoryBook.Rivista;
 
 class TestControllerModifRivistaPage {
@@ -15,7 +15,7 @@ class TestControllerModifRivistaPage {
 	private Rivista r;
 
 	@Test
-	public void testGetRivistaById() {
+	void testGetRivistaById() {
 		r=new Rivista();
 		r.setId(8);
 		try {
@@ -27,7 +27,7 @@ class TestControllerModifRivistaPage {
 	}
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		r=new Rivista();
 		r.setTitolo("Rivista C");
 		r.setTipologia("sportivo");

@@ -4,8 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
-import factoryBook.Raccolta;
+import logger.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import pagamento.Pagamento;
@@ -76,7 +77,7 @@ public class PagamentoDao {
 			}
 		 }
 		
-		 System.out.println("LibroDao. privilegi");
+		 Log.logger.log(Level.INFO,"LibroDao. privilegi");
 
 	}
 	
@@ -152,7 +153,7 @@ public ObservableList<Pagamento> getPagamenti()  {
 		
         while(rs.next())
         {
-           // System.out.println("res :"+rs);
+           // Log.logger.log(Level.INFO,"res :"+rs);
 
     		try {
     			catalogo.add(new Pagamento (rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getFloat(5),rs.getString(6),rs.getInt(7)));
@@ -177,7 +178,7 @@ public ObservableList<Pagamento> getPagamenti()  {
 	
 	//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	
-	System.out.println(catalogo);
+	Log.logger.log(Level.INFO,"{0}",catalogo);
 	return catalogo;
 		}
 

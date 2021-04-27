@@ -13,14 +13,18 @@ import javafx.scene.Scene;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		Scene scene;
 
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			primaryStage.setTitle("Benvenuto nella homePage");
 			primaryStage.setScene(scene);
 			primaryStage.show();
-		} catch (Exception e) {
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
 			
 		}
 
@@ -30,11 +34,10 @@ public class Main extends Application {
 
 		try {
 			CreateDefaultDB.createDefaultDB();
-		} catch (ClassNotFoundException e) {
-		 
+		} catch (ClassNotFoundException  e) {
+ 
 			
 		} catch (FileNotFoundException e) {
-		 
 			
 		} catch (SQLException e) {
 			

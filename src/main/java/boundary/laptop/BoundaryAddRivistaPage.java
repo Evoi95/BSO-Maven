@@ -5,7 +5,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerAddRivistaPage;
+import controller_app.ControllerAddRivistaPage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -66,7 +66,13 @@ public class BoundaryAddRivistaPage implements Initializable{
 	private Button buttonAdd;
 	@FXML
 	private Button buttonI;
+	
 	private ControllerAddRivistaPage cARP;
+	
+	protected Scene scene; 
+	protected float prezzo ; 
+	protected int copie;
+	protected boolean esito ;
 	
 	@FXML
 	private void aggiungi()
@@ -80,12 +86,10 @@ public class BoundaryAddRivistaPage implements Initializable{
 		String desc=descTA.getText();
 		LocalDate data=datePick.getValue();
 
-		//String c=(String) categoriaList.getSelectionModel().getSelectedItem();
-
 		boolean disp=dispCheck.isPressed();
 		
 		
-		if(disp==true)
+		if(disp)
 		{
 			dispo=1;
 			//disponibile
@@ -93,11 +97,11 @@ public class BoundaryAddRivistaPage implements Initializable{
 		else {
 			dispo=0;
 		}
-		float prezzo=Float.parseFloat(prezzoTF.getText());
-		int copie=Integer.parseInt(copieTF.getText());
+		prezzo=Float.parseFloat(prezzoTF.getText());
+		copie=Integer.parseInt(copieTF.getText());
 		
 		
-		boolean esito=cARP.checkData(t,tipologia,a,l,ed,desc,data,dispo,prezzo,copie);
+		esito= cARP.checkData(t,tipologia,a,l,ed,desc,data,dispo,prezzo,copie);
 
 	}
 	@FXML 
@@ -107,7 +111,7 @@ public class BoundaryAddRivistaPage implements Initializable{
 		Parent root;
 		stage = (Stage) buttonI.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("rivistaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	
@@ -116,14 +120,10 @@ public class BoundaryAddRivistaPage implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		 cARP=new ControllerAddRivistaPage ();
-;
+
 
 		
 	}
-	
-	
-	
-	
 	
 	
 

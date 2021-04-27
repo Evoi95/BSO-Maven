@@ -5,10 +5,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerRicercaPage;
-import controllerApp.ControllerVisualizzaGiornale;
-import controllerApp.ControllerVisualizzaLibro;
-import controllerApp.ControllerVisualizzaRivista;
+import controller_app.ControllerRicercaPage;
+import controller_app.ControllerVisualizzaGiornale;
+import controller_app.ControllerVisualizzaLibro;
+import controller_app.ControllerVisualizzaRivista;
 import factoryBook.Raccolta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;

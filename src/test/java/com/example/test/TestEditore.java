@@ -13,82 +13,82 @@ class TestEditore {
 	private Editore e=new Editore(TempUser.getInstance());
 
 	@Test
-	public void testGetIdRuolo() {
+	void testGetIdRuolo() {
 		e.setIdRuolo("e");
 		assertEquals("e",e.getIdRuolo());
 }
 
 	@Test
-	public void testSetIdRuolo() {
+	void testSetIdRuolo() {
 		e.setIdRuolo("e");
 		assertEquals("e",e.getIdRuolo());
 
 	}
 
 	@Test
-	public void testGetNome() {
+	void testGetNome() {
 		e.setNome("Aldo");
 		assertEquals("Aldo",e.getNome());
 		}
 
 	@Test
-	public void testSetNome() {
+	void testSetNome() {
 		e.setCognome("Aldo");
 		assertEquals("Aldo",e.getCognome());
 		}
 
 	@Test
-	public void testGetCognome() {
+	void testGetCognome() {
 		e.setCognome("Baglio");
 		assertEquals("Baglio",e.getCognome());	}
 
 	@Test
-	public void testSetCognome() {
+	void testSetCognome() {
 		e.setCognome("Baglio");
 		assertEquals("Baglio",e.getCognome());
 		}
 
 	@Test
-	public void testGetEmail() {
+	void testGetEmail() {
 		e.setEmail("AldoBaglio@gmail.com");
 		assertEquals("AldoBaglio@gmail.com",e.getEmail());	
 		}
 
 	@Test
-	public void testSetEmail() {
+	void testSetEmail() {
 
 		e.setEmail("AldoBaglio@gmail.com");
 		assertEquals("AldoBaglio@gmail.com",e.getEmail());	
 		}
 
 	@Test
-	public void testGetPassword() {
+	void testGetPassword() {
 		e.setPassword("Aldo635");
 		assertEquals("Aldo635",e.getPassword());
 	}
 
 	@Test
-	public void testSetPassword() {
+	void testSetPassword() {
 		e.setPassword("Aldo635");
 		assertEquals("Aldo635",e.getPassword());	}
 
 	@Test
-	public void testGetDescrizione() {
+	void testGetDescrizione() {
 		e.setDescrizione("fa ridere");
 		assertEquals("fa ridere",e.getDescrizione());	}
 
 	@Test
-	public void testSetDescrizione() {
+	void testSetDescrizione() {
 		e.setDescrizione("fa ridere");
 		assertEquals("fa ridere",e.getDescrizione());		}
 
 	@Test
-	public void testGetDataDiNascita() {
+	void testGetDataDiNascita() {
 		e.setDataDiNascita(LocalDate.of(1987, 6, 5));
 		assertEquals(LocalDate.of(1987, 6, 5),e.getDataDiNascita());		}
 
 	@Test
-	public void testSetDataDiNascita() {
+	void testSetDataDiNascita() {
 		e.setDataDiNascita(LocalDate.of(1987, 6, 5));
 		assertEquals(LocalDate.of(1987, 6, 5),e.getDataDiNascita());	
 		}

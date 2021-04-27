@@ -5,8 +5,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerLogin;
+import controller_app.ControllerLogin;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -72,7 +74,7 @@ public class BoundaryLogin implements Initializable {
 		v=cL.controlla(u,p);
 		
 		 ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
-		System.out.println("Ruolo tempUser :"+ruolo);
+		Log.logger.log(Level.INFO,"Ruolo tempUser :"+ruolo);
 
 		if (v) {
 		

@@ -26,6 +26,8 @@ public class BoundaryAdminPage {
 	@FXML
 	private Button buttonL;
 	
+	protected Scene scene;
+	
 	@FXML
 	private void logout() throws IOException
 	{
@@ -33,7 +35,7 @@ public class BoundaryAdminPage {
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -47,7 +49,7 @@ public class BoundaryAdminPage {
 		Parent root;
 		stage = (Stage) raccoltaB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("raccoltaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -59,7 +61,7 @@ public class BoundaryAdminPage {
 		Parent root;
 		stage = (Stage) buttonU.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("userPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -70,7 +72,7 @@ public class BoundaryAdminPage {
 		Parent root;
 		stage = (Stage) buttonR.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("reportPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		

@@ -1,21 +1,16 @@
 package database;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
-import java.sql.Blob;
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.logging.Level;
 
 import org.apache.ibatis.jdbc.RuntimeSqlException;
 import org.apache.ibatis.jdbc.ScriptRunner;
+import logger.Log;
 
 public class PopulateDefaultDb {
 
@@ -38,7 +33,7 @@ public class PopulateDefaultDb {
 	
 	private static boolean createLibri() 
 	{
-		System.out.println("---------Chiamo stored insLibri---------\n\n");
+		Log.logger.log(Level.INFO,"---------Chiamo stored insLibri---------\n\n");
 		try 
 		{
 			
@@ -68,7 +63,7 @@ public class PopulateDefaultDb {
 
 	private static boolean createGiornale() throws FileNotFoundException
 	{
-		System.out.println("---------Chiamo stored insGiornali---------\n\n");
+		Log.logger.log(Level.INFO,"---------Chiamo stored insGiornali---------\n\n");
 
 		try {
 			conn=ConnToDb.generalConnection();
@@ -94,7 +89,7 @@ public class PopulateDefaultDb {
 
 	private static boolean createRivista() throws FileNotFoundException
 	{
-	System.out.println("---------Chiamo stored insRiviste---------\n\n");
+	Log.logger.log(Level.INFO,"---------Chiamo stored insRiviste---------\n\n");
 	try 
 	{
 		
@@ -124,7 +119,7 @@ public class PopulateDefaultDb {
 
 	private static boolean createUser()
 	{
-			System.out.println("---------Chiamo stored insUtenti---------\n\n");
+			Log.logger.log(Level.INFO,"---------Chiamo stored insUtenti---------\n\n");
 
 			try {
 				conn=ConnToDb.generalConnection();
@@ -162,7 +157,7 @@ public class PopulateDefaultDb {
 	
 	private static boolean createNegozio()
 	{
-			System.out.println("---------Chiamo stored insNEgozi---------\n\n");
+			Log.logger.log(Level.INFO,"---------Chiamo stored insNEgozi---------\n\n");
 
 			try {
 				conn=ConnToDb.generalConnection();

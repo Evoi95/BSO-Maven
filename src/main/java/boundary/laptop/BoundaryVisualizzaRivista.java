@@ -5,8 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerVisualizzaRivista;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerVisualizzaRivista;
+import controller_app.SingeltonSystemState;
 import database.RivistaDao;
 import factoryBook.Rivista;
 import javafx.fxml.FXML;

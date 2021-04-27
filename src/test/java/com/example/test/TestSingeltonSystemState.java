@@ -4,23 +4,23 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.SingeltonSystemState;
+import controller_app.SingeltonSystemState;
 
 class TestSingeltonSystemState {
 
 	@Test
-	public void testGetIstance() {
+	void testGetIstance() {
 		assertNotNull(SingeltonSystemState.getIstance());
 	}
 
 	@Test
-	public void testGetId() {
+	void testGetId() {
 		SingeltonSystemState.getIstance().setId(2);
 		assertNotEquals(0,SingeltonSystemState.getIstance().getId());
 	}
 
 	@Test
-	public void testSetId() {
+	void testSetId() {
 		 SingeltonSystemState.getIstance().setId(3);
 		assertNotEquals(0,SingeltonSystemState.getIstance().getId());
 
@@ -28,49 +28,49 @@ class TestSingeltonSystemState {
 	}
 
 	@Test
-	public void testSetTypeAsBook() {
+	void testSetTypeAsBook() {
 		SingeltonSystemState.getIstance().setTypeAsBook();
 		assertEquals("libro",SingeltonSystemState.getIstance().getType());
 
 	}
 
 	@Test
-	public void testSetTypeAsMagazine() {
+	void testSetTypeAsMagazine() {
 		SingeltonSystemState.getIstance().setTypeAsMagazine();
 		assertEquals("rivista",SingeltonSystemState.getIstance().getType());
 	}
 
 	@Test
-	public void testSetTypeAsDaily() {
+	void testSetTypeAsDaily() {
 		SingeltonSystemState.getIstance().setTypeAsDaily();
 		assertEquals("giornale",SingeltonSystemState.getIstance().getType());
 	}
 
 	@Test
-	public void testGetType() {
+	void testGetType() {
 		SingeltonSystemState.getIstance().setTypeAsBook();
 		assertEquals("libro",SingeltonSystemState.getIstance().getType());
 	}
 	@Test
-	public void testGetType1() {
+	void testGetType1() {
 		SingeltonSystemState.getIstance().setTypeAsMagazine();
 		assertEquals("rivista",SingeltonSystemState.getIstance().getType());
 	}
 	@Test
-	public void testGetType2() {
+	void testGetType2() {
 		SingeltonSystemState.getIstance().setTypeAsDaily();
 		assertEquals("giornale",SingeltonSystemState.getIstance().getType());
 	}
 
 	@Test
-	public void testGetIsLogged() {
+	void testGetIsLogged() {
 		
 			SingeltonSystemState.getIstance().setIsLogged(false);
 			assertEquals(false,SingeltonSystemState.getIstance().getIsLogged());
 		
 	}
 	@Test
-	public void testGetIsLogged1() {
+	void testGetIsLogged1() {
 		
 			SingeltonSystemState.getIstance().setIsLogged(true);
 			assertEquals(true,SingeltonSystemState.getIstance().getIsLogged());
@@ -78,14 +78,14 @@ class TestSingeltonSystemState {
 	}
 
 	@Test
-	public void testSetIsLogged() {
+	void testSetIsLogged() {
 		SingeltonSystemState.getIstance().setIsLogged(true);
 		assertEquals(true,SingeltonSystemState.getIstance().getIsLogged());
 	
 	}
 
 	@Test
-	public void testGetIsSearch() {
+	void testGetIsSearch() {
 		SingeltonSystemState.getIstance().setIsSearch(true);
 		assertEquals(true,SingeltonSystemState.getIstance().getIsSearch());
 
@@ -93,12 +93,12 @@ class TestSingeltonSystemState {
 	}
 
 	@Test
-	public void testSetIsSearch() {
+	void testSetIsSearch() {
 		SingeltonSystemState.getIstance().setIsSearch(true);
 	}
 
 	@Test
-	public void testGetIsPickup() {
+	void testGetIsPickup() {
 		SingeltonSystemState.getIstance().setPickup(true);
 		assertEquals(true,SingeltonSystemState.getIstance().getIsPickup());
 
@@ -107,7 +107,7 @@ class TestSingeltonSystemState {
 	}
 
 	@Test
-	public void testSetPickup() {
+	void testSetPickup() {
 		SingeltonSystemState.getIstance().setPickup(false);
 	}
 

@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
 import factoryBook.Factory;
 import factoryBook.Giornale;
@@ -20,6 +21,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import factoryBook.Raccolta;
 import factoryBook.Rivista;
+import logger.Log;
 
 public class RivistaDao {
 	private Factory f;
@@ -112,11 +114,11 @@ public class RivistaDao {
 		 finally {
 			 prepQ.close();
 			 conn.close();
-			 System.out.println("Ho chiuso tutto");
+			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("LibroDao. questy");
+		 Log.logger.log(Level.INFO,"LibroDao. questy");
 
 		}
 
@@ -139,11 +141,11 @@ public class RivistaDao {
 		 finally {
 			 prepQ.close();
 			 conn.close();
-			 System.out.println("Ho chiuso tutto");
+			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("LibroDao. privilegi");
+		 Log.logger.log(Level.INFO,"LibroDao. privilegi");
 
 }
 	
@@ -159,24 +161,24 @@ public class RivistaDao {
            // int i=0;
             while(rs.next())
             {
-               // System.out.println("res :"+rs);
+               // Log.logger.log(Level.INFO,"res :"+rs);
 
         		try {
 					catalogo.add(f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(), rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));
 					
 					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
-					//System.out.println("res: "+rs[i]);
+					//Log.logger.log(Level.INFO,"res: "+rs[i]);
         		} catch (Exception e) {
 				 
 					
 				}
-        		//System.out.println("rivista nome"+rs.getString(1));
+        		//Log.logger.log(Level.INFO,"rivista nome"+rs.getString(1));
 
             }
 		//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	
 			
-		System.out.println(catalogo);
+		//Log.logger.log(Level.INFO,catalogo);
 		return catalogo;
 		
 	}
@@ -193,24 +195,24 @@ public class RivistaDao {
            // int i=0;
             while(rs.next())
             {
-               // System.out.println("res :"+rs);
+               // Log.logger.log(Level.INFO,"res :"+rs);
 
         		try {
 					catalogo.add(f.createRivista("rivista",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getDate(7).toLocalDate(), rs.getInt(8),rs.getFloat(9),rs.getInt(10),rs.getInt(11)));
 					
 					//titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,foto,id//rs=rs.next();
-					//System.out.println("res: "+rs[i]);
+					//Log.logger.log(Level.INFO,"res: "+rs[i]);
         		} catch (Exception e) {
 				 
 					
 				}
-        		//System.out.println("rivista nome"+rs.getString(1));
+        		//Log.logger.log(Level.INFO,"rivista nome"+rs.getString(1));
 
             }
 		//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	
 			
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -293,7 +295,7 @@ public class RivistaDao {
         	return name;
         }
         else {
-        	System.out.println("non ho torvato un cazzo e ritorno null");
+        	Log.logger.log(Level.INFO,"non ho torvato un cazzo e ritorno null");
             return null;
 
         }	
@@ -401,7 +403,7 @@ public class RivistaDao {
 
             }
 		
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -444,7 +446,7 @@ public class RivistaDao {
 				
 				prepQ.executeUpdate();
 				//conn.close();
-			 	System.out.println("Libro Inserito con successo");
+			 	Log.logger.log(Level.INFO,"Libro Inserito con successo");
 			 	state= true; // true		 			 	
 			}
 			else {
@@ -482,7 +484,7 @@ public class RivistaDao {
 			
 		}
 		
-		System.out.println("Rivista cancellata : "+row);
+		Log.logger.log(Level.INFO,"Rivista cancellata : "+row);
 
 		
 		
@@ -508,7 +510,7 @@ public class RivistaDao {
 
             }
 		
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{}",catalogo);
 		return catalogo;
 		
 	}
@@ -520,7 +522,7 @@ public class RivistaDao {
 			st=conn.createStatement();
 			query="USE ispw";
 			
-			//System.out.println("Titolo dopo use ispw:"+l.getTitolo());
+			//Log.logger.log(Level.INFO,"Titolo dopo use ispw:"+l.getTitolo());
 
 			st.executeQuery(query);
 		 	String query="UPDATE `ispw`.`rivista`"
@@ -554,7 +556,7 @@ public class RivistaDao {
 			rowAffected = prepQ.executeUpdate();
 			prepQ.close();
 			
-            System.out.println(("Row affected "+ rowAffected));
+            Log.logger.log(Level.INFO,("Row affected "+ rowAffected));
 
 	 }	
 	

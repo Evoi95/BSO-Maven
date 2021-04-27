@@ -5,11 +5,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerCancellaGiornale;
-import controllerApp.ControllerGiornalePage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerCancellaGiornale;
+import controller_app.ControllerGiornalePage;
+import controller_app.SingeltonSystemState;
 import factoryBook.Giornale;
-import factoryBook.Libro;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -55,6 +54,9 @@ public class BoundaryGiornaliPage implements Initializable{
 	
 	private ControllerGiornalePage cGP;
 	private ControllerCancellaGiornale cCG;
+	protected Scene scene;
+	protected int identity;
+	
 	@FXML
 	private void prendiValori() {
 		
@@ -69,16 +71,15 @@ public class BoundaryGiornaliPage implements Initializable{
 		Parent root;
 		stage = (Stage) buttonAdd.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("addGiornalePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		
 	}
 	@FXML
 	private void cancella() {
-		int id;
-		id=SingeltonSystemState.getIstance().getId();
-		cCG.cancella(id);
+		identity=SingeltonSystemState.getIstance().getId();
+		cCG.cancella(identity);
 		
 	}
 	@FXML
@@ -88,7 +89,7 @@ public class BoundaryGiornaliPage implements Initializable{
 		Parent root;
 		stage = (Stage) modB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("modGiornalePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -99,7 +100,7 @@ public class BoundaryGiornaliPage implements Initializable{
 		Parent root;
 		stage = (Stage) buttonB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	

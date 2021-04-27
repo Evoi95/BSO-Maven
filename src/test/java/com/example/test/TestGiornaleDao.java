@@ -15,77 +15,77 @@ class TestGiornaleDao {
 	private Giornale g=new Giornale();
 
 	@Test
-	public void testGetDesc() {
+	void testGetDesc() {
 		g.setTitolo("il messagero");
 		gD.getDesc(g);
 }
 
 	@Test
-	public void testGetCosto() {
+	void testGetCosto() {
 		g.setTitolo("La republica");
 		assertNotEquals(0.0,gD.getCosto(g));
 		}
 
 	@Test
-	public void testAggiornaDisponibilita() {
+	void testAggiornaDisponibilita() {
 		g.setTitolo("La republica");
 		g.setDisponibilita(20);
 		gD.aggiornaDisponibilita(g);
 }
 
 	@Test
-	public void testDaiPrivilegi() {
+	void testDaiPrivilegi() {
 		gD.daiPrivilegi();	}
 
 	@Test
-	public void testGetGiornali() {
+	void testGetGiornali() {
 		assertNotNull(gD.getGiornali());
 		}
 
 	@Test
-	public void testGetGiornale() {
+	void testGetGiornale() {
 	//	g.setId(6);
 		gD.getGiornale(g,6);
 	}
 
 	@Test
-	public void testRetId() throws SQLException {
+	void testRetId() throws SQLException {
 		g.setTitolo("Il Fatto Quotidiano");
 		assertNotEquals(0,gD.retId(g));
 		}
 
 	@Test
-	public void testRetTip() {
+	void testRetTip() {
 		g.setTitolo("il messagero");
 		assertNotEquals("",gD.retTip(g));
 	}
 
 	@Test
-	public void testGetNome() {
+	void testGetNome() {
 		g.setId(7);
 		assertNotEquals(0,gD.getNome(g));
 	}
 
 	@Test
-	public void testGetDisp() {
+	void testGetDisp() {
 		g.setId(10);
 		assertNotEquals(0,gD.getDisp(g));
 	}
 
 	@Test
-	public void testGetQuantita() {
+	void testGetQuantita() {
 		g.setId(3);
 		assertNotEquals(0,gD.getQuantita(g));
 	}
 
 	@Test
-	public void testCheckDisp() {
+	void testCheckDisp() {
 		g.setId(1);
 		assertEquals(false,gD.checkDisp(g, g.getId()));
 	}
 
 	@Test
-	public void testGetLibriSingolo() {
+	void testGetLibriSingolo() {
 		assertNotNull(gD.getLibriSingolo());
 	}
 
@@ -104,21 +104,21 @@ class TestGiornaleDao {
 	}
 
 	@Test
-	public void testCancella() {
+	void testCancella() {
 		g.setId(5);
 		gD.cancella(g);
 
 	}
 
 	@Test
-	public void testGetGiornaliSingoloById() {
+	void testGetGiornaliSingoloById() {
 		g.setId(2);
 		assertNotNull(gD.getGiornaliSingoloById(g));
 
 	}
 
 	@Test
-	public void testGetGiornaliByName() {
+	void testGetGiornaliByName() {
 		//faccio per titolo
 		g.setTitolo("il messagero");
 		try {
@@ -130,7 +130,7 @@ class TestGiornaleDao {
 
 	}
 	@Test
-	public void testGetGiornaliByName1() {
+	void testGetGiornaliByName1() {
 		g.setEditore("Il Fatto Quotidiano");
 		try {
 			assertNotNull(gD.getGiornaliByName(g.getEditore()));
@@ -143,7 +143,7 @@ class TestGiornaleDao {
 	}
 
 	@Test
-	public void testAggiornaGiornale() {
+	void testAggiornaGiornale() {
 		g.setTitolo("la gazzetta del profeta");
 		g.setTipologia("quotidiano");
 		g.setLingua("it");
@@ -157,7 +157,7 @@ class TestGiornaleDao {
 	}
 
 	@Test
-	public void testGeneraReport() {
+	void testGeneraReport() {
 		gD.generaReport();
 }
 

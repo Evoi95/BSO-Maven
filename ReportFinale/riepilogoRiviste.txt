@@ -8,3 +8,10 @@ Titolo :Tv Sorrisi e canzoni	Editore :Bao Publishing	Ricavo totale :0.0
 Titolo :Rivista A	Editore :Bao Publishing	Ricavo totale :242.0
 Titolo :Rivista B	Editore :Bao Publishing	Ricavo totale :642.0
 Titolo :focus	Editore :mondadori	Ricavo totale :260.0
+Titolo :focus	Editore :hoepli	Ricavo totale :330.0
+Titolo :Focus	Editore :Bao Publishing	Ricavo totale :615.0
+Titolo :Focus Junior	Editore :Bao Publishing	Ricavo totale :2468.0
+Titolo :Tv Sorrisi e canzoni	Editore :Bao Publishing	Ricavo totale :0.0
+Titolo :Rivista A	Editore :Bao Publishing	Ricavo totale :242.0
+Titolo :Rivista B	Editore :Bao Publishing	Ricavo totale :642.0
+Titolo :focus	Editore :mondadori	Ricavo totale :260.0

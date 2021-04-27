@@ -6,13 +6,13 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerBookPage;
+import controller_app.ControllerBookPage;
 
 class TestControllerBookPage {
 	private ControllerBookPage cBP=new ControllerBookPage();
 
 	@Test
-	public void testGetLibriS() {
+	void testGetLibriS() {
 		try {
 			assertNotNull(cBP.getLibriS());
 		} catch (SQLException e) {

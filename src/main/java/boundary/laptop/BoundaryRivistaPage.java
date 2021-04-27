@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerCancellaRivista;
-import controllerApp.ControllerRivistaPage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerCancellaRivista;
+import controller_app.ControllerRivistaPage;
+import controller_app.SingeltonSystemState;
 import factoryBook.Libro;
 import factoryBook.Rivista;
 import javafx.beans.property.SimpleFloatProperty;

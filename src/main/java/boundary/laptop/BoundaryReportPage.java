@@ -7,11 +7,13 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerReportGiornali;
-import controllerApp.ControllerReportLibri;
-import controllerApp.ControllerReportRiviste;
-import controllerApp.ControllerUserPage;
+import controller_app.ControllerReportGiornali;
+import controller_app.ControllerReportLibri;
+import controller_app.ControllerReportRiviste;
+import controller_app.ControllerUserPage;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -75,7 +77,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line.concat("\n"));
             
 
-            System.out.println(line);
+            Log.logger.log(Level.INFO,line);
             line = readerL.readLine();
         }
 		} catch (FileNotFoundException e) {
@@ -104,7 +106,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line1.concat("\n"));
             
 
-            System.out.println(line1);
+            Log.logger.log(Level.INFO,line1);
             line1 = readerG.readLine();
         }
 		} catch (IOException e) {
@@ -136,7 +138,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line2.concat("\n"));
             
 
-            System.out.println(line2);
+            Log.logger.log(Level.INFO,line2);
             try {
 				line2 = reader.readLine();
 			} catch (IOException e) {
@@ -172,7 +174,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line3.concat("\n"));
             
 
-            System.out.println(line3);
+            Log.logger.log(Level.INFO,line3);
             try {
 				line3 = reader3.readLine();
 			} catch (IOException e) {
@@ -215,7 +217,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line.concat("\n"));
             
 
-            System.out.println(line);
+            Log.logger.log(Level.INFO,line);
             line = reader.readLine();
         }
         reader.close();
@@ -237,7 +239,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line.concat("\n"));
             
 
-            System.out.println(line);
+            Log.logger.log(Level.INFO,line);
             line = readerL.readLine();
         }
         readerL.close();
@@ -248,7 +250,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line1.concat("\n"));
             
 
-            System.out.println(line1);
+            Log.logger.log(Level.INFO,line1);
             line1 = readerG.readLine();
         }
         readerG.close();
@@ -259,7 +261,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line2.concat("\n"));
             
 
-            System.out.println(line2);
+            Log.logger.log(Level.INFO,line2);
             line2 = reader.readLine();
         }
         reader.close();
@@ -283,7 +285,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line.concat("\n"));
             
 
-            System.out.println(line);
+            Log.logger.log(Level.INFO,line);
             line = reader.readLine();
         }
         reader.close();
@@ -327,7 +329,7 @@ public class BoundaryReportPage implements Initializable {
             ta.appendText(line2.concat("\n"));
             
 
-            System.out.println(line2);
+            Log.logger.log(Level.INFO,line2);
             line2 = readerR.readLine();
         }
         readerR.close();

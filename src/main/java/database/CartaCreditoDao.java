@@ -5,8 +5,9 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
+import java.util.logging.Level;
 
+import logger.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
@@ -41,11 +42,8 @@ public class CartaCreditoDao {
             	
 
         		try {             
-        		//	System.out.println("Stringhe : "+n+cog+cod);
-        			// System.out.println("res :"+rs.getString(1));
 
 					catalogo.add(new CartaCredito(n,cog,cod, null, cod,0));
-					//rs=rs.next();
         		} catch (Exception e) {
 				 
 					
@@ -72,7 +70,6 @@ public class CartaCreditoDao {
 	
 	public void daiPrivilegi() throws SQLException
 	{
-		//Connection conn=null;
 		//PreparedStatement stmt=null;
 	//	Double d=(double) disp;
 
@@ -91,11 +88,11 @@ public class CartaCreditoDao {
 		 finally {
 			// stmt.close();
 			 conn.close();
-			// System.out.println("Ho chiuso tutto");
+			// Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("LibroDao. privilegi");
+		 Log.logger.log(Level.INFO,"LibroDao. privilegi");
 
 	}
 	public void insCC(CartaCredito cc) throws SQLException
@@ -105,14 +102,14 @@ public class CartaCreditoDao {
 		//Connection conn = null;
 		
 		
-		System.out.println("\t\tEntro in ins cc");
+		Log.logger.log(Level.INFO,"\t\tEntro in ins cc");
 		String n=cc.getUserNome();
 		 String c=cc.getUserCognome();
 		 String num=cc.getNumeroCC();
 		 Date d=cc.getScadenza();
 		 String pin=cc.getCiv();
 		 Float amm=(float) cc.getPrezzoTransazine();		 
-		// System.out.println("Entro in ins cc"+cc.getUserNome());
+		// Log.logger.log(Level.INFO,"Entro in ins cc"+cc.getUserNome());
 		 try {
 			 conn=ConnToDb.generalConnection();
 			 query="insert into cartacredito (nomeP,cognomeP,codiceCarta,scad,codicePin,ammontare)  values(?,?,?,?,?,?)";
@@ -145,7 +142,7 @@ public class CartaCreditoDao {
 		 finally {conn.close();}
 		
 		
-		 System.out.println("LibroDao. questy");
+		 Log.logger.log(Level.INFO,"LibroDao. questy");
 
 		}
 	
@@ -166,7 +163,7 @@ public class CartaCreditoDao {
 			e.getCause();
 		}
 		
-		System.out.println("\n\n Spesa in cDao :"+spesa);
+		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao :"+spesa);
 		return spesa;
 	}
 	  

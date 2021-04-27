@@ -3,14 +3,16 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerAddGiornalePage;
+import controller_app.ControllerAddGiornalePage;
 import javafx.fxml.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import logger.Log;
 public class BoundaryAddGiornalePage implements Initializable  {
 	@FXML
 	private Pane pane;
@@ -53,7 +55,11 @@ public class BoundaryAddGiornalePage implements Initializable  {
 	@FXML
 	private Button buttonA;
 	
-	private ControllerAddGiornalePage cAGP;
+	private ControllerAddGiornalePage cAGP; 
+	protected float prezzo ; 
+	protected int copie ; 
+	protected Scene scene;
+	
 	@FXML
 	private void conferma()
 	{
@@ -67,7 +73,7 @@ public class BoundaryAddGiornalePage implements Initializable  {
 		
 		int dispo;
 		
-		if(disp==true)
+		if(disp)
 		{
 			dispo=1;
 			//disponibile
@@ -75,12 +81,12 @@ public class BoundaryAddGiornalePage implements Initializable  {
 		else {
 			dispo=0;
 		}
-		float prezzo=Float.parseFloat(prezzoT.getText());
-		int copie=Integer.parseInt(copieRimanentiT.getText());
+		prezzo=Float.parseFloat(prezzoT.getText());
+		copie=Integer.parseInt(copieRimanentiT.getText());
 		
 		boolean esito=cAGP.checkData(t,tipo,ed,l,d,dispo,prezzo,copie);
 		
-		System.out.println("Esito : "+esito);
+		Log.logger.log(Level.INFO,"Esito : {0}",esito);
 		
 		
 
@@ -92,7 +98,7 @@ public class BoundaryAddGiornalePage implements Initializable  {
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("giornalePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	

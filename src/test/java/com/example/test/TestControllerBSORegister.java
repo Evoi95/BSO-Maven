@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerBsoRegister;
+import controller_app.ControllerBsoRegister;
 
 class TestControllerBSORegister {
 	ControllerBsoRegister cBR=new ControllerBsoRegister();
@@ -18,7 +18,7 @@ class TestControllerBSORegister {
 
 
 	@Test
-	public void testRegistra() {
+	void testRegistra() {
 		try {
 			assertEquals(state,cBR.registra("aaa", "bbb", "aaa.bbb@gmail.com", "aaabb10", "aaabb10",date));
 		} catch (SQLException e) {
@@ -28,22 +28,22 @@ class TestControllerBSORegister {
 	}
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		assertNotEquals(state,cBR.checkData("Admin", "admin","Admin@admin.com", "admin871","admin871"));
 	}
 
 	@Test
-	public void testCheckEmail() {
+	void testCheckEmail() {
 		assertNotEquals(state,cBR.checkEmail("zerocalcare@gmail.com"));
 	}
 
 	@Test
-	public void testCheckPassword() {
+	void testCheckPassword() {
 		assertNotEquals(state,cBR.checkPassword("Zerocalcare21","Zerocalcare21"));
 }
 
 	@Test
-	public void testCheckNomeCognome() {
+	void testCheckNomeCognome() {
 		assertNotEquals(state,cBR.checkNomeCognome("pippo","pluto"));
 	}
 

@@ -1,32 +1,27 @@
 package boundary.laptop;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-import java.util.StringTokenizer;
+import java.util.logging.Level;
 
-import controllerApp.ControllerCancUser;
-import controllerApp.ControllerModifUserPage;
-import controllerApp.ControllerUserPage;
-import controllerApp.SingeltonSystemState;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import controller_app.ControllerCancUser;
+import controller_app.ControllerModifUserPage;
+import controller_app.ControllerUserPage;
+import controller_app.SingeltonSystemState;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import users.singelton.TempUser;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class BoundaryUserPage implements Initializable {
 	@FXML
@@ -77,7 +72,7 @@ public class BoundaryUserPage implements Initializable {
 		int max = 0;
 		max=cMPU.prendiIdMax();
 		
-		System.out.println("Utenti massimi "+max);
+		Log.logger.log(Level.INFO,"Utenti massimi {0}",max);
 
 		
 		if(Integer.parseInt(utenteTF.getText())<1)// && Integer.parseInt(utenteTF.getText())>max)
@@ -106,7 +101,7 @@ public class BoundaryUserPage implements Initializable {
 		else {
 			
 		
-		System.out.println("Id in BoundaryUserPage : "+vis.getIstance().getId());
+		Log.logger.log(Level.INFO,"Id in BoundaryUserPage : {0}",vis.getIstance().getId());
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonM.getScene().getWindow();
@@ -135,7 +130,7 @@ public class BoundaryUserPage implements Initializable {
 
 	}
 	@FXML
-	private void prendi() throws SQLException{
+	private void prendi() {
 		cUP.getUtenti();
 		elencoUtenti.clear();
 		
@@ -147,7 +142,7 @@ public class BoundaryUserPage implements Initializable {
             elencoUtenti.appendText(line.concat("\n"));
             
 
-            System.out.println(line);
+            Log.logger.log(Level.INFO,line);
             line = reader.readLine();
         }
 		}

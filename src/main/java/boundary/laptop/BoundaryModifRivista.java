@@ -6,8 +6,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerModifRivistaPage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerModifRivistaPage;
+import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;

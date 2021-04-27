@@ -5,9 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerModifUserPage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerModifUserPage;
+import controller_app.SingeltonSystemState;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -120,7 +122,7 @@ public class BoundaryModifUserPage implements Initializable{
 		// query con id
 		cMUP=new ControllerModifUserPage();
 		int id=SingeltonSystemState.getIstance().getId();
-		System.out.println("id in initialize bMUP :"+ id);
+		Log.logger.log(Level.INFO,"id in initialize bMUP :"+ id);
 		
 		try {
 			cMUP.prendiLista(id);

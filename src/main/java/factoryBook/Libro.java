@@ -5,15 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Date;
 import java.time.LocalDate;
+import java.util.logging.Level;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
-
+import logger.Log;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
@@ -175,9 +174,9 @@ public class Libro implements Raccolta {
 	      File file = new File("C:\\libriScaricati");
 	      boolean bool = file.mkdir();
 	      if(bool){
-	         System.out.println("Directory created successfully");
+	         Log.logger.log(Level.INFO,"Directory created successfully");
 	      }else{
-	         System.out.println("Sorry could not create specified directory");
+	         Log.logger.log(Level.INFO,"Sorry could not create specified directory");
 	      }
 	      
 	      
@@ -194,7 +193,7 @@ public class Libro implements Raccolta {
 					
 				}
 	        } catch (IllegalArgumentException iae) {
-	            System.out.println("File Not Found");
+	            Log.logger.log(Level.INFO,"File Not Found");
 	        }
 	        	        	       		
 	}

@@ -6,14 +6,14 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerRicercaPage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerRicercaPage;
+import controller_app.SingeltonSystemState;
 
 class TestControllerRicercaPage {
 	private ControllerRicercaPage cRP=new ControllerRicercaPage();
 
 	@Test
-	public void testCercaPerTipo() {
+	void testCercaPerTipo() {
 		//per libro
 		SingeltonSystemState.getIstance().setTypeAsBook();
 		try {
@@ -25,7 +25,7 @@ class TestControllerRicercaPage {
 		}
 	
 	@Test
-	public void testCercaPerTipo1() {
+	void testCercaPerTipo1() {
 		//per libro
 		SingeltonSystemState.getIstance().setTypeAsDaily();
 		try {
@@ -36,7 +36,7 @@ class TestControllerRicercaPage {
 			}
 		}
 	@Test
-	public void testCercaPerTipo2() {
+	void testCercaPerTipo2() {
 		//per libro
 		SingeltonSystemState.getIstance().setTypeAsMagazine();
 		try {
@@ -49,19 +49,19 @@ class TestControllerRicercaPage {
 	
 
 	@Test
-	public void testReturnType() {
+	void testReturnType() {
 		SingeltonSystemState.getIstance().setTypeAsBook();
 
 		assertEquals("libro",cRP.returnType());
 	}
 	@Test
-	public void testReturnType1() {
+	void testReturnType1() {
 		SingeltonSystemState.getIstance().setTypeAsMagazine();
 
 		assertEquals("rivista",cRP.returnType());
 	}
 	@Test
-	public void testReturnType2() {
+	void testReturnType2() {
 		SingeltonSystemState.getIstance().setTypeAsDaily();
 
 		assertEquals("giornale",cRP.returnType());

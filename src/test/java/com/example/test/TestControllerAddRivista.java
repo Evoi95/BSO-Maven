@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerAddRivistaPage;
+import controller_app.ControllerAddRivistaPage;
 import factoryBook.Rivista;
 
 class TestControllerAddRivista {

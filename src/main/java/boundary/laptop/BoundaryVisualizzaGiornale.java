@@ -5,8 +5,8 @@ package boundary.laptop;
 	import java.sql.SQLException;
 	import java.util.ResourceBundle;
 
-import controllerApp.ControllerVisualizzaGiornale;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerVisualizzaGiornale;
+import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
 	import javafx.fxml.FXMLLoader;
 	import javafx.fxml.Initializable;

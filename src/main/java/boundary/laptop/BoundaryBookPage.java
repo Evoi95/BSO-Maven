@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerBookPage;
-import controllerApp.ControllerCancLibro;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerBookPage;
+import controller_app.ControllerCancLibro;
+import controller_app.SingeltonSystemState;
 import factoryBook.Libro;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -57,6 +57,8 @@ public class BoundaryBookPage implements Initializable {
 	private ControllerBookPage cBP;
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	private ControllerCancLibro cCL;
+	protected int identity;
+	protected Scene scene;
 	@FXML
 	private void aggiungi() throws IOException 
 	{	
@@ -64,7 +66,7 @@ public class BoundaryBookPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonAdd.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("addBookPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		// apro la boundary di aggiunta dei dati e inserimento nel db
@@ -77,7 +79,7 @@ public class BoundaryBookPage implements Initializable {
 		Parent root;
 		stage = (Stage) modB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("modBookPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -87,11 +89,10 @@ public class BoundaryBookPage implements Initializable {
 	}
 	
 	@FXML
-	private void cancella() throws IOException
+	private void cancella() 
 	{
-		int id;
-		id=vis.getIstance().getId();
-		cCL.cancella(id);
+		identity=SingeltonSystemState.getIstance().getId();
+		cCL.cancella(identity);
 		// come nella modifica si apre una schemrata che chiedi il codice del libro da modiciare
 		// inserito quel codice io posso clicare ok o indietro
 		// se clicco ok allora apro la pagina di modifica altrimenti niente
@@ -99,13 +100,17 @@ public class BoundaryBookPage implements Initializable {
 	}
 	
 	@FXML
-	private void indietro() throws IOException
+	private void indietro() 
 	{
 		Stage stage;
-		Parent root;
+		Parent root = null;
 		stage = (Stage) buttonB.getScene().getWindow();
-		root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-		Scene scene = new Scene(root);
+		try {
+			root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -113,13 +118,12 @@ public class BoundaryBookPage implements Initializable {
 	@FXML
 	private void genera() throws SQLException
 	{
-		// get del controller libri
 		table.setItems(cBP.getLibriS());
 	}
 	
 	@FXML
 	private void pippo() {
-		vis.getIstance().setId(table.getSelectionModel().getSelectedItem().getId());
+		SingeltonSystemState.getIstance().setId(table.getSelectionModel().getSelectedItem().getId());
 	}
 	
 	@Override
@@ -137,7 +141,5 @@ public class BoundaryBookPage implements Initializable {
 
 
 	}
-	// to do mettere funzione franco
-	// to do mettere funzione camilla
 	
 }

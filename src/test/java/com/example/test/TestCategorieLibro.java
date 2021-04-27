@@ -9,22 +9,22 @@ import factoryBook.CategorieLibro;
 class TestCategorieLibro {
 	private CategorieLibro cL;
 	@Test
-	 public void testGetCategoria() {
+	 void testGetCategoria() {
 		cL=new CategorieLibro("AdolescentiEragazzi");
 		assertEquals("AdolescentiEragazzi",cL.getCategoria());
 	}
 	@Test
-	 public void testGetCategoria1() {
+	 void testGetCategoria1() {
 		cL=new CategorieLibro("RomanziRosa");
 		assertEquals("RomanziRosa",cL.getCategoria());
 	}
 	@Test
-	 public void testGetCategoria2() {
+	 void testGetCategoria2() {
 		cL=new CategorieLibro("WebEDigitalMedia");
 		assertEquals("WebEDigitalMedia",cL.getCategoria());
 	}
 	@Test
-	 public void testGetCategoria3() {
+	 void testGetCategoria3() {
 		cL=new CategorieLibro("Economia");
 		assertEquals("Economia",cL.getCategoria());
 	}

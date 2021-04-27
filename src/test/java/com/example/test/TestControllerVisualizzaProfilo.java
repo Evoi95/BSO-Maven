@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerVisualizzaProfilo;
+import controller_app.ControllerVisualizzaProfilo;
 import users.singelton.User;
 
 class TestControllerVisualizzaProfilo {
@@ -17,7 +17,7 @@ class TestControllerVisualizzaProfilo {
 		u.setNull();
 		u.setNome("pippo");
 		u.setEmail("Admin@Admin.com");
-		System.out.println("CVO CREDENZIAL:"+cVP.getCredenziali());
+		//Log.logger.log(Level.INFO,"CVO CREDENZIAL:"+cVP.getCredenziali());
 		//User.getInstance().getNome();
 		//assertNotNull(cVP.getCredenziali());
 	}

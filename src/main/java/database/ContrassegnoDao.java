@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
 
+import logger.Log;
 import pagamento.Fattura;
 
 public class ContrassegnoDao {
 	private Connection conn;
 	private static PreparedStatement stmt;
 	
-	//private boolean esito=false;
-	
+
 	public void inserisciFattura(Fattura f) 
 	{
 		 conn=null;
@@ -24,7 +25,7 @@ public class ContrassegnoDao {
  		String par4=f.getCom();
  		float par5=f.getAmmontare();
  		
- 		System.out.println(par1 + par2 + par3 + par4 + par5);
+ 		Log.logger.log(Level.INFO,"",par1 + par2 + par3 + par4 + par5);
        
 		 try {
 
@@ -49,7 +50,7 @@ public class ContrassegnoDao {
 
          }
 		 		 
-		 System.out.println("effettuo inserimento pagaentoDao");
+		 Log.logger.log(Level.INFO,"effettuo inserimento pagaentoDao");
 				//return esito;
          
          
@@ -81,11 +82,11 @@ public class ContrassegnoDao {
 			 
 				
 			}
-			 System.out.println("Ho chiuso tutto");
+			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("PagamentoDao. privilegi");
+		 Log.logger.log(Level.INFO,"PagamentoDao. privilegi");
 
 		}
 	
@@ -114,7 +115,7 @@ public class ContrassegnoDao {
 			}
 		}
 		
-		System.out.println("\n\n Spesa in cDao :"+spesa);
+		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao :"+spesa);
 		return spesa;
 	}
 	

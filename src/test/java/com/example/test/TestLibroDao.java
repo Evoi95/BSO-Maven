@@ -17,7 +17,7 @@ class TestLibroDao {
 	private Libro l=new Libro();
 
 	@Test
-	public void testGetDesc() {
+	void testGetDesc() {
 		l.setCodIsbn("8817061622");
 		try {
 			lD.getDesc(l);
@@ -28,7 +28,7 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testGetCosto() {
+	void testGetCosto() {
 		l.setId(6);
 		try {
 			assertNotEquals(0.0,lD.getCosto(l));
@@ -51,7 +51,7 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testDaiPrivilegi() {
+	void testDaiPrivilegi() {
 		try {
 			lD.daiPrivilegi();
 		} catch (SQLException e) {
@@ -61,7 +61,7 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testGetLibri() {
+	void testGetLibri() {
 		try {
 			assertNotNull(lD.getLibri());
 		} catch (SQLException e) {
@@ -91,32 +91,32 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testGetLibro() throws SQLException {
+	void testGetLibro() throws SQLException {
 		l.setId(5);
 		assertNotNull(lD.getLibro(l,l.getId()));
 	}
 
 	@Test
-	public void testRetId() throws SQLException {
+	void testRetId() throws SQLException {
 		l.setCodIsbn("1722235608");
 		assertNotEquals(0,lD.retId(l));
 	}
 
 	@Test
-	public void testRetTip() throws SQLException {
+	void testRetTip() throws SQLException {
 		l.setCodIsbn("1722235608");
 		assertNotNull(lD.retTip(l));
 
 	}
 
 	@Test
-	public void testAggiornaCopieVendute() throws SQLException {
+	void testAggiornaCopieVendute() throws SQLException {
 		l.setCodIsbn("1722235608");
 		lD.aggiornaCopieVendute(l, 6);
 	}
 
 	@Test
-	public void testCreaLibrio() {
+	void testCreaLibrio() {
 		
 		//String x=UUID.randomUUID().toString().length()=10;
 		l.setTitolo("ricette culinarie facili ");
@@ -137,43 +137,43 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testGetDisp() throws SQLException {
+	void testGetDisp() throws SQLException {
 		l.setId(4);
 		assertNotEquals(-1,lD.getDisp(l));
 		
 	}
 
 	@Test
-	public void testGetQuantita() throws SQLException {
+	void testGetQuantita() throws SQLException {
 		l.setId(6);
 		assertNotEquals(0,lD.getQuantita(l));
 	}
 
 	@Test
-	public void testCheckDisp() throws SQLException {
+	void testCheckDisp() throws SQLException {
 		l.setId(1);
 		assertNotEquals(0,lD.checkDisp(l,l.getId()));
 	}
 
 	@Test
-	public void testGetNome() throws SQLException {
+	void testGetNome() throws SQLException {
 		l.setId(3);
 		assertNotNull(lD.getNome(l));
 	}
 
 	@Test
-	public void testGetLibriSingolo() throws SQLException {
+	void testGetLibriSingolo() throws SQLException {
 		assertNotNull(lD.getLibriSingolo());
 	}
 
 	@Test
-	public void testCancella() {
+	void testCancella() {
 		l.setId(15);
 		lD.cancella(l);
 	}
 
 	@Test
-	public void testGetLibriSingoloById() throws SQLException {
+	void testGetLibriSingoloById() throws SQLException {
 		l.setId(4);
 		assertNotNull(lD.getLibriSingoloById(l));
 	}
@@ -199,7 +199,7 @@ class TestLibroDao {
 	}
 
 	@Test
-	public void testGeneraReport() throws SQLException, IOException {
+	void testGeneraReport() throws SQLException, IOException {
 		lD.generaReport();
 	}
 

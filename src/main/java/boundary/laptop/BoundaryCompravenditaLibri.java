@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerCompravenditaLibri;
-import controllerApp.ControllerVisualizzaLibro;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerCompravenditaLibri;
+import controller_app.ControllerVisualizzaLibro;
+import controller_app.SingeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -55,35 +55,35 @@ public class BoundaryCompravenditaLibri implements Initializable {
 	@FXML
 	private Button buttonI;
 
-	private ControllerCompravenditaLibri CCV;
-	private ControllerVisualizzaLibro CVL;
+	private ControllerCompravenditaLibri cCV;
+	private ControllerVisualizzaLibro cVL;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
+	protected Alert alert;
+	protected Scene scene;
+	
 
 	
 	@FXML
 	private void verifica() throws  IOException, SQLException {
-		//CCV.disponibilitaLibro(entryText.getText());// verifico se libro e presente
-		// String libro=entryText.getText();
-		// return CCV.disponibilitaLibro( libro);
 		try
 		{
 			String i = entryText.getText();
-		if( CCV.disponibilitaLibro(i)) {
-			CVL.setID(i);
+		if( cCV.disponibilitaLibro(i)) {
+			cVL.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaBookPage.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 			
 		else
 		{
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Id libro inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
@@ -102,21 +102,21 @@ public class BoundaryCompravenditaLibri implements Initializable {
 		try
 		{
 			String i = entryText.getText();
-		if( CCV.disponibilitaLibro(i)) {
-			CVL.setID(i);
+		if( cCV.disponibilitaLibro(i)) {
+			cVL.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonA.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Id libro non inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
@@ -134,7 +134,7 @@ public class BoundaryCompravenditaLibri implements Initializable {
 	@FXML
 	private void vediListaLibri() throws SQLException {
 
-		table.setItems(CCV.getLibri());
+		table.setItems(cCV.getLibri());
 
 	}
 
@@ -142,8 +142,8 @@ public class BoundaryCompravenditaLibri implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		CCV = new ControllerCompravenditaLibri();
-		CVL = new ControllerVisualizzaLibro();
+		cCV = new ControllerCompravenditaLibri();
+		cVL = new ControllerVisualizzaLibro();
 
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
 		editore.setCellValueFactory(new PropertyValueFactory<>("editore"));
@@ -158,27 +158,24 @@ public class BoundaryCompravenditaLibri implements Initializable {
 	@FXML
 	private void torna() throws IOException {
 		
-		String tipoU=CCV.retTipoUser();
+		String tipoU=cCV.retTipoUser();
 		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
 			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
-
-			{
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
-				}
 			}
 			else {
 				
@@ -186,7 +183,7 @@ public class BoundaryCompravenditaLibri implements Initializable {
 					Parent root;
 					stage = (Stage) buttonI.getScene().getWindow();
 					root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-					Scene scene = new Scene(root);
+					scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();
 				}

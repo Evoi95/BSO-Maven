@@ -5,9 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerCompravenditaGiornali;
-import controllerApp.ControllerVisualizzaGiornale;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerCompravenditaGiornali;
+import controller_app.ControllerVisualizzaGiornale;
+import controller_app.SingeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -25,7 +25,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -40,7 +39,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
-	private TableColumn<Raccolta, SimpleStringProperty> Tipologia = new TableColumn<>("Tipologia");
+	private TableColumn<Raccolta, SimpleStringProperty> tipologia = new TableColumn<>("Tipologia");
 	@FXML
 	private TableColumn<Raccolta, SimpleStringProperty> autore = new TableColumn<>("Autore");
 	@FXML
@@ -63,15 +62,16 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 	@FXML
 	private Button buttonA;
 
-	private ControllerCompravenditaGiornali CCG;
-	private ControllerVisualizzaGiornale CVG;
+	private ControllerCompravenditaGiornali cCG;
+	private ControllerVisualizzaGiornale cVG;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
-
+	protected Scene scene;
+	protected Alert alert;
 	
 	@FXML
 	private void vediListaGiornali() throws SQLException {
 
-		table.setItems(CCG.getGiornali());
+		table.setItems(cCG.getGiornali());
 
 	}
 
@@ -79,11 +79,11 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-		CCG = new ControllerCompravenditaGiornali();
-		CVG = new ControllerVisualizzaGiornale();
+		cCG = new ControllerCompravenditaGiornali();
+		cVG = new ControllerVisualizzaGiornale();
 
 		titolo.setCellValueFactory(new PropertyValueFactory<>("titolo"));
-		Tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
+		tipologia.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		autore.setCellValueFactory(new PropertyValueFactory<>("editore"));
 		dataPub.setCellValueFactory(new PropertyValueFactory<>("dataPubb"));
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
@@ -93,27 +93,25 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 
 	@FXML
 	private void torna() throws IOException {
-		String tipoU=CCG.tipoUtente();
+		String tipoU=cCG.tipoUtente();
 		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
 			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 
-			{
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
-				}
 			}
 			else {
 				
@@ -121,7 +119,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 					Parent root;
 					stage = (Stage) buttonI.getScene().getWindow();
 					root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-					Scene scene = new Scene(root);
+					scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();
 				}
@@ -135,22 +133,21 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 		try
 		{
 			String i = entryText.getText();
-		if( CCG.disponibilitaGiornale(i)) {
-			CVG.setID(i);
+		if( cCG.disponibilitaGiornale(i)) {
+			cVG.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaDailyPage.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 			
 		else
 		{
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Id libro inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
@@ -169,21 +166,21 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 		try
 		{
 			String i = entryText.getText();
-		if( CCG.disponibilitaGiornale(i)) {
-			CVG.setID(i);
+		if( cCG.disponibilitaGiornale(i)) {
+			cVG.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonA.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Id libro non inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");

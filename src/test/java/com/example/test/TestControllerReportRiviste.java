@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerReportRiviste;
+import controller_app.ControllerReportRiviste;
 
 class TestControllerReportRiviste {
 	private ControllerReportRiviste cRR= new ControllerReportRiviste();

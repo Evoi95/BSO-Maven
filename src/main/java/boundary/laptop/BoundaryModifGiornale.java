@@ -5,9 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerModifGiornale;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerModifGiornale;
+import controller_app.SingeltonSystemState;
+import logger.Log;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -109,7 +111,7 @@ public class BoundaryModifGiornale implements Initializable {
 		
 		boolean esito=cMG.checkData(t,tipo,ed,l,d,dispo,prezzo,copie);
 		
-		System.out.println("Esito : "+esito);
+		Log.logger.log(Level.INFO,"Esito : "+esito);
 		
 		
 

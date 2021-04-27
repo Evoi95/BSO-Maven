@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerLogin;
+import controller_app.ControllerLogin;
 
 class TestControllerLogin {
 	
@@ -35,7 +35,7 @@ class TestControllerLogin {
 		 
 			
 		}	
-		System.out.println("Sate :"+ state);
+		//Log.logger.log(Level.INFO,"Sate :"+ state);
 		assertEquals(true,state);//fail("Not yet implemented");
 	}
 
@@ -45,7 +45,7 @@ class TestControllerLogin {
 		cL=new ControllerLogin();
 		email="baoPublishing@gmail.com";
 		ruolo=cL.getRuoloTempUSer(email);
-		//System.out.println("ruolo nel test "+ruolo);
+		//Log.logger.log(Level.INFO,"ruolo nel test "+ruolo);
 		assertEquals("E",ruolo);
 		
 	}

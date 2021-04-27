@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerRicercaPage;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerRicercaPage;
+import controller_app.SingeltonSystemState;
 import factoryBook.Raccolta;
 import javafx.collections.ObservableList;
 
@@ -66,7 +66,7 @@ class TestRicerca {
 		statoR=elencoR.isEmpty();
 		}
 		
-		System.out.println("StaoL + StatoR +StatoG"+ statoL+statoR+statoG);
+		//Log.logger.log(Level.INFO,"StaoL + StatoR +StatoG"+ statoL+statoR+statoG);
 		statoTotale=(statoL&&statoR&&statoG);
 		
 		

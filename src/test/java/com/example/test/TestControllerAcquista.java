@@ -6,8 +6,8 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerAcquista;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerAcquista;
+import controller_app.SingeltonSystemState;
 
 class TestControllerAcquista {
 	private ControllerAcquista cA=new ControllerAcquista();
@@ -168,7 +168,7 @@ class TestControllerAcquista {
 		vis.setTypeAsBook();
 		vis.setId(1);
 		String nome=cA.getNomeById();
-		System.out.println("\n\n\n\nLibro in testAcquista: "+nome);
+		//Log.logger.log(Level.INFO,"\n\n\n\nLibro in testAcquista: "+nome);
 		assertNotEquals("",nome);
 
 	}

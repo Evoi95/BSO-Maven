@@ -5,9 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerScegliNegozio;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerScegliNegozio;
+import controller_app.SingeltonSystemState;
+import logger.Log;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -184,7 +186,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
-		            System.out.println("ALL OK..!");
+		            Log.logger.log(Level.INFO,"ALL OK..!");
 		            if(SingeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
@@ -197,7 +199,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		                stage.show();
 		            }
 		            else {
-		            	System.out.println("Sto in else");
+		            	Log.logger.log(Level.INFO,"Sto in else");
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();
@@ -240,7 +242,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
 		        	
 		        {
-		            System.out.println("ALL OK..!");
+		            Log.logger.log(Level.INFO,"ALL OK..!");
 		            if(SingeltonSystemState.getIstance().getIsLogged())	
 					{
 		            	Stage stage;
@@ -253,7 +255,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		                stage.show();
 		            }
 		            else {
-		            	System.out.println("Sto in else");
+		            	Log.logger.log(Level.INFO,"Sto in else");
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();

@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+
+import logger.Log;
 
 public class CreateDefaultDB 
 {
@@ -12,10 +15,6 @@ public class CreateDefaultDB
 	private static String query ;
 	private static String qTrigger ;
 	private static PreparedStatement prepQ = null;
-
-
-	//private static CallableStatement cStmt;
-
 	
 	public static void createDefaultDB () throws SQLException, ClassNotFoundException, FileNotFoundException
 	{
@@ -33,7 +32,7 @@ public class CreateDefaultDB
 				st.execute(query);
 				query = "USE ispw ";
 				st.execute(query);
-				System.out.println("Connesso a mysql workbench, ma non ho torvato il database 'ispw'\n"
+				Log.logger.log(Level.INFO,"Connesso a mysql workbench, ma non ho torvato il database 'ispw'\n"
 						+ "Database creato \n"
 						+ " Chiamo la Stored Procedure, per creare le tabelle");
 				
@@ -128,38 +127,38 @@ public class CreateDefaultDB
 						+ ");";
 				st.executeUpdate(query);
 
-				System.out.println("Tabelle create!");
+				Log.logger.log(Level.INFO,"Tabelle create!");
 				
 				if (PopulateDefaultDb.populateDefaultDb()) {
-					System.out.println("Tabella populata con valori di default");
+					Log.logger.log(Level.INFO,"Tabella populata con valori di default");
 					if (true)
 					{
 					//if (createTrigger()) {
 						ConnToDb.conn.close();
-						System.out.println("Trigger creati e connesione chiusa col db");
+						Log.logger.log(Level.INFO,"Trigger creati e connesione chiusa col db");
 					}
 					else
 					{
-						System.err.println("Ops..! qualcosa è andato storto nella creazione dei trigger !");
+						Log.logger.log(Level.WARNING,"Ops..! qualcosa è andato storto nella creazione dei trigger !");
 
 					}
 				}
 				else
 				{
-					System.err.println("Ops..! qualcosa è andato storto nel populare il database!");
+					Log.logger.log(Level.WARNING,"Ops..! qualcosa è andato storto nel populare il database!");
 				}
 			}
 			
 			// Se trovo tutto  chiudo la connesione e vado avanti con l'esecuzione del programma
 			else if (status == false)
 			{
-				System.out.println("Trovato database e connesso senza problemi! Buone madonne!");
+				Log.logger.log(Level.INFO,"Trovato database e connesso senza problemi! Buone madonne!");
 				ConnToDb.conn.close();		
 			}
 			// Se qualcosa non va chiudo la connessione e vado nel cacth
 			else 
 			{
-				System.err.println("Ops..! qualcosa è andato storto nella connesione al database!");
+				Log.logger.log(Level.WARNING,"Ops..! qualcosa è andato storto nella connesione al database!");
 				ConnToDb.conn.close();		
 
 			}
@@ -167,7 +166,7 @@ public class CreateDefaultDB
 		catch(SQLException e1) 
 		{
 			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL ");
+			Log.logger.log(Level.WARNING,"ERRORE DI SQL ");
 		}
 		
 		
@@ -192,7 +191,7 @@ public class CreateDefaultDB
 				
 
 				
-				System.out.println("Trigger pagamento triggerato");
+				Log.logger.log(Level.INFO,"Trigger pagamento triggerato");
 				
 				qTrigger= "delimiter //"
 						+ "create trigger pagaCartaCredito after insert on cartacredito "
@@ -201,7 +200,7 @@ public class CreateDefaultDB
 						+ "insert into  pagamento values(0,'cartac',0,new.nomeP,new.ammontare);"
 						+ "end; //";
 				prepQ = ConnToDb.conn.prepareStatement(qTrigger);	
-				System.out.println("Trigger cartaDiCredito triggerato");
+				Log.logger.log(Level.INFO,"Trigger cartaDiCredito triggerato");
 				// TO DO : Mancano altri trigger degli utenti etc...
 				return true;
 			
@@ -209,7 +208,7 @@ public class CreateDefaultDB
 		catch(SQLException e1) 
 		{
 			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL ");
+			Log.logger.log(Level.WARNING,"ERRORE DI SQL ");
 		}
 		
 		return false;

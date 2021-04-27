@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerVisualizzaLibro;
+import controller_app.ControllerVisualizzaLibro;
 
 class TestControllerVisualizzaLibro {
 	private ControllerVisualizzaLibro cVL=new ControllerVisualizzaLibro();

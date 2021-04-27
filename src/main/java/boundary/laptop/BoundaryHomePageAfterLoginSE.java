@@ -2,8 +2,8 @@ package boundary.laptop;
 
 import java.io.IOException;
 
-import controllerApp.ControllerHomePageAfterLogin;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerHomePageAfterLogin;
+import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -124,7 +124,7 @@ public class BoundaryHomePageAfterLoginSE {
 
 		stage.show();
 		
-		//System.out.println("Sto nel terzo caso d'urso lode");
+		//Log.logger.log(Level.INFO,"Sto nel terzo caso d'urso lode");
 	}
 
 	// Usaiamo la Reflection!! no! 

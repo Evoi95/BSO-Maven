@@ -12,7 +12,7 @@ class TestPopulatedefaultDb {
 	//private static PopulateDefaultDb pDDB= new PopulateDefaultDb();
 
 	@Test
-	public void testPopulateDefaultDb() throws FileNotFoundException {
+	void testPopulateDefaultDb() throws FileNotFoundException {
 		assertNotEquals(false,PopulateDefaultDb.populateDefaultDb());
 	}
 

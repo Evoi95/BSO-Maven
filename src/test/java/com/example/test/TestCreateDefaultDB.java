@@ -12,13 +12,13 @@ import database.CreateDefaultDB;
 class TestCreateDefaultDB {
 
 	@Test
-	public void testCreateDefaultDB() throws ClassNotFoundException, FileNotFoundException, SQLException {
+	void testCreateDefaultDB() throws ClassNotFoundException, FileNotFoundException, SQLException {
 		CreateDefaultDB.createDefaultDB();
 	}
 	/*
 
 	@Test
-	public void testCreateTrigger() throws SQLException {
+	void testCreateTrigger() throws SQLException {
 		CreateDefaultDB.createTrigger();
 	}
 */

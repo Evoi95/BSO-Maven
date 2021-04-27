@@ -4,13 +4,15 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerAddUserPage;
+import controller_app.ControllerAddUserPage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import logger.Log;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -57,14 +59,16 @@ public class BoundaryAddUserPage implements Initializable{
 	
 	private ControllerAddUserPage cAUP;
 	
+	protected Scene scene;
 	@FXML
 	private void inserisciUtente() {
 		
 		try {
 			cAUP.insUtenteAsAdmin(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),pwdTF.getText(),descTA.getText(),dataN.getValue(),ruoloTF.getText());
-		} catch (SQLException e) {
-		 
-			
+		} 
+		catch (SQLException e)
+		{
+			Log.logger.log(Level.SEVERE,e,()->"result"+e);
 		}
 		
 	}
@@ -76,10 +80,7 @@ public class BoundaryAddUserPage implements Initializable{
 		stage = (Stage) annB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
 		stage.setTitle("Benvenuto nella schermata del login");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 

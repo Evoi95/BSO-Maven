@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerModifGiornale;
+import controller_app.ControllerModifGiornale;
 import factoryBook.Giornale;
 
 class TestControllerModifGiornale {
@@ -15,7 +15,7 @@ class TestControllerModifGiornale {
 	private ControllerModifGiornale cMG=new ControllerModifGiornale();
 	private boolean state=false;
 	@Test
-	public void testGetGiornaliById() {
+	void testGetGiornaliById() {
 		g=new Giornale();
 		g.setId(1);
 		try {
@@ -27,7 +27,7 @@ class TestControllerModifGiornale {
 		}
 
 	@Test
-	public void testCheckData() {
+	void testCheckData() {
 		g=new Giornale();
 		g.setTitolo("la stampa");
 		g.setTipologia("Quotidiano");

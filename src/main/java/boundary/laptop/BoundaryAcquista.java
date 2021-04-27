@@ -5,8 +5,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import controllerApp.ControllerAcquista;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerAcquista;
+import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -57,6 +57,7 @@ public class BoundaryAcquista implements Initializable {
 	@FXML
 	private Button link;
 
+	protected Scene scene;
 	private ControllerAcquista cA;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
@@ -77,7 +78,7 @@ public class BoundaryAcquista implements Initializable {
 		stage = (Stage) buttonCC.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("pagamentoCC.fxml"));
 		stage.setTitle("Benvenuto nella schermata dell'acquisto con carta credito");
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
@@ -93,7 +94,7 @@ public class BoundaryAcquista implements Initializable {
 		root = FXMLLoader.load(getClass().getResource("pagamentoContrassegno.fxml"));
 		stage.setTitle("Benvenuto nella schermata dell'acquisto in contanti");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
@@ -162,7 +163,7 @@ public class BoundaryAcquista implements Initializable {
 		Parent root;
 		stage = (Stage) link.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		}
@@ -172,7 +173,7 @@ public class BoundaryAcquista implements Initializable {
 			Parent root;
 			stage = (Stage) link.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -187,8 +188,7 @@ public class BoundaryAcquista implements Initializable {
 			nome.setText(cA.getNomeById());
 			dispLabel.setText(""+cA.getDisp());
 			
-		} catch (SQLException e) {
-		 
+		} catch (SQLException e) {		 
 			
 		} 
 	}

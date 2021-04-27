@@ -5,9 +5,10 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerPagamentoCC;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerPagamentoCC;
+import controller_app.SingeltonSystemState;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,10 +20,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import pagamento.CartaCredito;
+import logger.Log;
 
 public class BoundaryPagamentoCC implements Initializable {
-
-	// private Stage primaryStage;
 
 	@FXML
 	private Pane panel;
@@ -108,7 +108,7 @@ public class BoundaryPagamentoCC implements Initializable {
 			stage.show();
 			}
 		} else {
-			System.out.println("riprovare");
+			Log.logger.log(Level.INFO,"riprovare");
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -177,7 +177,7 @@ public class BoundaryPagamentoCC implements Initializable {
 		try {
 
 			String nomeUt = nomeInput.getText();
-			System.out.println("Nome utemte :" + nomeUt);
+			Log.logger.log(Level.INFO,"Nome utemte :" + nomeUt);
 			if (nomeUt.equals("") || nomeUt.equals(null)) {
 				buttonPrendi.setDisable(true);
 				throw new IOException();

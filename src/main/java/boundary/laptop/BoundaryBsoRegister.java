@@ -2,13 +2,12 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
-import controllerApp.ControllerBsoRegister;
-import database.UsersDao;
+import controller_app.ControllerBsoRegister;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import logger.Log;
 
 
 public class BoundaryBsoRegister implements Initializable {
@@ -62,34 +62,37 @@ public class BoundaryBsoRegister implements Initializable {
 	private Label dataL;
 	@FXML 
 	private DatePicker calendarL;
-	
-	
+	protected Scene scene;
+	protected Alert alert;
+	protected Boolean state;
+	protected String message;	
 	private ControllerBsoRegister cR;
 
 	
 	@FXML
 	private void procedi() throws IOException, SQLException {
 		LocalDate data=calendarL.getValue();
-		System.out.println("Data "+data);
-		
-		if(cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(),data)==true)
+		Log.logger.log(Level.INFO,"Data {0}",data);
+		state = cR.registra(nomeTF.getText(),cognomeTF.getText(),emailTF.getText(),passwordTF.getText(),passCheckTF.getText(),data);
+		if(Boolean.TRUE.equals(state)) // cosi' controllo e includo i casi di false e null
 		{
 
-			System.out.println("Data inserita in procedi : " + calendarL.getValue().toString());
+			message = calendarL.getValue().toString();
+			Log.logger.log(Level.INFO,"Data inserita in procedi : {0}",message);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonReg.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("registrazioneOk.fxml"));
 			stage.setTitle("Registazione andata a buon fine");
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 
 
 		}
 		else {
-			Alert alert=new Alert(AlertType.ERROR);
+			alert=new Alert(AlertType.ERROR);
 			alert.setTitle("Credenziali errate");// line 2
 			alert.setHeaderText("Credenziali non valide ");// line 3
 			alert.setContentText(" Per favore reiimetterle");// line 4
@@ -110,7 +113,7 @@ public class BoundaryBsoRegister implements Initializable {
 		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 		stage.setTitle("Registazione andata a buon fine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 

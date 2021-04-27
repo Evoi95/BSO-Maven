@@ -10,46 +10,46 @@ class TestNegozio {
 	private Negozio n=new Negozio();
 
 	@Test
-	public void testGetNome() {
+	void testGetNome() {
 		n.setNome("negozio 5");
 		assertNotNull(n.getNome());
 	}
 
 	@Test
-	public void testSetNome() {
+	void testSetNome() {
 		n.setNome("negozio1");
 }
 
 	@Test
-	public void testGetVia() {
+	void testGetVia() {
 		n.setVia("Via mughetti 12");
 		assertNotNull(n.getVia());
 	}
 
 	@Test
-	public void testSetVia() {
+	void testSetVia() {
 		n.setVia("Via mughetti 172");
 	}
 
 	@Test
-	public void testGetIsValid() {
+	void testGetIsValid() {
 		n.setIsValid(true);
 		assertEquals(true,n.getIsValid());
 		}
 
 	@Test
-	public void testSetIsValid() {
+	void testSetIsValid() {
 		n.setIsValid(false);
 	}
 
 	@Test
-	public void testGetIsOpen() {
+	void testGetIsOpen() {
 		n.setIsOpen(true);
 		assertEquals(true,n.getIsOpen());
 	}
 
 	@Test
-	public void testSetIsOpen() {
+	void testSetIsOpen() {
 		n.setIsOpen(false);
 	}
 

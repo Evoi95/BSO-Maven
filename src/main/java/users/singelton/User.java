@@ -1,72 +1,30 @@
 package users.singelton;
 
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import factoryBook.Libro;
+import java.util.logging.Level;
+
+import logger.Log;
 
 public class User {
 	
 
-	private String idRuolo,nome,cognome,email,password,descrizione;
+	private String idRuolo;
+	private String nome;
+	private String cognome; 
+	private String email;
+	private String password;
+	private String descrizione;
 	private LocalDate dataDiNascita;
 	private int idU;
-	// array di codici isbn presi dai libri 
+
 	
-	private static User instance =new User(); ;
+	private static User instance =new User();
 	
 	private  User()
 	{
 		
 	}
- 	/*
-	
-private User( String nome, String cognome, String email, String password,LocalDate dataDiNascita) {
-		//user for registration
-		this.nome = nome;		
-		this.cognome = cognome;
-		this.email = email;
-		this.password = password;
-		this.dataDiNascita = dataDiNascita;
-	}
-	
-	// use to abstrac factory AND void user for reset pass 
-	private User() 
-	{
-		
-		this.idRuolo = "U"; 
-		this.nome = null;
-		this.cognome = null;
-		this.email = null;
-		this.password = null;
-		this.dataDiNascita =  null;
-	}
-	
-	private User(String idRuolo, String nome, String cognome, String email, String password, String descrizione,
-			LocalDate dataDiNascita, ArrayList<String> listaPreferiti) {
-		// user for third use case
-		this.idRuolo = idRuolo;
-		this.nome = nome;
-		this.cognome = cognome;
-		this.email = email;
-		this.password = password;
-		this.descrizione = descrizione;
-		this.dataDiNascita = dataDiNascita;
-		this.listaPreferiti = listaPreferiti;
-	}
-	
-	private  User (String m , String p) {
-		// usato per il secondo caso d'urso
-		this.email= m;
-		this.password  = p;
-	}
-	*/
-	
-	// end of construtor
-	// start of getters and setters
-	
 	public String getIdRuolo() {
 		return idRuolo;
 	}
@@ -123,11 +81,6 @@ private User( String nome, String cognome, String email, String password,LocalDa
 		this.dataDiNascita = dataDiNascita;
 	}
 
-
-
-	// end of setters and getters
-	
-	// start method
 	
 	public static User getInstance()
 	{
@@ -135,10 +88,9 @@ private User( String nome, String cognome, String email, String password,LocalDa
 	}
 	public User login( String a) {
 		
-		// rivedere il pickdata per fare l'assegnaziopne dei dati qui nella classe
-		// presi dal dao 
+
 		a="Sono loggato come User generico";
-		System.out.println(a);
+		Log.logger.log(Level.INFO,a);
 		return null;
 		
 	}

@@ -4,21 +4,22 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import com.itextpdf.text.DocumentException;
 
-import controllerApp.ControllerDownload;
-import controllerApp.SingeltonSystemState;
+import controller_app.ControllerDownload;
+import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import logger.Log;
 
 public class BoundaryDownload implements Initializable {
 	@FXML
@@ -36,13 +37,15 @@ public class BoundaryDownload implements Initializable {
 	@FXML
 	private Button buttonA;
 
-	private ControllerDownload CD;
+	private ControllerDownload cD;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
+	protected Alert a;
+	protected Scene scene;
 
 	@FXML
 	private void scarica() throws IOException, DocumentException {
 		
-		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		a = new Alert(Alert.AlertType.CONFIRMATION);
 		a.setTitle("Download effettuato");
 		a.setHeaderText("Premere ok per scaricarlo e leggerlo\n");
 		Optional<ButtonType> result = a.showAndWait();
@@ -51,22 +54,22 @@ public class BoundaryDownload implements Initializable {
 		 if ((result.isPresent()) && (result.get() == ButtonType.OK))
 	        	
 	        {
-	            System.out.println("ALL OK..!");
+	            Log.logger.log(Level.INFO,"ALL OK..!");
 	            if(vis.getIstance().getIsLogged())	
 				{
-	            	CD.scaricaLibro(null);
+	            	cD.scaricaLibro(null);
 	            	 	
 	            	
 				}
 	            else {
-	            	CD.scaricaLibro(null);
+	            	cD.scaricaLibro(null);
 
 	            }
 	            Stage stage;
 				Parent root;
 				stage = (Stage) buttonA.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 
@@ -75,14 +78,14 @@ public class BoundaryDownload implements Initializable {
 
 	@FXML
 	private void pulisci() throws IOException {
-		CD.annullaOrdine(null);
+		cD.annullaOrdine(null);
 		if( vis.getIstance().getIsLogged()) 
 		{
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonA.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -92,7 +95,7 @@ public class BoundaryDownload implements Initializable {
 			Parent root;
 			stage = (Stage) buttonA.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -102,7 +105,7 @@ public class BoundaryDownload implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-				CD = new ControllerDownload();
+				cD = new ControllerDownload();
 
 	}
 

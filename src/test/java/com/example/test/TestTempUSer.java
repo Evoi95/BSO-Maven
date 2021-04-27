@@ -12,17 +12,17 @@ class TestTempUSer {
 	private TempUser tU=TempUser.getInstance();
 
 	@Test
-	public void testGetIdRuolo() {
+	void testGetIdRuolo() {
 		tU.setIdRuolo("w");
 		assertEquals("w",tU.getIdRuolo());
 	}
 	@Test
-	public void testGetIdRuolo1() {
+	void testGetIdRuolo1() {
 		tU.setIdRuolo("e");
 		assertEquals("e",tU.getIdRuolo());
 	}
 	@Test
-	public void testGetIdRuolo2() {
+	void testGetIdRuolo2() {
 		tU.setIdRuolo("a");
 		assertEquals("a",tU.getIdRuolo());
 	}
@@ -31,7 +31,7 @@ class TestTempUSer {
 
 	
 	@Test
-	public void testGetNome() {
+	void testGetNome() {
 		tU.setNome("franco");
 		assertNotNull(tU.getNome());
 }
@@ -75,18 +75,18 @@ class TestTempUSer {
 
 	
 	@Test
-	public void testGetInstance() {
+	void testGetInstance() {
 		assertNotNull(TempUser.getInstance());
 	}
 
 	@Test
-	public void testSetNull() {
+	void testSetNull() {
 		tU.setNull();
 		assertEquals(null,tU.getNome());
 }
 
 	@Test
-	public void testGetIdU() {
+	void testGetIdU() {
 		tU.setIdU(15);
 		assertNotEquals(-1,tU.getIdU());
 		

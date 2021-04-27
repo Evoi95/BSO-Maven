@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import controllerApp.ControllerModifBook;
+import controller_app.ControllerModifBook;
 import factoryBook.Factory;
 import factoryBook.Libro;
 
@@ -16,7 +16,7 @@ class TestControllerModifBook {
 	private ControllerModifBook cMB=new ControllerModifBook();
 
 	@Test
-	public void testGetLibriById() {
+	void testGetLibriById() {
 		l=new Libro();
 		l.setId(5);
 		try {
@@ -28,7 +28,7 @@ class TestControllerModifBook {
 	}
 
 	@Test
-	public void testCheckData() throws NullPointerException, SQLException {
+	void testCheckData() throws NullPointerException, SQLException {
 		l=new Libro();
 		l.setTitolo("aaa");
 		l.setNumPag(1500);

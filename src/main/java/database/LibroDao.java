@@ -10,14 +10,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDate;
+import java.util.logging.Level;
 
-import controllerApp.SingeltonSystemState;
 import factoryBook.Factory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import logger.Log;
 import factoryBook.Libro;
 import factoryBook.Raccolta;
 
@@ -131,11 +129,11 @@ public class LibroDao  {
 		 finally {
 			 stmt.close();
 			 conn.close();
-			 System.out.println("Ho chiuso tutto");
+			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("LibroDao. questy");
+		 Log.logger.log(Level.INFO,"LibroDao. questy");
 
 		}
 	
@@ -159,11 +157,11 @@ public class LibroDao  {
 		 finally {
 			 stmt.close();
 			 conn.close();
-			 System.out.println("Ho chiuso tutto");
+			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 System.out.println("LibroDao. privilegi");
+		 Log.logger.log(Level.INFO,"LibroDao. privilegi");
 
 }
 
@@ -187,7 +185,7 @@ public class LibroDao  {
 
             }
 		
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -212,7 +210,7 @@ public class LibroDao  {
 
             }
 		c.close();
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -230,7 +228,7 @@ public class LibroDao  {
         	return L;
         }
         else {
-        	System.out.println("non ho torvato un cazzo e ritorno null");
+        	Log.logger.log(Level.INFO,"non ho torvato un cazzo e ritorno null");
             return L;
 
         }
@@ -361,7 +359,7 @@ public class LibroDao  {
 				prepQ.setInt(13,l.getCopieRim());
 				prepQ.executeUpdate();
 				//conn.close();
-			 	System.out.println("Libro Inserito con successo");
+			 	Log.logger.log(Level.INFO,"Libro Inserito con successo");
 			 	state= true; // true		 			 	
 			}
 			else {
@@ -480,7 +478,7 @@ public class LibroDao  {
         	//return name;
         }
         else {
-        	System.out.println("non ho torvato un cazzo e ritorno null");
+        	Log.logger.log(Level.INFO,"non ho torvato un cazzo e ritorno null");
             //return null;
         	name=null;
 
@@ -509,7 +507,7 @@ public class LibroDao  {
 
             }
 		
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -535,7 +533,7 @@ public class LibroDao  {
 			
 		}
 		
-		System.out.println("Libro cancellato : "+row);
+		Log.logger.log(Level.INFO,"Libro cancellato : "+row);
 	}
 	
 	public ObservableList<Libro> getLibriSingoloById(Libro l) throws SQLException
@@ -558,7 +556,7 @@ public class LibroDao  {
 
             }
 		
-		System.out.println(catalogo);
+		Log.logger.log(Level.INFO,"{0}",catalogo);
 		return catalogo;
 		
 	}
@@ -571,7 +569,7 @@ public class LibroDao  {
 		
 		
 			
-			System.out.println("IdLibro prima del try nel dao:"+l.getId());
+			Log.logger.log(Level.INFO,"IdLibro prima del try nel dao:"+l.getId());
 
 			
 		 	 
@@ -580,7 +578,7 @@ public class LibroDao  {
 				st=conn.createStatement();
 				query="USE ispw";
 				
-				System.out.println("Titolo dopo use ispw:"+l.getTitolo());
+				Log.logger.log(Level.INFO,"Titolo dopo use ispw:"+l.getTitolo());
 
 				st.executeQuery(query);
 			 	String query=" UPDATE libro "
@@ -622,7 +620,7 @@ public class LibroDao  {
 				rowAffected = prepQ.executeUpdate();
 				prepQ.close();
 				
-	            System.out.println(("Row affected "+ rowAffected));
+	            Log.logger.log(Level.INFO,("Row affected "+ rowAffected));
 
 
 			 
