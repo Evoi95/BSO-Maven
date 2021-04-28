@@ -32,7 +32,7 @@ public class PagamentoDao {
 					connPag=ConnToDb.generalConnection();
 
 		
-		 qInsert="INSERT INTO pagamento (metodo,esito,nomeUtente,spesaTotale,eMail,tipoAcquisto,id_prod) values (?,?,?,?,?,?,?)";
+		 qInsert="INSERT INTO pagamento (metodo,esito,nomeUtente,spesaTotale,eMail,tipoAcquisto,idProd) values (?,?,?,?,?,?,?)";
 		prepQ = connPag.prepareStatement(qInsert);
 		//prepQ.setInt(1,p.getEsito()); // numero pagine int
 		prepQ.setString(1,m); // 
@@ -149,7 +149,7 @@ public ObservableList<Pagamento> getPagamenti()  {
 		//ConnToDb.connection();
         ResultSet rs;
 		try {
-			rs = conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,id_prod from pagamento where eMail='"+User.getInstance().getEmail()+"'");
+			rs = conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,idProd from pagamento where eMail='"+User.getInstance().getEmail()+"'");
 		
         while(rs.next())
         {

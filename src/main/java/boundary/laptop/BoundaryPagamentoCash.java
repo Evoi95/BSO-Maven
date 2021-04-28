@@ -3,6 +3,7 @@ package boundary.laptop;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
 import controller_app.ControllerPagamentoCash;
 import controller_app.SingeltonSystemState;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import logger.Log;
 
 public class BoundaryPagamentoCash implements Initializable{
 	@FXML
@@ -44,9 +46,14 @@ public class BoundaryPagamentoCash implements Initializable{
 	@FXML
 	private Button buttonA;
 
-	private ControllerPagamentoCash CPC;
+	private ControllerPagamentoCash cPC;
 
-	private String n, c, v, com;
+	protected String n; 
+	protected String c;
+	protected String v;
+	protected String com;
+	protected Alert alert ;
+	protected Scene scene;
 	private static SingeltonSystemState vis = SingeltonSystemState.getIstance();
 
 	@FXML
@@ -59,7 +66,7 @@ public class BoundaryPagamentoCash implements Initializable{
 			com = eventualiArea.getText();
 
 			if (n.equals("") || c.equals("") || v.equals("")) {
-				Alert alert = new Alert(AlertType.ERROR);
+				alert = new Alert(AlertType.ERROR);
 				alert.setTitle("  Riepilogo pagamento  ");
 				alert.setHeaderText("Esito pagamento contanti:");
 				alert.setContentText("Non eseguito");
@@ -70,15 +77,15 @@ public class BoundaryPagamentoCash implements Initializable{
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("pagamentoContrassegno.fxml"));
 				stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 				throw new IOException();
 
 			} else {
 
-				CPC.controlla(n, c, v, com,0);
-				Alert alert = new Alert(AlertType.INFORMATION);
+				cPC.controlla(n, c, v, com,0);
+				alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("  Riepilogo pagamento  ");
 				alert.setHeaderText("Esito pagamento contanti:");
 				alert.setContentText("eseguito");
@@ -90,7 +97,7 @@ public class BoundaryPagamentoCash implements Initializable{
 					stage = (Stage) buttonI.getScene().getWindow();
 					root = FXMLLoader.load(getClass().getResource("scegliNegozio.fxml"));
 					stage.setTitle("Benvenuto nella schermata per scegliere il negozio");
-					Scene scene = new Scene(root);
+					scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();	
 				}
@@ -101,7 +108,7 @@ public class BoundaryPagamentoCash implements Initializable{
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("download.fxml"));
 				stage.setTitle("Benvenuto nella schermata per il download");
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 				}
@@ -120,7 +127,7 @@ public class BoundaryPagamentoCash implements Initializable{
 		root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 		stage.setTitle("benvenuto nella schermata del riepilogo ordine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -130,9 +137,10 @@ public class BoundaryPagamentoCash implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 				try {
-					CPC = new ControllerPagamentoCash();
+					cPC = new ControllerPagamentoCash();
 				} catch (Exception e) {
-				 
+					Log.logger.log(Level.SEVERE,e,()->"result"+e);
+
 					
 				}
 

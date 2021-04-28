@@ -82,8 +82,9 @@ public class BoundaryModifGiornale implements Initializable {
 	@FXML
 	private Label labelCopie;
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
-	
-	
+	protected float prezzo ;
+	protected int copie;
+	protected Scene scene;
 	private ControllerModifGiornale cMG;
 	@FXML
 	private void conferma() throws SQLException
@@ -98,7 +99,7 @@ public class BoundaryModifGiornale implements Initializable {
 		
 		int dispo;
 		
-		if(disp==true)
+		if(disp)
 		{
 			dispo=1;
 			//disponibile
@@ -106,12 +107,12 @@ public class BoundaryModifGiornale implements Initializable {
 		else {
 			dispo=0;
 		}
-		float prezzo=Float.parseFloat(prezzoT.getText());
-		int copie=Integer.parseInt(copieRimanentiT.getText());
+		prezzo=Float.parseFloat(prezzoT.getText());
+		copie=Integer.parseInt(copieRimanentiT.getText());
 		
 		boolean esito=cMG.checkData(t,tipo,ed,l,d,dispo,prezzo,copie);
 		
-		Log.logger.log(Level.INFO,"Esito : "+esito);
+		Log.logger.log(Level.INFO,"Esito : {0}",esito);
 		
 		
 
@@ -123,7 +124,7 @@ public class BoundaryModifGiornale implements Initializable {
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("giornalePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	
@@ -149,7 +150,8 @@ public class BoundaryModifGiornale implements Initializable {
 
 		} catch (SQLException e) {
 		 
-			
+			Log.logger.log(Level.SEVERE,e,()->"result"+e);
+
 		}
 
 

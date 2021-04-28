@@ -36,7 +36,7 @@ public class ControllerAcquista {
 			l.setDisponibilita(disp);
 			x = lD.getCosto(l);
 
-			Log.logger.log(Level.INFO,"ControllerAcquista");
+			Log.logger.log(Level.INFO,"Controlleracquista");
 			lD.aggiornaDisponibilita(l);
 			lD.aggiornaCopieVendute(l,disp);
 			
@@ -105,7 +105,7 @@ public class ControllerAcquista {
 	}
 	
 	public int getIdG(String text) throws SQLException {
-		g.setTitolo(text);//l.setCodIsbn(text);
+		g.setTitolo(text);
 		return gD.retId( g);
 		
 		
@@ -118,7 +118,7 @@ public class ControllerAcquista {
 	}
 	
 	public int getIdR(String text) throws SQLException {
-		r.setTitolo(text);//l.setCodIsbn(text);
+		r.setTitolo(text);
 		return rD.retId( r);
 		
 		

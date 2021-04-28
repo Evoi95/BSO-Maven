@@ -25,21 +25,21 @@ import javafx.fxml.FXML;
 		@FXML
 		private GridPane gridpane ;
 		@FXML
-		private Label LabelTitolo;
+		private Label labelTitolo;
 		@FXML
-		private Label LabelTipologia;
+		private Label labelTipologia;
 		@FXML
-		private Label LabelEditore;
+		private Label labelEditore;
 		@FXML
-		private Label LabelLingua;
+		private Label labelLingua;
 		@FXML
-		private Label LabelDate;
+		private Label labelDate;
 		@FXML
-		private Label LabelDisp;
+		private Label labelDisp;
 		@FXML
-		private Label LabelPrezzo;
+		private Label labelPrezzo;
 		@FXML
-		private Label LabelCopieRimanenti;
+		private Label labelCopieRimanenti;
 		@FXML
 		private Button buttonBack;
 		@FXML
@@ -71,7 +71,7 @@ import javafx.fxml.FXML;
 		}
 		
 		@FXML
-		private void Acquista() throws IOException
+		private void acquista() throws IOException
 		{
 			
 			Stage stage;
@@ -114,13 +114,13 @@ import javafx.fxml.FXML;
 			i = CVG.getID();
 			
 			try {
-				LabelTitolo.setText(CVG.getData(i).getTitolo());
-				LabelEditore.setText(CVG.getData(i).getEditore());
-				LabelLingua.setText(CVG.getData(i).getLingua());
-				LabelDate.setText(""+CVG.getData(i).getDataPubb());
-				LabelDisp.setText(""+CVG.getData(i).getDisponibilita());
-				LabelPrezzo.setText(CVG.getData(i).getPrezzo()+"");
-				LabelCopieRimanenti.setText(CVG.getData(i).getCopieRimanenti()+"");
+				labelTitolo.setText(CVG.getData(i).getTitolo());
+				labelEditore.setText(CVG.getData(i).getEditore());
+				labelLingua.setText(CVG.getData(i).getLingua());
+				labelDate.setText(""+CVG.getData(i).getDataPubb());
+				labelDisp.setText(""+CVG.getData(i).getDisponibilita());
+				labelPrezzo.setText(CVG.getData(i).getPrezzo()+"");
+				labelCopieRimanenti.setText(CVG.getData(i).getCopieRimanenti()+"");
 			} catch (SQLException e) {
 				
 			}

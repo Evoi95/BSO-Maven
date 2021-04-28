@@ -48,7 +48,10 @@ public class BoundaryReportPage implements Initializable {
 	private ControllerReportGiornali cRG;
 	private ControllerReportRiviste cRR;
 	private ControllerUserPage cUP;
-	
+	protected String fileLibro = "ReportFinale\\riepilogoLibro.txt";
+	protected String fileGiornale ="ReportFinale\\riepilogoGiornali.txt";	
+	protected String fileRiviste = "ReportFinale\\riepilogoRiviste.txt";
+	protected Scene scene;
 	
 	
 	@FXML
@@ -57,52 +60,58 @@ public class BoundaryReportPage implements Initializable {
 		ta.clear();
 		try {
 			cRL.generaReportLibri();
-		cRG.generaReportGiornali();
-		cRR.generaReportRiviste();
-		cUP.getUtenti();
-		} catch (IOException e) {
-		 
-			
-		} catch (SQLException e) {
-		 
-			
+			cRG.generaReportGiornali();
+			cRR.generaReportRiviste();
+			cUP.getUtenti();
+		} 
+		catch (IOException e) 
+		{
+			e.printStackTrace();
 		}
-		
+		catch (SQLException eSQL)
+		{
+			eSQL.printStackTrace();
+		}
 		
 		BufferedReader readerL = null;
-		try {
-			readerL = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
-		String line = readerL.readLine();
-        while(line!=null) {
-            ta.appendText(line.concat("\n"));
+		
+		try 
+		{
+			readerL = new BufferedReader(new FileReader(fileLibro));
+			String line = readerL.readLine();
+			while(line!=null)
+			{
+				ta.appendText(line.concat("\n"));
             
 
-            Log.logger.log(Level.INFO,line);
-            line = readerL.readLine();
-        }
-		} catch (FileNotFoundException e) {
-		 
-			
-		} catch (IOException e) {
-		 
-			
+				Log.logger.log(Level.INFO,line);
+				line = readerL.readLine();
+			}
+		} 
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		} 
+		catch (IOException eIO) 
+		{
+			eIO.printStackTrace();
 		}
 		finally {
-			        try {
-						readerL.close();
-					} catch (IOException e) {
-					 
-						
-					}
-
+			try
+			{
+				readerL.close();
+			}
+			catch (IOException e) {
+				e.printStackTrace();						
+			}
 		}
         
 
 		BufferedReader readerG = null;
 		try {
-			readerG = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
-		String line1 = readerG.readLine();
-        while(line1!=null) {
+			readerG = new BufferedReader(new FileReader(fileGiornale));
+			String line1 = readerG.readLine();
+			while(line1!=null) {
             ta.appendText(line1.concat("\n"));
             
 
@@ -126,7 +135,7 @@ public class BoundaryReportPage implements Initializable {
 
 		BufferedReader reader = null;
 		try {
-			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
+			reader = new BufferedReader(new FileReader("fileRiviste"));
 		} catch (FileNotFoundException e) {
 		 
 			
@@ -210,9 +219,8 @@ public class BoundaryReportPage implements Initializable {
 		 
 			
 		}
-		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader(fileLibro));
         String line = reader.readLine();
-       // ta.appendText("\tEcco il report dei libri\t \n");
         while(line!=null) {
             ta.appendText(line.concat("\n"));
             
@@ -233,7 +241,7 @@ public class BoundaryReportPage implements Initializable {
 		cRG.generaReportGiornali();
 		cRR.generaReportRiviste();
 		
-		BufferedReader readerL = new BufferedReader(new FileReader("ReportFinale\\riepilogoLibro.txt"));
+		BufferedReader readerL = new BufferedReader(new FileReader(fileLibro));
         String line = readerL.readLine();
         while(line!=null) {
             ta.appendText(line.concat("\n"));
@@ -244,7 +252,7 @@ public class BoundaryReportPage implements Initializable {
         }
         readerL.close();
 
-		BufferedReader readerG = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
+		BufferedReader readerG = new BufferedReader(new FileReader(fileGiornale));
         String line1 = readerG.readLine();
         while(line1!=null) {
             ta.appendText(line1.concat("\n"));
@@ -255,7 +263,7 @@ public class BoundaryReportPage implements Initializable {
         }
         readerG.close();
 
-		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader("fileRiviste"));
         String line2 = reader.readLine();
         while(line2!=null) {
             ta.appendText(line2.concat("\n"));
@@ -279,7 +287,7 @@ public class BoundaryReportPage implements Initializable {
 		 
 			
 		} 
-		BufferedReader reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoGiornali.txt"));
+		BufferedReader reader = new BufferedReader(new FileReader(fileGiornale));
         String line = reader.readLine();
         while(line!=null) {
             ta.appendText(line.concat("\n"));
@@ -299,10 +307,7 @@ public class BoundaryReportPage implements Initializable {
 		stage = (Stage) buttonI.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo dei libri");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -316,14 +321,14 @@ public class BoundaryReportPage implements Initializable {
 		try {
 			cRR.generaReportRiviste();
 		} catch (IOException e) {
-		 
+			e.printStackTrace();
 			
-		} catch (SQLException e) {
+		} catch (SQLException eSQL) {
 		 
-			
+			eSQL.printStackTrace();
 		}
 
-		        BufferedReader readerR = new BufferedReader(new FileReader("ReportFinale\\riepilogoRiviste.txt"));
+		BufferedReader readerR = new BufferedReader(new FileReader("fileRiviste"));
         String line2 = readerR.readLine();
         while(line2!=null) {
             ta.appendText(line2.concat("\n"));

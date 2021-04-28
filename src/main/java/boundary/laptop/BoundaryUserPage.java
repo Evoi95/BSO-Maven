@@ -37,7 +37,7 @@ public class BoundaryUserPage implements Initializable {
 	@FXML
 	private Button buttonC;
 	@FXML
-	private Button Indietro;
+	private Button indietro;
 	@FXML
 	private Button buttonP;
 	@FXML
@@ -52,6 +52,10 @@ public class BoundaryUserPage implements Initializable {
 	private ControllerModifUserPage cMPU;
 	
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
+	protected Scene scene ;
+	protected Alert alert ;
+	protected int max = 0;
+
 	@FXML
 	private void aggiungi() throws IOException
 	{
@@ -59,7 +63,7 @@ public class BoundaryUserPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("addUserPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
@@ -69,7 +73,6 @@ public class BoundaryUserPage implements Initializable {
 	private void modifica() throws IOException, SQLException
 	{
 		vis.getIstance().setId(Integer.parseInt(utenteTF.getText()));
-		int max = 0;
 		max=cMPU.prendiIdMax();
 		
 		Log.logger.log(Level.INFO,"Utenti massimi {0}",max);
@@ -78,7 +81,7 @@ public class BoundaryUserPage implements Initializable {
 		if(Integer.parseInt(utenteTF.getText())<1)// && Integer.parseInt(utenteTF.getText())>max)
 		{
 	
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("ID Utente non trovato in quanto minore di 1");
 			alert.setContentText("Re immetterlo");
 			alert.showAndWait();
@@ -89,7 +92,7 @@ public class BoundaryUserPage implements Initializable {
 		else if (Integer.parseInt(utenteTF.getText())>max)// && Integer.parseInt(utenteTF.getText())>max)
 		{
 	
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setHeaderText("ID Utente non trovato in quanto maggiore del numero utenti");
 			alert.setContentText("Re immetterlo");
 			alert.showAndWait();
@@ -106,7 +109,7 @@ public class BoundaryUserPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonM.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("modUserPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		}
@@ -122,9 +125,9 @@ public class BoundaryUserPage implements Initializable {
 	{
 		Stage stage;
 		Parent root;
-		stage = (Stage) Indietro.getScene().getWindow();
+		stage = (Stage) indietro.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
@@ -137,14 +140,13 @@ public class BoundaryUserPage implements Initializable {
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-		String line = reader.readLine();
-        while(line!=null) {
-            elencoUtenti.appendText(line.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line);
-            line = reader.readLine();
-        }
+			String line = reader.readLine();
+			while(line!=null)
+			{
+				elencoUtenti.appendText(line.concat("\n"));
+                Log.logger.log(Level.INFO,line);
+                line = reader.readLine();
+			}
 		}
         catch(IOException e)
         {
@@ -154,9 +156,8 @@ public class BoundaryUserPage implements Initializable {
         try {
 			reader.close();
 		} catch (IOException e) {
-		 
-			
-		}
+				e.printStackTrace();
+			}
         }
 
 		    	    

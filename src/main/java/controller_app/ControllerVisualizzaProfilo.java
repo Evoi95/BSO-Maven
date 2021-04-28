@@ -1,12 +1,10 @@
 package controller_app;
 
 import database.UsersDao;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import users.singelton.User;
 
 public class ControllerVisualizzaProfilo {
-	private UsersDao ud;
+	private UsersDao uD;
 	private boolean status=false;
 
 	public User getCredenziali() {
@@ -17,15 +15,14 @@ public class ControllerVisualizzaProfilo {
 	
 	public ControllerVisualizzaProfilo()
 	{
-		ud=new UsersDao();
+		uD=new UsersDao();
 	}
 
 	public boolean cancellaUtente() {
-		if(UsersDao.deleteUser(User.getInstance())==true )
+		if(UsersDao.deleteUser(User.getInstance()))
 		{
 			User.getInstance().setNull();
 			status=true;
-			//Log.logger.log(Level.INFO,"USer @"+u.getInstance());
 		}
 		return status;
 

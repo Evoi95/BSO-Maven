@@ -5,11 +5,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
+import logger.Log;
 import controller_app.ControllerModifBook;
 import controller_app.SingeltonSystemState;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -114,28 +113,19 @@ public class BoundaryModifBook implements Initializable {
 	private Label labelP;
 	@FXML
 	private Label labelCopie;
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	private ControllerModifBook cMB;
 	private SingeltonSystemState vis= SingeltonSystemState.getIstance();
-	
+	protected float prezzo ;
+	protected int copie;
+	protected Scene scene;
+	protected int np;
 
 	@FXML
 	private void aggiorna() throws SQLException
 	{
 		String t=titoloT.getText();
-		int np=Integer.parseInt(numeroPagineT.getText());
+		np=Integer.parseInt(numeroPagineT.getText());
 		String cod=codeIsbnT.getText();
 		String ed=editoreT.getText();
 		String a=autoreT.getText();
@@ -150,13 +140,13 @@ public class BoundaryModifBook implements Initializable {
 		if(disp)
 		{
 			dispo=1;
-			//disponibile
+			//
 		}
 		else {
 			dispo=0;
 		}
-		float prezzo=Float.parseFloat(prezzoT.getText());
-		int copie=Integer.parseInt(copieRimanentiT.getText());
+		prezzo=Float.parseFloat(prezzoT.getText());
+		copie=Integer.parseInt(copieRimanentiT.getText());
 		
 		
 
@@ -173,7 +163,7 @@ public class BoundaryModifBook implements Initializable {
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("bookPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -199,9 +189,9 @@ public class BoundaryModifBook implements Initializable {
 
 
 
-		} catch (SQLException e) {
-		 
-			
+		} catch (SQLException e) 	
+		{
+			Log.logger.log(Level.SEVERE,e,()->"result"+e);
 		}
 
 	}

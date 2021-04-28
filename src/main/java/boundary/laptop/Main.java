@@ -34,13 +34,14 @@ public class Main extends Application {
 
 		try {
 			CreateDefaultDB.createDefaultDB();
-		} catch (ClassNotFoundException  e) {
- 
+		} catch (ClassNotFoundException  eClass) {
+			eClass.printStackTrace();
 			
-		} catch (FileNotFoundException e) {
+		} catch (FileNotFoundException eFile) {
+			eFile.printStackTrace();
 			
-		} catch (SQLException e) {
-			
+		} catch (SQLException eSQL) {
+			eSQL.printStackTrace();			
 		}
 
 		launch(args);

@@ -13,7 +13,7 @@ import users.singelton.TempUser;
 import users.singelton.User;
 
 class TestUsersDao {
-	private UsersDao ud=new UsersDao();
+	private UsersDao uD=new UsersDao();
 	private static User u=User.getInstance();
 	private static TempUser tu=TempUser.getInstance();
 	private static controller_app.SingeltonSystemState vis=controller_app.SingeltonSystemState.getIstance();
@@ -29,7 +29,7 @@ class TestUsersDao {
 		u.setEmail("luciodalla@gmail.com");
 		u.setPassword("lucio851");
 		u.setDataDiNascita(LocalDate.of(1940, 11,5));
-		state=ud.createUser(u);
+		state=uD.createUser(u);
 		assertEquals(true,state);
 	}
 
@@ -41,7 +41,7 @@ class TestUsersDao {
 		tu.setPassword("aldooooo852");
 		tu.setDescrizione("passeggero sbagiato nella subaru");
 		tu.setDataDiNascita(LocalDate.of(1970, 3, 6));
-		state=ud.createUser2(tu);
+		state=uD.createUser2(tu);
 		assertEquals(true,state);		
 		
 		
@@ -129,21 +129,21 @@ class TestUsersDao {
 	void testAggiornaPass() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setPassword("lucione963");
-		assertNotNull(ud.aggiornaPass(u));
+		assertNotNull(uD.aggiornaPass(u));
 	}
 
 	@Test
 	void testAggiornaDesc() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setDescrizione("musica spettacolare");
-		assertNotNull(ud.aggiornaDesc(u));
+		assertNotNull(uD.aggiornaDesc(u));
 	}
 
 	@Test
 	void testAggiornaData() {
 		u.setEmail("lucio1dalla1@gmail.com");
 		u.setDataDiNascita(LocalDate.of(1940, 5, 6));
-		assertNotNull(ud.aggiornaData(u));
+		assertNotNull(uD.aggiornaData(u));
 		
 	}
 
@@ -184,14 +184,14 @@ class TestUsersDao {
 	void testAggiornaTempPass() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setPassword("aldo142");
-		assertNotNull(ud.aggiornaTempPass(tu));
+		assertNotNull(uD.aggiornaTempPass(tu));
 	}
 
 	@Test
 	void testAggiornaTempDesc() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setDescrizione("non ci arrivo a pc");
-		assertNotNull(ud.aggiornaTempDesc(tu));
+		assertNotNull(uD.aggiornaTempDesc(tu));
 
 	}
 
@@ -199,19 +199,19 @@ class TestUsersDao {
 	void testAggiornaTempData() {
 		tu.setEmail("aldo1baglio1@gmail.com");
 		tu.setDataDiNascita(LocalDate.of(1976,5,2));
-		assertNotNull(ud.aggiornaTempDesc(tu));
+		assertNotNull(uD.aggiornaTempDesc(tu));
 
 	}
 
 	@Test
 	void testGetListaUtenti() {
-		ud.getListaUtenti();
+		uD.getListaUtenti();
 	}
 
 	@Test
 	void testGetTempUserSingolo() throws SQLException {
 		tu.setIdU(2);
-		assertNotNull(ud.getTempUserSingolo(tu));		//fail("Not yet implemented");
+		assertNotNull(uD.getTempUserSingolo(tu));		//fail("Not yet implemented");
 	}
 
 	@Test
@@ -238,13 +238,13 @@ class TestUsersDao {
 		tu.setDataDiNascita(LocalDate.of(1994,11 ,9));
 		
 		//u.setIdRuolo("a");
-		state=ud.createTempUser(tu);
+		state=uD.createTempUser(tu);
 		assertNotEquals(false,state);
 	}
 */
 	@Test
 	void testMaxIdUSer() throws SQLException {
-		state1=ud.maxIdUSer();
+		state1=uD.maxIdUSer();
 		assertNotEquals(-1,state1);
 	}
 

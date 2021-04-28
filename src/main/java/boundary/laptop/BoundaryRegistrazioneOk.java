@@ -29,6 +29,7 @@ public class BoundaryRegistrazioneOk {
 	@FXML
 	private ImageView image;
 	
+	protected Scene scene ;
 	@FXML
 	private void vaiLogin() throws IOException
 	{
@@ -38,11 +39,10 @@ public class BoundaryRegistrazioneOk {
 		root = FXMLLoader.load(getClass().getResource("loginPage.fxml"));
 		stage.setTitle("Registazione andata a buon fine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
-		//ricarico schermata login;
 	}
 	@FXML
 	private void vaiHome() throws IOException {
@@ -52,7 +52,7 @@ public class BoundaryRegistrazioneOk {
 		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 		stage.setTitle("Registazione andata a buon fine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 

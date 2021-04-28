@@ -8,21 +8,21 @@ import users.singelton.User;
 import logger.Log;
 
 public class ControllerModificaUtente {
-	private UsersDao ud;
+	private UsersDao uD;
 	private boolean state = false;
 
 	
 	
 	public ControllerModificaUtente()
 	{
-		ud=new UsersDao();
+		uD=new UsersDao();
 	}
 
 
 
 	public User prendi() {
 		
-		return ud.pickData(User.getInstance());
+		return uD.pickData(User.getInstance());
 		
 		
 	}
@@ -35,21 +35,21 @@ public class ControllerModificaUtente {
 		{
 			
 			User.getInstance().setNome(n);
-			ud.aggiornaNome(User.getInstance());
+			uD.aggiornaNome(User.getInstance());
 			state =  true; 
 
 		}
 		if (!c.equals("") && !c.equals(null) && !c.equals(User.getInstance().getCognome()))
 		{
 			User.getInstance().setCognome(c);
-			ud.aggiornaCognome(User.getInstance());
+			uD.aggiornaCognome(User.getInstance());
 			state =  true; 
 
 		}
 		if(!email.equals("") && !email.equals(null) && !email.equals(vecchiaMail))
 		{
 			
-			ud.aggiornaEmail(User.getInstance(),email);
+			uD.aggiornaEmail(User.getInstance(),email);
 			state =  true; 
 
 	
@@ -57,21 +57,20 @@ public class ControllerModificaUtente {
 		if(!pass.equals("") && !pass.equals(null) && !pass.equals(User.getInstance().getPassword()))
 		{
 			User.getInstance().setPassword(pass);
-			ud.aggiornaPass(User.getInstance());
+			uD.aggiornaPass(User.getInstance());
 			state =  true; 
 
 		}
 		if(!desc.equals("") && !desc.equals(null) && !desc.equals(User.getInstance().getDescrizione()))
 		{
 			User.getInstance().setDescrizione(desc);
-			ud.aggiornaDesc(User.getInstance());
+			uD.aggiornaDesc(User.getInstance());
 			state =  true; 
 		}
 
 		if(!localDate.equals("") && !localDate.equals(null) && !localDate.equals(User.getInstance().getDataDiNascita()))
 		{
 			User.getInstance().setDataDiNascita(localDate);
-			ud.aggiornaData(User.getInstance());
 			state = true;
 			
 		}

@@ -17,7 +17,7 @@
             <TableColumn fx:id="nome" prefWidth="75.0" text="Nome Utente" />
             <TableColumn fx:id="spesa" prefWidth="133.0" text="Spesa Totale" />
             <TableColumn fx:id="acquisto" prefWidth="116.0" text="Tipo Acquisto" />
-            <TableColumn fx:id="id_prod" prefWidth="96.0" text="Id Prodotto" />
+            <TableColumn fx:id="idProd" prefWidth="96.0" text="Id Prodotto" />
         </columns>
       </TableView>
       <Button fx:id="buttonG" layoutX="341.0" layoutY="393.0" mnemonicParsing="false" onAction="#acquisti" text="Mostra riepilogo" textAlignment="CENTER" textFill="#0826eb" />

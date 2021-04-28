@@ -25,31 +25,31 @@ public class BoundaryVisualizzaLibro implements Initializable {
 	@FXML
 	private GridPane gridpane ;
 	@FXML
-	private Label LabelTitolo;
+	private Label labelTitolo;
 	@FXML 
-	private Label LabelNumeroPagine;
+	private Label labelNumeroPagine;
 	@FXML
-	private Label LabelCodiceISBN;
+	private Label labelCodiceISBN;
 	@FXML
-	private Label LabelEditore;
+	private Label labelEditore;
 	@FXML
-	private Label LabelAutore;
+	private Label labelAutore;
 	@FXML
-	private Label LabelLingua;
+	private Label labelLingua;
 	@FXML
-	private Label LabelCategoria ;
+	private Label labelCategoria ;
 	@FXML
-	private Label LabelDate;
+	private Label labelDate;
 	@FXML
-	private Label LabelRecensione;
+	private Label labelRecensione;
 	@FXML 
-	private Label LabelDescrizione;
+	private Label labelDescrizione;
 	@FXML
-	private Label LabelDisp;
+	private Label labelDisp;
 	@FXML
-	private Label LabelPrezzo;
+	private Label labelPrezzo;
 	@FXML
-	private Label LabelCopieRimanenti;
+	private Label labelCopieRimanenti;
 	@FXML
 	private Button buttonBack;
 	@FXML
@@ -81,18 +81,18 @@ public class BoundaryVisualizzaLibro implements Initializable {
 	@FXML
 	private Label copieRimanenteL;
 	
-	private ControllerVisualizzaLibro CVB;
-	private int i;
+	private ControllerVisualizzaLibro cVB;
+	protected int i;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	
 	public BoundaryVisualizzaLibro()
 	{
-		CVB = new ControllerVisualizzaLibro();
+		cVB = new ControllerVisualizzaLibro();
 	}
 	
 	@FXML
-	private void Acquista() throws IOException
+	private void acquista() throws IOException
 	{
 		Stage stage;
 		Parent root;
@@ -131,23 +131,23 @@ public class BoundaryVisualizzaLibro implements Initializable {
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		i = CVB.getID();
+		i = cVB.getID();
 		
 		// problema assegnazioni variabili nel dao o controller 
 		try {
-			LabelTitolo.setText(CVB.getData(i).getTitolo());
-			LabelNumeroPagine.setText(""+CVB.getData(i).getNumPag());
-			LabelCodiceISBN.setText(CVB.getData(i).getCodIsbn());
-			LabelEditore.setText(CVB.getData(i).getEditore());
-			LabelAutore.setText(CVB.getData(i).getAutore());
-			LabelLingua.setText(CVB.getData(i).getLingua());
-			LabelCategoria.setText(CVB.getData(i).getCategoria());
-			LabelDate.setText(""+CVB.getData(i).getDataPubb());
-			LabelRecensione.setText(CVB.getData(i).getRecensione());
-			LabelDescrizione.setText(CVB.getData(i).getDesc());
-			LabelDisp.setText(""+CVB.getData(i).getDisponibilita());
-			LabelPrezzo.setText(CVB.getData(i).getPrezzo()+"");
-			LabelCopieRimanenti.setText(CVB.getData(i).getCopieRim()+"");
+			labelTitolo.setText(cVB.getData(i).getTitolo());
+			labelNumeroPagine.setText(""+cVB.getData(i).getNumPag());
+			labelCodiceISBN.setText(cVB.getData(i).getCodIsbn());
+			labelEditore.setText(cVB.getData(i).getEditore());
+			labelAutore.setText(cVB.getData(i).getAutore());
+			labelLingua.setText(cVB.getData(i).getLingua());
+			labelCategoria.setText(cVB.getData(i).getCategoria());
+			labelDate.setText(""+cVB.getData(i).getDataPubb());
+			labelRecensione.setText(cVB.getData(i).getRecensione());
+			labelDescrizione.setText(cVB.getData(i).getDesc());
+			labelDisp.setText(""+cVB.getData(i).getDisponibilita());
+			labelPrezzo.setText(cVB.getData(i).getPrezzo()+"");
+			labelCopieRimanenti.setText(cVB.getData(i).getCopieRim()+"");
 		} catch (SQLException e) {
 			
 		}

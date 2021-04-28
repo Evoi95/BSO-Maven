@@ -36,9 +36,9 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	private String errorTitle = "Errore!" ;
 	private String errorHeaderText = "Errore nel caricamento della schermata ";
 	private String errorContentText = "Riavvia il programma se l'errore persiste!";
-	private ControllerRicercaPerTipo CRPT;
-	
-	
+	private ControllerRicercaPerTipo cRPT;
+	protected Scene scene;
+	protected Alert alert;	
 	
 	@FXML
 	private void torna() throws IOException
@@ -49,7 +49,7 @@ public class BoundaryRicercaPerTipo implements Initializable {
 			Parent root;
 			stage = (Stage) buttonB.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
@@ -59,7 +59,7 @@ public class BoundaryRicercaPerTipo implements Initializable {
 				Parent root;
 				stage = (Stage) buttonB.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 			}
@@ -69,21 +69,20 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	{
 		SingeltonSystemState.getIstance().setTypeAsBook();
 
-		if(CRPT.setRicercaL())
+		if(cRPT.setRicercaL())
 		{
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonL.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource(pageFxml));
 			stage.setTitle(title);
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.WARNING);
+			alert = new Alert(AlertType.WARNING);
 			alert.setTitle(errorTitle);
 			alert.setHeaderText(errorHeaderText);
 			alert.setContentText(errorContentText);
@@ -93,21 +92,20 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	@FXML
 	private void cercaG() throws IOException
 	{
-		if(CRPT.setRicercaG())
+		if(cRPT.setRicercaG())
 		{
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonG.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource(pageFxml));
 			stage.setTitle(title);
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.WARNING);
+			alert = new Alert(AlertType.WARNING);
 			alert.setTitle(errorTitle);
 			alert.setHeaderText(errorHeaderText);
 			alert.setContentText(errorContentText);
@@ -117,21 +115,20 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	@FXML 
 	private void cercaR() throws IOException
 	{
-		if(CRPT.setRicercaR())
+		if(cRPT.setRicercaR())
 		{
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonR.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource(pageFxml));
 			stage.setTitle(title);
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.WARNING);
+			alert = new Alert(AlertType.WARNING);
 			alert.setTitle(errorTitle);
 			alert.setHeaderText(errorHeaderText);
 			alert.setContentText(errorContentText);
@@ -142,10 +139,7 @@ public class BoundaryRicercaPerTipo implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
-
-		CRPT = new  ControllerRicercaPerTipo();
-		//singeltonSystemState vis=singeltonSystemState.getIstance();
-
+		cRPT = new  ControllerRicercaPerTipo();
 	
 	}
 }

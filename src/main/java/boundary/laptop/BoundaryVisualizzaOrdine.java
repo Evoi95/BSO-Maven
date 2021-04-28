@@ -43,7 +43,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 	@FXML
 	private TableColumn<Pagamento, SimpleStringProperty> acquisto = new TableColumn<>("Tipo Acquisto ");
 	@FXML
-	private TableColumn<Pagamento, SimpleIntegerProperty> id_prod = new TableColumn<>("Id Prodotto ");
+	private TableColumn<Pagamento, SimpleIntegerProperty> idProd = new TableColumn<>("Id Prodotto ");
 
 	@FXML
 	private Button buttonI;
@@ -56,7 +56,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 	
 	
 	private ControllerVisualizzaOrdine cVO;
-	
+	protected Scene scene;
 	@FXML
 	private void riepilogo() throws SQLException
 	{
@@ -71,12 +71,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 		nome.setCellValueFactory(new PropertyValueFactory<>("nomeUtente")); //pag
 		spesa.setCellValueFactory(new PropertyValueFactory<>("ammontare"));
 		acquisto.setCellValueFactory(new PropertyValueFactory<>("tipo"));
-		id_prod.setCellValueFactory(new PropertyValueFactory<>("idOg"));
-
-
-		//prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
-		
-		
+		idProd.setCellValueFactory(new PropertyValueFactory<>("idOg"));		
 		
 	}
 	
@@ -100,10 +95,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaProfilo.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-			// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 
 			stage.show();
@@ -118,12 +110,8 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 			stage = (Stage) buttonHP.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-			// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
-
 			stage.show();
 
 		 

@@ -188,7 +188,8 @@ public class BoundaryAcquista implements Initializable {
 			nome.setText(cA.getNomeById());
 			dispLabel.setText(""+cA.getDisp());
 			
-		} catch (SQLException e) {		 
+		} catch (SQLException e) {
+			e.printStackTrace();
 			
 		} 
 	}

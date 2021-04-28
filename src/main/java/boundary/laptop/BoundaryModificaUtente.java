@@ -71,11 +71,12 @@ public class BoundaryModificaUtente implements Initializable {
 	@FXML
 	private Button annullaB;
 	
+	protected Alert alert;
+	protected Scene scene;
 	
 	@FXML
 	private void visualizza()
 	{
-		//cMU.prendi();
 		vecchioNL.setText(cMU.prendi().getNome());
 		vecchioCL.setText(cMU.prendi().getCognome());
 		vecchiaEmailL.setText(cMU.prendi().getEmail());
@@ -92,7 +93,7 @@ public class BoundaryModificaUtente implements Initializable {
 				nuovaEmailL.getText(),nuovaPwd.getText(),
 				nuovaDescL.getText(),nuovaDNL.getValue(),vecchiaEmailL.getText()))
 		{
-			Alert alert = new Alert(AlertType.CONFIRMATION);
+			alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("Conferma modifiche");
 			alert.setHeaderText("Modifiche inserite!");
 			alert.setContentText("La modifica dei dati del profilo e' avvenuta con successo");
@@ -101,7 +102,7 @@ public class BoundaryModificaUtente implements Initializable {
 		}
 		else
 		{			
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error Dialog");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
@@ -120,10 +121,7 @@ public class BoundaryModificaUtente implements Initializable {
 		stage = (Stage) annullaB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("visualizzaProfilo.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 

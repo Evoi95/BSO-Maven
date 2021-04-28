@@ -158,7 +158,7 @@ public class Libro implements Raccolta {
 		Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("  Riepilogo download  ");
         alert.setHeaderText("RIsultato download:");
-        alert.setContentText("Libro Acquistato");
+        alert.setContentText("Libro acquistato");
         alert.showAndWait();
         */
 	}

@@ -93,7 +93,7 @@ public class LibroDao  {
          Statement stmt = conn.createStatement();
          ResultSet rs;
 
-         rs = stmt.executeQuery("select * from libro where id_prod ='"+l.getId()+"'");
+         rs = stmt.executeQuery("select * from libro where idProd ='"+l.getId()+"'");
          while ( rs.next() ) {
               prezzo=rs.getFloat("prezzo");
 
@@ -221,7 +221,7 @@ public class LibroDao  {
 	{
 
 		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where id_prod = "+id+" ");
+        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where idProd = "+id+" ");
         if (rs.next())
         {
         	L = (Libro) f.createLibro("libro",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15));
@@ -246,9 +246,9 @@ public class LibroDao  {
          Statement stmt = conn.createStatement();
          ResultSet rs;
 
-         rs = stmt.executeQuery("select id_prod from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
+         rs = stmt.executeQuery("select idProd from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
          while ( rs.next() ) {
-              id=rs.getInt("id_prod");
+              id=rs.getInt("idProd");
 
          }
 		 }catch(SQLException e)
@@ -392,7 +392,7 @@ public class LibroDao  {
 				query="USE ispw";
 				st.executeQuery(query);
 				rs=  stmt.executeQuery(
-						"SELECT `libro`.`disp` FROM `ispw`.`libro` where `id_prod` = `"+l.getId()+"` ;");
+						"SELECT `libro`.`disp` FROM `ispw`.`libro` where `idProd` = `"+l.getId()+"` ;");
 				disp = rs.getInt(1);
 				if (disp >= 1)
 					disp=1;
@@ -421,7 +421,7 @@ public class LibroDao  {
 		        Statement stmt = conn.createStatement();
 				query="USE ispw";
 				st.executeQuery(query);
-				rs=  stmt.executeQuery(	"SELECT `libro`.`copieRimanenti` FROM `ispw`.`libro` where `id_prod` = "+l.getId()+" ");
+				rs=  stmt.executeQuery(	"SELECT `libro`.`copieRimanenti` FROM `ispw`.`libro` where `idProd` = "+l.getId()+" ");
 				if (rs.next()) {
 					q = rs.getInt(1);
 				}
@@ -450,7 +450,7 @@ public class LibroDao  {
 				query="USE ispw";
 				st.executeQuery(query);
 				
-				rs=  stmt.executeQuery("SELECT disp FROM ispw.libro where id_prod = '"+id+"' ;");
+				rs=  stmt.executeQuery("SELECT disp FROM ispw.libro where idProd = '"+id+"' ;");
 				if(rs.next())
 					{
 					disp = rs.getInt(1);
@@ -471,7 +471,7 @@ public class LibroDao  {
 	public String getNome(Libro L) throws SQLException
 	{
 		conn= ConnToDb.generalConnection();
-        ResultSet rs=conn.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where id_prod = '"+L.getId()+"' ");
+        ResultSet rs=conn.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where idProd = '"+L.getId()+"' ");
         if (rs.next())
         {
         	name = rs.getString(1);
@@ -525,7 +525,7 @@ public class LibroDao  {
 				query="USE ispw";
 				st.executeQuery(query);
 				
-				PreparedStatement ps=conn.prepareStatement("delete  FROM ispw.libro where id_prod = "+l.getId()+" ;");
+				PreparedStatement ps=conn.prepareStatement("delete  FROM ispw.libro where idProd = "+l.getId()+" ;");
 				 row=ps.executeUpdate();
 				}
 		} catch (SQLException e) {
@@ -541,7 +541,7 @@ public class LibroDao  {
 		Connection c= ConnToDb.generalConnection();
 		ObservableList<Libro> catalogo=FXCollections.observableArrayList();
 		 
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where id_prod="+l.getId()+"");
+            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where idProd="+l.getId()+"");
 
             while(rs.next())
             {
@@ -597,7 +597,7 @@ public class LibroDao  {
 			 			+ " `disp` = ?,"
 			 			+ " `prezzo` = ?,"
 			 			+ " `copieRimanenti` =?"
-			 			+ " WHERE `id_prod` ="+l.getId()+";";
+			 			+ " WHERE `idProd` ="+l.getId()+";";
 				prepQ=conn.prepareStatement(query);
 				
 				prepQ.setString(1,l.getTitolo());

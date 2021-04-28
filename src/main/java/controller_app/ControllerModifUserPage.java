@@ -9,14 +9,14 @@ import users.singelton.TempUser;
 import logger.Log;
 
 public class ControllerModifUserPage {
-	private UsersDao ud;
+	private UsersDao uD;
 	private static TempUser uT=TempUser.getInstance();
 	
 	
 	
 	public ControllerModifUserPage()
 	{
-		ud=new UsersDao();
+		uD=new UsersDao();
 		
 	}
 
@@ -27,14 +27,14 @@ public class ControllerModifUserPage {
 		
 		uT.setIdU(id);
 		
-		return ud.getTempUserSingolo(uT);
+		return uD.getTempUserSingolo(uT);
 		
 		
 	}
 	
 	public int  prendiIdMax() throws SQLException
 	{
-		return ud.maxIdUSer();
+		return uD.maxIdUSer();
 	}
 
 

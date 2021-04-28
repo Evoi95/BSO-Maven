@@ -27,21 +27,21 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	@FXML
 	private GridPane gridpane ;
 	@FXML
-	private Label LabelTitolo;
+	private Label labelTitolo;
 	@FXML
-	private Label LabelTipologia;
+	private Label labelTipologia;
 	@FXML
-	private Label LabelEditore;
+	private Label labelEditore;
 	@FXML
-	private Label LabelLingua;
+	private Label labelLingua;
 	@FXML
-	private Label LabelDate;
+	private Label labelDate;
 	@FXML
-	private Label LabelDisp;
+	private Label labelDisp;
 	@FXML
-	private Label LabelPrezzo;
+	private Label labelPrezzo;
 	@FXML
-	private Label LabelCopieRimanenti;
+	private Label labelCopieRimanenti;
 	@FXML
 	private Button buttonBack;
 	@FXML
@@ -63,17 +63,18 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	@FXML
 	private Label copieRimanentiL;
 	
-	private ControllerVisualizzaRivista CVR;
-	private int i;
+	private ControllerVisualizzaRivista cVR;
+	protected int i;
+	protected Scene scene;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	public BoundaryVisualizzaRivista()
 	{
-		CVR = new ControllerVisualizzaRivista();
+		cVR = new ControllerVisualizzaRivista();
 	}
 	
 	@FXML
-	private void Acquista() throws IOException
+	private void acquista() throws IOException
 	{
 		
 		Stage stage;
@@ -82,7 +83,7 @@ public class BoundaryVisualizzaRivista implements Initializable{
 		root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -95,7 +96,7 @@ public class BoundaryVisualizzaRivista implements Initializable{
 		stage = (Stage) buttonBack.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaRivista.fxml"));
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		}
@@ -106,25 +107,25 @@ public class BoundaryVisualizzaRivista implements Initializable{
 			stage = (Stage) buttonBack.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 	}
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		i = CVR.getID();
+		i = cVR.getID();
 		
 		try {
-			LabelTitolo.setText(CVR.getData(i).getTitolo());
-			LabelEditore.setText(CVR.getData(i).getEditore());
-			LabelLingua.setText(CVR.getData(i).getLingua());
-			LabelDate.setText(""+CVR.getData(i).getDataPubb());
-			LabelDisp.setText(""+CVR.getData(i).getDisp());
-			LabelPrezzo.setText(CVR.getData(i).getPrezzo()+"");
-			LabelCopieRimanenti.setText(CVR.getData(i).getCopieRim()+"");
+			labelTitolo.setText(cVR.getData(i).getTitolo());
+			labelEditore.setText(cVR.getData(i).getEditore());
+			labelLingua.setText(cVR.getData(i).getLingua());
+			labelDate.setText(""+cVR.getData(i).getDataPubb());
+			labelDisp.setText(""+cVR.getData(i).getDisp());
+			labelPrezzo.setText(cVR.getData(i).getPrezzo()+"");
+			labelCopieRimanenti.setText(cVR.getData(i).getCopieRim()+"");
 		} catch (SQLException e) {
-			
+			e.printStackTrace();			
 		}
 		
 

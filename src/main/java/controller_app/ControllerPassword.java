@@ -8,35 +8,37 @@ import javafx.scene.control.Alert.AlertType;
 import users.singelton.User;
 
 public class ControllerPassword {
-	private User U = User.getInstance();
-	private UsersDao Ud;
+	private User u = User.getInstance();
+	private UsersDao uD;
 	private boolean status;
 	public ControllerPassword()
 	{
-		Ud = new UsersDao();
+		uD = new UsersDao();
 		
 	}
 
 	public boolean aggiornaPass(String email,String vecchiaP,String nuovaP) throws SQLException
 	{
-		
-		if(nuovaP.length()>=8 || !email.equals(""))
+		u.setEmail(email);
+		if(u.getPassword().equals(vecchiaP)) 
 		{
-			U.setEmail(email);
-			U.setPassword(nuovaP);
-			if(UsersDao.checkUser(U) == 1)
+			if(nuovaP.length()>=8 || !email.equals(""))
 			{
-				UsersDao.checkResetpass(U, nuovaP,email);
-				status=true;
+				u.setPassword(nuovaP);
+				if(UsersDao.checkUser(u) == 1)
+				{
+					UsersDao.checkResetpass(u, nuovaP,email);
+					status=true;
+				}
+				else if  (UsersDao.checkUser(u) == 0 || UsersDao.checkUser(u) == -1 )
+				{
+					status=false;
+				}
+				
 			}
-			else if  (UsersDao.checkUser(U) == 0 || UsersDao.checkUser(U) == -1 )
-			{
+			else {
 				status=false;
 			}
-			
-		}
-		else {
-			status=false;
 		}
 		return status;
 	}

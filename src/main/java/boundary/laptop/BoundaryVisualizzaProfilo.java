@@ -55,28 +55,17 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 	private Button cancellaB;
 	
 	private ControllerVisualizzaProfilo cVP;
+	protected Scene scene;
+	protected Alert alert;
 	
 	@FXML
 	private void credenziali() {
-		
-		//cVP.getCredenziali();
 		
 		
 		labelInsN.setText(cVP.getCredenziali().getNome());
 		labelInsC.setText(cVP.getCredenziali().getCognome());
 		labelInsE.setText(cVP.getCredenziali().getEmail());
 		labelInsD.setText(cVP.getCredenziali().getDataDiNascita().toString());
-		
-		/*if(cVP.getCredenziali()==null)
-		{
-			Alert alert=new Alert(AlertType.ERROR);
-			alert.setTitle("Errore cancellazione profilo");// line 2
-			alert.setHeaderText("Errore cancellazione");// line 3
-			alert.setContentText("!--Utente non cancellato--!");// line 4
-			alert.showAndWait(); // line 5
-
-		}
-		*/
 
 	}
 	@FXML
@@ -85,13 +74,9 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 		Parent root;
 		stage = (Stage) indietroB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		stage.setTitle("Benvenuto nella schermata di home page");
+		scene = new Scene(root);
 		stage.setScene(scene);
-
 		stage.show();
 
 		
@@ -103,11 +88,8 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 		Parent root;
 		stage = (Stage) modificaB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("modificaUtente.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		stage.setTitle("Benvenuto nella schermata di modifica Utente");
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();	}
@@ -117,19 +99,10 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 		Parent root;
 		stage = (Stage) indietroB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("visualizzaOrdine.fxml"));
-		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		stage.setTitle("Benvenuto nella schermata del riepilogo degli ordini");
+		scene = new Scene(root);
 		stage.setScene(scene);
-
 		stage.show();
-
-
-		
-		
-		
 	}
 	
 	public BoundaryVisualizzaProfilo()
@@ -140,9 +113,7 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 	@FXML
 	private void eliminaProfilo() throws IOException
 	{
-		
-		
-			if (cVP.cancellaUtente()==true)
+			if (cVP.cancellaUtente())
 			{
 				labelInsN.setText("");
 				labelInsC.setText("");
@@ -154,15 +125,14 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 				stage = (Stage) cancellaB.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 				stage.setTitle("Registazione andata a buon fine");
-
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 
 				
 			}
 			else {
-				Alert alert=new Alert(AlertType.ERROR);
+				alert=new Alert(AlertType.ERROR);
 				alert.setTitle("Errore cancellazione profilo");// line 2
 				alert.setHeaderText("Errore cancellazione");// line 3
 				alert.setContentText("!--Utente non cancellato--!");// line 4
@@ -171,36 +141,6 @@ public class BoundaryVisualizzaProfilo implements Initializable  {
 
 			}
 	}
-			
-		
-			
-			
-						
-			/*
-			try {
-				if(labelInsN.getText()==null && labelInsC.getText()==null && labelInsE.getText()==null && labelInsD.getText()==null)
-				{
-					Alert alert=new Alert(AlertType.ERROR);
-					alert.setTitle("Errore cancellazione profilo");// line 2
-					alert.setHeaderText("Errore cancellazione");// line 3
-					alert.setContentText("!--Utente non cancellato--!");// line 4
-					alert.showAndWait(); // line 5
-
-				}
-			}catch(NullPointerException e)
-			{
-				
-			}*/
-
-
-			
-				
-			
-			
-			
-			
-		
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		

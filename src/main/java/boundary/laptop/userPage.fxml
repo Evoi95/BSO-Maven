@@ -12,7 +12,7 @@
       <Button fx:id="buttonA" layoutX="566.0" layoutY="117.0" mnemonicParsing="false" onAction="#aggiungi" prefWidth="86.0" text="Aggiungi" textAlignment="CENTER" textFill="#0400ee" />
       <Button fx:id="buttonC" layoutX="566.0" layoutY="219.0" mnemonicParsing="false" onAction="#cancella" prefHeight="25.0" prefWidth="86.0" text="Cancella" textFill="#fc0000" />
       <Button fx:id="buttonM" layoutX="566.0" layoutY="168.0" mnemonicParsing="false" onAction="#modifica" prefHeight="25.0" prefWidth="86.0" text="Modifica" textFill="#fc8200" />
-      <Button fx:id="Indietro" layoutX="566.0" layoutY="269.0" mnemonicParsing="false" onAction="#torna" prefHeight="25.0" prefWidth="86.0" text="Indietro" />
+      <Button fx:id="indietro" layoutX="566.0" layoutY="269.0" mnemonicParsing="false" onAction="#torna" prefHeight="25.0" prefWidth="86.0" text="indietro" />
       <Button fx:id="buttonP" layoutX="193.0" layoutY="360.0" mnemonicParsing="false" onAction="#prendi" text="Prendi lista" textFill="#00eb23" />
       <TextArea fx:id="elencoUtenti" layoutX="59.0" layoutY="81.0" prefHeight="254.0" prefWidth="468.0" />
       <Label fx:id="idL" layoutX="674.0" layoutY="172.0" prefHeight="17.0" prefWidth="107.0" text="Leggi id dell'utente" textAlignment="CENTER" textFill="#da0b6f" />

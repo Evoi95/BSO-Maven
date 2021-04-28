@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import controller_app.ControllerCancellaRivista;
 import controller_app.ControllerRivistaPage;
 import controller_app.SingeltonSystemState;
-import factoryBook.Libro;
+
 import factoryBook.Rivista;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -57,8 +57,9 @@ public class BoundaryRivistaPage implements Initializable {
 	private Button buttonB;
 	private ControllerRivistaPage cRP;
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
-
 	private ControllerCancellaRivista cCR;
+	protected Scene scene;
+	protected int identity;
 	
 	
 	
@@ -75,7 +76,7 @@ public class BoundaryRivistaPage implements Initializable {
 			table.setItems(cRP.getRivistaS());
 		} catch (SQLException e) {
 		 
-			
+			e.printStackTrace();
 		}
 	}
 	@FXML
@@ -85,7 +86,7 @@ public class BoundaryRivistaPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonAdd.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("addRivistaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -96,7 +97,7 @@ public class BoundaryRivistaPage implements Initializable {
 		Parent root;
 		stage = (Stage) modB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("modRivistaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		
@@ -105,9 +106,8 @@ public class BoundaryRivistaPage implements Initializable {
 	@FXML
 	private void cancella()
 	{
-		int id;
-		id=SingeltonSystemState.getIstance().getId();
-		cCR.cancella(id);
+		identity=SingeltonSystemState.getIstance().getId();
+		cCR.cancella(identity);
 		
 	}
 	@FXML
@@ -117,7 +117,7 @@ public class BoundaryRivistaPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 

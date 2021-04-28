@@ -47,12 +47,14 @@ public class BoundaryResetPwd implements Initializable{
 	private Button buttonH;
 	
 	private ControllerPassword cP;
+	protected String email;
+	protected String vecchiaP;
+	protected String nuovaP;
+	protected Scene scene;
 	
 	@FXML
 	private void conferma() throws SQLException
 	{
-		//update pwd
-		String email,vecchiaP,nuovaP;
 		
 		email=emailTF.getText();
 		vecchiaP=vecchiaPF.getText();
@@ -64,16 +66,12 @@ public class BoundaryResetPwd implements Initializable{
 	@FXML
 	private void ritorna() throws IOException
 	{
-		//torna a homePage;
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonH.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 		stage.setTitle("Benvenuto nella schermata del login");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 	}

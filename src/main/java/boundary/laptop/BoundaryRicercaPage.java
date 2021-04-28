@@ -49,24 +49,26 @@ public class BoundaryRicercaPage  implements Initializable{
 	
 	private String i;
 	private String title = "Benvenuto nella schermata del riepilogo ordine";
-	private ControllerRicercaPage CRP;
-	private ControllerVisualizzaLibro CVL;
-	private ControllerVisualizzaGiornale CVG;
-	private ControllerVisualizzaRivista CVR;
+	private ControllerRicercaPage cRP;
+	private ControllerVisualizzaLibro cVL;
+	private ControllerVisualizzaGiornale cVG;
+	private ControllerVisualizzaRivista cVR;
+	protected Scene scene;
+	protected Alert alert ;
 	
 	public BoundaryRicercaPage()
 	{
-		CRP = new ControllerRicercaPage();
-		CVL = new ControllerVisualizzaLibro();
-		CVG	= new ControllerVisualizzaGiornale();
-		CVR	= new ControllerVisualizzaRivista();
+		cRP = new ControllerRicercaPage();
+		cVL = new ControllerVisualizzaLibro();
+		cVG	= new ControllerVisualizzaGiornale();
+		cVR	= new ControllerVisualizzaRivista();
 	}
 	@FXML
 	private void cerca() throws SQLException
 	{
 		// e populo la tabella
 		//col controller faccio la ricerca basandomi sul singerlton battona+
-		table.setItems( CRP.cercaPerTipo(cercaT.getText()));
+		table.setItems( cRP.cercaPerTipo(cercaT.getText()));
 	}
 
 	// mostro i dati e le relative schermate
@@ -75,45 +77,45 @@ public class BoundaryRicercaPage  implements Initializable{
 	{
 		i = idT.getText();
 		//col controller Apro basandomi sul singerlton battona
-		if(CRP.returnType().equals("libro"))
+		if(cRP.returnType().equals("libro"))
 		{
-			CVL.setID(i);
+			cVL.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaBookPage.fxml"));
 			stage.setTitle(title);
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
-		else if(CRP.returnType().equals("giornale"))
+		else if(cRP.returnType().equals("giornale"))
 		{
-			CVG.setID(i);
+			cVG.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaDailyPage.fxml"));
 			stage.setTitle(title);
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
-		else if(CRP.returnType().equals("rivista"))
+		else if(cRP.returnType().equals("rivista"))
 		{
-			CVR.setID(i);
+			cVR.setID(i);
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonV.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("visualizzaMagazinePage.fxml"));
 			stage.setTitle(title);
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		else
 		{
-			Alert alert = new Alert(AlertType.ERROR);
+			alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Id inserito");
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
@@ -128,7 +130,7 @@ public class BoundaryRicercaPage  implements Initializable{
 		stage = (Stage) buttonB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
 		stage.setTitle(title);
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}

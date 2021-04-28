@@ -69,7 +69,7 @@ public class CreateDefaultDB
 						+ " recensione text, copieVendute int, breveDescrizione text,"
 						+ " disp int, prezzo float,"
 						+ " copieRimanenti int,"
-						+ "id_prod int primary key auto_increment);";
+						+ "idProd int primary key auto_increment);";
 				st.executeUpdate(query);
 				
 				query=	"create table if not exists pagamento("
@@ -78,7 +78,7 @@ public class CreateDefaultDB
 						+ "nomeUtente varchar(10),spesaTotale float,"
 						+ "eMail varchar(100 ),"
 						+ "tipoAcquisto varchar(20),"
-						+ "id_prod int )";
+						+ "idProd int )";
 						
 						st.executeUpdate(query);
 				

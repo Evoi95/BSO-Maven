@@ -31,9 +31,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 	private Button buttonI;
 	private ControllerReportRaccolta cRR;
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
-	
-
-	
+	protected Scene scene;	
 	
 	@FXML
 	private void giornali() throws IOException
@@ -42,7 +40,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 		Parent root;
 		stage = (Stage) buttonG.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("giornalePage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	
@@ -54,7 +52,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 		Parent root;
 		stage = (Stage) rivisteB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("rivistaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	
@@ -67,7 +65,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 		Parent root;
 		stage = (Stage) libriB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("bookPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	
@@ -82,22 +80,22 @@ public class BoundaryRaccoltaPage implements Initializable {
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("raccoltaPage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
 			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 
-			{
+		
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
-				}
 			}
+			
 			
 	}
 

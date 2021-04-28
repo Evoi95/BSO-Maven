@@ -5,7 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
 
+import logger.Log;
 import controller_app.ControllerModifRivistaPage;
 import controller_app.SingeltonSystemState;
 import javafx.fxml.FXML;
@@ -98,16 +100,16 @@ public class BoundaryModifRivista implements Initializable{
 		
 		private ControllerModifRivistaPage cMRP;
 		private SingeltonSystemState vis= SingeltonSystemState.getIstance();
-
-		
-		
+		protected float prezzo;
+		protected int copie ;
+		protected Scene scene;
 		
 		
 		@FXML
 		private void aggiungi() throws SQLException
 		{
 			String t=titoloTF.getText();
-			String tipologia=tipologiaTF.getText();// np=Integer.parseInt(numeroPagineT.getText());
+			String tipologia=tipologiaTF.getText();
 			String autore=autoreTF.getText();
 			String l=linguaTF.getText();
 			String e=editoreTF.getText();
@@ -118,7 +120,7 @@ public class BoundaryModifRivista implements Initializable{
 			
 			int dispo;
 			
-			if(disp==true)
+			if(disp)
 			{
 				dispo=1;
 				//disponibile
@@ -126,8 +128,8 @@ public class BoundaryModifRivista implements Initializable{
 			else {
 				dispo=0;
 			}
-			float prezzo=Float.parseFloat(prezzoTF.getText());
-			int copie=Integer.parseInt(copieTF.getText());
+			prezzo=Float.parseFloat(prezzoTF.getText());
+			copie=Integer.parseInt(copieTF.getText());
 			
 			
 
@@ -143,7 +145,7 @@ public class BoundaryModifRivista implements Initializable{
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("rivistaPage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		
@@ -166,18 +168,11 @@ public class BoundaryModifRivista implements Initializable{
 				dispV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getDisp());
 				prezzoV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getPrezzo());
 				copieV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getCopieRim());
-
-
-
-
-
-
-
-
-
-			} catch (SQLException e) {
+			}
+			catch (SQLException e) {
 			 
-				
+				Log.logger.log(Level.SEVERE,e,()->"result"+e);
+
 			}
 
 	

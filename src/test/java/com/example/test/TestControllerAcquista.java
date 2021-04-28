@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import controller_app.ControllerAcquista;
 import controller_app.SingeltonSystemState;
 
-class TestControllerAcquista {
+class TestControlleracquista {
 	private ControllerAcquista cA=new ControllerAcquista();
 	private static SingeltonSystemState vis=SingeltonSystemState.getIstance();
 
@@ -168,7 +168,7 @@ class TestControllerAcquista {
 		vis.setTypeAsBook();
 		vis.setId(1);
 		String nome=cA.getNomeById();
-		//Log.logger.log(Level.INFO,"\n\n\n\nLibro in testAcquista: "+nome);
+		//Log.logger.log(Level.INFO,"\n\n\n\nLibro in testacquista: "+nome);
 		assertNotEquals("",nome);
 
 	}

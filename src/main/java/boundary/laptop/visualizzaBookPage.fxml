@@ -96,22 +96,22 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Label fx:id="LabelTitolo" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" />
-            <Label fx:id="LabelNumeroPagine" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label fx:id="LabelCodiceISBN" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Label fx:id="LabelEditore" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <Label fx:id="LabelAutore" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label fx:id="LabelLingua" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Label fx:id="LabelCategoria" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <Label fx:id="LabelDate" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-            <Label fx:id="LabelRecensione" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-            <Label fx:id="LabelDescrizione" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-            <Label fx:id="LabelDisp" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
-            <Label fx:id="LabelPrezzo" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
-            <Label fx:id="LabelCopieRimanenti" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+            <Label fx:id="labelTitolo" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" />
+            <Label fx:id="labelNumeroPagine" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label fx:id="labelCodiceISBN" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Label fx:id="labelEditore" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <Label fx:id="labelAutore" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <Label fx:id="labelLingua" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <Label fx:id="labelCategoria" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <Label fx:id="labelDate" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <Label fx:id="labelRecensione" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <Label fx:id="labelDescrizione" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+            <Label fx:id="labelDisp" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+            <Label fx:id="labelPrezzo" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+            <Label fx:id="labelCopieRimanenti" prefHeight="17.0" prefWidth="344.0" GridPane.columnIndex="1" GridPane.rowIndex="12" />
          </children>
       </GridPane>
-      <Button fx:id="buttonA" layoutX="629.0" layoutY="218.0" mnemonicParsing="false" onAction="#Acquista" prefHeight="25.0" prefWidth="71.0" text="Acquista" textFill="#ff4800">
+      <Button fx:id="buttonA" layoutX="629.0" layoutY="218.0" mnemonicParsing="false" onAction="#acquista" prefHeight="25.0" prefWidth="71.0" text="acquista" textFill="#ff4800">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

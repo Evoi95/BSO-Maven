@@ -71,8 +71,11 @@ public class BoundaryPagamentoCC implements Initializable {
 	@FXML
 	private Label labelNU;
 
-	private ControllerPagamentoCC CPCC;
-	private Boolean esito;
+	private ControllerPagamentoCC cPCC;
+	protected Boolean esito;
+	protected Scene scene;
+	protected java.sql.Date sql;
+	protected SimpleDateFormat formatter;
 	private static SingeltonSystemState vis = SingeltonSystemState.getIstance();
 
 	@FXML
@@ -82,9 +85,9 @@ public class BoundaryPagamentoCC implements Initializable {
 		String civ=codiceTFCiv.getText();
 		
 		
-		esito = CPCC.controllaPag(scadTF.getText(), cod,civ);
+		esito = cPCC.controllaPag(scadTF.getText(), cod,civ);
 		
-		if (esito==(true)) {
+		if (Boolean.TRUE.equals(esito)) {
 			if(vis.getIstance().getIsPickup()) 
 			{
 				Stage stage;
@@ -92,7 +95,7 @@ public class BoundaryPagamentoCC implements Initializable {
 				stage = (Stage) buttonI.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("scegliNegozio.fxml"));
 				stage.setTitle("Benvenuto nella schermata per il download");
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();	
 			}
@@ -103,7 +106,7 @@ public class BoundaryPagamentoCC implements Initializable {
 			stage = (Stage) buttonI.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("download.fxml"));
 			stage.setTitle("Benvenuto nella schermata per il download");
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
@@ -116,7 +119,7 @@ public class BoundaryPagamentoCC implements Initializable {
 
 			stage.setTitle("Benvenuto nella schermata per il pagamento");
 
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -131,13 +134,17 @@ public class BoundaryPagamentoCC implements Initializable {
 		root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 		stage.setTitle("benvenuto nella schermata del riepilogo ordine");
 
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
 
-	public BoundaryPagamentoCC() throws Exception {
-		CPCC = new ControllerPagamentoCC();
+	public BoundaryPagamentoCC()  {
+		try {
+			cPCC = new ControllerPagamentoCC();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -151,13 +158,13 @@ public class BoundaryPagamentoCC implements Initializable {
 		String codice = codiceTF.getText();
 		String d = scadTF.getText();
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/mm/dd");
+		formatter = new SimpleDateFormat("yyyy/mm/dd");
 		data = formatter.parse(d);
-		java.sql.Date sql = new java.sql.Date(data.getTime());
+		sql = new java.sql.Date(data.getTime());
 
 		String civ = codiceTFCiv.getText();
 
-		CPCC.aggiungiCartaDB(nome, cognome, codice, sql, civ, (float) 0.0);
+		cPCC.aggiungiCartaDB(nome, cognome, codice, sql, civ, (float) 0.0);
 	}
 
 	@Override
@@ -177,13 +184,14 @@ public class BoundaryPagamentoCC implements Initializable {
 		try {
 
 			String nomeUt = nomeInput.getText();
-			Log.logger.log(Level.INFO,"Nome utemte :" + nomeUt);
-			if (nomeUt.equals("") || nomeUt.equals(null)) {
+			Log.logger.log(Level.INFO,"Nome utemte : {0}",nomeUt);
+			if (nomeUt.equals("")) {
 				buttonPrendi.setDisable(true);
 				throw new IOException();
-			} else {
+			}
+			else {
 				buttonPrendi.setDisable(false);
-				tableCC.setItems(CPCC.ritornaElencoCC(nomeUt));
+				tableCC.setItems(cPCC.ritornaElencoCC(nomeUt));
 			}
 		} catch (IOException e) {
 			e.getMessage();
@@ -194,10 +202,10 @@ public class BoundaryPagamentoCC implements Initializable {
 	@FXML
 	private void prova() throws SQLException
 	{
-		nomeTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserNome());
-		cognomeTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserCognome());
-		codiceTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getNumeroCC());
-		scadTF.setText(CPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getScadenza().toString());
+		nomeTF.setText(cPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserNome());
+		cognomeTF.setText(cPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getUserCognome());
+		codiceTF.setText(cPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getNumeroCC());
+		scadTF.setText(cPCC.tornaDalDb(tableCC.getSelectionModel().getSelectedItem().getNumeroCC()).getScadenza().toString());
 
 
 	}

@@ -7,17 +7,16 @@ import database.UsersDao;
 import users.singelton.TempUser;
 
 public class ControllerAddUserPage {
-	private UsersDao ud;
+	private UsersDao uD;
 	private static TempUser u=TempUser.getInstance();
 	
 	public ControllerAddUserPage()
 	{
-		ud=new UsersDao();
+		uD=new UsersDao();
 	}
 
 	public void insUtenteAsAdmin(String nome, String cognome, String email, String pwd, String desc, LocalDate data, String ruolo) throws SQLException
 	{
-		//u.setNull();
 		u.setNome(nome);
 		u.setCognome(cognome);
 		u.setEmail(email);
@@ -25,6 +24,6 @@ public class ControllerAddUserPage {
 		u.setDescrizione(desc);
 		u.setDataDiNascita(data);
 		u.setIdRuolo(ruolo);
-		ud.createUser2(u);
+		uD.createUser2(u);
 	}
 }

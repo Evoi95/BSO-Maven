@@ -11,7 +11,7 @@ import users.singelton.User;
 
 public class ControllerBsoRegister {
 	private Boolean state=false;
-	private UsersDao Ud ;
+	private UsersDao uD ;
 	private User u=User.getInstance();
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
@@ -28,11 +28,9 @@ public class ControllerBsoRegister {
 				// nuovo utente creo l'account
 				u.setNome(n);
 				u.setCognome(c);
-				//User U1 = new User( n,c,email,pwd,LocalDate);
 				
-				Log.logger.log(Level.INFO,"\n\n\ndata in controller"+u.getDataDiNascita());
-				state=Ud.createUser(u);
-				//state=true;
+				Log.logger.log(Level.INFO,"data in controller {0}",u.getDataDiNascita());
+				state=uD.createUser(u);
 			}
 			else if (UsersDao.checkUser(u) == 1 || UsersDao.checkUser(u) == -1)
 			{
@@ -99,7 +97,7 @@ public class ControllerBsoRegister {
 	public ControllerBsoRegister()
 	{
 		//U.getInstance();
-		Ud=new UsersDao();
+		uD=new UsersDao();
 	}
 	
 	// TO DO: checkData o lo facciamo diretti in mysql

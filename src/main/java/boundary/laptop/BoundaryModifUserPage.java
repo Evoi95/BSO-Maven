@@ -80,18 +80,21 @@ public class BoundaryModifUserPage implements Initializable{
 	private Label ruoloV;
 	
 	
-	
-	
-	
-	
+	protected String n;
+	protected String c;
+	protected String e;
+	protected String p;
+	protected String d;
+	protected String r;
+	protected LocalDate data;
+	protected Scene scene;
 	
 	private ControllerModifUserPage cMUP;
 	
 	@FXML
 	private void modUtente() {
 		
-		String n,c,e,p,d,r;
-		LocalDate data;
+
 		n=nomeTF.getText();
 		c=cognomeTF.getText();
 		e=emailTF.getText();
@@ -111,7 +114,7 @@ public class BoundaryModifUserPage implements Initializable{
 		stage = (Stage) annB.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("UserPage.fxml"));
 		stage.setTitle("Benvenuto nella schermata del login");
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 
@@ -122,7 +125,7 @@ public class BoundaryModifUserPage implements Initializable{
 		// query con id
 		cMUP=new ControllerModifUserPage();
 		int id=SingeltonSystemState.getIstance().getId();
-		Log.logger.log(Level.INFO,"id in initialize bMUP :"+ id);
+		Log.logger.log(Level.INFO,"id in initialize bMUP :{0}",id);
 		
 		try {
 			cMUP.prendiLista(id);
@@ -136,22 +139,15 @@ public class BoundaryModifUserPage implements Initializable{
 			descV.setText(cMUP.prendiLista(id).getDescrizione());
 			dataV.setText(cMUP.prendiLista(id).getDataDiNascita().toString());
 			ruoloV.setText(cMUP.prendiLista(id).getIdRuolo());
-
 			nomeTF.setText(cMUP.prendiLista(id).getNome());
 			cognomeTF.setText(cMUP.prendiLista(id).getCognome());
 			emailTF.setText(cMUP.prendiLista(id).getEmail());
 			pwdTF.setText(cMUP.prendiLista(id).getPassword());
 			descTA.setText(cMUP.prendiLista(id).getDescrizione());
 			ruoloTF.setText(cMUP.prendiLista(id).getIdRuolo());
-
-
-
-
-
-
-		} catch (SQLException e) {
-		 
 			
+		} catch (SQLException eMod) {
+			Log.logger.log(Level.SEVERE,eMod,()->"result"+eMod);
 		}
 	}
 	
