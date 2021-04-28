@@ -11,13 +11,13 @@ public class Editore {
 	
 	public Editore(TempUser u) {
 
-		this.idRuolo = TempUser.getInstance().getIdRuolo();
-		this.nome = TempUser.getInstance().getNome();
-		this.cognome = TempUser.getInstance().getCognome();
-		this.email = TempUser.getInstance().getEmail();
-		this.password = TempUser.getInstance().getPassword();
-		this.descrizione = TempUser.getInstance().getDescrizione();
-		this.dataDiNascita =TempUser.getInstance().getDataDiNascita();
+		this.idRuolo = u.getIdRuolo();
+		this.nome = u.getNome();
+		this.cognome = u.getCognome();
+		this.email = u.getEmail();
+		this.password = u.getPassword();
+		this.descrizione = u.getDescrizione();
+		this.dataDiNascita = u.getDataDiNascita();
 	
 	}
 

@@ -29,7 +29,11 @@ import javafx.stage.Stage;
 
 public class BoundaryLogin implements Initializable {
 	@FXML
-	private Label labelUser, labelPwd,labelB;
+	private Label labelUser; 
+	@FXML
+	private Label labelPwd;
+	@FXML
+	private Label labelB;
 	@FXML
 	private javafx.scene.layout.GridPane grid;
 	@FXML
@@ -37,7 +41,9 @@ public class BoundaryLogin implements Initializable {
 	@FXML
 	private PasswordField pwdField;
 	@FXML
-	private Button buttonI, buttonA;
+	private Button buttonI;
+	@FXML
+	private Button buttonA;
 	@FXML
 	private Pane panel;
 	@FXML
@@ -49,9 +55,10 @@ public class BoundaryLogin implements Initializable {
 
 	
 	private ControllerLogin cL;
-	private String ruolo;
+	protected String ruolo;
+	protected Scene scene;
+	protected Alert alert;
 
-	// private Stage stage;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -63,20 +70,18 @@ public class BoundaryLogin implements Initializable {
 	@FXML
 	private void controllaCredenziali() throws IOException, SQLException {
 		
-		Boolean v;
-		String u="";
-		String p="";
+		String u;
+		String p;
 		
 		u = textFieldUsername.getText();
 		p = pwdField.getText();
 		
 
-		v=cL.controlla(u,p);
 		
-		 ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
-		Log.logger.log(Level.INFO,"Ruolo tempUser :"+ruolo);
+		ruolo=cL.getRuoloTempUSer(textFieldUsername.getText());
+		Log.logger.log(Level.INFO,"Ruolo tempUser :{0}",ruolo);
 
-		if (v) {
+		if (cL.controlla(u,p)) {
 		
 			if(ruolo.equals("e") || ruolo.equals("E"))
 			{
@@ -87,9 +92,9 @@ public class BoundaryLogin implements Initializable {
 				 * modificare schermata
 				 */
 				root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
-				stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+				stage.setTitle("Benvenuto nella schermata di Home page ");
 
-				Scene scene = new Scene(root);
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 
@@ -103,9 +108,9 @@ public class BoundaryLogin implements Initializable {
 					 * modificare schermata
 					 */
 					root = FXMLLoader.load(getClass().getResource("homePageAfterLoginES.fxml"));
-					stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+					stage.setTitle("Benvenuto nella schermata di home page dedicata agli editori/ scrittori");
 
-					Scene scene = new Scene(root);
+					scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();
 
@@ -121,9 +126,9 @@ public class BoundaryLogin implements Initializable {
 					 * modificare schermata
 					 */
 					root = FXMLLoader.load(getClass().getResource("adminPage.fxml"));
-					stage.setTitle("Benvenuto nella schermata del catalogo libri ");
+					stage.setTitle("Benvenuto nella schermata di gestione amministrativa ");
 
-					Scene scene = new Scene(root);
+					scene = new Scene(root);
 					stage.setScene(scene);
 					stage.show();
 
@@ -136,35 +141,17 @@ public class BoundaryLogin implements Initializable {
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();
-				/*
-				 * modificare schermata
-				 */
 				root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
-				stage.setTitle("Benvenuto nella schermata del catalogo libri ");
-			
-				Scene scene = new Scene(root);
+				stage.setTitle("Benvenuto nella schermata di home page ");
+				scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 			}
 			
-			/*
-			 * 
-			 * Carico schermata AfterLoginSE 
-			 * 
-			 * Stage stage;
-			Parent root;
-			stage = (Stage) buttonLogout.getScene().getWindow();
-			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-
-			stage.show();
-
-			 */
 
 		} 
 		else {
-			Alert alert=new Alert(AlertType.ERROR);
+			alert=new Alert(AlertType.ERROR);
 			alert.setTitle("Credenziali errate");// line 2
 			alert.setHeaderText("Credenziali non valide ");// line 3
 			alert.setContentText(" Per favore registrarsi o reinsci credenziali");// line 4
@@ -179,13 +166,9 @@ public class BoundaryLogin implements Initializable {
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonA.getScene().getWindow();
-		/*
-		 * modificare schermata
-		 */
 		root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
 		stage.setTitle("Benvenuto nella schermata del catalogo libri ");
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 
@@ -202,10 +185,7 @@ public class BoundaryLogin implements Initializable {
 		stage = (Stage) buttonReg.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("bsoRegister.fxml"));
 		stage.setTitle("Benvenuto nella schermata del login");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 	}
@@ -218,15 +198,9 @@ public class BoundaryLogin implements Initializable {
 		stage = (Stage) buttonReg.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("resetPwd.fxml"));
 		stage.setTitle("Benvenuto nella schermata del login");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
-		
-		
-		//Controller password 
-//caricare nuocva schermata eccecc
+
 	}
 	 
 	 

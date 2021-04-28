@@ -48,7 +48,8 @@ public class BoundaryHomePageAfterLoginSE {
 	private Button buttonGestione;
 	
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
-
+	protected Scene scene;
+	protected Alert alert;
 	@FXML
 	private void getListaGiornali() throws IOException {
 		vis.getIstance().setIsSearch(false);
@@ -58,10 +59,7 @@ public class BoundaryHomePageAfterLoginSE {
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaGiornali.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo dei giornali");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -76,10 +74,7 @@ public class BoundaryHomePageAfterLoginSE {
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaRivista.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo delle riviste");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -94,10 +89,7 @@ public class BoundaryHomePageAfterLoginSE {
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaLibri.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo dei libri");
-
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -106,28 +98,20 @@ public class BoundaryHomePageAfterLoginSE {
 
 	@FXML
 	private void profile() throws IOException {
-		// specificare controller logico
-		/*
-		 */
 		Stage stage;
-		 
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("visualizzaProfilo.fxml"));
 		stage.setTitle("Benvenuto nel tuo profilo qui puoi visualizzare le tue informazioni");
-	
-		
-		// Parent root = FXMLLoader.load(getClass().getResource("compravendita.fxml"));
-
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
 		
-		//Log.logger.log(Level.INFO,"Sto nel terzo caso d'urso lode");
+		
 	}
 
-	// Usaiamo la Reflection!! no! 
+	
 	@FXML
 	private void logout() throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException 
 	{
@@ -138,14 +122,14 @@ public class BoundaryHomePageAfterLoginSE {
 			Parent root;
 			stage = (Stage) buttonLogout.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("homePage.fxml"));
-			Scene scene = new Scene(root);
+			scene = new Scene(root);
 			stage.setScene(scene);
 
 			stage.show();
 		}
 		else
 		{
-			Alert alert=new Alert(AlertType.ERROR);
+			alert=new Alert(AlertType.ERROR);
 			alert.setTitle("Errore Logout");// line 2
 			alert.setHeaderText("Errore Logout");// line 3
 			alert.setContentText("!--Errore Logout--!");// line 4
@@ -163,7 +147,7 @@ public class BoundaryHomePageAfterLoginSE {
 		Parent root;
 		stage = (Stage) buttonC.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("ricercaPerTipo.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();
@@ -178,7 +162,7 @@ public class BoundaryHomePageAfterLoginSE {
 		Parent root;
 		stage = (Stage) buttonR.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("RaccoltaPage.fxml"));
-		Scene scene = new Scene(root);
+		scene = new Scene(root);
 		stage.setScene(scene);
 
 		stage.show();

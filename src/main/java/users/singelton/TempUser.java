@@ -14,20 +14,14 @@ public class TempUser {
 	private LocalDate dataDiNascita;
 	private int idU;
 	// array di codici isbn presi dai libri 
-	//private ArrayList<String> listaUtenti =new ArrayList<String>();
 	
 	private static TempUser instance = new TempUser();
 	
 	private  TempUser()
 	{
-		// manco la mia anima e' così vuota
 
 	}
- 	
-	// end of construtor
-	// start of getters and setters
-	
-	public String getIdRuolo() {
+ 		public String getIdRuolo() {
 		return idRuolo;
 	}
 

@@ -130,14 +130,10 @@ public class BoundaryModifBook implements Initializable {
 	private ControllerModifBook cMB;
 	private SingeltonSystemState vis= SingeltonSystemState.getIstance();
 	
-	//private ObservableList<String> items = FXCollections.observableArrayList();
 
 	@FXML
 	private void aggiorna() throws SQLException
 	{
-		//cMB.getLibriById(vis.getIstance().getId());
-		
-		
 		String t=titoloT.getText();
 		int np=Integer.parseInt(numeroPagineT.getText());
 		String cod=codeIsbnT.getText();
@@ -151,7 +147,7 @@ public class BoundaryModifBook implements Initializable {
 		
 		int dispo;
 		
-		if(disp==true)
+		if(disp)
 		{
 			dispo=1;
 			//disponibile
