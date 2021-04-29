@@ -12,7 +12,7 @@ import negozio.Negozio;
 
 public class NegozioDao {
 	
-	private Negozio N; 
+	private Negozio shop; 
 	private String nome;
 	private String via; //primary key
 	private Boolean isValid;
@@ -41,61 +41,60 @@ public class NegozioDao {
         {
         	try 
         	{
-        		N = new Negozio(rs.getString(1),rs.getString(2),rs.getBoolean(3),rs.getBoolean(4));
-				listOfNegozi.add(N);
+        		shop = new Negozio(rs.getString(1),rs.getString(2),rs.getBoolean(3),rs.getBoolean(4));
+				listOfNegozi.add(shop);
     		}
         	catch (Exception e) 
         	{
-			 
-				
+			 e.printStackTrace();				
 			}
         }
 		return listOfNegozi;
 	}
 	
-//	public Integer setOpen(Negozio N, boolean i)
-//	{
-//		// vanno messe  le query
-//		conn= ConnToDb.generalConnection();
-//		
-//		if (i == true)
-//		{
-//			N.setIsOpen(i);
-//			return 1;
-//		}
-//		else if (i == false)
-//		{
-//			N.setIsOpen(i);
-//			return 0;
-//		}
-//		return -1;
-//		
-//	}
-//	
-//	public Integer setRitiro(Negozio N, boolean i )
-//	{
-//		if (i == true)
-//		{
-//			N.setIsValid(i);
-//			return 1;
-//		}
-//		else if (i == false)
-//		{
-//			N.setIsValid(i);
-//			return 0;
-//		}
-//		return -1;
-//	}
+	public Integer setOpen(Negozio shop, boolean i)
+	{
+		// vanno messe  le query
+		conn= ConnToDb.generalConnection();
+		
+		if (i)
+		{
+			shop.setIsOpen(i);
+			return 1;
+		}
+		else 
+		{
+			shop.setIsOpen(i);
+			return 0;
+		}
+		
+	}
+	
+	public Integer setRitiro(Negozio shop, boolean i )
+	{
+		if (i)
+		{
+			shop.setIsValid(i);
+			return 1;
+		}
+		else
+		{
+			shop.setIsValid(i);
+			return 0;
+		}
+	}
+	
 	
 	// controllo che il negozio sia aperto
-	public boolean checkOpen(Negozio  N)
+	public boolean checkOpen(Negozio  shop)
 	{
 		conn= ConnToDb.generalConnection();
+		
 		return false;
 	}
 	
 	//controllo se il negozio fa PickUP
-	public boolean checkRitiro(Negozio N)
+	public boolean checkRitiro(Negozio shop)
 	{
 		return false;
 	}
