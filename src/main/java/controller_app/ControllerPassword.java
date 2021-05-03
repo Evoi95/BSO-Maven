@@ -20,7 +20,6 @@ public class ControllerPassword {
 	public boolean aggiornaPass(String email,String vecchiaP,String nuovaP) throws SQLException
 	{
 		u.setEmail(email);
-		u.setPassword(vecchiaP);
 		if(u.getPassword().equals(vecchiaP)) 
 		{
 			if(nuovaP.length()>=8 || !email.equals(""))

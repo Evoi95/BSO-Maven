@@ -1,6 +1,5 @@
 package com.example.test;
 
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -14,13 +13,16 @@ import users.singelton.TempUser;
 class TestAdmin {
 	private Admin a=new Admin(TempUser.getInstance());
 	
-	
+	@BeforeAll
+	void prova() {
+		
+	}
 	
 	@Test
 	void testGetIdRuolo() {
 		a.setIdRuolo("a");
 		assertEquals("a",a.getIdRuolo());
-	}
+}
 
 	@Test
 	void testSetIdRuolo() {
