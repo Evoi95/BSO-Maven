@@ -1,26 +1,12 @@
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-80.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-52.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-40.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-20.0
+Titolo :La Republica	Editore :La Republica	Ricavo totale :-12.0
 Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
 Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
-Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-80.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-120.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-52.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0
-Titolo :La Republica	Editore :La Republica	Ricavo totale :-50.0
-Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
-Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
-Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :0.0
-Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :30.0
-Titolo :Il Fatto Quotidiano	Editore :Il Fatto Quotidiano	Ricavo totale :32.0
-Titolo :la gazzetta del profeta	Editore :il ministero	Ricavo totale :400.0
-Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :il messagero	Editore :il messagero	Ricavo totale :130.0
 Titolo :La Republica	Editore :La Republica	Ricavo totale :-40.0
 Titolo :La Republica	Editore :La Republica	Ricavo totale :-60.0

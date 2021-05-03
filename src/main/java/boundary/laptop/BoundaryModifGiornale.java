@@ -110,7 +110,7 @@ public class BoundaryModifGiornale implements Initializable {
 		prezzo=Float.parseFloat(prezzoT.getText());
 		copie=Integer.parseInt(copieRimanentiT.getText());
 		
-		boolean esito=cMG.checkData(t,tipo,ed,l,d,dispo,prezzo,copie);
+		boolean esito=cMG.checkData(t,tipo,ed,l,d,dispo,prezzo,copie,0);
 		
 		Log.logger.log(Level.INFO,"Esito : {0}",esito);
 		

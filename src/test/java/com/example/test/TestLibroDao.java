@@ -1,5 +1,6 @@
 package com.example.test;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.IOException;
@@ -98,7 +99,7 @@ class TestLibroDao {
 
 	@Test
 	void testRetId() throws SQLException {
-		l.setCodIsbn("1722235608");
+		l.setCodIsbn("1520510888");
 		assertNotEquals(0,lD.retId(l));
 	}
 

@@ -516,7 +516,6 @@ public class RivistaDao {
 	}
 
 	public void aggiornaRivista(Rivista r) throws SQLException {
-		int rowAffected=0;
 		
 					 conn = ConnToDb.generalConnection();
 			st=conn.createStatement();
@@ -537,7 +536,8 @@ public class RivistaDao {
 		 			+ "`disp` = ?,"
 		 			+ "`prezzo` = ?,"
 		 			+ "`copieRimanenti` =?"
-		 			+ "WHERE `id` = "+r.getId()+";";
+		 			+ " WHERE `id` ='"+r.getId()+"';";
+
 		 		
 		 	prepQ=conn.prepareStatement(query);
 			
@@ -553,10 +553,9 @@ public class RivistaDao {
 			prepQ.setInt(10,r.getCopieRim());
 		
 
-			rowAffected = prepQ.executeUpdate();
-			prepQ.close();
-			
-            Log.logger.log(Level.INFO,("Row affected "+ rowAffected));
+			prepQ.executeUpdate();
+			conn.close();			
+          //  Log.logger.log(Level.INFO,("Row affected "+ rowAffected));
 
 	 }	
 	

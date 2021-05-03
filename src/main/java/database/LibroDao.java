@@ -39,6 +39,7 @@ public class LibroDao  {
 	private String name; 
 	private static int q; // quantita'
 	private static ResultSet rs;
+	private int id;
 
 	
 	
@@ -90,10 +91,9 @@ public class LibroDao  {
 		float prezzo=(float) 0.0;
 		  conn = ConnToDb.generalConnection();
 		 try {
-         Statement stmt = conn.createStatement();
-         ResultSet rs;
+          st = conn.createStatement();
 
-         rs = stmt.executeQuery("select * from libro where idProd ='"+l.getId()+"'");
+         rs = st.executeQuery("select * from libro where idProd ='"+l.getId()+"'");
          while ( rs.next() ) {
               prezzo=rs.getFloat("prezzo");
 
@@ -220,8 +220,8 @@ public class LibroDao  {
 	public Libro getLibro(Libro L,int id) throws SQLException
 	{
 
-		Connection c= ConnToDb.generalConnection();
-        ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where idProd = "+id+" ");
+		 conn= ConnToDb.generalConnection();
+         rs=conn.createStatement().executeQuery("SELECT * FROM libro where idProd = "+id+" ");
         if (rs.next())
         {
         	L = (Libro) f.createLibro("libro",rs.getString(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7),rs.getDate(8).toLocalDate(),rs.getString(9),rs.getInt(10),rs.getString(11),rs.getInt(12),rs.getFloat(13),rs.getInt(14),rs.getInt(15));
@@ -240,13 +240,12 @@ public class LibroDao  {
 	}
 
 	public int retId(Libro l) throws SQLException {
-		int id = 0;
 		 conn = ConnToDb.generalConnection();
 		 try {
-         Statement stmt = conn.createStatement();
-         ResultSet rs;
+         st = conn.createStatement();
+        
 
-         rs = stmt.executeQuery("select idProd from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
+         rs = st.executeQuery("select idProd from libro where Cod_isbn ='"+l.getCodIsbn()+"'");
          while ( rs.next() ) {
               id=rs.getInt("idProd");
 
@@ -257,6 +256,8 @@ public class LibroDao  {
 		 }finally {
 			 conn.close();
 		 }
+		 
+		 System.out.println("ID :"+id);
 		 //return id;
 		return id;
 
@@ -439,7 +440,6 @@ public class LibroDao  {
 	public boolean checkDisp(Libro l,int id) throws SQLException
 	{
 		int disp;
-        ResultSet rs;
         boolean state=false;
 		try {
 			if (ConnToDb.connection())
@@ -471,7 +471,7 @@ public class LibroDao  {
 	public String getNome(Libro L) throws SQLException
 	{
 		conn= ConnToDb.generalConnection();
-        ResultSet rs=conn.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where idProd = '"+L.getId()+"' ");
+         rs=conn.createStatement().executeQuery("SELECT libro.titolo FROM ispw.libro where idProd = '"+L.getId()+"' ");
         if (rs.next())
         {
         	name = rs.getString(1);
@@ -538,10 +538,10 @@ public class LibroDao  {
 	
 	public ObservableList<Libro> getLibriSingoloById(Libro l) throws SQLException
 	{
-		Connection c= ConnToDb.generalConnection();
+		conn= ConnToDb.generalConnection();
 		ObservableList<Libro> catalogo=FXCollections.observableArrayList();
 		 
-            ResultSet rs=c.createStatement().executeQuery("SELECT * FROM libro where idProd="+l.getId()+"");
+           rs=conn.createStatement().executeQuery("SELECT * FROM libro where idProd="+l.getId()+"");
 
             while(rs.next())
             {
@@ -597,7 +597,7 @@ public class LibroDao  {
 			 			+ " `disp` = ?,"
 			 			+ " `prezzo` = ?,"
 			 			+ " `copieRimanenti` =?"
-			 			+ " WHERE `idProd` ="+l.getId()+";";
+			 			+ " WHERE `idProd` ='"+l.getId()+"';";
 				prepQ=conn.prepareStatement(query);
 				
 				prepQ.setString(1,l.getTitolo());

@@ -19,7 +19,7 @@ public class ControllerModifGiornale {
 	
 		
 		public boolean checkData(String titolo, String tipo, String ed, String l, LocalDate d, int dispo, float prezzo,
-				int copie) throws SQLException {
+				int copie,int id) throws SQLException {
 			g.setTitolo(titolo);
 			g.setTipologia(tipo);
 			g.setEditore(ed);
@@ -28,6 +28,7 @@ public class ControllerModifGiornale {
 			g.setDisponibilita(dispo);
 			g.setPrezzo(prezzo);
 			g.setCopieRimanenti(copie);
+			g.setId(id);
 			gd.aggiornaGiornale(g);
 			
 			return true;
