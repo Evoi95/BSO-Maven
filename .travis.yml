@@ -17,11 +17,13 @@ addons:
       - ant
       - build-essential
 
+
   sonarcloud:
     organization: "evoi95"
-    token: "fbe710a613602c15ce97750f8c86b9fe8b1adc4d" # encrypted value of your token
+    token:
+      secure: "8ff5d551c680ed0c60510be06c26467d5a302779" # encrypted value of your token
 
-    
+
 # Do not run travis install step
 install: true
  
