@@ -5,163 +5,89 @@
               directory with the processing instruction <?eclipse.ant.import?>
               as the first entry and export the buildfile again. --><project basedir="." default="build" name="BSO-Maven">
     <property environment="env"/>
-    <property name="ECLIPSE_HOME" value="../../eclipse/jee-2020-09/eclipse/"/>
+    <property name="ECLIPSE_HOME" value="../../eclipse/jee-2021-032/eclipse/"/>
     <property name="junit.output.dir" value="junit"/>
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
+    <path id="Web App Libraries.libraryclasspath"/>
+    <path id="EAR Libraries.libraryclasspath"/>
+    <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/annotations-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina-ant.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina-ha.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina-ssi.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina-storeconfig.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina-tribes.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/catalina.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/ecj-4.17.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/el-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jasper-el.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jasper.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jaspic-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/jsp-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/servlet-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-api.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-coyote.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-dbcp.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-cs.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-de.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ko.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-pt-BR.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-ru.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-i18n-zh-CN.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-jdbc.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-jni.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-util-scan.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-util.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-websocket.jar"/>
+        <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/websocket-api.jar"/>
+    </path>
     <path id="Maven Dependencies.libraryclasspath">
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-archetype-fxml/0.0.3/javafx-archetype-fxml-0.0.3.jar"/>
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-archetype-simple/0.0.3/javafx-archetype-simple-0.0.3.jar"/>
-        <pathelement location="../../.m2/repository/org/jacoco/jacoco-maven-plugin/0.8.2/jacoco-maven-plugin-0.8.2.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar"/>
-        <pathelement location="../../.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-utils/3.0.22/plexus-utils-3.0.22.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/reporting/maven-reporting-api/2.2.1/maven-reporting-api-2.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.1/doxia-sink-api-1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-logging-api/1.1/doxia-logging-api-1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/reporting/maven-reporting-impl/2.1/maven-reporting-impl-2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-core/1.1.2/doxia-core-1.1.2.jar"/>
-        <pathelement location="../../.m2/repository/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.jar"/>
-        <pathelement location="../../.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"/>
-        <pathelement location="../../.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-site-renderer/1.1.2/doxia-site-renderer-1.1.2.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-decoration-model/1.1.2/doxia-decoration-model-1.1.2.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-module-xhtml/1.1.2/doxia-module-xhtml-1.1.2.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-module-fml/1.1.2/doxia-module-fml-1.1.2.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-i18n/1.0-beta-7/plexus-i18n-1.0-beta-7.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-velocity/1.1.7/plexus-velocity-1.1.7.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/velocity/velocity/1.5/velocity-1.5.jar"/>
-        <pathelement location="../../.m2/repository/commons-collections/commons-collections/3.2/commons-collections-3.2.jar"/>
-        <pathelement location="../../.m2/repository/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar"/>
-        <pathelement location="../../.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar"/>
-        <pathelement location="../../.m2/repository/commons-digester/commons-digester/1.6/commons-digester-1.6.jar"/>
-        <pathelement location="../../.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
-        <pathelement location="../../.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar"/>
-        <pathelement location="../../.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
-        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.agent/0.8.2/org.jacoco.agent-0.8.2-runtime.jar"/>
-        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.core/0.8.2/org.jacoco.core-0.8.2.jar"/>
-        <pathelement location="../../.m2/repository/org/ow2/asm/asm-commons/6.2.1/asm-commons-6.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/ow2/asm/asm-analysis/6.2.1/asm-analysis-6.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/ow2/asm/asm-tree/6.2.1/asm-tree-6.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.report/0.8.2/org.jacoco.report-0.8.2.jar"/>
-        <pathelement location="../../.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
-        <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar"/>
-        <pathelement location="../../.m2/repository/com/itextpdf/itextpdf/5.5.9/itextpdf-5.5.9.jar"/>
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2.jar"/>
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2-win.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-plugin-api/3.6.0/maven-plugin-api-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-model/3.6.0/maven-model-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-artifact/3.6.0/maven-artifact-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.3/org.eclipse.sisu.plexus-0.3.3.jar"/>
-        <pathelement location="../../.m2/repository/javax/enterprise/Cdi-api/1.0/Cdi-api-1.0.jar"/>
-        <pathelement location="../../.m2/repository/javax/annotation/jsr250-api/1.0/jsr250-api-1.0.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-classworlds/2.5.2/plexus-classworlds-2.5.2.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/plugin-tools/maven-plugin-annotations/3.6.0/maven-plugin-annotations-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-java/0.9.11/plexus-java-0.9.11.jar"/>
-        <pathelement location="../../.m2/repository/org/ow2/asm/asm/7.0-beta/asm-7.0-beta.jar"/>
-        <pathelement location="../../.m2/repository/com/thoughtworks/qdox/qdox/2.0-M9/qdox-2.0-M9.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-archiver/3.6.0/plexus-archiver-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-io/3.0.1/plexus-io-3.0.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/commons/commons-compress/1.16.1/commons-compress-1.16.1.jar"/>
-        <pathelement location="../../.m2/repository/org/iq80/snappy/snappy/0.4/snappy-0.4.jar"/>
-        <pathelement location="../../.m2/repository/org/tukaani/xz/1.8/xz-1.8.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/commons/commons-exec/1.3/commons-exec-1.3.jar"/>
-        <pathelement location="../../.m2/repository/commons-io/commons-io/2.6/commons-io-2.6.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.3.1/junit-jupiter-api-5.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apiguardian/apiguardian-api/1.0.0/apiguardian-api-1.0.0.jar"/>
-        <pathelement location="../../.m2/repository/org/opentest4j/opentest4j/1.1.1/opentest4j-1.1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-commons/1.3.1/junit-platform-commons-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/mybatis/mybatis/3.4.5/mybatis-3.4.5.jar"/>
-        <pathelement location="../../.m2/repository/org/assertj/assertj-core/3.9.1/assertj-core-3.9.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/plugin-testing/maven-plugin-testing-harness/3.3.0/maven-plugin-testing-harness-3.3.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-core/3.6.0/maven-core-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-settings/3.6.0/maven-settings-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-settings-builder/3.6.0/maven-settings-builder-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/sonatype/plexus/plexus-sec-dispatcher/1.4/plexus-sec-dispatcher-1.4.jar"/>
-        <pathelement location="../../.m2/repository/org/sonatype/plexus/plexus-cipher/1.4/plexus-cipher-1.4.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-builder-support/3.6.0/maven-builder-support-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-repository-metadata/3.6.0/maven-repository-metadata-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-model-builder/3.6.0/maven-model-builder-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-resolver-provider/3.6.0/maven-resolver-provider-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/resolver/maven-resolver-impl/1.3.1/maven-resolver-impl-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/resolver/maven-resolver-api/1.3.1/maven-resolver-api-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/resolver/maven-resolver-spi/1.3.1/maven-resolver-spi-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/resolver/maven-resolver-util/1.3.1/maven-resolver-util-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/shared/maven-shared-utils/3.2.1/maven-shared-utils-3.2.1.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.3/org.eclipse.sisu.inject-0.3.3.jar"/>
-        <pathelement location="../../.m2/repository/com/google/inject/guice/4.2.1/guice-4.2.1-no_aop.jar"/>
-        <pathelement location="../../.m2/repository/aopalliance/aopalliance/1.0/aopalliance-1.0.jar"/>
-        <pathelement location="../../.m2/repository/com/google/guava/guava/25.1-android/guava-25.1-android.jar"/>
-        <pathelement location="../../.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar"/>
-        <pathelement location="../../.m2/repository/org/checkerframework/checker-compat-qual/2.0.0/checker-compat-qual-2.0.0.jar"/>
-        <pathelement location="../../.m2/repository/com/google/errorprone/error_prone_annotations/2.1.3/error_prone_annotations-2.1.3.jar"/>
-        <pathelement location="../../.m2/repository/com/google/j2objc/j2objc-annotations/1.1/j2objc-annotations-1.1.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/mojo/animal-sniffer-annotations/1.14/animal-sniffer-annotations-1.14.jar"/>
-        <pathelement location="../../.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-component-annotations/1.7.1/plexus-component-annotations-1.7.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-compat/3.6.0/maven-compat-3.6.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/wagon/wagon-provider-api/3.2.0/wagon-provider-api-3.2.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/maven/maven-aether-provider/3.3.9/maven-aether-provider-3.3.9.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-api/1.0.2.v20150114/aether-api-1.0.2.v20150114.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-spi/1.0.2.v20150114/aether-spi-1.0.2.v20150114.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-util/1.0.2.v20150114/aether-util-1.0.2.v20150114.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-impl/1.0.2.v20150114/aether-impl-1.0.2.v20150114.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-transport-http/1.1.0/aether-transport-http-1.1.0.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/httpcomponents/httpclient/4.3.5/httpclient-4.3.5.jar"/>
-        <pathelement location="../../.m2/repository/org/apache/httpcomponents/httpcore/4.3.2/httpcore-4.3.2.jar"/>
-        <pathelement location="../../.m2/repository/commons-codec/commons-codec/1.6/commons-codec-1.6.jar"/>
-        <pathelement location="../../.m2/repository/org/slf4j/jcl-over-slf4j/1.6.2/jcl-over-slf4j-1.6.2.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-transport-file/1.1.0/aether-transport-file-1.1.0.jar"/>
-        <pathelement location="../../.m2/repository/org/eclipse/aether/aether-connector-basic/1.1.0/aether-connector-basic-1.1.0.jar"/>
-        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-interpolation/1.25/plexus-interpolation-1.25.jar"/>
-        <pathelement location="../../.m2/repository/org/mockito/mockito-core/2.24.5/mockito-core-2.24.5.jar"/>
-        <pathelement location="../../.m2/repository/net/bytebuddy/byte-buddy/1.9.7/byte-buddy-1.9.7.jar"/>
-        <pathelement location="../../.m2/repository/net/bytebuddy/byte-buddy-agent/1.9.7/byte-buddy-agent-1.9.7.jar"/>
-        <pathelement location="../../.m2/repository/org/objenesis/objenesis/2.6/objenesis-2.6.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/vintage/junit-vintage-engine/5.3.1/junit-vintage-engine-5.3.1.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.3.1/junit-platform-engine-1.3.1.jar"/>
-        <pathelement location="../../.m2/repository/junit/junit/4.12/junit-4.12.jar"/>
-        <pathelement location="../../.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
-        <pathelement location="../../.m2/repository/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar"/>
+        <pathelement location="../../.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-commons/1.6.2/junit-platform-commons-1.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.2/junit-jupiter-params-5.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar"/>
+        <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-controls/11.0.2/javafx-controls-11.0.2.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-controls/11.0.2/javafx-controls-11.0.2-win.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-graphics/11.0.2/javafx-graphics-11.0.2.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-graphics/11.0.2/javafx-graphics-11.0.2-win.jar"/>
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar"/>
-        <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar"/>
-        <pathelement location="../../.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar"/>
+        <pathelement location="../../.m2/repository/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2.jar"/>
+        <pathelement location="../../.m2/repository/org/openjfx/javafx-fxml/11.0.2/javafx-fxml-11.0.2-win.jar"/>
+        <pathelement location="../../.m2/repository/org/mybatis/mybatis/3.4.5/mybatis-3.4.5.jar"/>
+        <pathelement location="../../.m2/repository/com/itextpdf/itextpdf/5.5.9/itextpdf-5.5.9.jar"/>
+        <pathelement location="../../.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
+        <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar"/>
         <pathelement location="../../.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar"/>
+        <pathelement location="../../.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
+        <pathelement location="../../.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar"/>
+        <pathelement location="../../.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar"/>
     </path>
-    <path id="Web App Libraries.libraryclasspath"/>
-    <path id="EAR Libraries.libraryclasspath"/>
     <path id="BSO-Maven.classpath">
         <pathelement location="target/classes"/>
         <pathelement location="target/test-classes"/>
-        <path refid="Maven Dependencies.libraryclasspath"/>
         <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
+        <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
-    <path id="run.BSO-Maven (2).classpath">
+    <path id="run.BSO-Maven.classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
-    <path id="run.HelloWorld (1).classpath">
+    <path id="run.Main (1).classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
-    <path id="run.java (1).classpath">
-        <path refid="BSO-Maven.classpath"/>
-        <path refid="Maven Dependencies.libraryclasspath"/>
-    </path>
-    <path id="run.Main (7).classpath">
+    <path id="run.TestBoundaryAcquista.classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
@@ -170,15 +96,11 @@
         <mkdir dir="target/test-classes"/>
         <copy includeemptydirs="false" todir="target/classes">
             <fileset dir="src/main/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
         <copy includeemptydirs="false" todir="target/test-classes">
             <fileset dir="src/test/java">
-                <exclude name="**/*.launch"/>
-                <exclude name="**/*.xtend"/>
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
@@ -215,31 +137,27 @@
         <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
         <antcall target="build"/>
     </target>
-    <target name="BSO-Maven (2)">
+    <target name="BSO-Maven">
         <mkdir dir="${junit.output.dir}"/>
         <junit fork="yes" printsummary="withOutAndErr">
             <formatter type="xml"/>
             <jvmarg line="-ea"/>
-            <classpath refid="run.BSO-Maven (2).classpath"/>
+            <classpath refid="run.BSO-Maven.classpath"/>
         </junit>
     </target>
-    <target name="HelloWorld (1)">
-        <java classname="BSO.BSOMaven.HelloWorld" failonerror="true" fork="yes">
-            <classpath refid="run.HelloWorld (1).classpath"/>
-        </java>
-    </target>
-    <target name="java (1)">
-        <mkdir dir="${junit.output.dir}"/>
-        <junit fork="yes" printsummary="withOutAndErr">
-            <formatter type="xml"/>
-            <jvmarg line="-ea"/>
-            <classpath refid="run.java (1).classpath"/>
-        </junit>
-    </target>
-    <target name="Main (7)">
+    <target name="Main (1)">
         <java classname="boundary.laptop.Main" failonerror="true" fork="yes">
-            <classpath refid="run.Main (7).classpath"/>
+            <classpath refid="run.Main (1).classpath"/>
         </java>
+    </target>
+    <target name="TestBoundaryAcquista">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestBoundaryAcquista" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestBoundaryAcquista.classpath"/>
+        </junit>
     </target>
     <target name="junitreport">
         <junitreport todir="${junit.output.dir}">

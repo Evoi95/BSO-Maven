@@ -181,7 +181,19 @@
     		<artifactId>mysql-connector-java</artifactId>
     		<version>8.0.22</version>
 		</dependency>
-        
+
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-core</artifactId>
+			<version>4.0.16-alpha</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.testfx</groupId>
+			<artifactId>testfx-junit5</artifactId>
+			<version>4.0.16-alpha</version>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
     
     <build>
@@ -206,6 +218,14 @@
                 <skipTests>true</skipTests>
                 </configuration>
             </plugin>
+            <plugin>
+		        <groupId>org.openjfx</groupId>
+		        <artifactId>javafx-maven-plugin</artifactId>
+		        <version>0.0.3</version>
+		        <configuration>
+		            <mainClass>hellofx/org.openjfx.App</mainClass>
+		        </configuration>
+		    </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.2.0</version>
