@@ -21,7 +21,7 @@ addons:
   sonarcloud:
     organization: "evoi95"
     token:
-      secure: "8ff5d551c680ed0c60510be06c26467d5a302779" # encrypted value of your token
+      secure: "71ffb6c834ede084d4500373000c76823581d4e1" # encrypted value of your token
 
 
 # Do not run travis install step
@@ -35,7 +35,6 @@ services:
   - mysql
    
 script:
-    - mvn clean compile verify
     - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
     - mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
 
