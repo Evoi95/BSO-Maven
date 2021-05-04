@@ -21,7 +21,7 @@ addons:
   sonarcloud:
     organization: "evoi95"
     token:
-      secure: "71ffb6c834ede084d4500373000c76823581d4e1" # encrypted value of your token
+      secure: "042e971071e1b954c2ca87301f32f6abe68fc20c" # encrypted value of your token
 
 
 # Do not run travis install step
