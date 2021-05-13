@@ -99,51 +99,117 @@
         </developer>
     </developers>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>11</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven.compiler.release>${java.version}</maven.compiler.release>
+  <properties>
+    <!-- Dependency versions -->
+    <junit.jupiter.version>5.6.2</junit.jupiter.version>
+    <maven-surefire-plugin.version>2.22.1</maven-surefire-plugin.version>
+    <!-- Java 11 -->
+    <java.version>11</java.version>
+  
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+  </properties>
 
-        <junit>5.6.2</junit>
-        
-        <!-- Plugin versions -->
-        <maven.shade>3.2.2</maven.shade>
-        <maven.clean>3.1.0</maven.clean>
-        <maven.resources>3.1.0</maven.resources>
-        <maven.compiler>3.8.1</maven.compiler>
-        <maven.surefire>3.0.0-M5</maven.surefire>
-        <maven.jar>3.2.0</maven.jar>
-        <maven.install>3.0.0-M1</maven.install>
-        <sonar.projectKey>Evoi95_BSO-Maven</sonar.projectKey>
-  		<sonar.organization>evoi95</sonar.organization>
-  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  		
-    </properties>
 
-    <dependencies>
-        <!-- Dependencies -->
-    
-    
-        <!-- Testing dependencies-->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit}</version>
-            <scope>test</scope>
-        </dependency>
+  <build>
+    <pluginManagement>
+    <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
+        <plugin>
+		    <groupId>org.codehaus.mojo</groupId>
+		    <artifactId>versions-maven-plugin</artifactId>
+		    <version>2.5</version>
+		    <configuration>
+		        <generateBackupPoms>false</generateBackupPoms>
+		    </configuration>
+		</plugin>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+            <configuration>
+				<release>11</release>
+				<source>11</source>
+				<target>11</target>
+			</configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+          	<configuration>
+		        <argLine>
+		            --illegal-access=permit
+		        </argLine>
+		        <skipTests>false</skipTests>
+                <testFailureIgnore>true</testFailureIgnore>
+                <forkCount>0</forkCount>
+                
+		    </configuration>
+        </plugin>
+        <plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-failsafe-plugin</artifactId>
+		    <version>2.22.1</version>
+		    <configuration>
+		        <argLine>
+		            --illegal-access=permit
+		        </argLine>
+		    </configuration>
+		</plugin>
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.1.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.javassist</groupId>
+  		<artifactId>javassist</artifactId>
+  		<version>3.23.1-GA</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>cglib</groupId>
+  		<artifactId>cglib-nodep</artifactId>
+  		<version>3.2.7</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.junit.jupiter</groupId>
+  		<artifactId>junit-jupiter-engine</artifactId>
+  		<version>5.6.2</version>
+  		<scope>test</scope>
+  	</dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-params</artifactId>
-            <version>${junit}</version>
-            <scope>test</scope>
+            <version>5.6.2</version>
+			<scope>test</scope>
         </dependency>
         <dependency>
         	<groupId>org.openjfx</groupId>
@@ -175,81 +241,28 @@
         	<artifactId>itextpdf</artifactId>
         	<version>5.5.9</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
     		<groupId>mysql</groupId>
     		<artifactId>mysql-connector-java</artifactId>
     		<version>8.0.22</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
+
 
 		<dependency>
-			<groupId>org.testfx</groupId>
-			<artifactId>testfx-core</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat</artifactId>
+			<version>9.0.41</version>
+			<type>pom</type>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit5 -->
 		<dependency>
-			<groupId>org.testfx</groupId>
-			<artifactId>testfx-junit5</artifactId>
-			<version>4.0.16-alpha</version>
-			<scope>test</scope>
+		    <groupId>org.testfx</groupId>
+		    <artifactId>testfx-junit5</artifactId>
+		    <version>4.0.16-alpha</version>
+		    <scope>test</scope>
 		</dependency>
-    </dependencies>
-    
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M5</version>
-                <configuration>
-<!--                 	<forkCount>0</forkCount> -->
-                <skipTests>true</skipTests>
-                </configuration>
-            </plugin>
-            <plugin>
-		        <groupId>org.openjfx</groupId>
-		        <artifactId>javafx-maven-plugin</artifactId>
-		        <version>0.0.3</version>
-		        <configuration>
-		            <mainClass>hellofx/org.openjfx.App</mainClass>
-		        </configuration>
-		    </plugin>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-            <plugin>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>3.0.0-M1</version>
-            </plugin>
-			<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven.shade}</version>
-                <executions>
-                <execution>
-                     <configuration>
-                    <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                        <mainClass>com.example.test</mainClass>
-                        </transformer>
-                    </transformers>
-                    </configuration>
-                </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+		
+  </dependencies>
+
 </project>
