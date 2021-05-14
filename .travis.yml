@@ -18,11 +18,6 @@ addons:
       - build-essential
 
 
-  sonarcloud:
-    organization: "evoi95"
-    token:
-      secure: "21ff84ef76c6044c3434190ba52f5e6d8aa5e591" # encrypted value of your token
-
 # Do not run travis install step
 install: true
  
@@ -37,5 +32,4 @@ script:
 
     - mvn clean compile verify
     # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
-    - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
     - ant build
