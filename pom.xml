@@ -148,10 +148,9 @@
 		        <argLine>
 		            --illegal-access=permit
 		        </argLine>
-		        <skipTests>false</skipTests>
+		        <skipTests>true</skipTests>
                 <testFailureIgnore>true</testFailureIgnore>
                 <forkCount>0</forkCount>
-                
 		    </configuration>
         </plugin>
         <plugin>
