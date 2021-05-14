@@ -74,11 +74,10 @@
 
     <developers>
         <developer>
-            <id>somedev</id>
-            <email>some.developer@example.com</email>
-            <name>Some Developer</name>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
+            <id>Evoi95</id>
+            <email>evoi95@gmail.com</email>
+            <name>Evoi95</name>
+            <organizationUrl>https://github.com/Evoi95</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -86,11 +85,10 @@
             <timezone>Europe/Amsterdam</timezone>
         </developer>
         <developer>
-            <id>otherdev</id>
-            <email>other.developer@example.com</email>
-            <name>Other Developer</name>
-            <organization>Example Organization</organization>
-            <organizationUrl>http://example.com/</organizationUrl>
+            <id>IlCiro</id>
+            <email>danielecinus10@gmail.com</email>
+            <name>ilciro</name>
+            <organizationUrl>https://github.com/ilciro</organizationUrl>
             <roles>
                 <role>architect</role>
                 <role>developer</role>
@@ -98,7 +96,28 @@
             <timezone>Europe/Amsterdam</timezone>
         </developer>
     </developers>
-
+	
+	<profiles>
+	<profile>
+	  <id>sonar</id>
+	  <properties>
+	    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	    <sonar.organization>evoi95</sonar.organization>
+	  </properties>
+	  <build>
+	    <plugins>
+	      <plugin>
+	        <groupId>org.jacoco</groupId>
+	        <artifactId>jacoco-maven-plugin</artifactId>
+	      </plugin>
+	      <plugin>
+	        <groupId>org.sonarsource.scanner.maven</groupId>
+	        <artifactId>sonar-maven-plugin</artifactId>
+	      </plugin>
+	    </plugins>
+	  </build>
+	</profile>
+	</profiles>
   <properties>
     <!-- Dependency versions -->
     <junit.jupiter.version>5.6.2</junit.jupiter.version>
@@ -150,7 +169,7 @@
 		        </argLine>
 		        <skipTests>true</skipTests>
                 <testFailureIgnore>true</testFailureIgnore>
-                <forkCount>0</forkCount>
+               <!--  <forkCount>0</forkCount>--> 
 		    </configuration>
         </plugin>
         <plugin>
@@ -184,7 +203,49 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
-      </plugins>
+	    <plugin>
+	      <groupId>org.sonarsource.scanner.maven</groupId>
+	      <artifactId>sonar-maven-plugin</artifactId>
+	      <version>3.5.0.1254</version>
+	      <executions>
+	        <execution>
+	          <phase>verify</phase>
+	          <goals>
+	            <goal>sonar</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+	    <plugin>
+	      <groupId>org.jacoco</groupId>
+	      <artifactId>jacoco-maven-plugin</artifactId>
+	      <version>0.8.2</version>
+	      <configuration>
+	        <append>true</append>
+	      </configuration>
+	      <executions>
+	        <execution>
+	          <id>prepare-agent</id>
+	          <goals>
+	            <goal>prepare-agent</goal>
+	          </goals>
+	        </execution>
+	        <execution>
+	          <id>prepare-agent-integration</id>
+	          <goals>
+	            <goal>prepare-agent-integration</goal>
+	          </goals>
+	        </execution>
+	        <execution>
+	          <id>jacoco-site</id>
+	          <phase>verify</phase>
+	          <goals>
+	            <goal>report</goal>
+	          </goals>
+	        </execution>
+	      </executions>
+	    </plugin>
+    </plugins>
     </pluginManagement>
   </build>
   <dependencies>
@@ -256,7 +317,7 @@
 		<dependency>
 		    <groupId>org.jacoco</groupId>
 		    <artifactId>jacoco-maven-plugin</artifactId>
-		    <version>0.8.1</version>
+		    <version>0.8.4</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/org.testfx/testfx-junit5 -->

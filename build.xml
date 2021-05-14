@@ -10,7 +10,6 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="11"/>
     <property name="source" value="11"/>
-    <path id="Web App Libraries.libraryclasspath"/>
     <path id="EAR Libraries.libraryclasspath"/>
     <path id="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath">
         <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/annotations-api.jar"/>
@@ -46,13 +45,16 @@
         <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/tomcat-websocket.jar"/>
         <pathelement location="../../../../Program Files/Apache Software Foundation/Tomcat 9.0/lib/websocket-api.jar"/>
     </path>
+    <path id="Web App Libraries.libraryclasspath"/>
     <path id="Maven Dependencies.libraryclasspath">
-        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/javassist/javassist/3.23.1-GA/javassist-3.23.1-GA.jar"/>
+        <pathelement location="../../.m2/repository/cglib/cglib-nodep/3.2.7/cglib-nodep-3.2.7.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar"/>
         <pathelement location="../../.m2/repository/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar"/>
         <pathelement location="../../.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar"/>
         <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-commons/1.6.2/junit-platform-commons-1.6.2.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.6.2/junit-jupiter-engine-5.6.2.jar"/>
-        <pathelement location="../../.m2/repository/org/junit/platform/junit-platform-engine/1.6.2/junit-platform-engine-1.6.2.jar"/>
+        <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-api/5.6.2/junit-jupiter-api-5.6.2.jar"/>
         <pathelement location="../../.m2/repository/org/junit/jupiter/junit-jupiter-params/5.6.2/junit-jupiter-params-5.6.2.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2.jar"/>
         <pathelement location="../../.m2/repository/org/openjfx/javafx-base/11.0.2/javafx-base-11.0.2-win.jar"/>
@@ -66,20 +68,78 @@
         <pathelement location="../../.m2/repository/com/itextpdf/itextpdf/5.5.9/itextpdf-5.5.9.jar"/>
         <pathelement location="../../.m2/repository/mysql/mysql-connector-java/8.0.22/mysql-connector-java-8.0.22.jar"/>
         <pathelement location="../../.m2/repository/com/google/protobuf/protobuf-java/3.11.4/protobuf-java-3.11.4.jar"/>
+        <pathelement location="../../.m2/repository/org/jacoco/jacoco-maven-plugin/0.8.1/jacoco-maven-plugin-0.8.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-plugin-api/2.2.1/maven-plugin-api-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-project/2.2.1/maven-project-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-settings/2.2.1/maven-settings-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-profile/2.2.1/maven-profile-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-model/2.2.1/maven-model-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-artifact-manager/2.2.1/maven-artifact-manager-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-repository-metadata/2.2.1/maven-repository-metadata-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/wagon/wagon-provider-api/1.0-beta-6/wagon-provider-api-1.0-beta-6.jar"/>
+        <pathelement location="../../.m2/repository/backport-util-concurrent/backport-util-concurrent/3.1/backport-util-concurrent-3.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-plugin-registry/2.2.1/maven-plugin-registry-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-interpolation/1.11/plexus-interpolation-1.11.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/maven-artifact/2.2.1/maven-artifact-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-container-default/1.0-alpha-9-stable-1/plexus-container-default-1.0-alpha-9-stable-1.jar"/>
+        <pathelement location="../../.m2/repository/junit/junit/3.8.1/junit-3.8.1.jar"/>
+        <pathelement location="../../.m2/repository/classworlds/classworlds/1.1-alpha-2/classworlds-1.1-alpha-2.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-utils/3.0.22/plexus-utils-3.0.22.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/shared/file-management/1.2.1/file-management-1.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/shared/maven-shared-io/1.1/maven-shared-io-1.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/reporting/maven-reporting-api/2.2.1/maven-reporting-api-2.2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-sink-api/1.1/doxia-sink-api-1.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-logging-api/1.1/doxia-logging-api-1.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/reporting/maven-reporting-impl/2.1/maven-reporting-impl-2.1.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-core/1.1.2/doxia-core-1.1.2.jar"/>
+        <pathelement location="../../.m2/repository/xerces/xercesImpl/2.8.1/xercesImpl-2.8.1.jar"/>
+        <pathelement location="../../.m2/repository/commons-lang/commons-lang/2.4/commons-lang-2.4.jar"/>
+        <pathelement location="../../.m2/repository/commons-httpclient/commons-httpclient/3.1/commons-httpclient-3.1.jar"/>
+        <pathelement location="../../.m2/repository/commons-codec/commons-codec/1.2/commons-codec-1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-site-renderer/1.1.2/doxia-site-renderer-1.1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-decoration-model/1.1.2/doxia-decoration-model-1.1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-module-xhtml/1.1.2/doxia-module-xhtml-1.1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/maven/doxia/doxia-module-fml/1.1.2/doxia-module-fml-1.1.2.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-i18n/1.0-beta-7/plexus-i18n-1.0-beta-7.jar"/>
+        <pathelement location="../../.m2/repository/org/codehaus/plexus/plexus-velocity/1.1.7/plexus-velocity-1.1.7.jar"/>
+        <pathelement location="../../.m2/repository/org/apache/velocity/velocity/1.5/velocity-1.5.jar"/>
+        <pathelement location="../../.m2/repository/commons-collections/commons-collections/3.2/commons-collections-3.2.jar"/>
+        <pathelement location="../../.m2/repository/commons-validator/commons-validator/1.2.0/commons-validator-1.2.0.jar"/>
+        <pathelement location="../../.m2/repository/commons-beanutils/commons-beanutils/1.7.0/commons-beanutils-1.7.0.jar"/>
+        <pathelement location="../../.m2/repository/commons-digester/commons-digester/1.6/commons-digester-1.6.jar"/>
+        <pathelement location="../../.m2/repository/commons-logging/commons-logging/1.0.4/commons-logging-1.0.4.jar"/>
+        <pathelement location="../../.m2/repository/oro/oro/2.0.8/oro-2.0.8.jar"/>
+        <pathelement location="../../.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar"/>
+        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.agent/0.8.1/org.jacoco.agent-0.8.1-runtime.jar"/>
+        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.core/0.8.1/org.jacoco.core-0.8.1.jar"/>
+        <pathelement location="../../.m2/repository/org/ow2/asm/asm/6.0/asm-6.0.jar"/>
+        <pathelement location="../../.m2/repository/org/ow2/asm/asm-commons/6.0/asm-commons-6.0.jar"/>
+        <pathelement location="../../.m2/repository/org/ow2/asm/asm-tree/6.0/asm-tree-6.0.jar"/>
+        <pathelement location="../../.m2/repository/org/ow2/asm/asm-analysis/6.0/asm-analysis-6.0.jar"/>
+        <pathelement location="../../.m2/repository/org/ow2/asm/asm-util/6.0/asm-util-6.0.jar"/>
+        <pathelement location="../../.m2/repository/org/jacoco/org.jacoco.report/0.8.1/org.jacoco.report-0.8.1.jar"/>
+        <pathelement location="../../.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar"/>
         <pathelement location="../../.m2/repository/org/testfx/testfx-core/4.0.16-alpha/testfx-core-4.0.16-alpha.jar"/>
         <pathelement location="../../.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"/>
         <pathelement location="../../.m2/repository/org/assertj/assertj-core/3.13.2/assertj-core-3.13.2.jar"/>
-        <pathelement location="../../.m2/repository/org/testfx/testfx-junit5/4.0.16-alpha/testfx-junit5-4.0.16-alpha.jar"/>
     </path>
     <path id="BSO-Maven.classpath">
         <pathelement location="target/classes"/>
         <pathelement location="target/test-classes"/>
-        <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="EAR Libraries.libraryclasspath"/>
         <path refid="Apache Tomcat v9.0 [Apache Tomcat v9.0].libraryclasspath"/>
+        <path refid="Web App Libraries.libraryclasspath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
     <path id="run.BSO-Maven.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.com.example.test.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.java.classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
@@ -87,7 +147,39 @@
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
+    <path id="run.TestAdmin.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
     <path id="run.TestBoundaryAcquista.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestCategorieLibro.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestCategorieRivista.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerAddBookPage.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerAddRivista.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerAfterLoginSE.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestControllerCancUser.classpath">
+        <path refid="BSO-Maven.classpath"/>
+        <path refid="Maven Dependencies.libraryclasspath"/>
+    </path>
+    <path id="run.TestUsersDao.classpath">
         <path refid="BSO-Maven.classpath"/>
         <path refid="Maven Dependencies.libraryclasspath"/>
     </path>
@@ -145,10 +237,35 @@
             <classpath refid="run.BSO-Maven.classpath"/>
         </junit>
     </target>
+    <target name="com.example.test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.com.example.test.classpath"/>
+        </junit>
+    </target>
+    <target name="java">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.java.classpath"/>
+        </junit>
+    </target>
     <target name="Main (1)">
         <java classname="boundary.laptop.Main" failonerror="true" fork="yes">
             <classpath refid="run.Main (1).classpath"/>
         </java>
+    </target>
+    <target name="TestAdmin">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestAdmin" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestAdmin.classpath"/>
+        </junit>
     </target>
     <target name="TestBoundaryAcquista">
         <mkdir dir="${junit.output.dir}"/>
@@ -157,6 +274,69 @@
             <test name="com.example.test.TestBoundaryAcquista" todir="${junit.output.dir}"/>
             <jvmarg line="-ea"/>
             <classpath refid="run.TestBoundaryAcquista.classpath"/>
+        </junit>
+    </target>
+    <target name="TestCategorieLibro">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestCategorieLibro" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestCategorieLibro.classpath"/>
+        </junit>
+    </target>
+    <target name="TestCategorieRivista">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestCategorieRivista" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestCategorieRivista.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerAddBookPage">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestControllerAddBookPage" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerAddBookPage.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerAddRivista">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestControllerAddRivista" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerAddRivista.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerAfterLoginSE">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestControllerAfterLoginSE" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerAfterLoginSE.classpath"/>
+        </junit>
+    </target>
+    <target name="TestControllerCancUser">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestControllerCancUser" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestControllerCancUser.classpath"/>
+        </junit>
+    </target>
+    <target name="TestUsersDao">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="com.example.test.TestUsersDao" todir="${junit.output.dir}"/>
+            <jvmarg line="-ea"/>
+            <classpath refid="run.TestUsersDao.classpath"/>
         </junit>
     </target>
     <target name="junitreport">
