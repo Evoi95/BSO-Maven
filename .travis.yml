@@ -1,0 +1,35 @@
+# use java support
+language: java
+jdk: openjdk11
+
+before_install:
+  
+  - sudo apt update
+  - sudo apt install maven
+  - sudo apt install openjfx
+  - sudo apt install mysql-workbench
+
+# Install xmlstarlet
+addons:
+  apt:
+    packages:
+      - xmlstarlet
+      - ant
+      - build-essential
+
+
+# Do not run travis install step
+install: true
+ 
+cache:
+  directories:
+    - $HOME/.m2  
+ 
+services:
+  - mysql
+   
+script:
+
+    - mvn clean compile verify
+    # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=Evoi95_BSO-Maven
+    - ant build
