@@ -95,6 +95,17 @@ public class BoundaryRaccoltaPage implements Initializable {
 				stage.setScene(scene);
 				stage.show();
 			}
+			 else
+			 {
+				 Stage stage;
+					Parent root;
+					stage = (Stage) buttonI.getScene().getWindow();
+					root = FXMLLoader.load(getClass().getResource("homePageAfterLogin.fxml"));
+					scene = new Scene(root);
+					stage.setScene(scene);
+					stage.show();
+			 }
+			 
 			
 			
 	}

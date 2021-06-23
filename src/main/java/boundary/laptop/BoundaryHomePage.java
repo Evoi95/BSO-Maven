@@ -34,6 +34,8 @@ public class BoundaryHomePage {
 	@FXML
 	private ImageView imageU;
 	@FXML
+	private ImageView imageC;
+	@FXML
 	private Button buttonLogin;
 	@FXML
 	private Button buttonC;
