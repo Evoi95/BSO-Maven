@@ -10,21 +10,20 @@ import logger.Log;
 
 public class CreateDefaultDB 
 {
-	private static boolean status ;
 	private static Statement st = null ;
 	private static String query ;
-	private static String qTrigger ;
-	private static PreparedStatement prepQ = null;
 	
-	public static void createDefaultDB () throws SQLException, ClassNotFoundException, FileNotFoundException
+	public static void createDefaultDB () throws SQLException, FileNotFoundException
 	{
+		 boolean status ;
+
 		try 
 		{
-			status = ConnToDb.InitailConnection() && !ConnToDb.connection() ; 
+			status = ConnToDb.initailConnection() && !ConnToDb.connection() ; 
 			// status = 1 se c'e' workbench ma non il db 
 			// status = 0 se c'e' tutto
 			// Se non trovo il db chiamo questa funzione che lo crea
-			if(status == true) 
+			if(status) 
 			{
 				//
 				st = ConnToDb.conn.createStatement();
@@ -133,7 +132,6 @@ public class CreateDefaultDB
 					Log.logger.log(Level.INFO,"Tabella populata con valori di default");
 					if (true)
 					{
-					//if (createTrigger()) {
 						ConnToDb.conn.close();
 						Log.logger.log(Level.INFO,"Trigger creati e connesione chiusa col db");
 					}
@@ -150,7 +148,7 @@ public class CreateDefaultDB
 			}
 			
 			// Se trovo tutto  chiudo la connesione e vado avanti con l'esecuzione del programma
-			else if (status == false)
+			else if (Boolean.TRUE.equals(status) )
 			{
 				Log.logger.log(Level.INFO,"Trovato database e connesso senza problemi! Buone madonne!");
 				ConnToDb.conn.close();		
@@ -174,6 +172,10 @@ public class CreateDefaultDB
 	
 	public static boolean createTrigger() throws SQLException 
 	{
+		 PreparedStatement prepQ = null;
+			 String qTrigger ;
+
+
 		try 
 		{		st = ConnToDb.conn.createStatement();
 
@@ -210,7 +212,15 @@ public class CreateDefaultDB
 			e1.printStackTrace();
 			Log.logger.log(Level.WARNING,"ERRORE DI SQL ");
 		}
+		finally {
+			st.close();
+		}
 		
 		return false;
+	}
+	public CreateDefaultDB() {
+		Log.logger.log(Level.INFO,"Creo db di default");
+
+		
 	}
 }

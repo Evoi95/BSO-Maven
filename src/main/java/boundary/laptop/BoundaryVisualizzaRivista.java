@@ -7,8 +7,7 @@ import java.util.ResourceBundle;
 
 import controller_app.ControllerVisualizzaRivista;
 import controller_app.SingeltonSystemState;
-import database.RivistaDao;
-import factoryBook.Rivista;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -66,7 +65,6 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	private ControllerVisualizzaRivista cVR;
 	protected int i;
 	protected Scene scene;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	public BoundaryVisualizzaRivista()
 	{
@@ -90,7 +88,7 @@ public class BoundaryVisualizzaRivista implements Initializable{
 	@FXML
 	private void annulla() throws IOException
 	{
-		if (!vis.getIstance().getIsSearch()) {
+		if (!SingeltonSystemState.getIstance().getIsSearch()) {
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonBack.getScene().getWindow();

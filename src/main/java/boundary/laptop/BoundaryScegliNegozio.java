@@ -61,19 +61,19 @@ public class BoundaryScegliNegozio implements Initializable {
 	protected Alert alertE;
 	protected FXMLLoader loader ;
 	
+	protected static String attenzione="warningContentText";
+	
 	public BoundaryScegliNegozio()
 	{
 		cSN = new ControllerScegliNegozio();
 	}
 	
 	@FXML
-	private void verifica() throws IOException 
+	private void verifica() throws IOException, SQLException 
 	{
-		try {
+		
 			listOfNegozi=cSN.getNegozi();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		
 		r1IsSelected = radio1.isSelected();
 		r2IsSelected = radio2.isSelected();
 		r3IsSelected = radio3.isSelected();
@@ -93,11 +93,10 @@ public class BoundaryScegliNegozio implements Initializable {
 				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged() )
 		        	
 		        {
-		        	if(SingeltonSystemState.getIstance().getIsLogged())	
-					{
+		        	
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();
@@ -106,7 +105,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		                scene = new Scene(root);
 		                stage.setScene(scene);
 		                stage.show();
-		            }
+		        }
 		            else {
 		            	Stage stage;
 		                Parent root;
@@ -127,28 +126,26 @@ public class BoundaryScegliNegozio implements Initializable {
 					alertE = new Alert(AlertType.WARNING);
 					alertE.setTitle(warningTitle);
 					alertE.setHeaderText(warningHeaderText);
-					alertE.setContentText(warningContentText);
+					alertE.setContentText(attenzione);
 				
 				}
-			}
+			
 			
 			
 		} // qui si chiude check button1
-		else if(Boolean.TRUE.equals(r2IsSelected))
+		else if(Boolean.TRUE.equals(r2IsSelected) && Boolean.TRUE.equals( listOfNegozi.get(1).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(1).getIsValid()))
 		{
-			if(listOfNegozi.get(1).getIsOpen() && listOfNegozi.get(1).getIsValid())
-			{
+			
 				alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle(alertTitle);
 				alert.setHeaderText(alertHeaderTexr);
 				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
 		        	
 		        {
-		            if(SingeltonSystemState.getIstance().getIsLogged())	
-					{
+		           
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();
@@ -157,7 +154,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		                scene = new Scene(root);
 		                stage.setScene(scene);
 		                stage.show();
-		            }
+		        }
 		            else {
 		            	Stage stage;
 		                Parent root;
@@ -180,29 +177,80 @@ public class BoundaryScegliNegozio implements Initializable {
 					alertE = new Alert(AlertType.WARNING);
 					alertE.setTitle(warningTitle);
 					alertE.setHeaderText(warningHeaderText);
-					alertE.setContentText("warningContentText");
+					alertE.setContentText(attenzione);
 				}
-			}
 			
 			
-		} // qui si chiude check button2
+			
+		 // qui si chiude check button2
 		
-		if(Boolean.TRUE.equals(r3IsSelected))
+		if(Boolean.TRUE.equals(r3IsSelected) && Boolean.TRUE.equals(listOfNegozi.get(2).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(2).getIsValid()))
 		{
-			if(listOfNegozi.get(2).getIsOpen() && listOfNegozi.get(2).getIsValid())
-			{
+			
 				alert=new Alert(AlertType.CONFIRMATION);
 				alert.setTitle(alertTitle);
 				alert.setHeaderText(alertHeaderTexr);
 				alert.setContentText(alertContentText);
 				Optional<ButtonType> result = alert.showAndWait();
 				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
 		        	
 		        {
 		            Log.logger.log(Level.INFO,"ALL OK..!");
-		            if(SingeltonSystemState.getIstance().getIsLogged())	
-					{
+		           
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                loader = new FXMLLoader(getClass().getResource(homePageA));
+		                root = loader.load();
+		                scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            }
+		            else {
+		            	Log.logger.log(Level.INFO,"Sto in else");
+		            	Stage stage;
+		                Parent root;
+		                stage = (Stage) buttonV.getScene().getWindow();
+		                loader = new FXMLLoader(getClass().getResource(homePage));
+		                root = loader.load();
+		                scene = new Scene(root);
+		                stage.setScene(scene);
+		                stage.show();
+		            	}
+		}
+				
+				
+		            //Open another window on clicking the OK button
+
+		        			
+		        
+		        else
+				{
+					alertE = new Alert(AlertType.WARNING);
+					alertE.setTitle(warningTitle);
+					alertE.setHeaderText(warningHeaderText);
+					alertE.setContentText(attenzione);
+				}
+			
+			
+			
+		 // qui si chiude check button1
+		
+		if(Boolean.TRUE.equals(r4IsSelected) && Boolean.TRUE.equals(listOfNegozi.get(3).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(3).getIsValid()))
+		{
+			
+				alert=new Alert(AlertType.CONFIRMATION);
+				alert.setTitle(alertTitle);
+				alert.setHeaderText(alertHeaderTexr);
+				alert.setContentText(alertContentText);
+				Optional<ButtonType> result = alert.showAndWait();
+				
+		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
+		        	
+		        {
+		            Log.logger.log(Level.INFO,"ALL OK..!");
+		           
 		            	Stage stage;
 		                Parent root;
 		                stage = (Stage) buttonV.getScene().getWindow();
@@ -234,69 +282,15 @@ public class BoundaryScegliNegozio implements Initializable {
 					alertE = new Alert(AlertType.WARNING);
 					alertE.setTitle(warningTitle);
 					alertE.setHeaderText(warningHeaderText);
-					alertE.setContentText("warningContentText");
+					alertE.setContentText(attenzione);
 				}
-			}
 			
-			
-		} // qui si chiude check button1
-		
-		if(Boolean.TRUE.equals(r4IsSelected))
-		{
-			if(listOfNegozi.get(3).getIsOpen() && listOfNegozi.get(3).getIsValid())
-			{
-				alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(alertTitle);
-				alert.setHeaderText(alertHeaderTexr);
-				alert.setContentText(alertContentText);
-				Optional<ButtonType> result = alert.showAndWait();
-				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK))
-		        	
-		        {
-		            Log.logger.log(Level.INFO,"ALL OK..!");
-		            if(SingeltonSystemState.getIstance().getIsLogged())	
-					{
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePageA));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            }
-		            else {
-		            	Log.logger.log(Level.INFO,"Sto in else");
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePage));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            	}
-				
-				
-		            //Open another window on clicking the OK button
-
-		        			
-		        }
-		        else
-				{
-					alertE = new Alert(AlertType.WARNING);
-					alertE.setTitle(warningTitle);
-					alertE.setHeaderText(warningHeaderText);
-					alertE.setContentText("warningContentText");
-				}
-			}
 			
 			
 		} // qui si chiude check button1
 
 						
-	}
+	
 	
 				
 	

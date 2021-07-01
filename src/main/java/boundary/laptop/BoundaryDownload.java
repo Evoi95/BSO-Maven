@@ -38,7 +38,6 @@ public class BoundaryDownload implements Initializable {
 	private Button buttonA;
 
 	private ControllerDownload cD;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	protected Alert a;
 	protected Scene scene;
 
@@ -51,20 +50,14 @@ public class BoundaryDownload implements Initializable {
 		Optional<ButtonType> result = a.showAndWait();
 		
 		
-		 if ((result.isPresent()) && (result.get() == ButtonType.OK))
+		 if ((result.isPresent()) && (result.get() == ButtonType.OK) && (SingeltonSystemState.getIstance().getIsLogged()))
 	        	
 	        {
 	            Log.logger.log(Level.INFO,"ALL OK..!");
-	            if(vis.getIstance().getIsLogged())	
-				{
-	            	cD.scaricaLibro(null);
-	            	 	
-	            	
-				}
-	            else {
-	            	cD.scaricaLibro(null);
+	            
+	            cD.scaricaLibro(null);
 
-	            }
+	            
 	            Stage stage;
 				Parent root;
 				stage = (Stage) buttonA.getScene().getWindow();
@@ -79,7 +72,7 @@ public class BoundaryDownload implements Initializable {
 	@FXML
 	private void pulisci() throws IOException {
 		cD.annullaOrdine(null);
-		if( vis.getIstance().getIsLogged()) 
+		if( SingeltonSystemState.getIstance().getIsLogged()) 
 		{
 			Stage stage;
 			Parent root;

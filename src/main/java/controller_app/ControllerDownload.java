@@ -1,21 +1,17 @@
 package controller_app;
 
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+
 import java.util.UUID;
 
 import com.itextpdf.text.DocumentException;
 
 import factoryBook.Libro;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+
 
 public class ControllerDownload {
 	private String nrOrdine;
-	private static Libro l;
-
+	private  Libro l;
 	public void scaricaLibro(Libro l) throws FileNotFoundException, DocumentException {
 		
 		l.scarica();
@@ -24,15 +20,9 @@ public class ControllerDownload {
 
 	public void annullaOrdine(Libro l) {
 		
-		/*
-		Alert a = new Alert(Alert.AlertType.WARNING);
-		a.setTitle("Annulla ordine");
-		a.setContentText("Stai annullando l'ordine");
-		a.setContentText("nr ordine in annullamento " + this.nrOrdine);
-
-		a.setHeaderText(null);
-		a.showAndWait();
-		*/
+		l.setId(-1);
+		
+		
 	}
 
 	public ControllerDownload() {

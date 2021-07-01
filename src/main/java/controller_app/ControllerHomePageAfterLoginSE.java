@@ -7,26 +7,30 @@ import java.util.logging.Level;
 import logger.Log;
 
 public class ControllerHomePageAfterLoginSE {
-	private static User U = User.getInstance();
+	private static User u = User.getInstance();
 	private static SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	// qui ci va la funzione di logout
 	
-	public static boolean logout() throws ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException
+	public static boolean logout() throws   SecurityException, IllegalArgumentException
 	{	
 		
-		String n = U.getNome();
+		String n = u.getNome();
 		Log.logger.log(Level.INFO,"Stai sloggando con il nome di : {0}", n );
-		U.setNull();
+		u.setNull();
 		
-		if(U.getEmail() == null && U.getIdRuolo() == null)
+		if(u.getEmail() == null && u.getIdRuolo() == null)
 		{
-			Log.logger.log(Level.INFO,"Logout  utente {0}",U.getEmail());
+			Log.logger.log(Level.INFO,"Logout  utente {0}",u.getEmail());
 			vis.setIsLogged(false);
 			return true;
 		}
 		
 		return false;
+		
+	}
+	public ControllerHomePageAfterLoginSE()
+	{
 		
 	}
 

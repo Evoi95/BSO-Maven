@@ -23,23 +23,23 @@ public class ControllerRicercaPage {
 		
 	}
 	
-	public ObservableList<Raccolta> cercaPerTipo (String S) throws SQLException
+	public ObservableList<Raccolta> cercaPerTipo (String s) throws SQLException
 	{
 		Log.logger.log(Level.INFO,"Tipo e confronto : {0}",SingeltonSystemState.getIstance().getType().equals("libro"));
 		if(SingeltonSystemState.getIstance().getType().equals("libro"))
 		{
 			//serach in libro dao
-			return lD.getLibriByName(S);
+			return lD.getLibriByName(s);
 		}
 		else if(SingeltonSystemState.getIstance().getType().equals("giornale"))
 		{
 			//search in giornale dao
-			return gD.getGiornaliByName(S);
+			return gD.getGiornaliByName(s);
 		}
 		else if(SingeltonSystemState.getIstance().getType().equals("rivista"))
 		{
 			//search in rivista dao
-			return rD.getRivisteByName(S);
+			return rD.getRivisteByName(s);
 		}
 		
 		return null;

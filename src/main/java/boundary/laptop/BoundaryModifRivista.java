@@ -99,7 +99,6 @@ public class BoundaryModifRivista implements Initializable{
 		private Label copieV;
 		
 		private ControllerModifRivistaPage cMRP;
-		private SingeltonSystemState vis= SingeltonSystemState.getIstance();
 		protected float prezzo;
 		protected int copie ;
 		protected Scene scene;
@@ -133,7 +132,7 @@ public class BoundaryModifRivista implements Initializable{
 			
 			
 
-			cMRP.checkData(t,tipologia,autore,l,e,desc,d,dispo,prezzo,copie,vis.getIstance().getId());
+			cMRP.checkData(t,tipologia,autore,l,e,desc,d,dispo,prezzo,copie,SingeltonSystemState.getIstance().getId());
 			
 			
 		}
@@ -158,16 +157,16 @@ public class BoundaryModifRivista implements Initializable{
 			
 			
 			try {
-				titoloV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getTitolo());
-				tipologiaV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getTipologia());
-				autoreV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getAutore());
-				linguaV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getLingua());
-				editoreV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getEditore());
-				descV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getDescrizione());
-				dataV.setText(cMRP.getRivistaById(vis.getIstance().getId()).get(0).getDataPubb().toString());
-				dispV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getDisp());
-				prezzoV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getPrezzo());
-				copieV.setText(""+cMRP.getRivistaById(vis.getIstance().getId()).get(0).getCopieRim());
+				titoloV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getTitolo());
+				tipologiaV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getTipologia());
+				autoreV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getAutore());
+				linguaV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getLingua());
+				editoreV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getEditore());
+				descV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getDescrizione());
+				dataV.setText(cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getDataPubb().toString());
+				dispV.setText(""+cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getDisp());
+				prezzoV.setText(""+cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getPrezzo());
+				copieV.setText(""+cMRP.getRivistaById(SingeltonSystemState.getIstance().getId()).get(0).getCopieRim());
 			}
 			catch (SQLException e) {
 			 

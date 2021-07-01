@@ -13,8 +13,5 @@ public class ControllerCancUser {
 		UsersDao.deleteTempUser(u);
 	}
 	
-	public ControllerCancUser()
-	{
-		
-	}
+	
 }

@@ -73,12 +73,7 @@ public class CartaCredito {
 	public void setScadenza(Date scadenza) {
 		this.scadenza = scadenza;
 	}
-	public void setUserNome(String nomeUser) {
-		this.nomeUser= nomeUser;
-	}
-	public void setUserCognome(String cognomeUser) {
-		this.cognomeUser= cognomeUser;
-	}
+	
 	
 	public CartaCredito()
 	{
@@ -101,17 +96,17 @@ public class CartaCredito {
 		this.nomeUser=nU;
 		this.cognomeUser=cU;
 		this.civ=civ;
+		this.limite=lim;
 	}
 	
 	
 	public CartaCredito(String n,String c,String cod,Date data,String civ,float prezzo)
 			{
-				//String scadenza;
 				this.nomeUser=n;
 				this.cognomeUser=c;
 				this.numeroCC=cod;
 				this.ammontare=1000.0;
-				this.scadenza=data;//scadenza=data;
+				this.scadenza=data;
 				this.civ=civ;
 				this.prezzoTransazine=prezzo;
 			}

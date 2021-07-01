@@ -1,5 +1,6 @@
 package factoryBook;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 
@@ -8,7 +9,7 @@ public class Factory {
 	
 	public Raccolta createRaccolta(String tipologia,String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
 			String categoria, LocalDate dataPubb, String recensione, int nrCopie, String desc, int disponibilita,
-			float prezzo, int copieRim,int id) throws Exception
+			float prezzo, int copieRim,int id) throws SQLException
 	{
 		
 		switch(tipologia)
@@ -20,7 +21,7 @@ public class Factory {
 		// no
 		case "rivista": return new Rivista(titolo,tipologia,autore,lingua,editore,desc,dataPubb,disponibilita,prezzo,copieRim,id);
 		
-		default : throw new Exception();
+		default : throw new SQLException();
 		
 		}
 		
@@ -38,7 +39,7 @@ public class Factory {
 	public Raccolta createRivista(String tipo ,String titolo,String tipologia, String autore, String lingua, String editore, String descrizione,
 			LocalDate dataPubb, int disp, float prezzo, int copieRim,int id)
 			{
-		return new Rivista(titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,id);//autore, dataPubb, dataPubb, dataPubb, dataPubb, dataPubb, prezzo, prezzo, foto, disponibilita);
+		return new Rivista(titolo,tipo,autore,lingua,editore,descrizione,dataPubb,disp,prezzo,copieRim,id);
 	}
 	
 	

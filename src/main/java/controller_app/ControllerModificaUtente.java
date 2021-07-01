@@ -22,7 +22,7 @@ public class ControllerModificaUtente {
 
 	public User prendi() {
 		
-		return uD.pickData(User.getInstance());
+		return UsersDao.pickData(User.getInstance());
 		
 		
 	}
@@ -31,44 +31,44 @@ public class ControllerModificaUtente {
 		
 		
 		try {
-		if( !n.equals("") && !n.equals(null) && !n.equals(User.getInstance().getNome()))
+		if( !n.equals("") && n!=null && !n.equals(User.getInstance().getNome()))
 		{
 			
 			User.getInstance().setNome(n);
-			uD.aggiornaNome(User.getInstance());
+			UsersDao.aggiornaNome(User.getInstance());
 			state =  true; 
 
 		}
-		if (!c.equals("") && !c.equals(null) && !c.equals(User.getInstance().getCognome()))
+		if (!c.equals("") && c!=(null) && !c.equals(User.getInstance().getCognome()))
 		{
 			User.getInstance().setCognome(c);
-			uD.aggiornaCognome(User.getInstance());
+			UsersDao.aggiornaCognome(User.getInstance());
 			state =  true; 
 
 		}
-		if(!email.equals("") && !email.equals(null) && !email.equals(vecchiaMail))
+		if(!email.equals("") && email!=null && !email.equals(vecchiaMail))
 		{
 			
-			uD.aggiornaEmail(User.getInstance(),email);
+			UsersDao.aggiornaEmail(User.getInstance(),email);
 			state =  true; 
 
 	
 		}
-		if(!pass.equals("") && !pass.equals(null) && !pass.equals(User.getInstance().getPassword()))
+		if(!pass.equals("") && pass!=null && !pass.equals(User.getInstance().getPassword()))
 		{
 			User.getInstance().setPassword(pass);
 			uD.aggiornaPass(User.getInstance());
 			state =  true; 
 
 		}
-		if(!desc.equals("") && !desc.equals(null) && !desc.equals(User.getInstance().getDescrizione()))
+		if(!desc.equals("") && desc!=(null) && !desc.equals(User.getInstance().getDescrizione()))
 		{
 			User.getInstance().setDescrizione(desc);
 			uD.aggiornaDesc(User.getInstance());
 			state =  true; 
 		}
 
-		if(!localDate.equals("") && !localDate.equals(null) && !localDate.equals(User.getInstance().getDataDiNascita()))
+		if((localDate.toString()!=" ") && localDate!=(null) && !localDate.equals(User.getInstance().getDataDiNascita()))
 		{
 			User.getInstance().setDataDiNascita(localDate);
 			state = true;
@@ -83,7 +83,7 @@ public class ControllerModificaUtente {
 		}
 		catch(NullPointerException e)
 		{
-			Log.logger.log(Level.INFO,"Ho torvato LocalDate come : "+localDate);
+			Log.logger.log(Level.INFO,"Ho torvato LocalDate come . {}",localDate);
 			
 		}
 		return state;

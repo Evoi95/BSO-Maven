@@ -76,7 +76,6 @@ public class BoundaryPagamentoCC implements Initializable {
 	protected Scene scene;
 	protected java.sql.Date sql;
 	protected SimpleDateFormat formatter;
-	private static SingeltonSystemState vis = SingeltonSystemState.getIstance();
 
 	@FXML
 	private void procediCC() throws IOException {
@@ -88,7 +87,7 @@ public class BoundaryPagamentoCC implements Initializable {
 		esito = cPCC.controllaPag(scadTF.getText(), cod,civ);
 		
 		if (Boolean.TRUE.equals(esito)) {
-			if(vis.getIstance().getIsPickup()) 
+			if(SingeltonSystemState.getIstance().getIsPickup()) 
 			{
 				Stage stage;
 				Parent root;
@@ -170,7 +169,7 @@ public class BoundaryPagamentoCC implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		codiceCC.setCellValueFactory(new PropertyValueFactory<>("numeroCC"));
-		if(!vis.getIstance().getIsLogged())
+		if(!SingeltonSystemState.getIstance().getIsLogged())
 		{
 			buttonPrendi.setDisable(true);
 			buttonReg.setDisable(true);
@@ -180,7 +179,7 @@ public class BoundaryPagamentoCC implements Initializable {
 	}
 
 	@FXML
-	private void popolaTabella() throws SQLException {
+	private void popolaTabella() throws SQLException  {
 		try {
 
 			String nomeUt = nomeInput.getText();

@@ -10,7 +10,6 @@ import logger.Log;
 public class ControllerLogin {
 	
 	private static User user = User.getInstance();
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance();
 	protected boolean esito;
 
 	
@@ -46,8 +45,9 @@ public class ControllerLogin {
 				// predno e li assegno all'oggetto user
 				UsersDao.pickData(user);
 				Log.logger.log(Level.INFO,"\n loggato come : {0}",r);
-				vis.getIstance().setIsLogged(true);
-				return esito = true;
+				SingeltonSystemState.getIstance().setIsLogged(true);
+				 esito = true;
+				 return esito;
 			}
 			else if (UsersDao.checkUser(user) == 0)
 			{
@@ -65,7 +65,7 @@ public class ControllerLogin {
 		Log.logger.log(Level.INFO," sto nwl controller");
 		String ruolo;
 		user.setEmail(email);
-		Log.logger.log(Level.INFO,"USer.getInstance.setEmail "+user.getEmail());
+		Log.logger.log(Level.INFO,"USer.getInstance.setEmail .{0}",user.getEmail());
 		 ruolo= UsersDao.getRuolo(user);
 		 return ruolo;
 		

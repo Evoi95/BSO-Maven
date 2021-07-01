@@ -10,8 +10,7 @@ import logger.Log;
 public class ControllerVisualizzaRivista {
 	
 	private RivistaDao rD;
-	private Rivista R;
-	private int tempIdMag;
+	private Rivista r;
 	private static SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaRivista()
@@ -19,7 +18,8 @@ public class ControllerVisualizzaRivista {
 		rD = new RivistaDao();
 	}
 	public void setID(String i)
-	{		
+	{			 int tempIdMag;
+
 		tempIdMag = Integer.parseInt(i) ;
 		vis.setId(tempIdMag);
 	}
@@ -32,7 +32,6 @@ public class ControllerVisualizzaRivista {
 	{
 		// imposto che è un libro nel controller
 		vis.setTypeAsMagazine();
-		return  rD.getRivista(R,i);
-		//return L;
+		return  rD.getRivista(r,i);
 	}
 }

@@ -29,7 +29,7 @@ public class BoundaryBookPage implements Initializable {
 	@FXML
 	private Label header;
 	@FXML
-	private TableView<Libro> table = new TableView<Libro>();
+	private TableView<Libro> table = new TableView<>();
 	@FXML
 	private TableColumn<Libro, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
@@ -55,7 +55,6 @@ public class BoundaryBookPage implements Initializable {
 	@FXML
 	private Button buttonGL;
 	private ControllerBookPage cBP;
-	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	private ControllerCancLibro cCL;
 	protected int identity;
 	protected Scene scene;

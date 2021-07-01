@@ -83,8 +83,7 @@ public class BoundaryVisualizzaLibro implements Initializable {
 	
 	private ControllerVisualizzaLibro cVB;
 	protected int i;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
-
+	private Scene scene;
 	
 	public BoundaryVisualizzaLibro()
 	{
@@ -100,20 +99,20 @@ public class BoundaryVisualizzaLibro implements Initializable {
 		root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 		stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-		Scene scene = new Scene(root);
+		 scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 	}
 	@FXML
 	private void annulla() throws IOException
 	{
-		if (!vis.getIstance().getIsSearch()) {
+		if (!SingeltonSystemState.getIstance().getIsSearch()) {
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonBack.getScene().getWindow();
 		root = FXMLLoader.load(getClass().getResource("compravenditaLibri.fxml"));
 
-		Scene scene = new Scene(root);
+		 scene = new Scene(root);
 		stage.setScene(scene);
 		stage.show();
 		}
@@ -124,7 +123,7 @@ public class BoundaryVisualizzaLibro implements Initializable {
 			stage = (Stage) buttonBack.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
 
-			Scene scene = new Scene(root);
+			 scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
@@ -149,6 +148,7 @@ public class BoundaryVisualizzaLibro implements Initializable {
 			labelPrezzo.setText(cVB.getData(i).getPrezzo()+"");
 			labelCopieRimanenti.setText(cVB.getData(i).getCopieRim()+"");
 		} catch (SQLException e) {
+			e.getCause();
 			
 		}
 		

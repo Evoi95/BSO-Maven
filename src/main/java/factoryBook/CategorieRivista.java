@@ -1,91 +1,85 @@
 package factoryBook;
 
-enum MagazineCategory 
-{	
-	settimanale,Bisettimanale,mensile,
-	bimestrale,trimestrale,annuale,
-	estivo,invernale,sportivo,cinematografica,
-	gossip,televisivo,militare,informatica
-}
+import boundary.laptop.MagazineCategory;
 
 public class CategorieRivista {
 	
 	private MagazineCategory type;
 	private Boolean isValid;
 	
-	public CategorieRivista()
+	public CategorieRivista(Boolean isValid)
 	{
-		isValid=false;
+		this.isValid=isValid;
+		this.isValid=false;
 	}
 	
 	public CategorieRivista(String r) {
-		type = MagazineCategory.valueOf(r); 
-		isValid = true;
+		this.type = MagazineCategory.valueOf(r); 
+		this.isValid = true;
 	}
-	public String getCategoria() 
+	public boolean settimanale (MagazineCategory mC) 
 	{
-		if (type.equals(MagazineCategory.Bisettimanale)) 
-		{
-			return "Bisettimanale";
-		}
-		if (type.equals(MagazineCategory.settimanale)) 
-		{
-			return "Bisettimanale";
-		}
-		if (type.equals(MagazineCategory.mensile)) 
-		{
-			return "mensile";
-		}
-		if (type.equals(MagazineCategory.bimestrale)) 
-		{
-			return "bimestrale";
-		}
-		if (type.equals(MagazineCategory.trimestrale)) 
-		{
-			return "trimestrale";
-		}
-		if (type.equals(MagazineCategory.annuale)) 
-		{
-			return "annuale";
-		}
-		if (type.equals(MagazineCategory.estivo)) 
-		{
-			return "estivo";
-		}
-		if (type.equals(MagazineCategory.invernale)) 
-		{
-			return "invernale";
-		}
-		if (type.equals(MagazineCategory.sportivo)) 
-		{
-			return "sportivo";
-		}
-		if (type.equals(MagazineCategory.cinematografica)) 
-		{
-			return "cinematografica";
-		}
-		if (type.equals(MagazineCategory.gossip)) 
-		{
-			return "gossip";
-		}
-		if (type.equals(MagazineCategory.televisivo)) 
-		{
-			return "televisivo";
-		}
-		if (type.equals(MagazineCategory.militare)) 
-		{
-			return "militare";
-		}
-		if (type.equals(MagazineCategory.informatica)) 
-		{
-			return "informatica";
-		}
-		
-		return null;
+		return mC==MagazineCategory.SETTIMANALE;
+	}	
+	public boolean bisettimanale (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.BISETTIMANALE;
 	}
-
+	public boolean mensile (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.MENSILE;
+	}
+	public boolean bimestrale (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.BIMESTRALE;
+	}
+	public boolean trimestrale (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.TRIMESTRALE;
+	}
+	public boolean annuale (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.ANNUALE;
+	}
+	public boolean estivo (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.ESTIVO;
+	}
+	public boolean invernale (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.INVERNALE;
+	}
+	public boolean sportivo (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.SPORTIVO;
+	}
+	public boolean cinematografica (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.CINEMATOGRAFICA;
+	}
+	public boolean gossip (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.GOSSIP;
+	}
+	public boolean televisivo (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.TELEVISIVO;
+	}
+	public boolean militare (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.MILITARE;
+	}
+	public boolean informatica (MagazineCategory mC) 
+	{
+		return mC==MagazineCategory.INFORMATICA;
+	}
 	
-	}
+	
+		
+		
+		
+	
+}
 	
 
 

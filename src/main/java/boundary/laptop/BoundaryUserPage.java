@@ -51,10 +51,11 @@ public class BoundaryUserPage implements Initializable {
 	private ControllerCancUser cCU;
 	private ControllerModifUserPage cMPU;
 	
-	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	protected Scene scene ;
 	protected Alert alert ;
 	protected int max = 0;
+	
+	protected BufferedReader reader;
 
 	@FXML
 	private void aggiungi() throws IOException
@@ -72,7 +73,7 @@ public class BoundaryUserPage implements Initializable {
 	@FXML
 	private void modifica() throws IOException, SQLException
 	{
-		vis.getIstance().setId(Integer.parseInt(utenteTF.getText()));
+		SingeltonSystemState.getIstance().setId(Integer.parseInt(utenteTF.getText()));
 		max=cMPU.prendiIdMax();
 		
 		Log.logger.log(Level.INFO,"Utenti massimi {0}",max);
@@ -104,7 +105,7 @@ public class BoundaryUserPage implements Initializable {
 		else {
 			
 		
-		Log.logger.log(Level.INFO,"Id in BoundaryUserPage : {0}",vis.getIstance().getId());
+		Log.logger.log(Level.INFO,"Id in BoundaryUserPage : {0}",SingeltonSystemState.getIstance().getId());
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonM.getScene().getWindow();
@@ -133,11 +134,25 @@ public class BoundaryUserPage implements Initializable {
 
 	}
 	@FXML
-	private void prendi() {
+	private void prendi() throws IOException {
 		cUP.getUtenti();
 		elencoUtenti.clear();
+		riepilogoUtenti();
 		
-		BufferedReader reader = null;
+		
+
+		    	    
+	}
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		
+		cUP=new ControllerUserPage();
+		cCU=new ControllerCancUser();
+		cMPU=new ControllerModifUserPage();
+	}
+	
+	private void riepilogoUtenti() throws IOException
+	{
 		try {
 			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
 			String line = reader.readLine();
@@ -153,21 +168,8 @@ public class BoundaryUserPage implements Initializable {
         	e.getCause();
         }
         finally {
-        try {
-			reader.close();
-		} catch (IOException e) {
-				e.printStackTrace();
-			}
+        reader.close();
         }
-
-		    	    
-	}
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-		cUP=new ControllerUserPage();
-		cCU=new ControllerCancUser();
-		cMPU=new ControllerModifUserPage();
 	}
 	
 	

@@ -10,44 +10,42 @@ import java.util.logging.Level;
 import logger.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import pagamento.CartaCredito;
 
 public class CartaCreditoDao {
 	private PreparedStatement stmt=null;
-	private String query;
 	private Connection conn;
 	private ResultSet rs;
+	private  String n;
+	private  String cog;
+	private String cod;
+
 	
 	
-	public ObservableList<CartaCredito> getCarteCredito(String nome) 
+	public ObservableList<CartaCredito> getCarteCredito(String nome) throws SQLException 
 	{
-		Connection conn= ConnToDb.generalConnection();
+		String cod;
 		/*
 		 * uare funzione internet
 		 */
 		ObservableList<CartaCredito> catalogo=FXCollections.observableArrayList();
 		 
-			//ConnToDb.connection();
             try {
-				rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'");
+				rs=ConnToDb.generalConnection().createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'");
 			
             while(rs.next())
             {
-            	String n=rs.getString(1);
-            	String cog=rs.getString(2);
-            	String cod=rs.getString(3);
+            	 n=rs.getString(1);
+            	 cog=rs.getString(2);
+            	 cod=rs.getString(3);
             	
             	
 
-        		try {             
+        		             
 
 					catalogo.add(new CartaCredito(n,cog,cod, null, cod,0));
-        		} catch (Exception e) {
-				 
-					
-				}
+        		
         		
             }
             } catch (SQLException e1) {
@@ -55,14 +53,17 @@ public class CartaCreditoDao {
 				e1.printStackTrace();
 			}
             finally {
-                try {
-					conn.close();
-				} catch (SQLException e) {
-				 
 					
+            	try{
+            		rs.close();
+            		conn.close();
+            	}catch(SQLException e) {
+            		e.getCause();
+            	}
+				
 				}
 
-            }
+            
 		   return catalogo;
 
 		
@@ -70,8 +71,6 @@ public class CartaCreditoDao {
 	
 	public void daiPrivilegi() throws SQLException
 	{
-		//PreparedStatement stmt=null;
-	//	Double d=(double) disp;
 
 		 try {
 			  conn = ConnToDb.generalConnection();
@@ -81,26 +80,20 @@ public class CartaCreditoDao {
 	            
 	         }catch(SQLException e)
 	         {
-	        	// esito=false;
 	        	e.getMessage();
 
 	         }	
 		 finally {
-			// stmt.close();
 			 conn.close();
-			// Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
 
-		 Log.logger.log(Level.INFO,"LibroDao. privilegi");
 
 	}
 	public void insCC(CartaCredito cc) throws SQLException
 	{
 		
-		//PreparedStatement stmt=null;
-		//Connection conn = null;
-		
+		String query;
 		
 		Log.logger.log(Level.INFO,"\t\tEntro in ins cc");
 		String n=cc.getUserNome();
@@ -108,8 +101,7 @@ public class CartaCreditoDao {
 		 String num=cc.getNumeroCC();
 		 Date d=cc.getScadenza();
 		 String pin=cc.getCiv();
-		 Float amm=(float) cc.getPrezzoTransazine();		 
-		// Log.logger.log(Level.INFO,"Entro in ins cc"+cc.getUserNome());
+		 Float amm= cc.getPrezzoTransazine();		 
 		 try {
 			 conn=ConnToDb.generalConnection();
 			 query="insert into cartacredito (nomeP,cognomeP,codiceCarta,scad,codicePin,ammontare)  values(?,?,?,?,?,?)";
@@ -125,17 +117,11 @@ public class CartaCreditoDao {
 			    stmt.executeUpdate();
 			    
 			   
-			   /* Alert alert = new Alert(AlertType.INFORMATION);
-    	        alert.setTitle("  Riepilogo inserimento carta ");
-    	        alert.setHeaderText("Risultato ");
-    	        alert.setContentText(" Inserimento avvenuto con successo!!\n\n Digitare nome utente in apposito spazio sottostante ");
-    	        alert.showAndWait();
-*/
+			 
     	       
 	            
 	         }catch(SQLException e)
 	         {
-	        	// esito=false;
 	        	e.getMessage();
 
 	         }
@@ -146,7 +132,7 @@ public class CartaCreditoDao {
 
 		}
 	
-	public float prendiSpesa() 
+	public float prendiSpesa() throws SQLException 
 	{
 		float spesa=0;
 		try {
@@ -157,13 +143,16 @@ public class CartaCreditoDao {
 	        	  spesa=rs.getFloat("spesaTotale");
 	          }
 	          
-	          conn.close();
 		}catch(SQLException e)
 		{
 			e.getCause();
 		}
+		finally {
+			rs.close();
+			conn.close();
+		}
 		
-		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao :"+spesa);
+		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao .{}:",spesa);
 		return spesa;
 	}
 	  
@@ -171,9 +160,12 @@ public class CartaCreditoDao {
 	public CartaCredito  popolaDati(CartaCredito cc) throws SQLException
 	{
 		String codice=cc.getNumeroCC();
-		String n = null,cog = null,cod = null;
+		 n = null;
+		 cog = null;
+		 cod = null;
 		Date scad = null;
 		conn= ConnToDb.generalConnection();
+		try {
 		    rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta,scad from cartacredito where codiceCarta='"+codice+"'");
 
             while(rs.next())
@@ -191,7 +183,14 @@ public class CartaCreditoDao {
             cc.setCognomeUser(cog);
             cc.setNumeroCC(cod);
             cc.setScadenza(scad);
+		}catch(SQLException e)
+		{
+			e.getMessage();
+		}
+		finally {
+			rs.close();
             conn.close();
+		}
 			return cc;
 
 	
@@ -199,7 +198,6 @@ public class CartaCreditoDao {
 }
 
            
-		 //  return catalogo;
 
 		
 	

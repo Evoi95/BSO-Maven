@@ -20,7 +20,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -57,7 +56,6 @@ public class BoundaryCompravenditaLibri implements Initializable {
 
 	private ControllerCompravenditaLibri cCV;
 	private ControllerVisualizzaLibro cVL;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	protected Alert alert;
 	protected Scene scene;
 	
@@ -159,7 +157,7 @@ public class BoundaryCompravenditaLibri implements Initializable {
 	private void torna() throws IOException {
 		
 		String tipoU=cCV.retTipoUser();
-		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
+		if( SingeltonSystemState.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -168,7 +166,7 @@ public class BoundaryCompravenditaLibri implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+			 if( SingeltonSystemState.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();

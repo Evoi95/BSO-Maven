@@ -2,7 +2,6 @@ package controller_app;
 
 import java.sql.SQLException;
 
-import database.LibroDao;
 import database.RivistaDao;
 import factoryBook.Raccolta;
 import factoryBook.Rivista;
@@ -11,12 +10,13 @@ import users.singelton.User;
 
 public class ControllerCompravenditaRiviste {
 	private RivistaDao rD;
-	private Rivista R;
+	private Rivista r;
 	private static User u=User.getInstance();
+	private int id;
 
 	public ControllerCompravenditaRiviste() {
 		rD = new RivistaDao();
-		R = new Rivista();
+		r = new Rivista();
 	}
 
 	public ObservableList<Raccolta> getRiviste() throws SQLException {
@@ -26,9 +26,9 @@ public class ControllerCompravenditaRiviste {
 
 	public boolean disponibilitaRiviste(String i ) throws SQLException {
 		
-		int id = Integer.parseInt(i);
+		 id = Integer.parseInt(i);
 		
-		return rD.checkDisp(R,id);
+		return rD.checkDisp(r,id);
 	}
 
 	public String tipoUtente()

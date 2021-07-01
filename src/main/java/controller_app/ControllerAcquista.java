@@ -45,14 +45,15 @@ public class ControllerAcquista {
 			
 
 		} catch (SQLException e) {
+			e.getMessage();
 		 
 			
 		}
 		return x;
 	}
 
-	public float totaleG(String titolo, int disp) throws SQLException {
-		float y = (float) 0.0;
+	public float totaleG(String titolo, int disp) {
+		float y ;
 		g.setTitolo(titolo);
 		g.setDisponibilita(disp);
 		gD.daiPrivilegi();
@@ -63,7 +64,7 @@ public class ControllerAcquista {
 	}
 
 	public float totaleR(String titolo, int disp) {
-		float z = (float) 0.0;
+		float z = 0 ;
 		r.setTitolo(titolo);
 		r.setCopieRim(disp);
 		try {
@@ -72,6 +73,7 @@ public class ControllerAcquista {
 			rD.aggiornaDisponibilita(r);
 			
 		} catch (SQLException e) {
+			e.getMessage();
 		 
 			
 		}
@@ -111,7 +113,7 @@ public class ControllerAcquista {
 		
 	}
 	
-	public String getTipG(String text) throws SQLException
+	public String getTipG(String text) 
 	{
 		g.setTitolo(text);	
 		return gD.retTip(g);
@@ -160,9 +162,9 @@ public class ControllerAcquista {
 	public String getType()
 	{
 		
-		String S = vis.getType();
-		Log.logger.log(Level.INFO,S);
-		return S;
+		String s = vis.getType();
+		Log.logger.log(Level.INFO,s);
+		return s;
 	}
 
 	public String getNomeById() throws SQLException

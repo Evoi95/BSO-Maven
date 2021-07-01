@@ -1,6 +1,5 @@
 package controller_app;
 
-import java.sql.SQLException;
 
 import database.GiornaleDao;
 import factoryBook.Giornale;
@@ -18,15 +17,17 @@ public class ControllerCompravenditaGiornali {
 		g = new Giornale();
 	}
 
-	public ObservableList<Raccolta> getGiornali() throws SQLException {
+	public ObservableList<Raccolta> getGiornali()  {
 		
 		
 		return gD.getGiornali();
 
 	}
 
-	public boolean disponibilitaGiornale(String i ) throws SQLException {
+	public boolean disponibilitaGiornale(String i )  {
 		
+		 
+
 		int id = Integer.parseInt(i);
 		
 		return gD.checkDisp(g,id);

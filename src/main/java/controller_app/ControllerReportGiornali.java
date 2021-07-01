@@ -1,14 +1,13 @@
 package controller_app;
 
-import java.io.IOException;
-import java.sql.SQLException;
+
 
 import database.GiornaleDao;
 
 public class ControllerReportGiornali {
 	private GiornaleDao gd;
 	
-	public void generaReportGiornali () throws IOException, SQLException
+	public void generaReportGiornali () 
 	{
 		gd.generaReport();
 		

@@ -1,11 +1,6 @@
 package factoryBook;
 
-enum BookCategory{
-	AdolescentiEragazzi, Arte, CinemaEFotografia, Biografie,diariEMemorie, CalendariAgende, Diritto,
-	DizionariEOpere, Economia, Famiglia, SaluteEBenessere, FantascienzaEFantasy, FumettiEManga,	GialliEThriller,SelfHelp,ComputerEgiochi,
-	Humour,	Informatica, WebEDigitalMedia, LetteraturaENarrativa, LibriPerBambini, LibriScolastici,	LibriUniversitari, ricettariGgenerali,
-	LinguisticaEScrittura,Politica,	Religione, RomanziRosa,	Scienze, TecnologiaEMedicina, Sport, Storia, TempoLibero, Viaggi, Altro
-	};
+import boundary.laptop.BookCategory;
 
 public class CategorieLibro {
 	
@@ -15,162 +10,151 @@ public class CategorieLibro {
 	
 	
 	
-	public CategorieLibro() {
-		isValid = false;
+	public CategorieLibro(Boolean isValid) {
+		this. isValid = isValid;
+		this.isValid=true;
 	}
 	
 	public CategorieLibro(String t) {
-		categoria = BookCategory.valueOf(t); 
-		isValid = true;
+		this.categoria = BookCategory.valueOf(t); 
+		this.isValid = true;
 		
 	}
 
 
-	public String getCategoria() 
+	public boolean adolescenti(BookCategory bC) 
 	{
-		if (categoria.equals(BookCategory.AdolescentiEragazzi)) 
-		{
-			return "AdolescentiEragazzi";
-		}	
-		if (categoria.equals(BookCategory.ricettariGgenerali)) 
-		{
-			return "ricettariGgenerali";
-		}
-		if (categoria.equals(BookCategory.SelfHelp)) 
-		{
-			return "SelfHelp";
-		}	
-		if (categoria.equals(BookCategory.Arte)) 
-		{
-			return "Arte";
-		}
-		if (categoria.equals(BookCategory.CinemaEFotografia)) 
-		{
-			return "CinemaEFotografia";
-		}	
-		if (categoria.equals(BookCategory.Biografie)) 
-		{
-			return "Biografie";
-		}
-		if (categoria.equals(BookCategory.diariEMemorie)) 
-		{
-			return "diariEMemorie";
-		}	
-		if (categoria.equals(BookCategory.CalendariAgende)) 
-		{
-			return "CalendariAgende";
-		}
-		if (categoria.equals(BookCategory.Diritto)) 
-		{
-			return "Diritto";
-		}	
-		if (categoria.equals(BookCategory.DizionariEOpere)) 
-		{
-			return "DizionariEOpere";
-		}
-		if (categoria.equals(BookCategory.Humour)) 
-		{
-			return "Humour";
-		}	
-		if (categoria.equals(BookCategory.Economia)) 
-		{
-			return "Economia";
-		}
-		if (categoria.equals(BookCategory.Informatica)) 
-		{
-			return "Informatica";
-		}	
-		if (categoria.equals(BookCategory.Famiglia)) 
-		{
-			return "Famiglia";
-		}
-		if (categoria.equals(BookCategory.WebEDigitalMedia)) 
-		{
-			return "WebEDigitalMedia";
-		}	
-		if (categoria.equals(BookCategory.SaluteEBenessere)) 
-		{
-			return "SaluteEBenessere";
-		}
-		if (categoria.equals(BookCategory.LetteraturaENarrativa)) 
-		{
-			return "LetteraturaENarrativa";
-		}	
-		if (categoria.equals(BookCategory.FantascienzaEFantasy)) 
-		{
-			return "FantascienzaEFantasy";
-		}
-		if (categoria.equals(BookCategory.LibriPerBambini)) 
-		{
-			return "LibriPerBambini";
-		}	
-		if (categoria.equals(BookCategory.FumettiEManga)) 
-		{
-			return "FumettiEManga";
-		}
-		if (categoria.equals(BookCategory.LibriScolastici)) 
-		{
-			return "LibriScolastici";
-		}	
-		if (categoria.equals(BookCategory.GialliEThriller)) 
-		{
-			return "GialliEThriller";
-		}
-		if (categoria.equals(BookCategory.LinguisticaEScrittura)) 
-		{
-			return "LinguisticaEScrittura";
-		}	
-		if (categoria.equals(BookCategory.Religione)) 
-		{
-			return "Religione";
-		}
-		if (categoria.equals(BookCategory.Politica)) 
-		{
-			return "Politica";
-		}	
-		if (categoria.equals(BookCategory.RomanziRosa)) 
-		{
-			return "RomanziRosa";
-		}
-		if (categoria.equals(BookCategory.LibriUniversitari)) 
-		{
-			return "LibriUniversitari";
-		}
-		if (categoria.equals(BookCategory.Scienze)) 
-		{
-			return "Scienze";
-		}
-		if (categoria.equals(BookCategory.TecnologiaEMedicina)) 
-		{
-			return "TecnologiaEMedicina";
-		}		
-		if (categoria.equals(BookCategory.Sport)) 
-		{
-			return "Sport";
-		}
-		if (categoria.equals(BookCategory.Storia)) 
-		{
-			return "Storia";
-		}
-		if (categoria.equals(BookCategory.Viaggi)) 
-		{
-			return "Viaggi";
-		}
-		if (categoria.equals(BookCategory.TempoLibero)) 
-		{
-			return "TempoLibero";
-		}	
-		if (categoria.equals(BookCategory.Altro)) 
-		{
-			return "Altro";
-		}
-		if (categoria.equals(BookCategory.ComputerEgiochi)) 
-		{
-			return "ComputerEgiochi";
-		}
-		return null;
+		return bC==BookCategory.ADOLESCENTI_RAGAZZI;
 	}
-
-
-
+	
+	public boolean arte(BookCategory bC) 
+	{
+		return bC==BookCategory.ARTE;
+	}
+	public boolean cinema(BookCategory bC) 
+	{
+		return bC==BookCategory.CINEMA_FOTOGRAFIA;
+	}
+	public boolean biografie(BookCategory bC) 
+	{
+		return bC==BookCategory.BIOGRAFIE;
+	}
+	public boolean diari(BookCategory bC) 
+	{
+		return bC==BookCategory.DIARI_MEMORIE;
+	}
+	public boolean calendari(BookCategory bC) 
+	{
+		return bC==BookCategory.CALENDARI_AGENDE;
+	}
+	public boolean diritto(BookCategory bC) 
+	{
+		return bC==BookCategory.DIRITTO;
+	}
+	
+	public boolean dizionari(BookCategory bC) 
+		{
+			return bC==BookCategory.DIZINARI_OPERE;
+		}
+	public boolean humor(BookCategory bC)
+	{
+		return bC==BookCategory.HUMOR;
+	}
+	public boolean economia(BookCategory bC)
+	{
+		return bC==BookCategory.ECONOMIA;
+	}
+	public boolean informatica(BookCategory bC)
+	{
+		return bC==BookCategory.INFORMATICA;
+	}
+	public boolean famiglia(BookCategory bC)
+	{
+		return bC==BookCategory.FAMIGLIA;
+	}
+	public boolean webDigital(BookCategory bC)
+	{
+		return bC==BookCategory.WEB_DIGITAL_MEDIA;
+	}
+	public boolean salute(BookCategory bC)
+	{
+		return bC==BookCategory.SALURE_BENESSERE;
+	}
+	public boolean letteratura(BookCategory bC)
+	{
+		return bC==BookCategory.LETTERATURA_NARRATIVA;
+	}
+	public boolean fantascienza(BookCategory bC)
+	{
+		return bC==BookCategory.FANTASCIENZA_FANTASY;
+	}
+	public boolean libriBambini(BookCategory bC)
+	{
+		return bC==BookCategory.LIBRI_BAMBINI;
+	}
+	public boolean fumetti(BookCategory bC)
+	{
+		return bC==BookCategory.FUMETTI_MANGA;
+	}
+	public boolean libriScolastici(BookCategory bC)
+	{
+		return bC==BookCategory.LIBRI_SCOLASTICI;
+	}
+	public boolean gialli(BookCategory bC)
+	{
+		return bC==BookCategory.GIALLI_THRILLER;
+	}
+	public boolean linguistica(BookCategory bC)
+	{
+		return bC==BookCategory.LINGUISTICA_SCRITTURA;
+	}
+	public boolean religione(BookCategory bC)
+	{
+		return bC==BookCategory.RELIGIONE;
+	}
+	public boolean politica(BookCategory bC)
+	{
+		return bC==BookCategory.POLITICA;
+	}
+	public boolean romanziRosa(BookCategory bC)
+	{
+		return bC==BookCategory.ROMANZI_ROSA;
+	}
+	public boolean libriUniversitari(BookCategory bC)
+	{
+		return bC==BookCategory.LIBRI_UNIVERSITARI;
+	}
+	public boolean scienze(BookCategory bC)
+	{
+		return bC==BookCategory.SCIENZE;
+	}
+	public boolean tecnologia(BookCategory bC)
+	{
+		return bC==BookCategory.TECNOLOGIA_MEDICINA;
+	}
+	public boolean sport(BookCategory bC)
+	{
+		return bC==BookCategory.SPORT;
+	}
+	public boolean storia(BookCategory bC)
+	{
+		return bC==BookCategory.STORIA;
+	}
+	public boolean viaggi(BookCategory bC)
+	{
+		return bC==BookCategory.VIAGGI;
+	}
+	public boolean tempoLibero(BookCategory bC)
+	{
+		return bC==BookCategory.TEMPO_LIBERO;
+	}
+	public boolean altro(BookCategory bC)
+	{
+		return bC==BookCategory.ALTRO;
+	}
+	public boolean computerGiochi(BookCategory bC)
+	{
+		return bC==BookCategory.COMPUTER_GIOCHI;
+	}
+	
 }

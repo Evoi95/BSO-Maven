@@ -1,7 +1,10 @@
 package pagamento;
 
 public class Fattura {
-	private String nome,cognome, via, com;
+	private String nome;
+	private String cognome;
+	private String via;
+	private String com;
 	private float ammontare;
 
 	public String getNome() {
@@ -45,7 +48,6 @@ public class Fattura {
 	}
 
 	public Fattura(String nome, String cognome, String via, String com, float ammontare) {
-		//super();
 		this.nome = nome;
 		this.cognome = cognome;
 		this.via = via;

@@ -32,7 +32,7 @@ public class BoundaryRivistaPage implements Initializable {
 	@FXML
 	private Label header;
 	@FXML
-	private TableView<Rivista>table=new TableView<Rivista>();
+	private TableView<Rivista>table=new TableView<>();
 	@FXML
 	private TableColumn<Rivista, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
@@ -56,7 +56,6 @@ public class BoundaryRivistaPage implements Initializable {
 	@FXML
 	private Button buttonB;
 	private ControllerRivistaPage cRP;
-	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	private ControllerCancellaRivista cCR;
 	protected Scene scene;
 	protected int identity;
@@ -66,7 +65,7 @@ public class BoundaryRivistaPage implements Initializable {
 	@FXML
 	private void prendiDato()
 	{
-		vis.getIstance().setId(table.getSelectionModel().getSelectedItem().getId());
+		SingeltonSystemState.getIstance().setId(table.getSelectionModel().getSelectedItem().getId());
 
 	}
 	@FXML

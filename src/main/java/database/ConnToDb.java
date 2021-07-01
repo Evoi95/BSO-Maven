@@ -3,6 +3,9 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+
+import logger.Log;
 
 public class ConnToDb 
 {
@@ -10,29 +13,35 @@ public class ConnToDb
 	protected static Connection conn = null;
 
 	static Config c =new Config();
+	private static String connessione="Tentativo di conessione al server..........\\\\n";
+	protected static String server_URL_2;
 	
 
-	public static  boolean InitailConnection()
+	public static  boolean initailConnection()
 	{
 
 		try
 		{
 			Class.forName(c.getDriver());
-			System.out.print("Tentativo di conessione al server..........\n");
+			Log.logger.log(Level.INFO ,connessione);
+
 			conn = DriverManager.getConnection(c.getUrl(), c.getUser(),c.getPwd());
-			System.out.print("Connesso initial..........\n");
+			Log.logger.log(Level.INFO,"Connesso initial..........\\n");
+
 			return true;
 
 		} 
 		catch (SQLException e1)
 		{
 			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL");
+			Log.logger.log(Level.SEVERE,"Errore in mysql..........\\n");
+
 		} 
 		catch (ClassNotFoundException e2)
 		{
 			e2.printStackTrace();
-			System.err.println("ERRORE ");
+			Log.logger.log(Level.SEVERE,"Errore in mysql..........\\n");
+
 		}
 		return false;
 	}
@@ -41,15 +50,18 @@ public class ConnToDb
 
 		try 
 		{
-			if(InitailConnection()) 
+			if(initailConnection()) 
 			{
 				//actuac DB project
 
-				String serverURL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+				 server_URL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 				Class.forName(c.getDriver());
-				System.out.print("Tentativo di conessione al server..........\n");
-				conn = DriverManager.getConnection(serverURL_2, c.getUser(),c.getPwd());
-				System.out.print("Connesso standard..........\n");
+				
+				Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
+
+				conn = DriverManager.getConnection(server_URL_2, c.getUser(),c.getPwd());
+				Log.logger.log(Level.INFO,"Connesso standard..........\\n");
+
 				return true;
 			}
 			else
@@ -58,12 +70,14 @@ public class ConnToDb
 		catch (SQLException e1) 
 		{
 			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL");
+			Log.logger.log(Level.SEVERE,"Errore mysql..........\\n");
+
 		} 
 		catch (ClassNotFoundException e2) 
 		{
 			e2.printStackTrace();
-			System.err.println("ERRORE");
+			Log.logger.log(Level.SEVERE,"Errore mysql..........\\n");
+
 		}			
 		
 
@@ -75,25 +89,32 @@ public class ConnToDb
 
 		try
 		{
-			String serverURL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			 server_URL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			Class.forName(c.getDriver());
-			System.out.print("Tentativo di conessione al server..........\n");
-			conn = DriverManager.getConnection(serverURL_2, c.getUser(),c.getPwd());
-			System.out.print("Connesso standard..........\n");
+			Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
+			conn = DriverManager.getConnection(server_URL_2, c.getUser(),c.getPwd());
+			Log.logger.log(Level.INFO,"Connesso standard..........\\n");
+
 			return conn;
 		} 
 		catch (SQLException e1)
 		{
 			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL");
+			Log.logger.log(Level.SEVERE,"Errore di sql..........\\n");
+
 		} 
 		catch (ClassNotFoundException e2)
 		{
 			e2.printStackTrace();
-			System.err.println("ERRORE ");
+			Log.logger.log(Level.SEVERE,"Errore in mysqlr..........\\n");
 		}
 		return null;			
 			
+	}
+	public ConnToDb()
+	{
+		Log.logger.log(Level.INFO,"ConnToDB..........\\n");
+
 	}
 
 

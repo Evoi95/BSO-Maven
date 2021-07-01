@@ -1,11 +1,15 @@
 package users.singelton;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Editore {
 
-	private String idRuolo,nome,cognome,email,password,descrizione;
+	private String idRuolo;
+	private String nome;
+	private String cognome;
+	private String email;
+	private String password;
+	private String descrizione;
 	private LocalDate dataDiNascita;
 	// array di codici isbn presi dai libri 
 	

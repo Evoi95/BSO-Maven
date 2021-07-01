@@ -2,7 +2,13 @@ package database;
 
 public class Config {
 	
-	private String host,user,pwd,database,port,driver,url;
+	private String host;
+	private String user;
+	private String pwd;
+	private String database;
+	private String port;
+	private String driver;
+	private String url;
 
 
 	

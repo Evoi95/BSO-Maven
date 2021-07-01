@@ -1,25 +1,23 @@
 package controller_app;
 
-import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.GiornaleDao;
 import factoryBook.Giornale;
-import factoryBook.Libro;
 import javafx.collections.ObservableList;
 
 public class ControllerModifGiornale {
 	private GiornaleDao gd;
 	private Giornale g;
 	
-	public ObservableList<Giornale> getGiornaliById(int id) throws SQLException {
+	public ObservableList<Giornale> getGiornaliById(int id)  {
 		g.setId(id);
 		return gd.getGiornaliSingoloById(g);
 	}
 	
 		
 		public boolean checkData(String titolo, String tipo, String ed, String l, LocalDate d, int dispo, float prezzo,
-				int copie) throws SQLException {
+				int copie)  {
 			g.setTitolo(titolo);
 			g.setTipologia(tipo);
 			g.setEditore(ed);

@@ -2,7 +2,6 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import controller_app.ControllerCancellaGiornale;
@@ -28,7 +27,7 @@ public class BoundaryGiornaliPage implements Initializable{
 	@FXML
 	private Label header;
 	@FXML
-	private TableView<Giornale>table=new TableView<Giornale>();
+	private TableView<Giornale>table=new TableView<>();
 	@FXML
 	private TableColumn<Giornale, SimpleStringProperty> titolo = new TableColumn<>("Titolo");
 	@FXML
@@ -107,7 +106,7 @@ public class BoundaryGiornaliPage implements Initializable{
 		
 	}
 	@FXML
-	private void genera() throws SQLException {
+	private void genera()  {
 		table.setItems(cGP.getGiornaliS());
 	}
 	@Override

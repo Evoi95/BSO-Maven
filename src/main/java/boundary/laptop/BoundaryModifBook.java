@@ -150,7 +150,7 @@ public class BoundaryModifBook implements Initializable {
 		
 		
 
-		cMB.checkData(t,np,cod,ed,a,l,c,d,r,dispo,prezzo,copie,vis.getIstance().getId());
+		cMB.checkData(t,np,cod,ed,a,l,c,d,r,dispo,prezzo,copie,SingeltonSystemState.getIstance().getId());
 		
 		
 	}
@@ -174,16 +174,16 @@ public class BoundaryModifBook implements Initializable {
 		cMB=new ControllerModifBook();
 		
 		try {
-			labelT.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getTitolo());
-			labelNP.setText(""+cMB.getLibriById(vis.getIstance().getId()).get(0).getNumPag());
-			labelCod.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getCodIsbn());
-			labelE.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getEditore());
-			labelA.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getAutore());
-			labelL.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getLingua());
-			labelCat.setText(""+cMB.getLibriById(vis.getIstance().getId()).get(0).getCategoria());
-			labelR.setText(cMB.getLibriById(vis.getIstance().getId()).get(0).getRecensione());
-			labelP.setText(""+cMB.getLibriById(vis.getIstance().getId()).get(0).getPrezzo());
-			labelCopie.setText(""+cMB.getLibriById(vis.getIstance().getId()).get(0).getCopieRim());
+			labelT.setText(cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getTitolo());
+			labelNP.setText(""+cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getNumPag());
+			labelCod.setText(cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getCodIsbn());
+			labelE.setText(cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getEditore());
+			labelA.setText(cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getAutore());
+			labelL.setText(cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getLingua());
+			labelCat.setText(""+cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getCategoria());
+			labelR.setText(cMB.getLibriById(vis.getId()).get(0).getRecensione());
+			labelP.setText(""+cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getPrezzo());
+			labelCopie.setText(""+cMB.getLibriById(SingeltonSystemState.getIstance().getId()).get(0).getCopieRim());
 
 
 

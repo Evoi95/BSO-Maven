@@ -1,6 +1,7 @@
 package boundary.laptop;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -61,7 +62,7 @@ public class BoundaryAddGiornalePage implements Initializable  {
 	protected Scene scene;
 	
 	@FXML
-	private void conferma()
+	private void conferma() throws SQLException
 	{
 		String t=titoloT.getText();
 		String tipo=tipologiaT.getText();

@@ -54,7 +54,6 @@ public class BoundaryPagamentoCash implements Initializable{
 	protected String com;
 	protected Alert alert ;
 	protected Scene scene;
-	private static SingeltonSystemState vis = SingeltonSystemState.getIstance();
 
 	@FXML
 	private void procediCash() throws IOException {
@@ -90,7 +89,7 @@ public class BoundaryPagamentoCash implements Initializable{
 				alert.setHeaderText("Esito pagamento contanti:");
 				alert.setContentText("eseguito");
 				alert.showAndWait();
-				if(vis.getIstance().getIsPickup()) 
+				if(SingeltonSystemState.getIstance().getIsPickup()) 
 				{
 					Stage stage;
 					Parent root;

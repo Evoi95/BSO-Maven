@@ -13,11 +13,9 @@ public class ControllerAddRivistaPage {
 	public boolean checkData(String t, String tipologia, String a, String l, String ed, String desc, LocalDate data,
 			int dispo, float prezzo, int copie) {
 		
-		if(data.equals(null) )
+		if(data!=null )
 		{
-			return status;
-
-		}
+			
 		r.setTitolo(t);
 		r.setTipologia(tipologia);
 		r.setAutore(a);
@@ -32,6 +30,7 @@ public class ControllerAddRivistaPage {
 		rd.creaRivista(r);
 		
 		status = true ;
+		}
 		
 		return status;
 	}

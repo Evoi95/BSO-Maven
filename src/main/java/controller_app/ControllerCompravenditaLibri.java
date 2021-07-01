@@ -12,12 +12,13 @@ public class ControllerCompravenditaLibri {
 	private LibroDao lD;
 	private Libro l;
 	private static User u=User.getInstance();
+	private int id;
 
 
 
 	public boolean disponibilitaLibro(String i ) throws SQLException {
 	
-		int id = Integer.parseInt(i);
+		 id = Integer.parseInt(i);
 		
 		return lD.checkDisp(l,id);
 	}

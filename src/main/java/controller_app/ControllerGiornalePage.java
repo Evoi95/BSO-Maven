@@ -1,6 +1,5 @@
 package controller_app;
 
-import java.sql.SQLException;
 
 import database.GiornaleDao;
 import factoryBook.Giornale;
@@ -10,7 +9,7 @@ public class ControllerGiornalePage {
 
 	private GiornaleDao gD;
 	
-	public ObservableList<Giornale> getGiornaliS() throws SQLException {
+	public ObservableList<Giornale> getGiornaliS()  {
 		return gD.getLibriSingolo();
 	}
 	

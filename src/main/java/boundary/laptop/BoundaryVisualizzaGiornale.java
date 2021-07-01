@@ -2,7 +2,6 @@ package boundary.laptop;
 
 	import java.io.IOException;
 	import java.net.URL;
-	import java.sql.SQLException;
 	import java.util.ResourceBundle;
 
 import controller_app.ControllerVisualizzaGiornale;
@@ -61,13 +60,13 @@ import javafx.fxml.FXML;
 		@FXML
 		private Label copieRimanentiL;
 		
-		private ControllerVisualizzaGiornale CVG;
-		private int i;
-		private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
+		private ControllerVisualizzaGiornale cVG;
+		
+		private Scene scene;
 
 		public BoundaryVisualizzaGiornale()
 		{
-			CVG = new ControllerVisualizzaGiornale();
+			cVG = new ControllerVisualizzaGiornale();
 		}
 		
 		@FXML
@@ -80,20 +79,20 @@ import javafx.fxml.FXML;
 			root = FXMLLoader.load(getClass().getResource("acquista.fxml"));
 			stage.setTitle("Benvenuto nella schermata del riepilogo ordine");
 
-			Scene scene = new Scene(root);
+			 scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 		}
 		@FXML
 		private void annulla() throws IOException
 		{
-			if (!vis.getIstance().getIsSearch()) {
+			if (!SingeltonSystemState.getIstance().getIsSearch()) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonBack.getScene().getWindow();
 			root = FXMLLoader.load(getClass().getResource("compravenditaGiornali.fxml"));
 
-			Scene scene = new Scene(root);
+			 scene = new Scene(root);
 			stage.setScene(scene);
 			stage.show();
 			}
@@ -104,26 +103,22 @@ import javafx.fxml.FXML;
 				stage = (Stage) buttonBack.getScene().getWindow();
 				root = FXMLLoader.load(getClass().getResource("ricercaPage.fxml"));
 
-				Scene scene = new Scene(root);
+				 scene = new Scene(root);
 				stage.setScene(scene);
 				stage.show();
 			}
 		}
 		@Override
 		public void initialize(URL location, ResourceBundle resources) {
-			i = CVG.getID();
+		int	i = cVG.getID();
 			
-			try {
-				labelTitolo.setText(CVG.getData(i).getTitolo());
-				labelEditore.setText(CVG.getData(i).getEditore());
-				labelLingua.setText(CVG.getData(i).getLingua());
-				labelDate.setText(""+CVG.getData(i).getDataPubb());
-				labelDisp.setText(""+CVG.getData(i).getDisponibilita());
-				labelPrezzo.setText(CVG.getData(i).getPrezzo()+"");
-				labelCopieRimanenti.setText(CVG.getData(i).getCopieRimanenti()+"");
-			} catch (SQLException e) {
-				
-			}
+			labelTitolo.setText(cVG.getData(i).getTitolo());
+			labelEditore.setText(cVG.getData(i).getEditore());
+			labelLingua.setText(cVG.getData(i).getLingua());
+			labelDate.setText(""+cVG.getData(i).getDataPubb());
+			labelDisp.setText(""+cVG.getData(i).getDisponibilita());
+			labelPrezzo.setText(cVG.getData(i).getPrezzo()+"");
+			labelCopieRimanenti.setText(cVG.getData(i).getCopieRimanenti()+"");
 			
 
 		}

@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.RivistaDao;
-import factoryBook.Libro;
+
 import factoryBook.Rivista;
 import javafx.collections.ObservableList;
 

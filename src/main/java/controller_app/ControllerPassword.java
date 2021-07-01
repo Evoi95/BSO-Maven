@@ -3,17 +3,14 @@ package controller_app;
 import java.sql.SQLException;
 
 import database.UsersDao;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import users.singelton.User;
 
 public class ControllerPassword {
 	private User u = User.getInstance();
-	private UsersDao uD;
 	private boolean status;
 	public ControllerPassword()
 	{
-		uD = new UsersDao();
 		
 	}
 

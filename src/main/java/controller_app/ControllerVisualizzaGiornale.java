@@ -1,6 +1,5 @@
 package controller_app;
 
-import java.sql.SQLException;
 import java.util.logging.Level;
 
 import database.GiornaleDao;
@@ -11,8 +10,6 @@ public class ControllerVisualizzaGiornale {
 	
 	private GiornaleDao gD;
 	private Giornale g;
-	private int tempIdGior;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaGiornale()
 	{
@@ -21,18 +18,20 @@ public class ControllerVisualizzaGiornale {
 	
 	public void setID(String i)
 	{		
+		 int tempIdGior;
+
 		tempIdGior = Integer.parseInt(i) ;
-		vis.getIstance().setId(tempIdGior);
+		SingeltonSystemState.getIstance().setId(tempIdGior);
 	}
 	public int getID()
 	{
-		Log.logger.log(Level.INFO,"{0}",vis.getIstance().getId());
-		return vis.getIstance().getId();
+		Log.logger.log(Level.INFO,"{0}",SingeltonSystemState.getIstance().getId());
+		return SingeltonSystemState.getIstance().getId();
 	}
-	public Giornale getData(int i) throws SQLException
+	public Giornale getData(int i) 
 	{
 		// imposto che è un giornale nel controller
-		vis.getIstance().setTypeAsDaily();
+		SingeltonSystemState.getIstance().setTypeAsDaily();
 		return  gD.getGiornale(g,i);
 	}
 

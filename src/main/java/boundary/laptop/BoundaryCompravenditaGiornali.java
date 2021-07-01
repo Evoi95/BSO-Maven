@@ -64,12 +64,11 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 
 	private ControllerCompravenditaGiornali cCG;
 	private ControllerVisualizzaGiornale cVG;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	protected Scene scene;
 	protected Alert alert;
 	
 	@FXML
-	private void vediListaGiornali() throws SQLException {
+	private void vediListaGiornali()  {
 
 		table.setItems(cCG.getGiornali());
 
@@ -94,7 +93,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 	@FXML
 	private void torna() throws IOException {
 		String tipoU=cCG.tipoUtente();
-		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
+		if( SingeltonSystemState.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -103,7 +102,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+			 if( SingeltonSystemState.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 
 				Stage stage;
 				Parent root;
@@ -129,7 +128,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 
 	
 	@FXML
-	private void verifica() throws  IOException, SQLException {
+	private void verifica() throws  IOException {
 		try
 		{
 			String i = entryText.getText();
@@ -185,6 +184,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 			alert.setHeaderText("Errore nei dati inseriti");
 			alert.setContentText("Ricontrolla i dati che hai inserito !");
 			alert.showAndWait();
+			throw new SQLException();
 		}
 		}
 		catch (NumberFormatException e)

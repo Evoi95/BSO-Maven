@@ -32,7 +32,6 @@ public class BoundaryCompravenditaRiviste implements Initializable {
 
 	private ControllerCompravenditaRiviste cCR;
 	private ControllerVisualizzaRivista cVR;
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 
 	
 	@FXML
@@ -84,6 +83,12 @@ public class BoundaryCompravenditaRiviste implements Initializable {
 		categoria.setCellValueFactory(new PropertyValueFactory<>("tipologia"));
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
 		idRivista.setCellValueFactory(new PropertyValueFactory<>("id"));
+		
+		try {
+			vediListaRiviste();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -91,7 +96,7 @@ public class BoundaryCompravenditaRiviste implements Initializable {
 	@FXML
 	private void torna() throws IOException {
 		String tipoU=cCR.tipoUtente();
-		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
+		if( SingeltonSystemState.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -100,7 +105,7 @@ public class BoundaryCompravenditaRiviste implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+			 if( SingeltonSystemState.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 				Stage stage;
 				Parent root;
 				stage = (Stage) buttonI.getScene().getWindow();

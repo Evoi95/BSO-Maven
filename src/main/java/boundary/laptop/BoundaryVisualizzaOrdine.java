@@ -2,7 +2,6 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import controller_app.ControllerVisualizzaOrdine;
@@ -58,7 +57,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 	private ControllerVisualizzaOrdine cVO;
 	protected Scene scene;
 	@FXML
-	private void riepilogo() throws SQLException
+	private void riepilogo() 
 	{
 		cVO.getDati();
 	}
@@ -81,7 +80,7 @@ public class BoundaryVisualizzaOrdine implements Initializable {
 	}
 	
 	@FXML
-	private void acquisti() throws SQLException
+	private void acquisti() 
 	{
 		table.setItems(cVO.getDati());
 

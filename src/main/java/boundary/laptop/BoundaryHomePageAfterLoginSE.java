@@ -47,13 +47,12 @@ public class BoundaryHomePageAfterLoginSE {
 	@FXML
 	private Button buttonGestione;
 	
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	protected Scene scene;
 	protected Alert alert;
 	@FXML
 	private void getListaGiornali() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsDaily();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsDaily();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -67,8 +66,8 @@ public class BoundaryHomePageAfterLoginSE {
 
 	@FXML
 	private void getListaRiviste() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsMagazine();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsMagazine();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -82,8 +81,8 @@ public class BoundaryHomePageAfterLoginSE {
 
 	@FXML
 	private void getListaLibri() throws IOException {
-		vis.getIstance().setIsSearch(false);
-		vis.getIstance().setTypeAsBook();
+		SingeltonSystemState.getIstance().setIsSearch(false);
+		SingeltonSystemState.getIstance().setTypeAsBook();
 		Stage stage;
 		Parent root;
 		stage = (Stage) buttonL.getScene().getWindow();
@@ -113,7 +112,7 @@ public class BoundaryHomePageAfterLoginSE {
 
 	
 	@FXML
-	private void logout() throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException 
+	private void logout() throws IOException 
 	{
 		
 		if (ControllerHomePageAfterLogin.logout())
@@ -141,7 +140,7 @@ public class BoundaryHomePageAfterLoginSE {
 	
 	@FXML
 	private void cerca() throws IOException {
-		vis.getIstance().setIsSearch(true);
+		SingeltonSystemState.getIstance().setIsSearch(true);
 
 		Stage stage;
 		Parent root;

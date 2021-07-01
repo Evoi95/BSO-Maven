@@ -10,14 +10,14 @@ import logger.Log;
 import pagamento.Fattura;
 
 public class ContrassegnoDao {
-	private Connection conn;
+	private static Connection conn;
 	private static PreparedStatement stmt;
+	private static ResultSet rs;
 	
 
 	public void inserisciFattura(Fattura f) 
 	{
-		 conn=null;
-		 stmt=null;
+		 
 		
 		String par1=f.getNome();
  		String par2=f.getCognome();
@@ -25,7 +25,7 @@ public class ContrassegnoDao {
  		String par4=f.getCom();
  		float par5=f.getAmmontare();
  		
- 		Log.logger.log(Level.INFO,"",par1 + par2 + par3 + par4 + par5);
+ 		Log.logger.log(Level.INFO,"parametri : {0}",par1 + par2 + par3 + par4 + par5);
        
 		 try {
 
@@ -51,16 +51,13 @@ public class ContrassegnoDao {
          }
 		 		 
 		 Log.logger.log(Level.INFO,"effettuo inserimento pagaentoDao");
-				//return esito;
          
          
         	 
 	}  
-	public void daiPrivilegi() 
+	public void daiPrivilegi() throws SQLException 
 	{
-		conn=null;
-		 stmt=null;
-	//	Double d=(double) disp;
+		
 
 		 try {
 			  conn = ConnToDb.generalConnection();
@@ -70,18 +67,13 @@ public class ContrassegnoDao {
 	            
 	         }catch(SQLException e)
 	         {
-	        	// esito=false;
 	        	e.getMessage();
 
 	         }	
 		 finally {
-			// stmt.close();
-			 try {
-				conn.close();
-			} catch (SQLException e) {
 			 
-				
-			}
+				conn.close();
+			
 			 Log.logger.log(Level.INFO,"Ho chiuso tutto");
 			 
 		 }
@@ -90,13 +82,12 @@ public class ContrassegnoDao {
 
 		}
 	
-	public float prendiSpesa() 
+	public float prendiSpesa() throws SQLException 
 	{
 		float spesa=0;
-		Connection conn = null;
 		try {
 			 conn=ConnToDb.generalConnection();
-	          ResultSet rs=conn.createStatement().executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1");
+	           rs=conn.createStatement().executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1");
 	          while (rs.next())
 	          {
 	        	  spesa=rs.getFloat("spesaTotale");
@@ -107,15 +98,12 @@ public class ContrassegnoDao {
 		}
 		finally
 		{
-			try {
+			
 				conn.close();
-			} catch (SQLException e) {
-			 
-				
-			}
+			
 		}
 		
-		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao :"+spesa);
+		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao .{0}",spesa);
 		return spesa;
 	}
 	

@@ -53,156 +53,32 @@ public class BoundaryReportPage implements Initializable {
 	protected String fileRiviste = "ReportFinale\\riepilogoRiviste.txt";
 	protected Scene scene;
 	
+	private BufferedReader reader;
+	private BufferedReader readerR;
+	private BufferedReader readerL;
+	private BufferedReader readerG;
+	private BufferedReader reader3;
+	
 	
 	@FXML
-	private void totale() throws SQLException
+	private void totale() throws SQLException, IOException
 	{
 		ta.clear();
-		try {
+		
 			cRL.generaReportLibri();
 			cRG.generaReportGiornali();
 			cRR.generaReportRiviste();
 			cUP.getUtenti();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		}
-		catch (SQLException eSQL)
-		{
-			eSQL.printStackTrace();
-		}
 		
-		BufferedReader readerL = null;
+			leggiLibri();
 		
-		try 
-		{
-			readerL = new BufferedReader(new FileReader(fileLibro));
-			String line = readerL.readLine();
-			while(line!=null)
-			{
-				ta.appendText(line.concat("\n"));
-            
 
-				Log.logger.log(Level.INFO,line);
-				line = readerL.readLine();
-			}
-		} 
-		catch (FileNotFoundException e)
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException eIO) 
-		{
-			eIO.printStackTrace();
-		}
-		finally {
-			try
-			{
-				readerL.close();
-			}
-			catch (IOException e) {
-				e.printStackTrace();						
-			}
-		}
-        
-
-		BufferedReader readerG = null;
-		try {
-			readerG = new BufferedReader(new FileReader(fileGiornale));
-			String line1 = readerG.readLine();
-			while(line1!=null) {
-            ta.appendText(line1.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line1);
-            line1 = readerG.readLine();
-        }
-		} catch (IOException e) {
-		 
+			leggiGiornale();
 			
-		 
-		} 
-		finally {
-        
-        try {
-			readerG.close();
-		} catch (IOException e) {
-		 
+			riepilogoUtenti();
 			
-		}
-		}
-
-		BufferedReader reader = null;
-		try {
-			reader = new BufferedReader(new FileReader("fileRiviste"));
-		} catch (FileNotFoundException e) {
-		 
-			
-		}
-        String line2 = null;
-		try {
-			line2 = reader.readLine();
-		while(line2!=null) {
-            ta.appendText(line2.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line2);
-            try {
-				line2 = reader.readLine();
-			} catch (IOException e) {
-			 
-				
-			}
-		}
-		}catch(IOException e)
-        {
-        	e.getCause();
-        }
-        
-        finally {
-        try {
-			reader.close();
-		} catch (IOException e) {
-		 
-			
-		}
-        }
-        
-        BufferedReader reader3 = null;
-		try {
-			reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-		} catch (FileNotFoundException e) {
-		 
-			
-		}
-        String line3 = null;
-		try {
-			line3 = reader3.readLine();
-		while(line3!=null) {
-            ta.appendText(line3.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line3);
-            try {
-				line3 = reader3.readLine();
-			} catch (IOException e) {
-			 
-				
-			}
-		}}catch(IOException e)
-		{
-			e.getMessage();
-		}
-	finally {
-        try {
-			reader3.close();
-		} catch (IOException e) {
-		 
-			
-		}
-	}
-
+		
+     
 
 		
 
@@ -216,10 +92,11 @@ public class BoundaryReportPage implements Initializable {
 		try {
 			cRL.generaReportLibri();
 		} catch (IOException | SQLException e) {
+			e.getMessage();
 		 
 			
 		}
-		BufferedReader reader = new BufferedReader(new FileReader(fileLibro));
+		 reader = new BufferedReader(new FileReader(fileLibro));
         String line = reader.readLine();
         while(line!=null) {
             ta.appendText(line.concat("\n"));
@@ -241,29 +118,13 @@ public class BoundaryReportPage implements Initializable {
 		cRG.generaReportGiornali();
 		cRR.generaReportRiviste();
 		
-		BufferedReader readerL = new BufferedReader(new FileReader(fileLibro));
-        String line = readerL.readLine();
-        while(line!=null) {
-            ta.appendText(line.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line);
-            line = readerL.readLine();
-        }
-        readerL.close();
-
-		BufferedReader readerG = new BufferedReader(new FileReader(fileGiornale));
-        String line1 = readerG.readLine();
-        while(line1!=null) {
-            ta.appendText(line1.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line1);
-            line1 = readerG.readLine();
-        }
-        readerG.close();
-
-		BufferedReader reader = new BufferedReader(new FileReader("fileRiviste"));
+		leggiLibri();
+		
+		leggiGiornali();
+		
+		
+        try {
+		 reader = new BufferedReader(new FileReader("fileLibro"));
         String line2 = reader.readLine();
         while(line2!=null) {
             ta.appendText(line2.concat("\n"));
@@ -271,8 +132,13 @@ public class BoundaryReportPage implements Initializable {
 
             Log.logger.log(Level.INFO,line2);
             line2 = reader.readLine();
+        }}catch(IOException e)
+        {
+        	e.getMessage();
         }
+        finally {
         reader.close();
+        }
 
 		
 	}
@@ -281,13 +147,8 @@ public class BoundaryReportPage implements Initializable {
 	{
 		ta.clear();
 
-		try {
-			cRG.generaReportGiornali();
-		} catch (IOException|SQLException e) {
-		 
-			
-		} 
-		BufferedReader reader = new BufferedReader(new FileReader(fileGiornale));
+		cRG.generaReportGiornali(); 
+		 reader = new BufferedReader(new FileReader(fileGiornale));
         String line = reader.readLine();
         while(line!=null) {
             ta.appendText(line.concat("\n"));
@@ -320,25 +181,13 @@ public class BoundaryReportPage implements Initializable {
 
 		try {
 			cRR.generaReportRiviste();
-		} catch (IOException e) {
-			e.printStackTrace();
-			
-		} catch (SQLException eSQL) {
+		
+		} catch (IOException | SQLException eSQL) {
 		 
 			eSQL.printStackTrace();
 		}
 
-		BufferedReader readerR = new BufferedReader(new FileReader("fileRiviste"));
-        String line2 = readerR.readLine();
-        while(line2!=null) {
-            ta.appendText(line2.concat("\n"));
-            
-
-            Log.logger.log(Level.INFO,line2);
-            line2 = readerR.readLine();
-        }
-        readerR.close();
-
+		leggiRiviste();
 
 		
 	}
@@ -350,5 +199,174 @@ public class BoundaryReportPage implements Initializable {
 		cRR=new ControllerReportRiviste();
 		cUP=new ControllerUserPage();
 	}
+	
+	private void  leggiLibri() throws IOException
+	{
+		 String line;
 
+		try {
+			
+			 readerL = new BufferedReader(new FileReader(fileLibro));		
+				
+	        while((line=readerL.readLine())!=null) {
+	            ta.appendText(readerL.readLine().concat("\n"));
+	            
+
+	            Log.logger.log(Level.INFO,line);
+	             line = readerL.readLine();
+	        }
+			}catch(IOException e)
+			{
+				e.getMessage();
+			}
+			finally {
+	        readerL.close();
+			}
+	}
+	private void leggiGiornale() {
+		try {
+			readerG = new BufferedReader(new FileReader(fileGiornale));
+			String line1 = readerG.readLine();
+			while(line1!=null) {
+            ta.appendText(line1.concat("\n"));
+            
+
+            Log.logger.log(Level.INFO,line1);
+            line1 = readerG.readLine();
+        }
+		} catch (IOException e) {
+			e.getMessage();
+		 
+			
+		 
+		} 
+		finally {
+        
+        try {
+        	
+			readerG.close();
+		} catch (IOException e) {
+			e.getMessage();
+		 
+			
+		}
+		}
+
+	
+	try {
+		reader = new BufferedReader(new FileReader("fileGiornale"));
+	} catch (FileNotFoundException e) {
+		e.getMessage();
+	 
+		
+	}
+    String line2 = null;
+	try {
+		line2 = reader.readLine();
+	while(line2!=null) {
+        ta.appendText(line2.concat("\n"));
+        
+
+        Log.logger.log(Level.INFO,line2);
+       
+			line2 = reader.readLine();
+		
+	}
+	}catch(IOException | NullPointerException e)
+    {
+    	e.getCause();
+    }
+    
+    finally {
+    try {
+		reader.close();
+	} catch (IOException e) {
+		e.getMessage();
+	 
+		
+	}
+    }}
+	
+	private void riepilogoUtenti()
+	{
+		   
+				try {
+					reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
+				} catch (FileNotFoundException e) {
+					e.getMessage();
+					
+				 
+					
+				}
+		        String line3 = null;
+				try {
+					line3 = reader3.readLine();
+				while(line3!=null) {
+		            ta.appendText(line3.concat("\n"));
+		            
+
+		            Log.logger.log(Level.INFO,line3);
+		            
+						line3 = reader3.readLine();
+					
+				}}catch(IOException | NullPointerException e)
+				{
+					e.getMessage();
+				}
+			finally {
+		        try {
+					reader3.close();
+				} catch (IOException e) {
+					e.getMessage();
+				 
+					
+				}
+			}
+
+	}
+	private void leggiGiornali() throws IOException
+	{
+		try {
+	        readerG = new BufferedReader(new FileReader(fileGiornale));
+	        String line1 = readerG.readLine();
+	        while(line1!=null) {
+	            ta.appendText(line1.concat("\n"));
+	            
+
+	            Log.logger.log(Level.INFO,line1);
+	            line1 = readerG.readLine();
+	        }}catch(IOException e)
+			{
+	        	e.getMessage();
+			}
+			finally {
+	        readerG.close();
+			}
+
+		
+	}
+	private void leggiRiviste() throws IOException
+	{
+		try {
+			 readerR = new BufferedReader(new FileReader("fileRiviste"));
+	        String line2 = readerR.readLine();
+	        while(line2!=null) {
+	            ta.appendText(line2.concat("\n"));
+	            
+
+	            Log.logger.log(Level.INFO,line2);
+	            line2 = readerR.readLine();
+	        }
+			}catch(IOException e)
+	        {
+	        	e.getMessage();
+	        }
+			finally {
+	        readerR.close();
+			}
+
+	}
+	
 }
+
+

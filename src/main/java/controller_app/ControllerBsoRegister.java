@@ -13,6 +13,7 @@ public class ControllerBsoRegister {
 	private Boolean state=false;
 	private UsersDao uD ;
 	private User u=User.getInstance();
+	private Pattern pattern;
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		
@@ -51,12 +52,9 @@ public class ControllerBsoRegister {
 	{
 		if(checkEmail(email) && checkPassword(pwd,pwdC) && checkNomeCognome(n,c))
 		{
-			return true;
+			state=true;
 		}
-		else 
-		{
-			return false;
-		}
+		return state;
 	}
 	
 	public boolean checkEmail(String email)
@@ -66,37 +64,31 @@ public class ControllerBsoRegister {
                 "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
                 "A-Z]{2,7}$"; 
                   
-		Pattern pat = Pattern.compile(emailRegex); 
+		pattern = Pattern.compile(emailRegex); 
 		if (email == null) 
 			return false; 
-		return pat.matcher(email).matches();
+		return pattern.matcher(email).matches();
 	}
     
 	public boolean checkPassword(String pwd, String pwdC )
 	{
 		if(pwd.length()>=8 && pwdC.length()>=8 && pwd.equals(pwdC)) {
-			return true;
+			state= true;
 		}
-		else
-		{
-			return false;
-			// to do : approfondire regex password
-		}
+		return state;
 	}
 	
 	public boolean checkNomeCognome(String n, String c)
 	{
 		if (n != null && c != null)
 		{
-			return true;
-		}else {
-		return false;
+			state= true;
 		}
+		return state;
 	}
 	
 	public ControllerBsoRegister()
 	{
-		//U.getInstance();
 		uD=new UsersDao();
 	}
 	

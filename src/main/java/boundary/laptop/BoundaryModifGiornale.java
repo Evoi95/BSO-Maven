@@ -2,7 +2,6 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -81,13 +80,12 @@ public class BoundaryModifGiornale implements Initializable {
 	private Label labelP;
 	@FXML
 	private Label labelCopie;
-	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	protected float prezzo ;
 	protected int copie;
 	protected Scene scene;
 	private ControllerModifGiornale cMG;
 	@FXML
-	private void conferma() throws SQLException
+	private void conferma() 
 	{
 		String t=titoloT.getText();
 		String tipo=tipologiaT.getText();
@@ -138,21 +136,14 @@ public class BoundaryModifGiornale implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		cMG=new ControllerModifGiornale();
-		try {
-			labelT.setText(cMG.getGiornaliById(vis.getIstance().getId()).get(0).getTitolo());
-			labelTipo.setText(cMG.getGiornaliById(vis.getIstance().getId()).get(0).getTipologia());
-			labelE.setText(cMG.getGiornaliById(vis.getIstance().getId()).get(0).getEditore());
-			labelLingua.setText(cMG.getGiornaliById(vis.getIstance().getId()).get(0).getLingua());
-			labelData.setText(cMG.getGiornaliById(vis.getIstance().getId()).get(0).getDataPubb().toString());
-			labelDisp.setText(""+cMG.getGiornaliById(vis.getIstance().getId()).get(0).getDisponibilita());
-			labelP.setText(""+cMG.getGiornaliById(vis.getIstance().getId()).get(0).getPrezzo());
-			labelCopie.setText(""+cMG.getGiornaliById(vis.getIstance().getId()).get(0).getCopieRimanenti());
-
-		} catch (SQLException e) {
-		 
-			Log.logger.log(Level.SEVERE,e,()->"result"+e);
-
-		}
+		labelT.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getTitolo());
+		labelTipo.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getTipologia());
+		labelE.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getEditore());
+		labelLingua.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getLingua());
+		labelData.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getDataPubb().toString());
+		labelDisp.setText(""+cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getDisponibilita());
+		labelP.setText(""+cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getPrezzo());
+		labelCopie.setText(""+cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getCopieRimanenti());
 
 
 		

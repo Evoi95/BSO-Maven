@@ -11,7 +11,6 @@ public class ControllerVisualizzaLibro {
 	
 	private LibroDao ld;
 	private Libro b;
-	private int tempIdLib;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	
 	public ControllerVisualizzaLibro()
@@ -19,7 +18,8 @@ public class ControllerVisualizzaLibro {
 		ld = new LibroDao();
 	}
 	public void setID(String i)
-	{		
+	{		 int tempIdLib;
+	
 		tempIdLib = Integer.parseInt(i) ;
 		vis.setId(tempIdLib);
 	}

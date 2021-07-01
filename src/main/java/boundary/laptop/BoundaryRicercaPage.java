@@ -47,7 +47,6 @@ public class BoundaryRicercaPage  implements Initializable{
 	@FXML
 	private Button buttonB;
 	
-	private String i;
 	private String title = "Benvenuto nella schermata del riepilogo ordine";
 	private ControllerRicercaPage cRP;
 	private ControllerVisualizzaLibro cVL;
@@ -75,7 +74,7 @@ public class BoundaryRicercaPage  implements Initializable{
 	@FXML
 	private void apri() throws IOException
 	{
-		i = idT.getText();
+		String i = idT.getText();
 		//col controller Apro basandomi sul singerlton battona
 		if(cRP.returnType().equals("libro"))
 		{

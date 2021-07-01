@@ -1,5 +1,6 @@
 package controller_app;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.GiornaleDao;
@@ -11,11 +12,11 @@ public class ControllerAddGiornalePage {
 	private boolean status = false;
 	
 	
-	public boolean checkData(String titolo, String tipologia, String editore, String lingua, LocalDate data, int disp, float prezzo, int copieRim)
+	public boolean checkData(String titolo, String tipologia, String editore, String lingua, LocalDate data, int disp, float prezzo, int copieRim) throws SQLException
 	{
 		
 		
-		if(data.equals(null) )
+		if(data==null )
 		{
 			return status;
 

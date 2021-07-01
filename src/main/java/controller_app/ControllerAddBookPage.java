@@ -16,7 +16,7 @@ public class ControllerAddBookPage {
 	public boolean checkData(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
 			String categoria, LocalDate data, String recensione,String desc, int disp,	float prezzo, int copieRim)
 	{
-		if(codIsbn.length()>10 && data.equals(null) )
+		if(codIsbn.length()>10 && data==null )
 		{
 			return status;
 

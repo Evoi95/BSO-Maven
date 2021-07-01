@@ -47,7 +47,6 @@ public class BoundaryHomePageAfterLogin {
 	@FXML
 	private Button buttonC;
 	
-	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 	protected String message;
 	protected Scene scene;
 	protected Alert alert;
@@ -118,7 +117,7 @@ public class BoundaryHomePageAfterLogin {
 	}
 
 	@FXML
-	private void logout() throws IOException, ClassNotFoundException, NoSuchFieldException, SecurityException, IllegalArgumentException, IllegalAccessException 
+	private void logout() throws IOException 
 	{
 		
 		if (ControllerHomePageAfterLogin.logout())

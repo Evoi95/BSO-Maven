@@ -4,7 +4,7 @@ import database.UsersDao;
 import users.singelton.User;
 
 public class ControllerVisualizzaProfilo {
-	private UsersDao uD;
+	//private UsersDao uD;
 	private boolean status=false;
 
 	public User getCredenziali() {
@@ -15,7 +15,7 @@ public class ControllerVisualizzaProfilo {
 	
 	public ControllerVisualizzaProfilo()
 	{
-		uD=new UsersDao();
+		//uD=new UsersDao();
 	}
 
 	public boolean cancellaUtente() {

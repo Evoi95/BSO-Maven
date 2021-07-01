@@ -30,7 +30,6 @@ public class BoundaryRaccoltaPage implements Initializable {
 	@FXML
 	private Button buttonI;
 	private ControllerReportRaccolta cRR;
-	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
 	protected Scene scene;	
 	
 	@FXML
@@ -75,7 +74,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 	private void torna() throws IOException {
 		String tipoU=cRR.getTipo();
 		
-		if( vis.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
+		if( SingeltonSystemState.getIstance().getIsLogged() &&  tipoU.equalsIgnoreCase("A")) {
 			Stage stage;
 			Parent root;
 			stage = (Stage) buttonI.getScene().getWindow();
@@ -84,7 +83,7 @@ public class BoundaryRaccoltaPage implements Initializable {
 			stage.setScene(scene);
 			stage.show();
 			}
-			 if( vis.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
+			 if( SingeltonSystemState.getIstance().getIsLogged() && (tipoU.equalsIgnoreCase("W") || tipoU.equalsIgnoreCase("E")) ) {
 
 		
 				Stage stage;
