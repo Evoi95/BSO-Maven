@@ -51,7 +51,6 @@ public class Pagamento {
 		this.ammontare = ammontare;
 	}
 	public Pagamento(int id, String metodo, int esito, String nomeUtente, float ammontare,String tipologia,int idOg) {
-		//super();
 		this.id = id;
 		this.metodo = metodo;
 		this.esito = esito;
@@ -60,15 +59,6 @@ public class Pagamento {
 		this.tipo=tipologia;
 		this.idOg=idOg;
 	}
-	/*
-	public Pagamento(float totale)
-	{
-		this.id=0;
-		this.metodo=null;
-		this.esito=-1;
-		this.nomeUtente=null;
-		this.ammontare=totale;
-		
-	}*/
+	
 	
 }

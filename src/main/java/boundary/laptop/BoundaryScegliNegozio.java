@@ -5,11 +5,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
 
 import controller_app.ControllerScegliNegozio;
 import controller_app.SingeltonSystemState;
-import logger.Log;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -72,7 +70,7 @@ public class BoundaryScegliNegozio implements Initializable {
 	private void verifica() throws IOException, SQLException 
 	{
 		
-			listOfNegozi=cSN.getNegozi();
+		listOfNegozi=cSN.getNegozi();
 		
 		r1IsSelected = radio1.isSelected();
 		r2IsSelected = radio2.isSelected();
@@ -87,39 +85,10 @@ public class BoundaryScegliNegozio implements Initializable {
 		
 			if( statusA && statusB)
 			{
-				alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(alertTitle);
-				alert.setHeaderText(alertHeaderTexr);
-				alert.setContentText(alertContentText);
-				Optional<ButtonType> result = alert.showAndWait();
 				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged() )
-		        	
-		        {
-		        	
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePageA));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		        }
-		            else {
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePage));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            	}
-				
-			
+				procedi();
 		        			
-		        }
+		    }
 		        else
 				{
 				
@@ -136,39 +105,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		else if(Boolean.TRUE.equals(r2IsSelected) && Boolean.TRUE.equals( listOfNegozi.get(1).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(1).getIsValid()))
 		{
 			
-				alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(alertTitle);
-				alert.setHeaderText(alertHeaderTexr);
-				alert.setContentText(alertContentText);
-				Optional<ButtonType> result = alert.showAndWait();
-				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
-		        	
-		        {
-		           
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePageA));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		        }
-		            else {
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePage));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            	}
-				
-				
-		            //Open another window on clicking the OK button
-
+				procedi();
 		        			
 		        }
 		        else
@@ -187,38 +124,8 @@ public class BoundaryScegliNegozio implements Initializable {
 		if(Boolean.TRUE.equals(r3IsSelected) && Boolean.TRUE.equals(listOfNegozi.get(2).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(2).getIsValid()))
 		{
 			
-				alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(alertTitle);
-				alert.setHeaderText(alertHeaderTexr);
-				alert.setContentText(alertContentText);
-				Optional<ButtonType> result = alert.showAndWait();
-				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
-		        	
-		        {
-		            Log.logger.log(Level.INFO,"ALL OK..!");
-		           
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePageA));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            }
-		            else {
-		            	Log.logger.log(Level.INFO,"Sto in else");
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePage));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            	}
-		}
+			procedi();
+				}
 				
 				
 		            //Open another window on clicking the OK button
@@ -239,42 +146,7 @@ public class BoundaryScegliNegozio implements Initializable {
 		
 		if(Boolean.TRUE.equals(r4IsSelected) && Boolean.TRUE.equals(listOfNegozi.get(3).getIsOpen()) && Boolean.TRUE.equals(listOfNegozi.get(3).getIsValid()))
 		{
-			
-				alert=new Alert(AlertType.CONFIRMATION);
-				alert.setTitle(alertTitle);
-				alert.setHeaderText(alertHeaderTexr);
-				alert.setContentText(alertContentText);
-				Optional<ButtonType> result = alert.showAndWait();
-				
-		        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged())
-		        	
-		        {
-		            Log.logger.log(Level.INFO,"ALL OK..!");
-		           
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePageA));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            }
-		            else {
-		            	Log.logger.log(Level.INFO,"Sto in else");
-		            	Stage stage;
-		                Parent root;
-		                stage = (Stage) buttonV.getScene().getWindow();
-		                loader = new FXMLLoader(getClass().getResource(homePage));
-		                root = loader.load();
-		                scene = new Scene(root);
-		                stage.setScene(scene);
-		                stage.show();
-		            	}
-				
-				
-		            //Open another window on clicking the OK button
-
+			procedi();
 		        			
 		        }
 		        else
@@ -306,5 +178,39 @@ public class BoundaryScegliNegozio implements Initializable {
 			e.printStackTrace(); 
 			
 		}
+	}
+	
+	private void procedi() throws IOException
+	{
+		alert=new Alert(AlertType.CONFIRMATION);
+		alert.setTitle(alertTitle);
+		alert.setHeaderText(alertHeaderTexr);
+		alert.setContentText(alertContentText);
+		Optional<ButtonType> result = alert.showAndWait();
+		
+        if ((result.isPresent()) && (result.get() == ButtonType.OK) && SingeltonSystemState.getIstance().getIsLogged() )
+        	
+        {
+        	
+            	Stage stage;
+                Parent root;
+                stage = (Stage) buttonV.getScene().getWindow();
+                loader = new FXMLLoader(getClass().getResource(homePageA));
+                root = loader.load();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+        }
+            else {
+            	Stage stage;
+                Parent root;
+                stage = (Stage) buttonV.getScene().getWindow();
+                loader = new FXMLLoader(getClass().getResource(homePage));
+                root = loader.load();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
+            	}
+		
 	}
 }

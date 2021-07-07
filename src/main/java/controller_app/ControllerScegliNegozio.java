@@ -9,6 +9,14 @@ import negozio.Negozio;
 public class ControllerScegliNegozio {
 	
 	private NegozioDao nD;
+	public Negozio getN() {
+		return n;
+	}
+
+	public void setN(Negozio n) {
+		this.n = n;
+	}
+
 	private Negozio n;
 	private SingeltonSystemState vis = SingeltonSystemState.getIstance() ;
 

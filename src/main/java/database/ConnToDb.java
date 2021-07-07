@@ -14,7 +14,7 @@ public class ConnToDb
 
 	static Config c =new Config();
 	private static String connessione="Tentativo di conessione al server..........\\\\n";
-	protected static String server_URL_2;
+	protected static String url2;
 	
 
 	public static  boolean initailConnection()
@@ -54,12 +54,12 @@ public class ConnToDb
 			{
 				//actuac DB project
 
-				 server_URL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+				 url2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 				Class.forName(c.getDriver());
 				
 				Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
 
-				conn = DriverManager.getConnection(server_URL_2, c.getUser(),c.getPwd());
+				conn = DriverManager.getConnection(url2, c.getUser(),c.getPwd());
 				Log.logger.log(Level.INFO,"Connesso standard..........\\n");
 
 				return true;
@@ -89,10 +89,10 @@ public class ConnToDb
 
 		try
 		{
-			 server_URL_2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+			 url2 = "jdbc:mysql://localhost/ispw?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
 			Class.forName(c.getDriver());
 			Log.logger.log(Level.INFO,"Tentativo di conessione al server..........\\n");
-			conn = DriverManager.getConnection(server_URL_2, c.getUser(),c.getPwd());
+			conn = DriverManager.getConnection(url2, c.getUser(),c.getPwd());
 			Log.logger.log(Level.INFO,"Connesso standard..........\\n");
 
 			return conn;
@@ -111,10 +111,8 @@ public class ConnToDb
 		return null;			
 			
 	}
-	public ConnToDb()
-	{
-		Log.logger.log(Level.INFO,"ConnToDB..........\\n");
-
+	private ConnToDb(){
+		
 	}
 
 

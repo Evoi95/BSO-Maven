@@ -14,7 +14,6 @@ import logger.Log;
 public class ControllerPagamentoCC {
 	private CartaCreditoDao cDao;
 	private String appoggio = "";
-	private Boolean state;
 	private CartaCredito cc;
 	private PagamentoDao pD;
 	
@@ -22,16 +21,22 @@ public class ControllerPagamentoCC {
 
 	public boolean controllaPag(String d, String c,String civ) {
 		int x;
+		 Boolean state;
+
+		 int anno;
+		 int mese;
+		 int giorno;
 
 		appoggio = appoggio + d;
-		 int anno = Integer.parseInt((String) appoggio.subSequence(0, 4));
-		 int mese = Integer.parseInt((String) appoggio.subSequence(5, 7));
-		 int giorno = Integer.parseInt((String) appoggio.subSequence(8, 10));
+		  anno = Integer.parseInt((String) appoggio.subSequence(0, 4));
+		  mese = Integer.parseInt((String) appoggio.subSequence(5, 7));
+		  giorno = Integer.parseInt((String) appoggio.subSequence(8, 10));
 		
 		if (anno > 2020 && (mese >= 1 && mese <= 12) && (giorno >= 1 && giorno <= 31) && c.length() <= 20 && civ.length()==3 ) {
 			
-			
-					String verifica[]= c.split("-");
+				String verifica[]=null;
+				
+					 verifica= c.split("-");
 					
 					for ( x=0; x<verifica.length; x++) {
 							if(verifica[x].length()==4)
@@ -72,8 +77,8 @@ public class ControllerPagamentoCC {
 
 			cc.setPrezzoTransazine(cDao.prendiSpesa());
 			cDao.insCC(cc);
-			
-			Pagamento p=new Pagamento(0,"cc",0,cc.getUserNome(),cc.getPrezzoTransazine(),null,0);
+			Pagamento p;
+			 p=new Pagamento(0,"cc",0,cc.getUserNome(),cc.getPrezzoTransazine(),null,0);
 			pD.aggiornaPagamentoCC(p);
 			
 			

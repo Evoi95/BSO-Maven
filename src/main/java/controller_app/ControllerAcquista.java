@@ -8,9 +8,9 @@ import database.GiornaleDao;
 import database.LibroDao;
 import database.PagamentoDao;
 import database.RivistaDao;
-import factoryBook.Giornale;
-import factoryBook.Libro;
-import factoryBook.Rivista;
+import factorybook.Giornale;
+import factorybook.Libro;
+import factorybook.Rivista;
 import logger.Log;
 
 public class ControllerAcquista {
@@ -37,6 +37,7 @@ public class ControllerAcquista {
 			x = lD.getCosto(l);
 
 			Log.logger.log(Level.INFO,"Controlleracquista");
+			Log.logger.log(Level.INFO,"isbn libro : .{0}",isbn);
 			lD.aggiornaDisponibilita(l);
 			lD.aggiornaCopieVendute(l,disp);
 			
@@ -106,7 +107,7 @@ public class ControllerAcquista {
 		return lD.retTip(l);
 	}
 	
-	public int getIdG(String text) throws SQLException {
+	public int getIdG(String text)  {
 		g.setTitolo(text);
 		return gD.retId( g);
 		

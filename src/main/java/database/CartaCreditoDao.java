@@ -15,11 +15,10 @@ import pagamento.CartaCredito;
 
 public class CartaCreditoDao {
 	private PreparedStatement stmt=null;
-	private Connection conn;
-	private ResultSet rs;
+	
 	private  String n;
 	private  String cog;
-	private String cod;
+	private Connection conn=null;
 
 	
 	
@@ -30,39 +29,32 @@ public class CartaCreditoDao {
 		 * uare funzione internet
 		 */
 		ObservableList<CartaCredito> catalogo=FXCollections.observableArrayList();
+
+		try
+			{
+			conn=ConnToDb.generalConnection();
+		
 		 
-            try {
-				rs=ConnToDb.generalConnection().createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'");
+            try (ResultSet 		rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta from cartacredito where nomeP='"+nome+"'"))
+            {
 			
             while(rs.next())
             {
             	 n=rs.getString(1);
             	 cog=rs.getString(2);
             	 cod=rs.getString(3);
-            	
-            	
-
-        		             
+                   
 
 					catalogo.add(new CartaCredito(n,cog,cod, null, cod,0));
         		
         		
             }
-            } catch (SQLException e1) {
-			 
-				e1.printStackTrace();
+            
 			}
-            finally {
-					
-            	try{
-            		rs.close();
-            		conn.close();
-            	}catch(SQLException e) {
-            		e.getCause();
-            	}
-				
-				}
-
+			}catch(SQLException e)
+			{
+				e.getMessage();			}
+		
             
 		   return catalogo;
 
@@ -73,7 +65,7 @@ public class CartaCreditoDao {
 	{
 
 		 try {
-			  conn = ConnToDb.generalConnection();
+			 conn= ConnToDb.generalConnection();
 			  stmt = conn.prepareStatement(" SET SQL_SAFE_UPDATES=0");
 			         stmt.executeUpdate();
 
@@ -83,10 +75,7 @@ public class CartaCreditoDao {
 	        	e.getMessage();
 
 	         }	
-		 finally {
-			 conn.close();
-			 
-		 }
+		 
 
 
 	}
@@ -96,13 +85,13 @@ public class CartaCreditoDao {
 		String query;
 		
 		Log.logger.log(Level.INFO,"\t\tEntro in ins cc");
-		String n=cc.getUserNome();
+		 n=cc.getUserNome();
 		 String c=cc.getUserCognome();
 		 String num=cc.getNumeroCC();
 		 Date d=cc.getScadenza();
 		 String pin=cc.getCiv();
 		 Float amm= cc.getPrezzoTransazine();		 
-		 try {
+		 try  {
 			 conn=ConnToDb.generalConnection();
 			 query="insert into cartacredito (nomeP,cognomeP,codiceCarta,scad,codicePin,ammontare)  values(?,?,?,?,?,?)";
 			 stmt=conn.prepareStatement(query);
@@ -125,7 +114,6 @@ public class CartaCreditoDao {
 	        	e.getMessage();
 
 	         }
-		 finally {conn.close();}
 		
 		
 		 Log.logger.log(Level.INFO,"LibroDao. questy");
@@ -135,67 +123,77 @@ public class CartaCreditoDao {
 	public float prendiSpesa() throws SQLException 
 	{
 		float spesa=0;
-		try {
+
+		try
+		{
 			conn=ConnToDb.generalConnection();
-	          rs=conn.createStatement().executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1");
+			try(ResultSet         rs=conn.createStatement().executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1"))
+				{
+				
+			
 	          while (rs.next())
 	          {
 	        	  spesa=rs.getFloat("spesaTotale");
 	          }
 	          
+		}
 		}catch(SQLException e)
 		{
 			e.getCause();
 		}
-		finally {
-			rs.close();
-			conn.close();
-		}
 		
 		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao .{}:",spesa);
 		return spesa;
+		
 	}
 	  
 	
 	public CartaCredito  popolaDati(CartaCredito cc) throws SQLException
 	{
+		 String cod;
+
 		String codice=cc.getNumeroCC();
 		 n = null;
 		 cog = null;
 		 cod = null;
 		Date scad = null;
-		conn= ConnToDb.generalConnection();
-		try {
-		    rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta,scad from cartacredito where codiceCarta='"+codice+"'");
 
-            while(rs.next())
-            {
-            	n=rs.getString(1);
-            	 cog=rs.getString(2);
-            	 cod=rs.getString(3);
-            	 scad=rs.getDate(4);
-            	
-            	
 
-            }
-            
-            cc.setNomeUser(n);
-            cc.setCognomeUser(cog);
-            cc.setNumeroCC(cod);
-            cc.setScadenza(scad);
-		}catch(SQLException e)
+		try
 		{
-			e.getMessage();
-		}
-		finally {
-			rs.close();
-            conn.close();
-		}
+			conn=ConnToDb.generalConnection();
+			try (ResultSet 	    rs=conn.createStatement().executeQuery("select nomeP,cognomeP,codiceCarta,scad from cartacredito where codiceCarta='"+codice+"'"))
+			{
+	
+	            while(rs.next())
+	            {
+	            	n=rs.getString(1);
+	            	 cog=rs.getString(2);
+	            	 cod=rs.getString(3);
+	            	 scad=rs.getDate(4);
+	            	
+	            	
+	
+	            }
+	            
+	            cc.setNomeUser(n);
+	            cc.setCognomeUser(cog);
+	            cc.setNumeroCC(cod);
+	            cc.setScadenza(scad);
+			}
+		}catch(SQLException e)
+			{
+				e.getMessage();
+			}
+		
+			
+            
+		
 			return cc;
 
 	
-	}
-}
+	
+}}
 
            
 

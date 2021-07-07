@@ -4,15 +4,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 
 import logger.Log;
 import pagamento.Fattura;
 
 public class ContrassegnoDao {
-	private static Connection conn;
-	private static PreparedStatement stmt;
-	private static ResultSet rs;
+	private  Connection conn;
+	private  PreparedStatement stmt;
+	
 	
 
 	public void inserisciFattura(Fattura f) 
@@ -84,23 +85,33 @@ public class ContrassegnoDao {
 	
 	public float prendiSpesa() throws SQLException 
 	{
+		  ResultSet rs=null;
+		 Statement st=null;
 		float spesa=0;
 		try {
 			 conn=ConnToDb.generalConnection();
-	           rs=conn.createStatement().executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1");
+			 st=conn.createStatement();
+			 rs=st.executeQuery("select spesaTotale from pagamento  where 1+last_insert_id(id_op) order by id_op desc limit 1");
 	          while (rs.next())
 	          {
 	        	  spesa=rs.getFloat("spesaTotale");
 	          }
+	          st.close();
 		}catch(SQLException e)
 		{
 			e.getCause();
 		}
 		finally
 		{
+			if(st!=null)
+			{
+				st.close();
+			}
+			if(conn!=null)
+			{
 			
 				conn.close();
-			
+			}
 		}
 		
 		Log.logger.log(Level.INFO,"\n\n Spesa in Cdao .{0}",spesa);

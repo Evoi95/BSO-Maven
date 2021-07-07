@@ -2,7 +2,8 @@ package boundary.laptop;
 
 	import java.io.IOException;
 	import java.net.URL;
-	import java.util.ResourceBundle;
+import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import controller_app.ControllerVisualizzaGiornale;
 import controller_app.SingeltonSystemState;
@@ -112,14 +113,19 @@ import javafx.fxml.FXML;
 		public void initialize(URL location, ResourceBundle resources) {
 		int	i = cVG.getID();
 			
-			labelTitolo.setText(cVG.getData(i).getTitolo());
+			try {
+				labelTitolo.setText(cVG.getData(i).getTitolo());
+			
 			labelEditore.setText(cVG.getData(i).getEditore());
 			labelLingua.setText(cVG.getData(i).getLingua());
 			labelDate.setText(""+cVG.getData(i).getDataPubb());
 			labelDisp.setText(""+cVG.getData(i).getDisponibilita());
 			labelPrezzo.setText(cVG.getData(i).getPrezzo()+"");
 			labelCopieRimanenti.setText(cVG.getData(i).getCopieRimanenti()+"");
-			
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
 
 		}
 		

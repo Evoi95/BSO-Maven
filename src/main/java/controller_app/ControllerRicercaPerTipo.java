@@ -1,5 +1,9 @@
 package controller_app;
 
+import java.util.logging.Level;
+
+import logger.Log;
+
 public class ControllerRicercaPerTipo {
 
 	private SingeltonSystemState vis=SingeltonSystemState.getIstance();
@@ -7,7 +11,7 @@ public class ControllerRicercaPerTipo {
 	
 	public ControllerRicercaPerTipo() 
 	{
-
+		Log.logger.log(Level.INFO,"ControllerRicercaPErTipo");
 	}
 	
 	public boolean setRicercaL()

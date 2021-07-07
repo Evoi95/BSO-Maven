@@ -1,9 +1,10 @@
 package controller_app;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 import database.UsersDao;
-
+import logger.Log;
 import users.singelton.User;
 
 public class ControllerPassword {
@@ -11,7 +12,7 @@ public class ControllerPassword {
 	private boolean status;
 	public ControllerPassword()
 	{
-		
+		Log.logger.log(Level.INFO,"controllerPassword ");
 	}
 
 	public boolean aggiornaPass(String email,String vecchiaP,String nuovaP) throws SQLException

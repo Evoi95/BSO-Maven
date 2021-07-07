@@ -13,24 +13,20 @@ import negozio.Negozio;
 public class NegozioDao {
 	
 	private Negozio shop; 
-	private String nome;
-	private String via; //primary key
-	private Boolean isValid;
-	private Boolean isOpen;
-	private ObservableList<Negozio> listOfNegozi;
-	private static Statement st = null ;
-	private static String query ;
-	private static ResultSet rs;
-	private static PreparedStatement prepQ = null;
+	
+	private  Statement st = null ;
+	private  ResultSet rs=null;
     private Connection  conn;
     
 	public ObservableList<Negozio> getNegozi() throws SQLException
 	{
 		conn= ConnToDb.generalConnection();
+		 ObservableList<Negozio> listOfNegozi;
+
 	
 		listOfNegozi=FXCollections.observableArrayList();
-		 
-        rs=conn.createStatement().executeQuery("SELECT "
+		st=conn.createStatement();
+		 rs=st.executeQuery("SELECT "
         		+ "    `negozio`.`nome`,"
         		+ "    `negozio`.`via`,"
         		+ "    `negozio`.`isValid`,"

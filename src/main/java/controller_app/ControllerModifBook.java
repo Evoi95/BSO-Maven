@@ -6,7 +6,7 @@ import java.util.logging.Level;
 
 import logger.Log;
 import database.LibroDao;
-import factoryBook.Libro;
+import factorybook.Libro;
 import javafx.collections.ObservableList;
 
 public class ControllerModifBook {
@@ -26,6 +26,7 @@ public class ControllerModifBook {
 		ld=new LibroDao();
 		l=new Libro();
 	}
+	
 	
 	public void checkData(String titolo, int numPag, String codIsbn, String editore, String autore, String lingua,
 			String categoria, LocalDate data, String recensione, int disp,	float prezzo, int copieRim,int idL) throws NullPointerException, SQLException 

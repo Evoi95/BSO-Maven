@@ -3,7 +3,7 @@ package controller_app;
 import java.sql.SQLException;
 
 import database.RivistaDao;
-import factoryBook.Rivista;
+import factorybook.Rivista;
 import javafx.collections.ObservableList;
 
 public class ControllerRivistaPage {

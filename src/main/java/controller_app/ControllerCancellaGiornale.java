@@ -1,7 +1,7 @@
 package controller_app;
 
 import database.GiornaleDao;
-import factoryBook.Giornale;
+import factorybook.Giornale;
 
 public class ControllerCancellaGiornale {
 	private Giornale g;

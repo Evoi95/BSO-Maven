@@ -31,7 +31,7 @@ public class ControllerHomePageAfterLogin {
 		return false;
 		
 	}
-	public ControllerHomePageAfterLogin()
+	private ControllerHomePageAfterLogin()
 	{
 		Log.logger.log(Level.INFO,"user logged");
 

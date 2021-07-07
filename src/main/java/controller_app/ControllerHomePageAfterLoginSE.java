@@ -29,9 +29,9 @@ public class ControllerHomePageAfterLoginSE {
 		return false;
 		
 	}
-	public ControllerHomePageAfterLoginSE()
+	private ControllerHomePageAfterLoginSE()
 	{
-		
+		Log.logger.log(Level.INFO, "controllerHPAfterLoginSE");
 	}
 
 

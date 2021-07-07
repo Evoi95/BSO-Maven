@@ -11,16 +11,14 @@ import users.singelton.User;
 
 public class ControllerBsoRegister {
 	private Boolean state=false;
-	private UsersDao uD ;
 	private User u=User.getInstance();
-	private Pattern pattern;
 
 	public Boolean registra(String n, String c, String email, String pwd, String pwdC, LocalDate LocalDate) throws SQLException {
 		
 		
-		u.setEmail(email);
-		u.setPassword(pwd);
-		u.setDataDiNascita(LocalDate);
+		User.getInstance().setEmail(email);
+		User.getInstance().setPassword(pwd);
+		User.getInstance().setDataDiNascita(LocalDate);
 		
 		if(checkData ( n,c,email,pwd,pwdC) )
 		{
@@ -31,7 +29,7 @@ public class ControllerBsoRegister {
 				u.setCognome(c);
 				
 				Log.logger.log(Level.INFO,"data in controller {0}",u.getDataDiNascita());
-				state=uD.createUser(u);
+				state=UsersDao.createUser(u);
 			}
 			else if (UsersDao.checkUser(u) == 1 || UsersDao.checkUser(u) == -1)
 			{
@@ -59,10 +57,10 @@ public class ControllerBsoRegister {
 	
 	public boolean checkEmail(String email)
 	{
-		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ 
-                "[a-zA-Z0-9_+&*-]+)*@" + 
-                "(?:[a-zA-Z0-9-]+\\.)+[a-z" + 
-                "A-Z]{2,7}$"; 
+		 Pattern pattern;
+
+		String emailRegex;
+		emailRegex= "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"; 
                   
 		pattern = Pattern.compile(emailRegex); 
 		if (email == null) 
@@ -89,7 +87,7 @@ public class ControllerBsoRegister {
 	
 	public ControllerBsoRegister()
 	{
-		uD=new UsersDao();
+		Log.logger.log(Level.INFO,"ControllerBsoRegster");
 	}
 	
 	// TO DO: checkData o lo facciamo diretti in mysql

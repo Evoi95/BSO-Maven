@@ -9,10 +9,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.logging.Level;
 
-import com.itextpdf.text.log.Level;
-
-import controller_app.SingeltonSystemState;
 import users.singelton.Admin;
 import users.singelton.Editore;
 import users.singelton.Scrittore;
@@ -27,20 +25,20 @@ public class UsersDao  {
 	private static ResultSet rs;
 	private static PreparedStatement prepQ = null;
     private static Connection  conn;
-	private static User U = User.getInstance();
-	private static TempUser Ut = TempUser.getInstance();
-	private int max;
+	private static int max;
 	private static String r;
-	private boolean state=false;
+	private static boolean state=false;
+	private static String useDb="USE ISPW;";
+	
+	
 
     // use this function on controller after you had check the email
     // add an user on db after registration
     // prende i dati dall'oggetto che gli abbiamo passato 
-    public boolean createUser(User U) throws SQLException
+    public static boolean createUser(User u) throws SQLException
     {
-    	boolean state=false;
-    	LocalDate d=U.getDataDiNascita();
-    	//Log.logger.log(Level.INFO,"\nD vale : "+d);
+    	LocalDate d=u.getDataDiNascita();
+    	
     	
     	try 
 		{
@@ -48,7 +46,7 @@ public class UsersDao  {
 			{
 				conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query= "INSERT INTO `ispw`.`users`"
 			 			+ "(`Nome`,"
@@ -60,23 +58,19 @@ public class UsersDao  {
 			 			+" "
 			 			+ "(?,?,?,?,?)";
 				prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,User.getInstance().getNome()); // titolo
-				prepQ.setString(2,User.getInstance().getCognome()); //
+				prepQ.setString(1,User.getInstance().getNome()); 
+				prepQ.setString(2,User.getInstance().getCognome()); 
 				prepQ.setString(3,User.getInstance().getEmail());
 		 		prepQ.setString(4, User.getInstance().getPassword());
 		 		
-		 		////Log.logger.log(Level.INFO,"\n\n\nData \n"+User.getInstance().getDataDiNascita());
-		 		// alternativa NO se rompe tutto se passi un oggetto di tipo data java lui
-		 		// vuole un oggetto di tipo data sql 
+		 		
 				prepQ.setDate(5, java.sql.Date.valueOf(d));  
 				prepQ.executeUpdate();
-				//conn.close();
-			 	//Log.logger.log(Level.INFO,"utente Inserito con successo");
-			 	state= true; // true		 			 	
+				
+			 	state= true; 		 			 	
 			}
 			else {
-		    	System.err.print("Errore inserimento utenete");
-		    	state= false ;
+		    	Log.logger.log(java.util.logging.Level.SEVERE,"Errore in inserimento utente");
 		    	}
 		}
 		catch (SQLException e1) {
@@ -86,26 +80,22 @@ public class UsersDao  {
     	finally {
     		conn.close();
     	}
-		//conn.close();				 	
 		return state;
     	
     }
     
     //Uso questa funzione quando un admin deve creare un utente 
     //tramite il terzo caso d'uso per la gestione del sito  
-    public boolean createUser2(TempUser Ut) throws SQLException
+    public static boolean createUser2(TempUser uT) throws SQLException
     {
     	
-    	////Log.logger.log(Level.INFO,"Data in create User2:"+Ut.getDataDiNascita());
-    	LocalDate d=Ut.getDataDiNascita();
-    	boolean state=false;
+    	LocalDate d=uT.getDataDiNascita();
     	try 
 		{
-			if (ConnToDb.connection())
-			{
+			
 				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query= "INSERT INTO `ispw`.`users`"
 			 			+ "(`idRuolo`,"
@@ -117,74 +107,67 @@ public class UsersDao  {
 			 			+ "`DataDiNascita`)"
 			 			+ "VALUES (?,?,?,?,?,?,?)";
 			 	prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,Ut.getIdRuolo());
-			 	prepQ.setString(2,Ut.getNome()); // titolo
-				prepQ.setString(3,Ut.getCognome()); //
-				prepQ.setString(4,Ut.getEmail());
-		 		prepQ.setString(5, Ut.getPassword());
-		 		prepQ.setString(6, Ut.getDescrizione());
+				prepQ.setString(1,uT.getIdRuolo());
+			 	prepQ.setString(2,uT.getNome()); 
+				prepQ.setString(3,uT.getCognome()); 
+				prepQ.setString(4,uT.getEmail());
+		 		prepQ.setString(5, uT.getPassword());
+		 		prepQ.setString(6, uT.getDescrizione());
 		 		// alternativa NO se rompe tutto se passi un oggetto di tipo data java lui
 		 		// vuole un oggetto di tipo data sql 
 				prepQ.setDate(7, java.sql.Date.valueOf(d)); 
 				//prepQ.setString(7,U.getInstance())
 				prepQ.executeUpdate();
-				//conn.close();
-			 	//Log.logger.log(Level.INFO,"utente Inserito con successo");
+				
 			 	state= true; // true		 			 	
-			}
-			else {
-		    	System.err.print("Errore inserimento utenete");
-		    	state= false ;
-		    	}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
+    	finally {conn.close();}
     	// errore
-		//conn.close();				 	
+						 	
 		return state;
     	
     }
 
     //check User email if we found that we return true else we return false
     //Qui viene passato dal controller un oggetto di tipo user
-    public static int checkUser(User U) throws SQLException
+    public static    int checkUser(User u) throws SQLException
     {
     	// ritorna int per motivi legati al controller
     	// anche se lo tratto come boolean
-    	String email = U.getEmail();
+    	String email = User.getInstance().getEmail();
     	
-    	//Log.logger.log(Level.INFO,"\n\n\n\tEmail in check user :"+email);
+    	
     	int id;
 
     	try 
 		{
-			if (ConnToDb.connection())
-			{
+			
 				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query="SELECT idUser FROM ispw.users where Email = '"+email+"' ;";
 			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
 			 		id=rs.getInt(1);
-				 	//conn.close();	
 			 		
 			 		if(id>0)
-			 		{
-			 			//Log.logger.log(Level.INFO,"utente già registarto");
+			 		{			 			
+			 			Log.logger.log(Level.INFO,"utente trovato .{0}",u.getEmail());
+
 			 			return 1;
-			 	}
+			 		}		 		}
 			 	else
 			 	{
-				 	//conn.close();				 	
 			 		return 0; // false
-			 		// new account
 			 	}
 
-			}}}
+			}
 		
 		catch (SQLException e1) {
 			e1.printStackTrace();
@@ -197,57 +180,51 @@ public class UsersDao  {
     }
      
     //Questo check
-    public static int checkTempUser(TempUser Ut) throws SQLException
+    public static int checkTempUser(TempUser uT) throws SQLException
     {
     	// ritorna int per motivi legati al controller
     	// anche se lo tratto come boolean
-    	String email = TempUser.getInstance().getEmail();
+    	String email = uT.getEmail();
     	try 
 		{
-			if (ConnToDb.connection())
-			{
-				Connection conn = ConnToDb.generalConnection();
+			
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query="SELECT idUser FROM ispw.users where Email = '"+email+"' ;";
 			 	rs = st.executeQuery(query);
 			 	if(rs.next())
 			 	{
 				 	conn.close();				 	
-			 		//Log.logger.log(Level.INFO,"utente già registarto");
 			 		return 1; // true
 			 		// account al ready exists
 			 	}
 			 	else
 			 	{
 				 	conn.close();				 	
-			 		return 0; // false
+			 		return 0; 
 			 		// new account
 			 	}
 
-			}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
-    	// errore
     	return -1 ;
     }
      
-    public static String getRuolo (User U)
+    public static String getRuolo (User u)
     {
-    	//String r = null ;
 
-    	String email = U.getEmail();
-    	//Log.logger.log(Level.INFO,"Email:"+email);
+    	String email = u.getEmail();
     	try 
 		{
-			if (ConnToDb.connection())
-			{
+			
 				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query="SELECT idRuolo FROM ispw.users where Email = '"+email+"' ;";
 			 	rs = st.executeQuery(query);
@@ -255,17 +232,14 @@ public class UsersDao  {
 			 	{
 			 		r =rs.getString(1);
 			 		User.getInstance().setIdRuolo(r);
-				 	conn.close();				 	
-			 		//Log.logger.log(Level.INFO,"Ruolo utente : "+r);
-			 		//return r; // true
+			 		
 			 	}
 			 	else
 			 	{
-				 	//conn.close();				 	
 			 		return null; // Errore
 			 	}
 
-			}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
@@ -275,6 +249,7 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
+				e.getMessage();
 			 
 				
 			}
@@ -285,61 +260,63 @@ public class UsersDao  {
     }
     
     // this function check if you have changed password successfully 
-    public static boolean checkResetpass (User U, String pwd,String email )
+    public static boolean checkResetpass (User u, String pwd,String email ) throws SQLException
     {
-    	//String email = U.getEmail();
-    	//Log.logger.log(Level.INFO,"Email : "+email);
+    	
     	try 
 		{
-			if (ConnToDb.connection())
-			{
-				Connection conn = ConnToDb.generalConnection();
+			
+				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query="Update users SET pwd = '"+pwd+"' where Email = '"+email+"'";
 			 	st.executeUpdate(query);
-			 	conn.close();
+			 	Log.logger.log(Level.INFO,"update pwd ok .{0}",u.getNome());
+
 			 	return true;
 			 	
 			 	
 
-			}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
+    	finally {
+    		conn.close();
+    	}
     	// errore
     	return false ;
     }
     
     //
-    public static Object findUser(TempUser U)
+    public static Object findUser(TempUser u)
     {
-    	String r = TempUser.getInstance().getIdRuolo();
+    	 r = TempUser.getInstance().getIdRuolo();
     	if(r.contentEquals("U"))
     	{
-    		return  U;
+    		return  u;
     	}
     	else if(r.contentEquals("A"))
     	{
-    		Admin A = new Admin(U);
-    		//Log.logger.log(Level.INFO,A);
-    		return A;
+    		Admin a;
+    		a=new Admin(u);
+    		return a;
     	}
     	else if(r.contentEquals("E"))
     	{
-    		Editore E = new Editore(U);
-    		//Log.logger.log(Level.INFO,E);
-
-    		return E;
+    		
+    		Editore e;
+    		e=new Editore(u);
+    		return e;
    		
     	}
     	else if(r.contentEquals("W"))
     	{
-    		Scrittore W = new Scrittore(U);
-    		//Log.logger.log(Level.INFO,W);
-    		return W;
+    		Scrittore w;
+    		w=new Scrittore(u);
+    		return w;
     	}
 	return null;
 
@@ -349,19 +326,19 @@ public class UsersDao  {
    
     public static boolean deleteUser(User user)
     {
-    	String Email = User.getInstance().getEmail();
-    	String ruolo=User.getInstance().getIdRuolo();
+    	String email = user.getEmail();
+    	String ruolo=user.getIdRuolo();
     	try 
 		{
 			if (ConnToDb.connection()  && ruolo.equals("U"))
 			{
 	    		 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
-			 	query="DELETE FROM users WHERE "+
-				"Email = '"+ Email +"'";
+			 	query="DELETE FROM users WHERE Email = '"+ email +"'";
 			 	st.executeUpdate(query);
+			 	Log.logger.log(Level.INFO,"cancello utente user .{0}" ,user.getIdRuolo());
 			 	return true;
 			 	
 			}
@@ -369,11 +346,12 @@ public class UsersDao  {
 				{
 		    		 conn = ConnToDb.generalConnection();
 					st=conn.createStatement();
-					query="USE ispw";
+					query=useDb;
 					st.executeQuery(query);
-				 	query="DELETE FROM users WHERE "+
-					"idUser = '"+User.getInstance().getIdU() +"'";
+				 	query="DELETE FROM users WHERE idUser = '"+user.getIdU() +"'";
 				 	st.executeUpdate(query);
+				 	Log.logger.log(Level.INFO,"cancello utente admin .{0}" ,user.getIdRuolo());
+
 				 	return true;
 				 	
 				}
@@ -388,6 +366,8 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
+				e.getMessage();
+
 			 
 				
 			}
@@ -395,44 +375,44 @@ public class UsersDao  {
     	return false ;
     }
 
-    public static boolean deleteTempUser(TempUser Ut)
+    public static boolean deleteTempUser(TempUser uT) throws SQLException
     {
-    	String Email = TempUser.getInstance().getEmail();
+    	String email = uT.getEmail();
     	try 
 		{
-			if (ConnToDb.connection())
-			{
-	    		Connection conn = ConnToDb.generalConnection();
+			
+	    		 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
-			 	query="DELETE FROM users WHERE "+
-				"Email = '"+ Email +"'";
+			 	query="DELETE FROM users WHERE Email = '"+ email +"'";
 			 	st.executeUpdate(query);
-			 	conn.close();
+			 	Log.logger.log(Level.INFO,"cancello utente di tipo generico .{0}" ,uT.getIdRuolo());
 			 	return true;
 			 	
-			}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
 			}
+    	finally {
+    		conn.close();
+    	}
     	return false ;
     }
 
     // Con pickData prendo i dati dall'utente creato per il login
     // per poi restituirlo in un nuovo oggetto di tipo User
     // e poi il controller lo specializza nelle 4 classi 
-    public static User pickData(User U)
+    public static User pickData(User u)
     {
-    	String email = U.getEmail();
+    	String email = u.getEmail();
     	try 
 		{
-			if (ConnToDb.connection())
-			{
+			
 				 conn = ConnToDb.generalConnection();
 				st=conn.createStatement();
-				query="USE ispw";
+				query=useDb;
 				st.executeQuery(query);
 			 	query="SELECT `idRuolo`,"
 			 			+ "    `Nome`,"
@@ -440,27 +420,24 @@ public class UsersDao  {
 			 			+ "    `Email`,"
 			 			+ "    `descrizione`,"
 			 			+ "    `DataDiNascita` "
-			 			+ "		FROM users where Email = '"+email+"' ;";
+			 			+ "FROM users where Email = '"+email+"' ;";
 			 	rs = st.executeQuery(query);
 			 	while(rs.next())
 			 	{
 			 		// setto i vari dati 
-			 		U.setIdRuolo(rs.getString(1));
-			 		U.setNome(rs.getString(2));
-			 		U.setCognome(rs.getString(3));
-			 		U.setEmail(rs.getString(4));
-			 		U.setDescrizione(rs.getString(5));
-			 		U.setDataDiNascita(rs.getDate(6).toLocalDate());
+			 		u.setIdRuolo(rs.getString(1));
+			 		u.setNome(rs.getString(2));
+			 		u.setCognome(rs.getString(3));
+			 		u.setEmail(rs.getString(4));
+			 		u.setDescrizione(rs.getString(5));
+			 		u.setDataDiNascita(rs.getDate(6).toLocalDate());
 			 				 		
-			 	//	sono delle print messe per controllo 
-			 	//	//Log.logger.log(Level.INFO,"U: "+U+"\n Con i campi :\n Cognome "
-			 	//			+ U.getCognome() + "\n email " + U .getEmail() + "\n ");
-			 		return U ;
-			 		 // true
-			 		// account already exists
+			 		
+			 		return u ;
+			 		 
 			 	}
 			 	
-			}
+			
 		}
 		catch (SQLException e1) {
 			e1.printStackTrace();
@@ -469,27 +446,28 @@ public class UsersDao  {
     		try {
 				conn.close();
 			} catch (SQLException e) {
+				e.getMessage();
+
 			 
 				
 			}
     	}
     	// errore
-    	return U;
+    	return u;
     }
          
-    public static User aggiornaNome(User U)
+    public static User aggiornaNome(User u) throws SQLException
     {
         String email = User.getInstance().getEmail();
         
         try 
     	{
     		
-    		if (ConnToDb.connection())
-    		{
+    		
     			
     			conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
-    			query="USE ispw";
+    			query=useDb;
     			st.executeQuery(query);
     		 	query="UPDATE users set Nome=? where Email='"+email+"'";
     		 	
@@ -500,30 +478,31 @@ public class UsersDao  {
        		 	prepQ.setString(1,User.getInstance().getNome() );
        			prepQ.executeUpdate();  		 		
     		 				 		
-    		 		conn.close();	
-    		 	}
+    		 	
     		 
     	}
     	catch (SQLException e1) {
     		e1.printStackTrace();
     		}
+        finally {
+        	conn.close();
+        }
     	// errore
-    	return U;
+    	return u;
     }
     
-    public static User aggiornaCognome(User U)
+    public static User aggiornaCognome(User u)
     {
         String email = User.getInstance().getEmail();
         
         try 
     	{
     		
-    		if (ConnToDb.connection())
-    		{
+    		
     			
-    			Connection conn = ConnToDb.generalConnection();
+    			 conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
-    			query="USE ispw";
+    			query=useDb;
     			st.executeQuery(query);
     		 	query="UPDATE users set Cognome=? where Email='"+email+"'";
     		 	
@@ -535,423 +514,105 @@ public class UsersDao  {
        			prepQ.executeUpdate();  		 		
     		 				 		
     		 		conn.close();	
-    		 	}
+    		 	
     		 
-    	}
-    	catch (SQLException e1) {
+    	}  catch (SQLException e1) {
     		e1.printStackTrace();
     		}
     	// errore
-    	return U;
+    	return u;
     }
     
-    public static User aggiornaEmail(User U,String m)
+    public static User aggiornaEmail(User u,String m) throws SQLException
     {
-        String email = User.getInstance().getEmail();
+        String email = u.getEmail();
         
         try 
     	{
     		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set Email=? where Email='"+email+"'";
-    		 	
-    		 	User.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,User.getInstance().getEmail() );
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-/*
-    public static User aggiornaUtente(User U, String emailN)
-    {
-    
-    String email = User.getInstance().getEmail();
-   
-	try 
-	{
-		
-		if (ConnToDb.connection())
-		{
-			
-			Connection conn = ConnToDb.generalConnection();
-			st=conn.createStatement();
-			query="USE ispw";
-			st.executeQuery(query);
-		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where Email='"+email+"'";
-		 	
-			User.getInstance().setEmail(emailN);
-
-		 	
-			prepQ = conn.prepareStatement(query);
-
-		 			// rs = st.executeQuery(query);
-		 		// setto i vari dati 
-		 	prepQ.setString(1,User.getInstance().getIdRuolo());
-		 	prepQ.setString(2,User.getInstance().getNome() );
-		 	prepQ.setString(3, User.getInstance().getCognome());
-		 	prepQ.setString(4, User.getInstance().getEmail());
-		 	prepQ.setString(5, User.getInstance().getPassword());
-		 	prepQ.setString(6, User.getInstance().getDescrizione());
-		 	prepQ.setString(7, User.getInstance().getDataDiNascita().toString());
-
-
-
-
-			prepQ.executeUpdate();
-
-		 		
-		 				 		
-		 		conn.close();	
-		 	//	sono delle print messe per controllo 
-		 	//	//Log.logger.log(Level.INFO,"U: "+U+"\n Con i campi :\n Cognome "
-		 	//	 ;
-		 		 // true
-		 		// account already exists
-		 	}
-		 
-	}
-	catch (SQLException e1) {
-		e1.printStackTrace();
-		}
-	// errore
-	return null;
-}
-*/
-	public User aggiornaPass(User U) {
-		
-		String email = User.getInstance().getEmail();
-        
-        try 
-    	{
     		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set pwd=? where Email='"+email+"'";
-    		 	
-    		 	//U.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,User.getInstance().getPassword());
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-
-	public User aggiornaDesc(User U) {
-		String email = User.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set descrizione=? where Email='"+email+"'";
-    		 	
-    		 	//U.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,User.getInstance().getDescrizione());
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-
-	public User aggiornaData(User U) {
-		String email = User.getInstance().getEmail();
-		LocalDate data=U.getDataDiNascita();
-
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set DataDiNascita=? where Email='"+email+"'";
-    		 	
-    		 	//U.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,data.toString());
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-
-	// Per il terzo caso d'uso creo e uso sempre il temp user per appoggiarmi all'utente che modifico  e quindi 
-	
-    public static TempUser aggiornaTempNome(TempUser U)
-    {
-        String email = TempUser.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set Nome=? where Email='"+email+"'";
-    		 	
-
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,TempUser.getInstance().getNome() );
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return Ut;
-    }
-    
-    public static TempUser aggiornaCognome(TempUser U)
-    {
-        String email = TempUser.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set Cognome=? where Email='"+email+"'";
-    		 	
-
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,TempUser.getInstance().getCognome() );
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-    
-    public static TempUser aggiornaEmail(TempUser U,String m)
-    {
-        String email = TempUser.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set Email=? where Email='"+email+"'";
-    		 	
-    		 	TempUser.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,TempUser.getInstance().getEmail() );
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-    
-    public static TempUser aggiornaTempUtente(TempUser U, String emailN)
-    {
-    String email = TempUser.getInstance().getEmail();
-   
-	try 
-	{
-		
-		if (ConnToDb.connection())
-		{
-			
-			Connection conn = ConnToDb.generalConnection();
-			st=conn.createStatement();
-			query="USE ispw";
-			st.executeQuery(query);
-		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where Email='"+email+"'";
-		 	
-			TempUser.getInstance().setEmail(emailN);
-
-		 	
-			prepQ = conn.prepareStatement(query);
-
-		 			// rs = st.executeQuery(query);
-		 		// setto i vari dati 
-		 	prepQ.setString(1,TempUser.getInstance().getIdRuolo());
-		 	prepQ.setString(2,TempUser.getInstance().getNome() );
-		 	prepQ.setString(3, TempUser.getInstance().getCognome());
-		 	prepQ.setString(4, TempUser.getInstance().getEmail());
-		 	prepQ.setString(5, TempUser.getInstance().getPassword());
-		 	prepQ.setString(6, TempUser.getInstance().getDescrizione());
-		 	prepQ.setString(7, TempUser.getInstance().getDataDiNascita().toString());
-
-
-
-
-			prepQ.executeUpdate();
-
-		 		
-		 				 		
-		 		conn.close();	
-		 	//	sono delle print messe per controllo 
-		 	//	//Log.logger.log(Level.INFO,"U: "+U+"\n Con i campi :\n Cognome "
-		 	//	 ;
-		 		 // true
-		 		// account already exists
-		 	}
-		 
-	}
-	catch (SQLException e1) {
-		e1.printStackTrace();
-		}
-	// errore
-	return TempUser.getInstance();
-}
-   
-	public TempUser aggiornaTempPass(TempUser U) {
-		
-		String email = TempUser.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
-    			
-    			Connection conn = ConnToDb.generalConnection();
-    			st=conn.createStatement();
-    			query="USE ispw";
-    			st.executeQuery(query);
-    		 	query="UPDATE users set pwd=? where Email='"+email+"'";
-    		 	
-    		 	//U.getInstance().setEmail(m);
-    		 	
-    			prepQ = conn.prepareStatement(query);
-
-       		 	prepQ.setString(1,TempUser.getInstance().getPassword());
-       			prepQ.executeUpdate();  		 		
-    		 				 		
-    		 		conn.close();	
-    		 	}
-    		 
-    	}
-    	catch (SQLException e1) {
-    		e1.printStackTrace();
-    		}
-    	// errore
-    	return U;
-    }
-
-	public TempUser aggiornaTempDesc(TempUser U) {
-		String email = TempUser.getInstance().getEmail();
-        
-        try 
-    	{
-    		
-    		if (ConnToDb.connection())
-    		{
     			
     			 conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
-    			query="USE ispw";
+    			query=useDb;
     			st.executeQuery(query);
-    		 	query="UPDATE users set descrizione=? where Email='"+email+"'";
+    		 	query="UPDATE users set Email=? where Email='"+email+"'";
     		 	
-    		 	//U.getInstance().setEmail(m);
+    		 	u.setEmail(m);
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,TempUser.getInstance().getDescrizione());
+       		 	prepQ.setString(1,u.getEmail() );
        			prepQ.executeUpdate();  		 		
     		 				 		
-    		 	}
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return u;
+    }
+
+	public static  User aggiornaPass(User u) throws SQLException {
+		
+		String email = u.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set pwd=? where Email='"+email+"'";
+    		 	
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,u.getPassword());
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return u;
+    }
+
+	public static User aggiornaDesc(User u) {
+		String email = u.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set descrizione=? where Email='"+email+"'";
+    		 	
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,u.getDescrizione());
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 	
     		 
     	}
     	catch (SQLException e1) {
@@ -961,103 +622,331 @@ public class UsersDao  {
         	try {
 				conn.close();
 			} catch (SQLException e) {
-			 
-				
+				e.printStackTrace();
 			}
         }
-    	// errore
-    	return U;
+    	return u;
     }
 
-	public TempUser aggiornaTempData(TempUser U) {
-		String email = TempUser.getInstance().getEmail();
-        
+	public static User aggiornaData(User u) {
+		String email = User.getInstance().getEmail();
+		LocalDate data=u.getDataDiNascita();
+
         try 
     	{
     		
-    		if (ConnToDb.connection())
-    		{
+    		
     			
     			 conn = ConnToDb.generalConnection();
     			st=conn.createStatement();
-    			query="USE ispw";
+    			query=useDb;
     			st.executeQuery(query);
     		 	query="UPDATE users set DataDiNascita=? where Email='"+email+"'";
     		 	
-    		 	//U.getInstance().setEmail(m);
+    		 	
     		 	
     			prepQ = conn.prepareStatement(query);
 
-       		 	prepQ.setString(1,TempUser.getInstance().getDataDiNascita().toString());
+       		 	prepQ.setString(1,data.toString());
        			prepQ.executeUpdate();  		 		
     		 				 		
-    		 		conn.close();	
-    		 	}
+    		 		
+    		 	
     		 
     	}
     	catch (SQLException e1) {
     		e1.printStackTrace();
     		}
+        finally {
+        	try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+        }
+    	return u;
+    }
+
+	// Per il terzo caso d'uso creo e uso sempre il temp user per appoggiarmi all'utente che modifico  e quindi 
+	
+    public static TempUser aggiornaTempNome(TempUser uT) throws SQLException
+    {
+        String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query="USE ispw";
+    			st.executeQuery(query);
+    		 	query="UPDATE users set Nome=? where Email='"+email+"'";
+    		 	
+
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getNome() );
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return uT;
+    }
+    
+    public static TempUser aggiornaCognome(TempUser uT) throws SQLException
+    {
+        String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set Cognome=? where Email='"+email+"'";
+    		 	
+
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getCognome() );
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 			
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return uT;
+    }
+    
+    public static TempUser aggiornaEmail(TempUser uT,String m) throws SQLException
+    {
+        String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set Email=? where Email='"+email+"'";
+    		 	
+    		 	TempUser.getInstance().setEmail(m);
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getEmail() );
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return uT;
+    }
+    
+    public static TempUser aggiornaTempUtente(TempUser uT, String emailN) throws SQLException
+    {
+    String email = uT.getEmail();
+   
+	try 
+	{
+		
+		
+			
+			 conn = ConnToDb.generalConnection();
+			st=conn.createStatement();
+			query=useDb;
+			st.executeQuery(query);
+		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=? where Email='"+email+"'";
+		 	
+			uT.setEmail(emailN);
+
+		 	
+			prepQ = conn.prepareStatement(query);
+
+		 		
+		 		// setto i vari dati 
+		 	prepQ.setString(1,uT.getIdRuolo());
+		 	prepQ.setString(2,uT.getNome() );
+		 	prepQ.setString(3, uT.getCognome());
+		 	prepQ.setString(4, uT.getEmail());
+		 	prepQ.setString(5, uT.getPassword());
+		 	prepQ.setString(6, uT.getDescrizione());
+		 	prepQ.setString(7, uT.getDataDiNascita().toString());
+
+
+
+
+			prepQ.executeUpdate();
+
+		 		
+		 				 		
+		 		
+		 	
+		 
+	}
+	catch (SQLException e1) {
+		e1.printStackTrace();
+		}
+	finally {
+		conn.close();
+	}
+	// errore
+	return uT;
+}
+   
+	public static TempUser aggiornaTempPass(TempUser uT) throws SQLException {
+		
+		String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set pwd=? where Email='"+email+"'";
+    		 	
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getPassword());
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
+    	// errore
+    	return uT;
+    }
+
+	public static TempUser aggiornaTempDesc(TempUser uT) {
+		String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set descrizione=? where Email='"+email+"'";
+    		 	
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getDescrizione());
+       			prepQ.executeUpdate();  		 		
+    		 				 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	try {
+				conn.close();
+			} catch (SQLException e) {
+				e.getMessage();
+
+			 
+				
+			}
+        }
+    	// errore
+    	return uT;
+    }
+
+	public static TempUser aggiornaTempData(TempUser uT) throws SQLException {
+		String email = uT.getEmail();
+        
+        try 
+    	{
+    		
+    		
+    			
+    			 conn = ConnToDb.generalConnection();
+    			st=conn.createStatement();
+    			query=useDb;
+    			st.executeQuery(query);
+    		 	query="UPDATE users set DataDiNascita=? where Email='"+email+"'";
+    		 	
+    		 	
+    			prepQ = conn.prepareStatement(query);
+
+       		 	prepQ.setString(1,uT.getDataDiNascita().toString());
+       			prepQ.executeUpdate();  		 		
+    		 			 		
+    		 	
+    		 
+    	}
+    	catch (SQLException e1) {
+    		e1.printStackTrace();
+    		}
+        finally {
+        	conn.close();
+        }
     	// errore
     	return null;
     }
 	
-/*	
-	 public static String getRuoloTemp (User U)
-	    {
 
-	    	String email =User.getInstance().getEmail();
-	    	
-	    	//Log.logger.log(Level.INFO,"Emal dell caz :"+email);
-	    	try 
-			{
-				if (ConnToDb.connection())
-				{
-					conn = ConnToDb.generalConnection();
-					st=conn.createStatement();
-					query="USE ispw";
-					st.executeQuery(query);
-				 	query="SELECT idRuolo FROM ispw.users where Email = '"+email+"' ;";
-				 	rs = st.executeQuery(query);
-				 	if(rs.next())
-				 	{
-				 		r =rs.getString(1);
-				 		TempUser.getInstance().setIdRuolo(r);
-				 		//Log.logger.log(Level.INFO,"Ruolo utente in dao : "+r);
-				 	}
-				 	
-				}
-			}
-			catch (SQLException e1) {
-				e1.printStackTrace();
-				}
-	    	// errore
-
-	    	finally {
-	    		try {
-					conn.close();
-				} catch (SQLException e) {
-				 
-					
-				}
-	    	}
-	    	return r;
-	    	
-	    }
-*/
-	public void getListaUtenti()  {
+	public static  void getListaUtenti() throws IOException  {
 		
 		conn= ConnToDb.generalConnection();
-            ResultSet rs;
-			try {
-				
-					rs = conn.createStatement().executeQuery("SELECT * FROM users");
-				
-            FileWriter w;
-            w=new FileWriter("ReportFinale\\riepilogoUtenti.txt");
+		FileWriter w;
+        w=new FileWriter("ReportFinale\\riepilogoUtenti.txt");
 
-            BufferedWriter b;
-            b=new BufferedWriter (w);
+        BufferedWriter b;
+        b=new BufferedWriter (w);
+			try (b) {
+				
+				st=conn.createStatement();
+					rs = st.executeQuery("SELECT * FROM users");
+				
+            
 
             
            while(rs.next())
@@ -1075,31 +964,28 @@ public class UsersDao  {
        			
        			b.write(""+TempUser.getInstance().getIdU()+"\t"+TempUser.getInstance().getIdRuolo()+"\t"+TempUser.getInstance().getNome()+"\t"+TempUser.getInstance().getCognome()+
        					"\t"+TempUser.getInstance().getEmail()+"\t"+TempUser.getInstance().getDescrizione()+"\t"+TempUser.getInstance().getDataDiNascita().toString()+"\n");
-       			//b.write("\t");
+       			
 
 
 
 
        			b.flush();
-       			b.close();
 
 
         			
         		
             }
-            }catch(IOException e)
+            }catch(IOException |SQLException  e)
         		{
 					e.getMessage();
-        		} catch (SQLException e) {
-			 
-				
-			}
-            
+        		} 
            finally {
 
         	   try {
 				conn.close();
 			} catch (SQLException e) {
+				e.getMessage();
+
 			 
 				
 			}           
@@ -1108,18 +994,16 @@ public class UsersDao  {
             
 	
 	
-	public  TempUser getTempUserSingolo(TempUser uT) throws SQLException
+	public static TempUser getTempUserSingolo(TempUser uT) throws SQLException
 	{
-		int id=TempUser.getInstance().getIdU();
+		int id=uT.getIdU();
 		
-		//Log.logger.log(Level.INFO,"Id passato nel dao di tempUser :"+TempUser.getInstance().getIdU());
-		//Log.logger.log(Level.INFO,"Id passato nel dao di singletonBattona :"+SingeltonSystemState.getIstance().getId());
 		
 		
 		
 		 conn = ConnToDb.generalConnection();
 		st=conn.createStatement();
-		query="USE ispw";
+		query=useDb;
 		st.executeQuery(query);
 		query="SELECT * FROM ispw.users where idUser = "+id+" ;";
 
@@ -1131,53 +1015,47 @@ public class UsersDao  {
             while(rs.next())
             {
             	
-            	Ut.setIdRuolo(rs.getString(2));
-            	Ut.setNome(rs.getString(3));
-            	Ut.setCognome(rs.getString(4));
-            	Ut.setEmail(rs.getString(5));
-            	Ut.setPassword(rs.getString(6));
-            	Ut.setDescrizione(rs.getString(7));
-            	Ut.setDataDiNascita(rs.getDate(8).toLocalDate());
+            	uT.setIdRuolo(rs.getString(2));
+            	uT.setNome(rs.getString(3));
+            	uT.setCognome(rs.getString(4));
+            	uT.setEmail(rs.getString(5));
+            	uT.setPassword(rs.getString(6));
+            	uT.setDescrizione(rs.getString(7));
+            	uT.setDataDiNascita(rs.getDate(8).toLocalDate());
             	
-            	//Log.logger.log(Level.INFO,"Nel while del dao :"+rs.getString(2));//u.getInstance().getIdU());
 
             }
             
-		conn.close();
 		return uT;
 	}
 	
-	public static User aggiornaUtente(User U)
+	public static User aggiornaUtente(User u) throws SQLException
     {
     
-		LocalDate d=U.getDataDiNascita();
+		LocalDate d=u.getDataDiNascita();
 
 	try 
 	{
 		
-		if (ConnToDb.connection())
-		{
+		
 			
-			Connection conn = ConnToDb.generalConnection();
+			 conn = ConnToDb.generalConnection();
 			st=conn.createStatement();
-			query="USE ispw";
+			query=useDb;
 			st.executeQuery(query);
-		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where idUser="+User.getInstance().getIdU()+"";
+		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=? where idUser="+u.getIdU()+"";
 		 	
-			//U.getInstance().setEmail(emailN);
 
 		 	
 			prepQ = conn.prepareStatement(query);
 
-		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,User.getInstance().getIdRuolo());
-		 	prepQ.setString(2,User.getInstance().getNome() );
-		 	prepQ.setString(3, User.getInstance().getCognome());
-		 	prepQ.setString(4, User.getInstance().getEmail());
-		 	prepQ.setString(5, User.getInstance().getPassword());
-		 	prepQ.setString(6, User.getInstance().getDescrizione());
+		 	prepQ.setString(1,u.getIdRuolo());
+		 	prepQ.setString(2,u.getNome() );
+		 	prepQ.setString(3, u.getCognome());
+		 	prepQ.setString(4, u.getEmail());
+		 	prepQ.setString(5,u.getPassword());
+		 	prepQ.setString(6, u.getDescrizione());
 		 	prepQ.setString(7,d.toString());
 
 
@@ -1187,111 +1065,59 @@ public class UsersDao  {
 
 		 		
 		 				 		
-		 		conn.close();	
-		 	//	sono delle print messe per controllo 
-		 	//	//Log.logger.log(Level.INFO,"U: "+U+"\n Con i campi :\n Cognome "
-		 	//	 ;
-		 		 // true
-		 		// account already exists
-		 	}
+		 		
+		 	
+		 	
 		 
 	}
 	catch (SQLException e1) {
 		e1.printStackTrace();
 		}
-	// errore
-	return U;
+	finally {
+		conn.close();
+	}
+	return u;
 }
-/*
-	public boolean createTempUser(TempUser U) throws SQLException
-    {
-    	boolean state=false;
-    	try 
-		{
-			if (ConnToDb.connection())
-			{
-				 conn = ConnToDb.generalConnection();
-				st=conn.createStatement();
-				query="USE ispw";
-				st.executeQuery(query);
-			 	query= "INSERT INTO `ispw`.`users`"
-			 			+ "(`Nome`,"
-			 			+ "`Cognome`,"
-			 			+ "`Email`,"
-			 			+ "`pwd`,"
-			 			+ "`DataDiNascita`)"
-			 			+ "VALUES"
-			 			+" "
-			 			+ "(?,?,?,?,?)";
-				prepQ = ConnToDb.conn.prepareStatement(query);	
-				prepQ.setString(1,TempUser.getInstance().getNome()); // titolo
-				prepQ.setString(2,TempUser.getInstance().getCognome()); //
-				prepQ.setString(3,TempUser.getInstance().getEmail());
-		 		prepQ.setString(4, TempUser.getInstance().getPassword());
-		 		prepQ.setDate(5, java.sql.Date.valueOf(TempUser.getInstance().getDataDiNascita().toString()));  
-				prepQ.executeUpdate();
-				//Log.logger.log(Level.INFO,"utente Inserito da admin con successo");
-			 	state= true; // true		 			 	
-			}
-			else {
-		    	System.err.print("Errore inserimento utenete");
-		    	state= false ;
-		    	}
-		}
-		catch (SQLException e1) {
-			e1.printStackTrace();
-			}
-    	// errore
-		//conn.close();				 	
-		return state;
-    	
-    }
-    */
 
-	public int maxIdUSer() throws SQLException
+	public static int maxIdUSer() throws SQLException
 	{
 			 conn=ConnToDb.generalConnection();
 			 st=conn.createStatement();
 			 st.execute("select max(idUser) from ispw.users");
-	           rs=st.getResultSet();//executeQuery("");
+	           rs=st.getResultSet();
 	          if (rs.next())
 	          {
 	        	  max=rs.getInt(1);
 	          }
-		//Log.logger.log(Level.INFO,"Max in dao "+max);
 		return max;
 }
 	
-	public static TempUser aggiornaUtenteTemp(TempUser TU) throws NullPointerException
+	public static TempUser aggiornaUtenteTemp(TempUser uT) throws NullPointerException, SQLException
     {
     
 	try 
 	{
 		
-		if (ConnToDb.connection())
-		{
+		
 			
 			 conn = ConnToDb.generalConnection();
 			st=conn.createStatement();
-			query="USE ispw";
+			query=useDb;
 			st.executeQuery(query);
-		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=?"
-		 			+ "where idUser="+TempUser.getInstance().getIdU()+"";
+		 	query="UPDATE users set idRuolo=?,Nome=?,Cognome=?,Email=?,pwd=?,descrizione=?,DataDiNascita=? where idUser="+uT.getIdU()+"";
 		 	
-			//U.getInstance().setEmail(emailN);
 
 		 	
 			prepQ = conn.prepareStatement(query);
 
-		 			// rs = st.executeQuery(query);
 		 		// setto i vari dati 
-		 	prepQ.setString(1,TU.getIdRuolo());
-		 	prepQ.setString(2,TU.getNome() );
-		 	prepQ.setString(3, TU.getCognome());
-		 	prepQ.setString(4, TU.getEmail());
-		 	prepQ.setString(5, TU.getPassword());
-		 	prepQ.setString(6, TU.getDescrizione());
-		 	prepQ.setString(7, TU.getDataDiNascita().toString());
+		 	prepQ.setString(1,uT.getIdRuolo());
+		 	prepQ.setString(2,uT.getNome() );
+		 	prepQ.setString(3, uT.getCognome());
+		 	prepQ.setString(4, uT.getEmail());
+		 	prepQ.setString(5, uT.getPassword());
+		 	prepQ.setString(6, uT.getDescrizione());
+		 	prepQ.setString(7, uT.getDataDiNascita().toString());
 
 
 
@@ -1300,22 +1126,22 @@ public class UsersDao  {
 
 		 		
 		 				 		
-		 		conn.close();	
-		 	//	sono delle print messe per controllo 
-		 	//	//Log.logger.log(Level.INFO,"U: "+U+"\n Con i campi :\n Cognome "
-		 	//	 ;
-		 		 // true
-		 		// account already exists
-		 	}
+		 	
 		 
 	}
 	catch (SQLException e1) {
 		e1.printStackTrace();
 		}
+	finally {
+		conn.close();
+	}
 	// errore
-	return TU;
+	return uT;
 }
 
-
+private UsersDao()
+{
+	
+}
 
 }

@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import controller_app.ControllerCompravenditaGiornali;
 import controller_app.ControllerVisualizzaGiornale;
 import controller_app.SingeltonSystemState;
-import factoryBook.Raccolta;
+import factorybook.Raccolta;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -68,7 +68,7 @@ public class BoundaryCompravenditaGiornali implements Initializable {
 	protected Alert alert;
 	
 	@FXML
-	private void vediListaGiornali()  {
+	private void vediListaGiornali() throws SQLException  {
 
 		table.setItems(cCG.getGiornali());
 

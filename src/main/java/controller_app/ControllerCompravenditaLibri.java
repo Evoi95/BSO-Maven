@@ -3,8 +3,8 @@ package controller_app;
 import java.sql.SQLException;
 
 import database.LibroDao;
-import factoryBook.Libro;
-import factoryBook.Raccolta;
+import factorybook.Libro;
+import factorybook.Raccolta;
 import javafx.collections.ObservableList;
 import users.singelton.User;
 
@@ -12,12 +12,13 @@ public class ControllerCompravenditaLibri {
 	private LibroDao lD;
 	private Libro l;
 	private static User u=User.getInstance();
-	private int id;
 
 
 
 	public boolean disponibilitaLibro(String i ) throws SQLException {
 	
+		 int id;
+
 		 id = Integer.parseInt(i);
 		
 		return lD.checkDisp(l,id);

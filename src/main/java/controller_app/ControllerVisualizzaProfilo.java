@@ -1,10 +1,12 @@
 package controller_app;
 
+import java.util.logging.Level;
+
 import database.UsersDao;
+import logger.Log;
 import users.singelton.User;
 
 public class ControllerVisualizzaProfilo {
-	//private UsersDao uD;
 	private boolean status=false;
 
 	public User getCredenziali() {
@@ -15,7 +17,7 @@ public class ControllerVisualizzaProfilo {
 	
 	public ControllerVisualizzaProfilo()
 	{
-		//uD=new UsersDao();
+		Log.logger.log(Level.INFO,"ControllerVisualizzaProfilo");
 	}
 
 	public boolean cancellaUtente() {

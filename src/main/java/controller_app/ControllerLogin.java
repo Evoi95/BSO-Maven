@@ -9,7 +9,7 @@ import logger.Log;
 
 public class ControllerLogin {
 	
-	private static User user = User.getInstance();
+	private  User user = User.getInstance();
 	protected boolean esito;
 
 	

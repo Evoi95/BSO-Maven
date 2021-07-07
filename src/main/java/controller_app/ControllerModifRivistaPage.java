@@ -4,8 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.RivistaDao;
-
-import factoryBook.Rivista;
+import factorybook.Rivista;
 import javafx.collections.ObservableList;
 
 public class ControllerModifRivistaPage {

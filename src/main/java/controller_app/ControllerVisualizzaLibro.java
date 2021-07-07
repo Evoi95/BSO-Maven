@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 import database.LibroDao;
-import factoryBook.Libro;
+import factorybook.Libro;
 import logger.Log;
 
 public class ControllerVisualizzaLibro {

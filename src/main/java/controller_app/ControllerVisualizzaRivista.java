@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 import database.RivistaDao;
-import factoryBook.Rivista;
+import factorybook.Rivista;
 import logger.Log;
 
 public class ControllerVisualizzaRivista {

@@ -62,7 +62,7 @@ public class BoundaryAddGiornalePage implements Initializable  {
 	protected Scene scene;
 	
 	@FXML
-	private void conferma() throws SQLException
+	private void conferma() 
 	{
 		String t=titoloT.getText();
 		String tipo=tipologiaT.getText();

@@ -83,7 +83,7 @@ public class BoundaryPagamentoCash implements Initializable{
 
 			} else {
 
-				cPC.controlla(n, c, v, com,0);
+				cPC.controlla(n, c, v, com);
 				alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("  Riepilogo pagamento  ");
 				alert.setHeaderText("Esito pagamento contanti:");

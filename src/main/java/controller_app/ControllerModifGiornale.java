@@ -1,16 +1,17 @@
 package controller_app;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import database.GiornaleDao;
-import factoryBook.Giornale;
+import factorybook.Giornale;
 import javafx.collections.ObservableList;
 
 public class ControllerModifGiornale {
 	private GiornaleDao gd;
 	private Giornale g;
 	
-	public ObservableList<Giornale> getGiornaliById(int id)  {
+	public ObservableList<Giornale> getGiornaliById(int id) throws SQLException  {
 		g.setId(id);
 		return gd.getGiornaliSingoloById(g);
 	}

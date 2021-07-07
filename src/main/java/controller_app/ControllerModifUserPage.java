@@ -9,15 +9,13 @@ import users.singelton.TempUser;
 import logger.Log;
 
 public class ControllerModifUserPage {
-	private UsersDao uD;
 	private static TempUser uT=TempUser.getInstance();
 	
 	
 	
 	public ControllerModifUserPage()
 	{
-		uD=new UsersDao();
-		
+		Log.logger.log(Level.INFO,"ControllerModifUserPage");
 	}
 
 
@@ -27,19 +25,19 @@ public class ControllerModifUserPage {
 		
 		uT.setIdU(id);
 		
-		return uD.getTempUserSingolo(uT);
+		return UsersDao.getTempUserSingolo(uT);
 		
 		
 	}
 	
 	public int  prendiIdMax() throws SQLException
 	{
-		return uD.maxIdUSer();
+		return UsersDao.maxIdUSer();
 	}
 
 
 
-	public void aggiornaUtenteByAdmin(String n, String c, String e, String p, String d, LocalDate data, String r) throws NullPointerException {
+	public void aggiornaUtenteByAdmin(String n, String c, String e, String p, String d, LocalDate data, String r) throws NullPointerException, SQLException {
 		
 		uT.setNome(n);
 		uT.setCognome(c);

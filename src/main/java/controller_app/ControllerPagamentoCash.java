@@ -11,20 +11,21 @@ public class ControllerPagamentoCash {
 	private Fattura f;
 	private PagamentoDao pagD;
 
-	public void controlla(String nome, String cognome, String via, String com,float ammontare) throws SQLException {
+	public void controlla(String nome, String cognome, String via, String com) throws SQLException {
 		try {
 			pD.daiPrivilegi();
 			pagD.daiPrivilegi();
-			ammontare=pD.prendiSpesa();
+			float spesa=pD.prendiSpesa();
 
 			f.setNome(nome);
 			f.setCognome(cognome);
 			f.setVia(via);
 			f.setCom(com);
-			f.setAmmontare(ammontare);
+			f.setAmmontare(spesa);
 			pD.inserisciFattura(f);
 			
-			Pagamento p=new Pagamento(0, "cash", 0, f.getNome(), f.getAmmontare(), null, 0);
+			Pagamento p;
+			p=new Pagamento(0, "cash", 0, f.getNome(), f.getAmmontare(), null, 0);
 			pagD.aggiornaPagamentoCash(p);
 			
 			

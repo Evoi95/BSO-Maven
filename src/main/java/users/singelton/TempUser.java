@@ -1,16 +1,19 @@
 package users.singelton;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-import javafx.collections.ObservableList;
 
 
 // Uso temp user per non compromettere lo stato dell'utente loggato 
 public class TempUser {
 
 
-	private String idRuolo,nome,cognome,email,password,descrizione;
+	private String idRuolo;
+	private String nome;
+	private String cognome;
+	private String email;
+	private String password;
+	private String descrizione;
 	private LocalDate dataDiNascita;
 	private int idU;
 	// array di codici isbn presi dai libri 

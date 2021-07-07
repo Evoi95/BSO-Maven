@@ -1,7 +1,7 @@
 package controller_app;
 
 import database.RivistaDao;
-import factoryBook.Rivista;
+import factorybook.Rivista;
 
 public class ControllerCancellaRivista {
 	private Rivista r;

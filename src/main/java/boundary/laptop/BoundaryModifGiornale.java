@@ -2,6 +2,7 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -136,7 +137,9 @@ public class BoundaryModifGiornale implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		cMG=new ControllerModifGiornale();
-		labelT.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getTitolo());
+		try {
+			labelT.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getTitolo());
+		
 		labelTipo.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getTipologia());
 		labelE.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getEditore());
 		labelLingua.setText(cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getLingua());
@@ -145,7 +148,9 @@ public class BoundaryModifGiornale implements Initializable {
 		labelP.setText(""+cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getPrezzo());
 		labelCopie.setText(""+cMG.getGiornaliById(SingeltonSystemState.getIstance().getId()).get(0).getCopieRimanenti());
 
-
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	

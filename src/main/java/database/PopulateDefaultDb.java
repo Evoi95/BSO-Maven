@@ -3,9 +3,9 @@ package database;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.Reader;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.util.logging.Level;
 
 import org.apache.ibatis.jdbc.RuntimeSqlException;
@@ -15,20 +15,17 @@ import logger.Log;
 public class PopulateDefaultDb {
 
 	
-	private static String qInsert ;
-	private static PreparedStatement prepQ = null;
     private static Connection conn;
-	
-	public static boolean populateDefaultDb() throws FileNotFoundException
+    private static ScriptRunner sr;
+	private static boolean state=false;
+
+ static boolean populateDefaultDb() throws FileNotFoundException
 	{
 		if(	createLibri() && createGiornale() && createRivista() && createUser() && createNegozio())
 		{
-			return true;
+			 state=true;
 		}
-		else
-		{
-			return false;
-		}
+		return state;
 	}
 	
 	private static boolean createLibri() 
@@ -38,12 +35,11 @@ public class PopulateDefaultDb {
 		{
 			
 			conn=ConnToDb.generalConnection();
-			 ScriptRunner sr = new ScriptRunner(conn);
+			  sr = new ScriptRunner(conn);
 			 
-			 //&& preso come terminatore-> eseguito;	
 			 sr.setSendFullScript(true);
-		      //Creating a reader object
-		      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsLibri.sql"));
+
+			 Reader reader = new BufferedReader(new FileReader("FileSql/storedInsLibri.sql"));
 		      //Running the script
 		      sr.runScript(reader);
 			
@@ -53,9 +49,7 @@ public class PopulateDefaultDb {
 	
 		catch(FileNotFoundException | RuntimeSqlException e1) 
 		{
-			e1.printStackTrace();
-			System.err.println("ERRORE DI SQL ");
-		
+			Log.logger.log(Level.SEVERE, "Errore in mysql", e1);
 		}
 		
 		return false;
@@ -67,17 +61,19 @@ public class PopulateDefaultDb {
 
 		try {
 			conn=ConnToDb.generalConnection();
-			 ScriptRunner sr = new ScriptRunner(conn);
+			  sr = new ScriptRunner(conn);
 			 
-			 //&& preso come terminatore-> eseguito;	
+			 	
 			 sr.setSendFullScript(true);
-		      //Creating a reader object
-		      Reader reader = new BufferedReader(new FileReader("FileSql/stroredInsGiornali.sql"));
+
+			 Reader reader = new BufferedReader(new FileReader("FileSql/stroredInsGiornali.sql"));
 		      //Running the script
 		      sr.runScript(reader);
 		      return true;
 		} 
 		catch (RuntimeSqlException e) {
+			e.getMessage();
+
 		 
 			
 		}
@@ -94,12 +90,12 @@ public class PopulateDefaultDb {
 	{
 		
 		conn=ConnToDb.generalConnection();
-		 ScriptRunner sr = new ScriptRunner(conn);
+		  sr = new ScriptRunner(conn);
 		 
-		 //&& preso come terminatore-> eseguito;	
+		 	
 		 sr.setSendFullScript(true);
-	      //Creating a reader object
-	      Reader reader = new BufferedReader(new FileReader("FileSql/storedInsRiviste.sql"));
+
+		 Reader reader = new BufferedReader(new FileReader("FileSql/storedInsRiviste.sql"));
 	      //Running the script
 	      sr.runScript(reader);
 		
@@ -109,8 +105,7 @@ public class PopulateDefaultDb {
 
 	catch(FileNotFoundException | RuntimeSqlException e1) 
 	{
-		e1.printStackTrace();
-		System.err.println("ERRORE DI SQL ");
+		Log.logger.log(Level.SEVERE, "errore mysql", e1);
 	
 	}
 	
@@ -123,26 +118,25 @@ public class PopulateDefaultDb {
 
 			try {
 				conn=ConnToDb.generalConnection();
-				 ScriptRunner sr = new ScriptRunner(conn);
+				  sr = new ScriptRunner(conn);
 				 
-				 //&& preso come terminatore-> eseguito;	
+				 	
 				 sr.setSendFullScript(true);
-			      //Creating a reader object
-			      Reader reader;
-				try {
+
+				 Reader reader;
+				
 					reader = new BufferedReader(new FileReader("FileSql/storedInsUtenti.sql"));
 					sr.runScript(reader);
 
-				} catch (FileNotFoundException e) {
-				 
-					
-				}
-			      //Running the script
 				
 
+				 
+					
+				
 			return true;
-			} 
-			catch (RuntimeSqlException e) {
+			 
+			}catch (RuntimeSqlException |IOException e) {
+				e.getMessage();
 			 
 				
 			}
@@ -161,26 +155,23 @@ public class PopulateDefaultDb {
 
 			try {
 				conn=ConnToDb.generalConnection();
-				 ScriptRunner sr = new ScriptRunner(conn);
+				sr = new ScriptRunner(conn);
 				 
-				 //&& preso come terminatore-> eseguito;	
 				 sr.setSendFullScript(true);
-			      //Creating a reader object
+				 
 			      Reader reader;
-				try {
+				
 					reader = new BufferedReader(new FileReader("FileSql/storedInsNegozio.sql"));
 					sr.runScript(reader);
 
-				} catch (FileNotFoundException e) {
-				 
-					
-				}
+				
 			      //Running the script
 				
 
 			return true;
 			} 
-			catch (RuntimeSqlException e) {
+			catch (RuntimeSqlException | FileNotFoundException e) {
+				e.getMessage();
 			 
 				
 			}
@@ -190,6 +181,10 @@ public class PopulateDefaultDb {
 		
 				return false;
 
+		
+	}
+	private PopulateDefaultDb()
+	{
 		
 	}
 }

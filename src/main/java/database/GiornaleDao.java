@@ -4,67 +4,67 @@ package database;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
 
-import com.itextpdf.text.log.Level;
-import com.itextpdf.text.log.Logger;
-
+import factorybook.Factory;
+import factorybook.Giornale;
+import factorybook.Raccolta;
 import logger.Log;
-import factoryBook.Factory;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import factoryBook.Giornale;
-import factoryBook.Raccolta;
-import factoryBook.Rivista;
 
 public class GiornaleDao {
 	private Factory f;
 	private String name;
-	private static Statement stmt = null ;
-	private static String query ;
-	private static PreparedStatement prepQ = null; 
-	private static Connection conn ;
-	private static int q ; 
-	private static ResultSet rs;
-	private String categoria;
+	private  Statement stmt = null ;
+	private  Connection conn=null;
+	private  ResultSet rs=null;
 	
-	
-	
-	
- 	public void getDesc(factoryBook.Giornale g) 
-	{	  
- 		 String titolo;
- 		 String tipologia;
- 		 String lingua;
- 		 String editore;
- 		 Date data;
- 		 int copieR;
- 		 int disp;
- 		 int rowAffected=0;
-		 conn = ConnToDb.generalConnection();
 
-		 try {
+	private  String query ="USE ISPW;" ;
+	private  PreparedStatement prepQ = null; 
+	private  int q ; 
+	private String categoria;
+	private int disp=0;
+	private int id=0;
+	
+	 private boolean state=false;
+	 private String gior="giornale";
+	 
+
+	 
+	
+	
+	
+	
+ 	public void getDesc(factorybook.Giornale g) throws SQLException 
+	{	  
+
+ 		
+
+
+		 try 
+		 {
+					 conn = ConnToDb.generalConnection();
+					 rs = stmt.executeQuery("select * from giornale where titolo ='"+g.getTitolo()+"'");
+			 
 	             stmt = conn.createStatement();
 	 
-	            rs = stmt.executeQuery("select * from giornale where titolo ='"+g.getTitolo()+"'");
 	            while ( rs.next() ) {
-	                 titolo = rs.getString("titolo");
-	                 tipologia=rs.getString("tipologia");
-	                 lingua=rs.getString("lingua");	       
-	                 editore=rs.getString("editore");
-	                 data=rs.getDate("dataPubblicazione");	
-	                 copieR=rs.getInt("copiRim");	
-	                 disp=rs.getInt("disp");
+	                 rs.getString("titolo");
+	               rs.getString("tipologia");
+	               rs.getString("lingua");	       
+	                rs.getString("editore");
+	               rs.getDate("dataPubblicazione");	
+	                  rs.getInt("copiRim");	
+	                 rs.getInt("disp");
 
-	                float prezzo=rs.getFloat("prezzo");
+	                 rs.getFloat("prezzo");
 	                
 	    	        
 	            }
@@ -73,58 +73,62 @@ public class GiornaleDao {
 	        	e.getMessage();
 	        }
 		 finally {
-			 try {
-				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
+			 if(conn!=null)
+			 {
 			 
-				
+				conn.close();
+			 }
 			}
+			 
+		 
+		 
 		 }
-	    }
+	    
 	
-	public float getCosto(Giornale g) 
-	{		  conn = ConnToDb.generalConnection();	
-	float prezzo=(float) 0.0;
-
-
-		try {
-          stmt = conn.createStatement();
-         
-
-         rs = stmt.executeQuery("select * from giornale where titolo  ='"+g.getTitolo()+"'");
-         while ( rs.next() ) {
-              prezzo=rs.getFloat("prezzo");
-
-         }
-		}catch(SQLException e)
+	public float getCosto(Giornale g)  
+	{		
+		float prezzo = 0;
+		
+		
+		
+		try
 		{
-			e.getCause();
-		}
-		finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-			 
-				
+			conn = ConnToDb.generalConnection();
+
+				rs = stmt.executeQuery("select * from giornale where titolo  ='"+g.getTitolo()+"'");
+	          stmt = conn.createStatement();
+	         
+	
+	         while ( rs.next() ) {
+	               prezzo=rs.getFloat("prezzo");
+	
+	         }
+			}catch(SQLException e)
+			{
+				e.getCause();
 			}
-		}
+		finally {try {
+			conn.close();
+		} catch (SQLException |NullPointerException e) {
+			e.printStackTrace();
+		}}
+		
+		
+	
 		return prezzo;
 		
 	}
 	
-	public void aggiornaDisponibilita(Giornale g) 
+	public  void aggiornaDisponibilita(Giornale g) 
 	{
-		Connection conn=null;
-		PreparedStatement stmt=null;
+		
 		int d=g.getDisponibilita();
 		
 
 		 try {
 			  conn = ConnToDb.generalConnection();
-		      stmt = conn.prepareStatement("update giornale set copiRim=copiRim-'"+d+"' where titolo='"+g.getTitolo()+"'");
-			  stmt.executeUpdate();
+		      prepQ = conn.prepareStatement("update giornale set copiRim=copiRim-'"+d+"' where titolo='"+g.getTitolo()+"'");
+			  prepQ.executeUpdate();
 
 	            
 	         }catch(SQLException e)
@@ -133,25 +137,15 @@ public class GiornaleDao {
 	        	e.getMessage();
 
 	         }	
-		 finally {
-			 try {
-				conn.close();
-			} catch (SQLException |NullPointerException e) {
-				e.getMessage();
-
-			 
-				
-			}
-			 
-		 }
+		
 
 
 		}
 
-	public void daiPrivilegi() 
+	public   void daiPrivilegi() 
 	{
 		
-
+		
 		 try {
 			  conn = ConnToDb.generalConnection();
 			  prepQ = conn.prepareStatement(" SET SQL_SAFE_UPDATES=0");
@@ -163,54 +157,51 @@ public class GiornaleDao {
 	        	e.getMessage();
 
 	         }	
-		 finally {
-			
-			 try {
-				conn.close();
-			} catch (SQLException | NullPointerException e) {
-				e.getMessage();
-			 
-				
-			}
-			 
-		 }
+		 
 
 
 }
 	
-	public ObservableList<Raccolta> getGiornali()  {
+	public  ObservableList<Raccolta> getGiornali() throws SQLException   {
 		
 		
-		 conn= ConnToDb.generalConnection();
+
 
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
-		 
-		try {
-			rs = conn.createStatement().executeQuery("SELECT * FROM ispw.giornale");
 		
-        while(rs.next())
-        {
-           
-
-    		
-				catalogo.add(f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
-    		
-
-        }
-		} catch (SQLException e1) {
-		 
-			e1.printStackTrace();
+		
+		try {
+			 conn= ConnToDb.generalConnection();
+			
+				stmt=conn.createStatement();
+				rs=stmt.executeQuery("SELECT * FROM ispw.giornale");
+		
+		        while(rs.next())        
+		           
+		        {
+		        	catalogo.add(f.createGiornale(gior,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+		        }
+		    		
+		        stmt.close();
+		
+		        
+		
+		
+			
+		}catch(SQLException e)
+		{
+			e.getMessage();
 		}
 		finally {
-    	
-
-        try {
+			if(conn!=null)
+			{
 			conn.close();
-		} catch (SQLException e) {
-		 
-			e.getMessage();
-
-		}
+			}
+			if(rs!=null)
+			{
+				rs.close();
+			}
+		
 		}
 	
 	
@@ -218,38 +209,48 @@ public class GiornaleDao {
 		}
 	
 		
-	public Giornale getGiornale(Giornale g,int id) 
+	public  Giornale getGiornale(Giornale g,int id) throws SQLException  
 	{
 
-		conn= ConnToDb.generalConnection();
-		try {
-			rs = conn.createStatement().executeQuery("SELECT * FROM giornale where id = "+id+" ");
-		if (rs.next())
-        {
-        	g = (Giornale) f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(), rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)) ;
-        	 
-        }
-        else {
-
-        }
-		} catch (SQLException e) {
-			e.getMessage();
-
-		 
+		
+		
+		try  {
+			conn=ConnToDb.generalConnection();
 			
-		}
-		finally {
-			try {
-				conn.close();	
-
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
+				stmt=conn.createStatement();
+				rs=stmt.executeQuery("SELECT * FROM giornale where id = "+id+" ");
+			
+				if (rs.next())
+		        {
+		        	g = (Giornale) f.createGiornale(gior, rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(), rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)) ;
+		        	 
+		        }
+		        else {
+		        	Log.logger.log(Level.SEVERE,"errore nel recupero gironale");
+		
+		        }
+				stmt.close();
 				
-			}		
-
-		}
+		
+		
+		}catch(SQLException e)
+			{
+			e.getMessage();
+			}
+			finally {
+				
+				if(conn!=null)
+				{
+				conn.close();
+				}
+				if(rs!=null)
+				{
+					rs.close();
+				}
+			
+				
+			}
+		
 		return g;
         
 	}
@@ -259,24 +260,28 @@ public class GiornaleDao {
 		f=new Factory();
 	}
 		
-	public int retId(Giornale g) throws SQLException {
-			int id = 0;
-			String titolo=g.getTitolo();
-			  conn = ConnToDb.generalConnection();
-			 try {
-	          stmt = conn.createStatement();
+	public  int retId(Giornale g)  {
+			String titoloG=g.getTitolo();
+			
+			
 
-	         rs = stmt.executeQuery("select id from giornale where titolo ='"+titolo+"'");
+			 try {
+				conn = ConnToDb.generalConnection();
+				stmt = conn.createStatement();
+	          rs = stmt.executeQuery("select id from giornale where titolo ='"+titoloG+"'");
+
 	         while ( rs.next() ) {
 	              id=rs.getInt("id");
 
 	         }
-			 }catch(SQLException e)
-			 {
-				 e.getCause();
-			 }finally {
-				 conn.close();
+			 }catch(SQLException e) {
+				 e.getMessage();
 			 }
+			 finally {try {
+				conn.close();
+			} catch (SQLException |NullPointerException  e) {
+				e.printStackTrace();
+			}}
 			 
 			return id;
 
@@ -284,16 +289,18 @@ public class GiornaleDao {
 			
 		}
 
-	public String retTip(Giornale g)  {
-		String titolo;
+	public  String retTip(Giornale g)  {
+		String titoloG;
 			
-			 titolo=g.getTitolo();
-			  conn = ConnToDb.generalConnection();
-			 try {
-	          stmt = conn.createStatement();
-	        
+			 titoloG=g.getTitolo();
+			 
 
-	         rs = stmt.executeQuery("select tipologia from ispw.giornale where titolo ='"+titolo+"'");
+			 try  {
+				  conn = ConnToDb.generalConnection();
+				  stmt = conn.createStatement();
+	          
+	        	  rs=stmt.executeQuery("select tipologia from ispw.giornale where titolo ='"+titoloG+"'");
+
 	         while ( rs.next() ) {
 	              categoria=rs.getString("tipologia");
 
@@ -301,67 +308,73 @@ public class GiornaleDao {
 			 }catch(SQLException e)
 			 {
 				 e.getCause();
-			 }finally {
-					try {
-						conn.close();
-					} catch (SQLException e) {
-						e.getMessage();
-
-					 
-						
-					}
+			 }
+			 finally {
+				 try {
+					conn.close();
+				} catch (SQLException  | NullPointerException e) {
+					e.printStackTrace();
 				}
+			 }
 				
 			return categoria;
 
 			
 		}
 			
-	public String getNome(Giornale g) 
+	public  String getNome(Giornale g) throws SQLException  
 	{
 	
-		conn= ConnToDb.generalConnection();
-		try {
-			rs = conn.createStatement().executeQuery("SELECT titolo FROM giornale where id = "+g.getId()+" ");
-		if (rs.next())
-        {
-        	name = rs.getString(1);
-        }
-        else {
-        	
-            name=null;
+		
+		
+		try {		
+			conn= ConnToDb.generalConnection();
 
-        }	
+			stmt=conn.createStatement();
+			rs=stmt.executeQuery("SELECT titolo FROM giornale where id = "+g.getId()+" ");
+			if (rs.next())
+	        {
+	        	name = rs.getString(1);
+	        }
+	        else {
+	        	
+	            name=null;
+	
+	        }	
+			stmt.close();
 		} catch (SQLException e) {
 			e.getMessage();
 
 		 
 			
 		}
-        finally {
-        	try {
-				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
-				
+		finally {
+			if(conn!=null)
+			{
+			conn.close();
 			}
-        }
+			if(rs!=null)
+			{
+				rs.close();
+			}
+		
+		}
+        
 		return name;
    }
 
-	public int getDisp(Giornale g) 
+	public  int getDisp(Giornale g) 
 	{
-		int disp;
+		
+		
 		try {
 			if (ConnToDb.connection())
 			{
 				conn = ConnToDb.generalConnection();
 				stmt=conn.createStatement();
-		        Statement stmt = conn.createStatement();
-				query="USE ispw";
 				stmt.executeQuery(query);
+		         stmt = conn.createStatement();
+
 				rs=  stmt.executeQuery(
 						"SELECT `giornale`.`disp` FROM `ispw`.`giornale` where `id` = `"+g.getId()+"` ;");
 				disp = rs.getInt(1);
@@ -379,24 +392,23 @@ public class GiornaleDao {
 		finally {
 			try {
 				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
-				
+			} catch (SQLException |NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
+		
 		return -1;
 	}
 
-	public int getQuantita(Giornale g) 
+	public  int getQuantita(Giornale g)  
 	{
+		
+		
 		try {
 			if (ConnToDb.connection())
 			{
 				conn = ConnToDb.generalConnection();
 				stmt=conn.createStatement();
-				query="USE ispw";
 				stmt.executeQuery(query);
 		         stmt = conn.createStatement();
 
@@ -413,40 +425,39 @@ public class GiornaleDao {
 			
 		}
 		finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
-				
-			}
+			
+				try {
+					conn.close();
+				} catch (SQLException |NullPointerException e) {
+					e.printStackTrace();
+				}
+			
 		}
+		
 
 		return q;
 	}
 
-	public boolean checkDisp(Giornale g,int id) 
+	public  boolean checkDisp(Giornale g,int id)  
 	{
-      
-        boolean state=false;
+		
+		
 		try {
-			if (ConnToDb.connection())
-			{
+			
 				conn = ConnToDb.generalConnection();
 				stmt=conn.createStatement();
-				query="USE ispw";
 				stmt.executeQuery(query);
 		         stmt = conn.createStatement();
 
 				rs=  stmt.executeQuery("SELECT disp FROM giornale where id = '"+id+"' ;");
 				if(rs.next())
 					{
-					int disp = rs.getInt(1);
+					 disp = rs.getInt(1);
 					if (disp >= 1)
 						state= true;
+		            Log.logger.log(Level.INFO, "id .{0} ", g.getTitolo());
 					}
-			}
+			
 		} catch (SQLException e) {
 			e.getMessage();
 
@@ -456,49 +467,56 @@ public class GiornaleDao {
 		finally {
 			try {
 				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
-				
+			} catch (SQLException | NullPointerException e) {
+				e.printStackTrace();
 			}
 		}
+		
 		return state;
 	}
 
-	public ObservableList<Giornale> getLibriSingolo()  {
+	public  ObservableList<Giornale> getLibriSingolo() throws SQLException  {
 		
-		Connection c= ConnToDb.generalConnection();
 		ObservableList<Giornale> catalogo=FXCollections.observableArrayList();
+		
+		
 		 
 			try {
-				rs = c.createStatement().executeQuery("SELECT * FROM giornale");
+				conn=ConnToDb.generalConnection();
+				stmt= conn.createStatement();
+				rs=stmt.executeQuery("SELECT * FROM giornale");
 			
-            while(rs.next())
-            {
-
-        		
-        			catalogo.add((Giornale)f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+	            while(rs.next())
+	            {
+	
+	        		
+	        			catalogo.add((Giornale)f.createGiornale(gior,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+						
+						
+					 
+						
 					
-					
-				 
-					
-				
-
-            }
+	
+	            }
+	            stmt.close();
 			} catch (SQLException e1) {
 			 
 				e1.printStackTrace();
 			}
 			finally {
-				try {
-					c.close();
-				} catch (SQLException e) {
-					e.getMessage();
-
-					
+				if(conn!=null)
+				{
+				conn.close();
 				}
+				if(rs!=null)
+				{
+					rs.close();
+				}
+			
 			}
+			
+			
+	
 
 		
             return catalogo;
@@ -508,15 +526,13 @@ public class GiornaleDao {
 	}
 
 
-	public boolean creaGiornale(Giornale g) throws SQLException {
+	public  boolean creaGiornale(Giornale g)  {
 		
 
-
-			boolean state=false;
+		
 	    	try 
 			{
-	    		if (ConnToDb.connection())
-				{
+	    		
 					conn = ConnToDb.generalConnection();
 					query= "INSERT INTO `ispw`.`giornale`"
 				 			+ "(`titolo`,"
@@ -544,17 +560,17 @@ public class GiornaleDao {
 					
 				 	state= true; // true		 			 	
 				}
-				else {
-			    	Log.logger.log(java.util.logging.Level.SEVERE,"errore inserimento utente");
-			    	state= false ;
-			    	}
-			}
 			catch (SQLException e1) {
 				e1.printStackTrace();
+		    	Log.logger.log(java.util.logging.Level.SEVERE,"errore inserimento utente");
+
 				}
-	    	finally {
-	    		conn.close();
-	    	}
+	    	finally {try {
+				conn.close();
+			} catch (SQLException |NullPointerException  e) {
+				e.printStackTrace();
+			}}
+	    	
 
 	    					 	
 			return state;
@@ -563,69 +579,70 @@ public class GiornaleDao {
 		}
 		
 
-	public void cancella(Giornale g) {
+	public  void cancella(Giornale g)  {
+		
 
 		try {
-			if (ConnToDb.connection())
-			{
+			
 				conn = ConnToDb.generalConnection();
 				stmt=conn.createStatement();
 		        
-				query="USE ispw";
 				stmt.executeQuery(query);
 				
 				 prepQ=conn.prepareStatement("delete  FROM ispw.giornale where id = "+g.getId()+" ;");
 				prepQ.executeUpdate();
-				}
-		} catch (SQLException e) {
+				
+		} catch (SQLException | NullPointerException  e) {
 			e.getMessage();
 
 		 
 			
 		}
-		finally {
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				e.getMessage();
-
-			 
-				
-			}
-		}
+		finally {try {
+			conn.close();
+		} catch (SQLException |NullPointerException e) {
+			e.printStackTrace();
+		}}
+		
 		
 		
 	}
 
-	public ObservableList<Giornale> getGiornaliSingoloById(Giornale g)  {
-		conn= ConnToDb.generalConnection();
+	public ObservableList<Giornale> getGiornaliSingoloById(Giornale g) throws SQLException   {
 		ObservableList<Giornale> catalogo=FXCollections.observableArrayList();
+		
+		
 		 
 			try {
-				rs = conn.createStatement().executeQuery("SELECT * FROM giornale where id="+g.getId()+"");
+				conn=ConnToDb.generalConnection();
+				
+				stmt= conn.createStatement();
+				rs=stmt.executeQuery("SELECT * FROM giornale where id="+g.getId()+"");
 			
             while(rs.next())
             {
 
         		
-        			catalogo.add((Giornale)f.createGiornale("giornale",rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+        			catalogo.add((Giornale)f.createGiornale(gior,rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
 					
         		
 
             }
+			stmt.close();
 			} catch (SQLException e1) {
-			 
+						 
 				e1.printStackTrace();
 			}
 			finally {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.getMessage();
-				 
-					
+				if(conn!=null)
+				{
+				conn.close();}
+				}if(rs!=null)
+				{
+					rs.close();
 				}
-			}
+			
+			
 
 		
 		
@@ -633,51 +650,56 @@ public class GiornaleDao {
 		
 	}
 
-	public ObservableList<Raccolta> getGiornaliByName(String s) throws SQLException {
+	public  ObservableList<Raccolta> getGiornaliByName(String s) throws SQLException {
 		
-		conn= ConnToDb.generalConnection();
 		ObservableList<Raccolta> catalogo=FXCollections.observableArrayList();
 		 
-             rs=conn.createStatement().executeQuery("SELECT * FROM giornale where titolo = '"+s+"' OR editore = '"+s+"'");
+		 
 
+         try
+         {
+        	 conn=ConnToDb.generalConnection();
+        	 stmt=conn.createStatement();
+        	 rs=stmt.executeQuery("SELECT * FROM giornale where titolo = '"+s+"' OR editore = '"+s+"'");
+         
             while(rs.next())
             {
 
-        		try {
-        			catalogo.add(f.createGiornale("giornale", rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
+        		
+        			catalogo.add(f.createGiornale(gior, rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4), rs.getDate(5).toLocalDate(),rs.getInt(6),rs.getInt(7),rs.getFloat(8),rs.getInt(9)));
 					
-        		} catch (Exception e) {
-    				e.getMessage();
+			}
+            stmt.close();
 
-				 
-					
-				}
-
-            }
-		conn.close();
+            
+         }catch(SQLException e)
+         {
+        	 e.getMessage();
+         }
+         finally {if(conn!=null)
+			{
+			conn.close();}
+			}if(rs!=null)
+			{
+				rs.close();
+			}
+		
 		return catalogo;
 		
 
 	}
 
-	public void aggiornaGiornale(Giornale g)  {
-		
-		
-		
-		
+	public  void aggiornaGiornale(Giornale g)  {
 		
 
-		
-	 	 
+			try {			
+				conn = ConnToDb.generalConnection();
 
-			 conn = ConnToDb.generalConnection();
-			try {
 				stmt=conn.createStatement();
-			query="USE ispw";
 			
 
 			stmt.executeQuery(query);
-		 	String query=" UPDATE `ispw`.`giornale`"
+		 	 query=" UPDATE `ispw`.`giornale`"
 		 			+ "SET"
 		 			+ "`titolo` =?,"
 		 			+ "`tipologia` = ?,"
@@ -700,7 +722,7 @@ public class GiornaleDao {
 			prepQ.setFloat(8,g.getPrezzo());
 
 
-			int rowAffected = prepQ.executeUpdate();
+			 prepQ.executeUpdate();
 			prepQ.close();
 			
             
@@ -711,36 +733,38 @@ public class GiornaleDao {
 			 
 				
 			}
-			finally {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					e.getMessage();
-				 
-					
-				}
-			}
+			finally {try {
+				conn.close();
+			} catch (SQLException |NullPointerException e) {
+				e.printStackTrace();
+			}}
+			
 
 	 }	
 
-	public static void generaReport() 
+	public   void generaReport() throws IOException, SQLException
 	{
-			try {
-				if (ConnToDb.connection())
-				{
+							 FileWriter w;
+							 BufferedWriter b;
+						     w=new FileWriter("ReportFinale\\riepilogoGiornali.txt");
+					        b=new BufferedWriter (w);
+
+
+
+		
+			try (b){
+				
 					conn = ConnToDb.generalConnection();
 					stmt=conn.createStatement();
-					query="USE ispw";
 					stmt.executeQuery(query);
 					
 					
-					rs=conn.createStatement().executeQuery("select titolo,editore,copiRim,prezzo as totale  from giornale;");
+					stmt=conn.createStatement();
+					rs=stmt.executeQuery("select titolo,editore,copiRim,prezzo as totale  from giornale;");
 					
-					 FileWriter w;
-				        w=new FileWriter("ReportFinale\\riepilogoGiornali.txt");
+				       
 
-				        BufferedWriter b;
-				        b=new BufferedWriter (w);
+				        
 				        while(rs.next())
 				        {
 				    	
@@ -763,25 +787,30 @@ public class GiornaleDao {
 
 				    			
 				    		
+				        
 				        }
+				        stmt.close();
 
 
-				      b.close();
-					}
+				     
+					
 			} catch (SQLException | IOException e) {
 				e.getMessage();
 			 
 				
 			}
 			finally {
-				try {
+				if(conn!=null)
+				{
 					conn.close();
-				} catch (SQLException e) {
-					e.getMessage();
-				 
-					
 				}
+				if(rs!=null)
+				{
+					rs.close();
+				}
+				
 			}
+			
 			
 	
 		

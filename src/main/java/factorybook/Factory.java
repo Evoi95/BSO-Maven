@@ -1,4 +1,4 @@
-package factoryBook;
+package factorybook;
 
 import java.sql.SQLException;
 import java.time.LocalDate;

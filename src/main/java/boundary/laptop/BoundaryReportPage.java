@@ -54,10 +54,6 @@ public class BoundaryReportPage implements Initializable {
 	protected Scene scene;
 	
 	private BufferedReader reader;
-	private BufferedReader readerR;
-	private BufferedReader readerL;
-	private BufferedReader readerG;
-	private BufferedReader reader3;
 	
 	
 	@FXML
@@ -103,7 +99,6 @@ public class BoundaryReportPage implements Initializable {
             
 
             Log.logger.log(Level.INFO,line);
-            line = reader.readLine();
         }
         reader.close();
     }
@@ -120,30 +115,28 @@ public class BoundaryReportPage implements Initializable {
 		
 		leggiLibri();
 		
-		leggiGiornali();
+		leggiGiornale();
+		reader=null;
+		String line2=null;
 		
 		
         try {
 		 reader = new BufferedReader(new FileReader("fileLibro"));
-        String line2 = reader.readLine();
-        while(line2!=null) {
+        while((line2=reader.readLine())!=null) {
             ta.appendText(line2.concat("\n"));
             
 
             Log.logger.log(Level.INFO,line2);
-            line2 = reader.readLine();
         }}catch(IOException e)
         {
         	e.getMessage();
         }
-        finally {
-        reader.close();
-        }
+        
 
 		
 	}
 	@FXML
-	private void reportGiornali() throws IOException
+	private void reportGiornali() throws IOException, SQLException
 	{
 		ta.clear();
 
@@ -202,171 +195,81 @@ public class BoundaryReportPage implements Initializable {
 	
 	private void  leggiLibri() throws IOException
 	{
-		 String line;
+		BufferedReader buffer;
+		buffer= new BufferedReader(new FileReader(fileLibro));
+        try ( buffer) {
+            String line = buffer.readLine();
+            while (line != null) {
+				ta.appendText(line.concat("\n"));
 
-		try {
+                line = buffer.readLine();
+            }
+        } catch (IOException e) {
+            Log.logger.log(Level.SEVERE, "", e);
+        } 
+		
 			
-			 readerL = new BufferedReader(new FileReader(fileLibro));		
-				
-	        while((line=readerL.readLine())!=null) {
-	            ta.appendText(readerL.readLine().concat("\n"));
-	            
-
-	            Log.logger.log(Level.INFO,line);
-	             line = readerL.readLine();
-	        }
-			}catch(IOException e)
-			{
-				e.getMessage();
-			}
-			finally {
-	        readerL.close();
-			}
 	}
-	private void leggiGiornale() {
-		try {
-			readerG = new BufferedReader(new FileReader(fileGiornale));
-			String line1 = readerG.readLine();
-			while(line1!=null) {
-            ta.appendText(line1.concat("\n"));
-            
+	private void leggiGiornale() throws FileNotFoundException  {
+		BufferedReader buffer;
+		buffer= new BufferedReader(new FileReader(fileGiornale));
+        try ( buffer) {
+            String line = buffer.readLine();
+            while (line != null) {
+				ta.appendText(line.concat("\n"));
 
-            Log.logger.log(Level.INFO,line1);
-            line1 = readerG.readLine();
-        }
-		} catch (IOException e) {
-			e.getMessage();
-		 
-			
-		 
-		} 
-		finally {
-        
-        try {
-        	
-			readerG.close();
-		} catch (IOException e) {
-			e.getMessage();
-		 
-			
-		}
-		}
+                line = buffer.readLine();
+            }
+        } catch (IOException e) {
+            Log.logger.log(Level.SEVERE, "", e);
+        } 
+		
+		
+	}
+		
+		
+		
 
 	
-	try {
-		reader = new BufferedReader(new FileReader("fileGiornale"));
-	} catch (FileNotFoundException e) {
-		e.getMessage();
-	 
+	private void riepilogoUtenti() throws FileNotFoundException
+	{
 		
-	}
-    String line2 = null;
-	try {
-		line2 = reader.readLine();
-	while(line2!=null) {
-        ta.appendText(line2.concat("\n"));
-        
+		BufferedReader buffer;
+		buffer= new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
+        try ( buffer) {
+            String line = buffer.readLine();
+            while (line != null) {
+				ta.appendText(line.concat("\n"));
 
-        Log.logger.log(Level.INFO,line2);
-       
-			line2 = reader.readLine();
+                line = buffer.readLine();
+            }
+        } catch (IOException e) {
+            Log.logger.log(Level.SEVERE, "", e);
+        } 
 		
+			
+
 	}
-	}catch(IOException | NullPointerException e)
-    {
-    	e.getCause();
-    }
-    
-    finally {
-    try {
-		reader.close();
-	} catch (IOException e) {
-		e.getMessage();
-	 
-		
-	}
-    }}
 	
-	private void riepilogoUtenti()
-	{
-		   
-				try {
-					reader3 = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-				} catch (FileNotFoundException e) {
-					e.getMessage();
-					
-				 
-					
-				}
-		        String line3 = null;
-				try {
-					line3 = reader3.readLine();
-				while(line3!=null) {
-		            ta.appendText(line3.concat("\n"));
-		            
-
-		            Log.logger.log(Level.INFO,line3);
-		            
-						line3 = reader3.readLine();
-					
-				}}catch(IOException | NullPointerException e)
-				{
-					e.getMessage();
-				}
-			finally {
-		        try {
-					reader3.close();
-				} catch (IOException e) {
-					e.getMessage();
-				 
-					
-				}
-			}
-
-	}
-	private void leggiGiornali() throws IOException
-	{
-		try {
-	        readerG = new BufferedReader(new FileReader(fileGiornale));
-	        String line1 = readerG.readLine();
-	        while(line1!=null) {
-	            ta.appendText(line1.concat("\n"));
-	            
-
-	            Log.logger.log(Level.INFO,line1);
-	            line1 = readerG.readLine();
-	        }}catch(IOException e)
-			{
-	        	e.getMessage();
-			}
-			finally {
-	        readerG.close();
-			}
-
-		
-	}
 	private void leggiRiviste() throws IOException
 	{
-		try {
-			 readerR = new BufferedReader(new FileReader("fileRiviste"));
-	        String line2 = readerR.readLine();
-	        while(line2!=null) {
-	            ta.appendText(line2.concat("\n"));
-	            
+		BufferedReader buffer;
+		buffer= new BufferedReader(new FileReader(fileRiviste));
+        try ( buffer) {
+            String line = buffer.readLine();
+            while (line != null) {
+				ta.appendText(line.concat("\n"));
 
-	            Log.logger.log(Level.INFO,line2);
-	            line2 = readerR.readLine();
-	        }
-			}catch(IOException e)
-	        {
-	        	e.getMessage();
-	        }
-			finally {
-	        readerR.close();
-			}
-
+                line = buffer.readLine();
+            }
+        } catch (IOException e) {
+            Log.logger.log(Level.SEVERE, "", e);
+        } 
+		
 	}
-	
 }
+		  
+		 
+		
 
 

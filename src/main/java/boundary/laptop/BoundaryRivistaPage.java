@@ -8,8 +8,7 @@ import java.util.ResourceBundle;
 import controller_app.ControllerCancellaRivista;
 import controller_app.ControllerRivistaPage;
 import controller_app.SingeltonSystemState;
-
-import factoryBook.Rivista;
+import factorybook.Rivista;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

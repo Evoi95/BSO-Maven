@@ -2,12 +2,13 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import controller_app.ControllerCancellaGiornale;
 import controller_app.ControllerGiornalePage;
 import controller_app.SingeltonSystemState;
-import factoryBook.Giornale;
+import factorybook.Giornale;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -106,7 +107,7 @@ public class BoundaryGiornaliPage implements Initializable{
 		
 	}
 	@FXML
-	private void genera()  {
+	private void genera() throws SQLException  {
 		table.setItems(cGP.getGiornaliS());
 	}
 	@Override

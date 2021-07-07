@@ -117,7 +117,7 @@ public class BoundaryUserPage implements Initializable {
 
 	}
 	@FXML
-	private void cancella()
+	private void cancella() throws NumberFormatException, SQLException
 	{
 		cCU.cancellaUtente(Integer.parseInt(utenteTF.getText()));
 	}
@@ -153,23 +153,22 @@ public class BoundaryUserPage implements Initializable {
 	
 	private void riepilogoUtenti() throws IOException
 	{
-		try {
-			reader = new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
-			String line = reader.readLine();
-			while(line!=null)
-			{
+		BufferedReader buffer;
+		buffer= new BufferedReader(new FileReader("ReportFinale\\riepilogoUtenti.txt"));
+        try ( buffer) {
+            String line = buffer.readLine();
+            while (line != null) {
 				elencoUtenti.appendText(line.concat("\n"));
-                Log.logger.log(Level.INFO,line);
-                line = reader.readLine();
-			}
-		}
-        catch(IOException e)
-        {
-        	e.getCause();
-        }
-        finally {
-        reader.close();
-        }
+
+                line = buffer.readLine();
+            }
+        } catch (IOException e) {
+            Log.logger.log(Level.SEVERE, "", e);
+        } 
+		
+        
+		
+		
 	}
 	
 	

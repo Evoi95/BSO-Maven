@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 
 import logger.Log;
@@ -13,10 +14,10 @@ import pagamento.Pagamento;
 import users.singelton.User;
 
 public class PagamentoDao {
-	private static String qInsert ;
-	private static PreparedStatement prepQ = null;
+	private  String qInsert ;
+	private  PreparedStatement prepQ = null;
 	private Connection connPag;
-    
+	
 
 	public void inserisciPagamento(Pagamento p) throws SQLException {
 		
@@ -52,9 +53,7 @@ public class PagamentoDao {
 		}
 	public void daiPrivilegi() 
 	{
-		 connPag=null;
 		 prepQ=null;
-	//	Double d=(double) disp;
 
 		 try {
 			  connPag = ConnToDb.generalConnection();
@@ -64,7 +63,7 @@ public class PagamentoDao {
 	            
 	         }catch(SQLException e)
 	         {
-	        	// esito=false;
+	        	
 	        	e.getMessage();
 
 	         }	
@@ -72,7 +71,7 @@ public class PagamentoDao {
 			 try {
 				connPag.close();
 			} catch (SQLException e) {
-			 
+			 e.getMessage();
 				
 			}
 		 }
@@ -140,43 +139,41 @@ public void aggiornaPagamentoCC(Pagamento p) throws SQLException {
 	}
 public ObservableList<Pagamento> getPagamenti()  {
 	
-	
+	 Statement stmt;
+	 ResultSet rs;
+    
 		
-		Connection conn= ConnToDb.generalConnection();
+		connPag= ConnToDb.generalConnection();
 
 		ObservableList<Pagamento> catalogo=FXCollections.observableArrayList();
 		 
-		//ConnToDb.connection();
-        ResultSet rs;
+		
 		try {
-			rs = conn.createStatement().executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,idProd from pagamento where eMail='"+User.getInstance().getEmail()+"'");
+			stmt=connPag.createStatement();
+			rs = stmt.executeQuery("SELECT id_op,metodo,esito,nomeUtente,spesaTotale,tipoAcquisto,idProd from pagamento where eMail='"+User.getInstance().getEmail()+"'");
 		
         while(rs.next())
         {
-           // Log.logger.log(Level.INFO,"res :"+rs);
 
-    		try {
+    		 
     			catalogo.add(new Pagamento (rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getFloat(5),rs.getString(6),rs.getInt(7)));
-    		} catch (Exception e) {
-			 
-				
-			}
-
+    		
         }
+        stmt.close();
 		} catch (SQLException e1) {
 		 
 			e1.printStackTrace();
 		}
 		finally {
         try {
-			conn.close();
+			connPag.close();
 		} catch (SQLException e) {
+			e.getMessage();
 		 
 			
 		}
 		}
 	
-	//catalogo.add(new Libro("pippo","pluto","it","fantasy","8004163529","paperino","avventura",100,11,11,5252020,18,null,true));
 	
 	Log.logger.log(Level.INFO,"{0}",catalogo);
 	return catalogo;

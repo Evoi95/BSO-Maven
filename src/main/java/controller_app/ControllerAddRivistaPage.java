@@ -3,7 +3,7 @@ package controller_app;
 import java.time.LocalDate;
 
 import database.RivistaDao;
-import factoryBook.Rivista;
+import factorybook.Rivista;
 
 public class ControllerAddRivistaPage {
 	private RivistaDao rd;

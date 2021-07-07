@@ -2,18 +2,21 @@ package controller_app;
 
 
 
+import java.io.IOException;
+import java.util.logging.Level;
+
 import database.UsersDao;
+import logger.Log;
 
 public class ControllerUserPage {
-	private UsersDao uD;
 	
-	public void getUtenti()  {
-		 uD.getListaUtenti();
+	public void getUtenti() throws IOException  {
+		 UsersDao.getListaUtenti();
 	}
 	
 	public ControllerUserPage()
 	{
-		uD=new UsersDao();
+		Log.logger.log(Level.INFO,"ControllerUserPage");
 	}
 	
 

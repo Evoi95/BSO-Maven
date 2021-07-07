@@ -2,6 +2,7 @@ package boundary.laptop;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import controller_app.ControllerModificaUtente;
@@ -87,7 +88,7 @@ public class BoundaryModificaUtente implements Initializable {
 
 	}
 	@FXML
-	private void aggiorna()
+	private void aggiorna() throws SQLException
 	{
 		if(cMU.aggiorna(nuovoNL.getText(),nuovoCL.getText(),
 				nuovaEmailL.getText(),nuovaPwd.getText(),

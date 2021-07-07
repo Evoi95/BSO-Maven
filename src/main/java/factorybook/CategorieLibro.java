@@ -1,4 +1,4 @@
-package factoryBook;
+package factorybook;
 
 import boundary.laptop.BookCategory;
 
@@ -6,18 +6,28 @@ public class CategorieLibro {
 	
 
 	private BookCategory categoria;
-	private Boolean isValid;
-	
-	
-	
+	public BookCategory getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(BookCategory categoria) {
+		this.categoria = categoria;
+	}
+
+	public boolean isValid() {
+		return isValid;
+	}
+
+	public void setValid(boolean isValid) {
+		this.isValid = isValid;
+	}
+	private boolean isValid;
 	public CategorieLibro(Boolean isValid) {
-		this. isValid = isValid;
-		this.isValid=true;
+		this.isValid=isValid;
 	}
 	
 	public CategorieLibro(String t) {
-		this.categoria = BookCategory.valueOf(t); 
-		this.isValid = true;
+		this.categoria = BookCategory.valueOf(t);
 		
 	}
 

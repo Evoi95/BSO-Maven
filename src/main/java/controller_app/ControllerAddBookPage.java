@@ -3,7 +3,7 @@ package controller_app;
 import java.time.LocalDate;
 
 import database.LibroDao;
-import factoryBook.Libro;
+import factorybook.Libro;
 
 public class ControllerAddBookPage {
 	private LibroDao ld;

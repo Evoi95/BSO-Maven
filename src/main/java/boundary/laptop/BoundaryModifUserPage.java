@@ -92,7 +92,7 @@ public class BoundaryModifUserPage implements Initializable{
 	private ControllerModifUserPage cMUP;
 	
 	@FXML
-	private void modUtente() {
+	private void modUtente() throws NullPointerException, SQLException {
 		
 
 		n=nomeTF.getText();

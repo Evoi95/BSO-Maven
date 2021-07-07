@@ -1,4 +1,4 @@
-package factoryBook;
+package factorybook;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -13,8 +13,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import logger.Log;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 
 
@@ -22,7 +20,11 @@ public class Libro implements Raccolta {
 	
 	private String titolo;
 	private int numPag;
-	private String codIsbn,editore,autore,lingua,categoria;
+	private String codIsbn;
+	private String editore;
+	private String autore;
+	private String lingua;
+	private String categoria;
 	private LocalDate dataPubb;
 	private String recensione;
 	private int nrCopie; // numero copie vendute
@@ -30,11 +32,9 @@ public class Libro implements Raccolta {
 	private int disponibilita;
 	private float prezzo;
 	private int copieRim;
-	private Desktop desktop;
-	private File dirToOpen;
-	private String filename;
+	
 	private int id;
-	//private PagamentoDao pD;
+	private String url="C:\\libriScaricati";
 	
 
 	
@@ -152,26 +152,13 @@ public class Libro implements Raccolta {
 		this.copieRim = copieRim;
 		this.id=id;
 	}
+	
 	@Override
-	public void compra() {
-		/*
-		Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("  Riepilogo download  ");
-        alert.setHeaderText("RIsultato download:");
-        alert.setContentText("Libro acquistato");
-        alert.showAndWait();
-        */
-	}
-	@Override
-	public void scarica() throws DocumentException, FileNotFoundException {
-		/*
-		Alert alert = new Alert(AlertType.INFORMATION);
-        alert.setTitle("  Riepilogo download  ");
-        alert.setHeaderText("RIsultato download:");
-        alert.setContentText("Scaricato nella cartella C:\\libriScaricati");
-        alert.showAndWait();*/
-		
-	      File file = new File("C:\\libriScaricati");
+	public void scarica() throws DocumentException, IOException {
+		File file=null;
+		File dirToOpen=null;
+		 file = new File(url);
+		 Desktop desktop=null;
 	      boolean bool = file.mkdir();
 	      if(bool){
 	         Log.logger.log(Level.INFO,"Directory created successfully");
@@ -184,14 +171,11 @@ public class Libro implements Raccolta {
 		  desktop = Desktop.getDesktop();
 	         dirToOpen = null;
 	        try {
-	        //	File folder=new File("C:\\");
-	            dirToOpen = new File("C:\\libriScaricati");
-	            try {
+	        
+	            dirToOpen = new File(url);
+	            
 					desktop.open(dirToOpen);
-				} catch (IOException e) {
-				 
-					
-				}
+				
 	        } catch (IllegalArgumentException iae) {
 	            Log.logger.log(Level.INFO,"File Not Found");
 	        }
@@ -199,15 +183,16 @@ public class Libro implements Raccolta {
 	}
 	@Override
 	public void leggi() {
-		filename= "C:\\libriScaricati\\prova2.pdf";
-
+		Document document=null;
 	    //definiamo il nome del nostro file di prova
 	    // Creiamo un Document
-	    Document document = new Document();
+	     document = new Document();
 	    // otteniamo una istanza di PdfWriter passando il document ed uno stream file
 	    try {
-			PdfWriter.getInstance(document, new FileOutputStream(filename));
+			PdfWriter.getInstance(document, new FileOutputStream("C:\\libriScaricati\\prova2.pdf"));
 			} catch (FileNotFoundException|DocumentException e) {
+				e.getMessage();
+
 			 
 				
 			} 
@@ -224,6 +209,8 @@ public class Libro implements Raccolta {
 						+ "\n"
 						+ "Aenean pharetra tortor semper, laoreet dui sed, porta lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum purus cursus venenatis mollis. Donec venenatis bibendum ullamcorper. Phasellus porttitor, mauris eget placerat imperdiet, tellus purus aliquet mauris, eget laoreet quam nibh eget nisi. Nam volutpat urna vitae eros porttitor efficitur. Etiam mi velit, vulputate sed lacinia rutrum, viverra sed nulla. Sed sem mi, tempus ut lacus faucibus, congue dignissim dolor. Praesent sed quam feugiat, condimentum eros non, luctus dui."));
 			} catch (DocumentException e) {
+				e.getMessage();
+
 			 
 				
 			}

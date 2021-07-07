@@ -1,9 +1,11 @@
 package controller_app;
 
 
+import java.sql.SQLException;
+
 import database.GiornaleDao;
-import factoryBook.Giornale;
-import factoryBook.Raccolta;
+import factorybook.Giornale;
+import factorybook.Raccolta;
 import javafx.collections.ObservableList;
 import users.singelton.User;
 
@@ -17,7 +19,7 @@ public class ControllerCompravenditaGiornali {
 		g = new Giornale();
 	}
 
-	public ObservableList<Raccolta> getGiornali()  {
+	public ObservableList<Raccolta> getGiornali() throws SQLException  {
 		
 		
 		return gD.getGiornali();
@@ -25,10 +27,10 @@ public class ControllerCompravenditaGiornali {
 	}
 
 	public boolean disponibilitaGiornale(String i )  {
-		
+		int id=0;
 		 
 
-		int id = Integer.parseInt(i);
+		id= Integer.parseInt(i);
 		
 		return gD.checkDisp(g,id);
 	}

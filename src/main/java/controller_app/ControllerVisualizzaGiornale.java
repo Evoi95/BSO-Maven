@@ -1,9 +1,10 @@
 package controller_app;
 
+import java.sql.SQLException;
 import java.util.logging.Level;
 
 import database.GiornaleDao;
-import factoryBook.Giornale;
+import factorybook.Giornale;
 import logger.Log;
 
 public class ControllerVisualizzaGiornale {
@@ -28,7 +29,7 @@ public class ControllerVisualizzaGiornale {
 		Log.logger.log(Level.INFO,"{0}",SingeltonSystemState.getIstance().getId());
 		return SingeltonSystemState.getIstance().getId();
 	}
-	public Giornale getData(int i) 
+	public Giornale getData(int i) throws SQLException 
 	{
 		// imposto che è un giornale nel controller
 		SingeltonSystemState.getIstance().setTypeAsDaily();

@@ -9,7 +9,7 @@ import controller_app.ControllerRicercaPage;
 import controller_app.ControllerVisualizzaGiornale;
 import controller_app.ControllerVisualizzaLibro;
 import controller_app.ControllerVisualizzaRivista;
-import factoryBook.Raccolta;
+import factorybook.Raccolta;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

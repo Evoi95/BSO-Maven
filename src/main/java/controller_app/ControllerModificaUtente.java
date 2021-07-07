@@ -1,5 +1,6 @@
 package controller_app;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.logging.Level;
 
@@ -8,14 +9,13 @@ import users.singelton.User;
 import logger.Log;
 
 public class ControllerModificaUtente {
-	private UsersDao uD;
 	private boolean state = false;
 
 	
 	
 	public ControllerModificaUtente()
 	{
-		uD=new UsersDao();
+		Log.logger.log(Level.INFO,"ControllerModifUtente");
 	}
 
 
@@ -27,7 +27,7 @@ public class ControllerModificaUtente {
 		
 	}
 
-	public boolean aggiorna(String n, String c, String email, String pass, String desc, LocalDate localDate, String vecchiaMail) {
+	public boolean aggiorna(String n, String c, String email, String pass, String desc, LocalDate localDate, String vecchiaMail) throws SQLException {
 		
 		
 		try {
@@ -57,18 +57,18 @@ public class ControllerModificaUtente {
 		if(!pass.equals("") && pass!=null && !pass.equals(User.getInstance().getPassword()))
 		{
 			User.getInstance().setPassword(pass);
-			uD.aggiornaPass(User.getInstance());
+			UsersDao.aggiornaPass(User.getInstance());
 			state =  true; 
 
 		}
 		if(!desc.equals("") && desc!=(null) && !desc.equals(User.getInstance().getDescrizione()))
 		{
 			User.getInstance().setDescrizione(desc);
-			uD.aggiornaDesc(User.getInstance());
+			UsersDao.aggiornaDesc(User.getInstance());
 			state =  true; 
 		}
 
-		if((localDate.toString()!=" ") && localDate!=(null) && !localDate.equals(User.getInstance().getDataDiNascita()))
+		if(!(localDate.toString().equals(" ")) && localDate!=(null) && !localDate.equals(User.getInstance().getDataDiNascita()))
 		{
 			User.getInstance().setDataDiNascita(localDate);
 			state = true;

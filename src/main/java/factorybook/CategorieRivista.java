@@ -1,16 +1,30 @@
-package factoryBook;
+package factorybook;
 
 import boundary.laptop.MagazineCategory;
 
 public class CategorieRivista {
 	
 	private MagazineCategory type;
+	public MagazineCategory getType() {
+		return type;
+	}
+
+	public void setType(MagazineCategory type) {
+		this.type = type;
+	}
+
+	public Boolean getIsValid() {
+		return isValid;
+	}
+
+	public void setIsValid(Boolean isValid) {
+		this.isValid = isValid;
+	}
 	private Boolean isValid;
 	
 	public CategorieRivista(Boolean isValid)
 	{
 		this.isValid=isValid;
-		this.isValid=false;
 	}
 	
 	public CategorieRivista(String r) {

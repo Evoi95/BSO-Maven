@@ -86,11 +86,11 @@ public class User {
 	{
 		return instance;
 	}
-	public User login( String a) {
+	public User login() {
 		
 
-		a="Sono loggato come User generico";
-		Log.logger.log(Level.INFO,a);
+	
+		Log.logger.log(Level.INFO,"Sono loggato come User generico");
 		return null;
 		
 	}

@@ -1,4 +1,4 @@
-package factoryBook;
+package factorybook;
 
 import java.awt.Desktop;
 import java.io.File;
@@ -28,10 +28,7 @@ public class Giornale implements Raccolta {
 	private int disponibilita;
 	private float prezzo;
 	private int id;
-	private Desktop desktop;
-	private File dirToOpen;
-	private String filename;
-	
+	private String url="C:\\libriScaricati";
 
 	
 
@@ -101,15 +98,15 @@ public class Giornale implements Raccolta {
 
 
 
-	@Override
-	public void compra() {
-		
-		
-	}
 
 	@Override
-	public void scarica() {
-		  File file = new File("C:\\libriScaricati");
+	public void scarica() throws IOException {
+		Desktop desktop=null;
+		 File dirToOpen=null;
+		 File file;
+
+
+		   file = new File(url);
 	      boolean bool = file.mkdir();
 	      if(bool){
 	         Log.logger.log(Level.INFO,"Directory created successfully");
@@ -120,16 +117,11 @@ public class Giornale implements Raccolta {
 	      
 	      
 		  desktop = Desktop.getDesktop();
-	         dirToOpen = null;
 	        try {
-	        //	File folder=new File("C:\\");
-	            dirToOpen = new File("C:\\libriScaricati");
-	            try {
+	            dirToOpen = new File(url);
+	            
 					desktop.open(dirToOpen);
-				} catch (IOException e) {
-				 
-					
-				}
+				
 	        } catch (IllegalArgumentException iae) {
 	            Log.logger.log(Level.INFO,"File Not Found");
 	        }
@@ -140,15 +132,18 @@ public class Giornale implements Raccolta {
 
 	@Override
 	public void leggi() {
-		filename= "C:\\libriScaricati\\prova2.pdf";
+		 Document document=null;
+
 
 	    //definiamo il nome del nostro file di prova
 	    // Creiamo un Document
-	    Document document = new Document();
+	     document = new Document();
 	    // otteniamo una istanza di PdfWriter passando il document ed uno stream file
 	    try {
-			PdfWriter.getInstance(document, new FileOutputStream(filename));
+			PdfWriter.getInstance(document, new FileOutputStream("C:\\libriScaricati\\prova2.pdf"));
 			} catch (FileNotFoundException|DocumentException e) {
+				e.getMessage();
+
 			 
 				
 			} 
@@ -165,6 +160,7 @@ public class Giornale implements Raccolta {
 						+ "\n"
 						+ "Aenean pharetra tortor semper, laoreet dui sed, porta lacus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum purus cursus venenatis mollis. Donec venenatis bibendum ullamcorper. Phasellus porttitor, mauris eget placerat imperdiet, tellus purus aliquet mauris, eget laoreet quam nibh eget nisi. Nam volutpat urna vitae eros porttitor efficitur. Etiam mi velit, vulputate sed lacinia rutrum, viverra sed nulla. Sed sem mi, tempus ut lacus faucibus, congue dignissim dolor. Praesent sed quam feugiat, condimentum eros non, luctus dui."));
 			} catch (DocumentException e) {
+				e.getMessage();
 			 
 				
 			}
@@ -176,7 +172,6 @@ public class Giornale implements Raccolta {
 
 	public Giornale(String titolo, String tipologia, String lingua, String editore, LocalDate dataPubb2, int copieRimanenti,
 			int disponibilita, float prezzo, int id ) {
-		super();
 		this.titolo = titolo;
 		this.tipologia = tipologia;
 		this.lingua = lingua;

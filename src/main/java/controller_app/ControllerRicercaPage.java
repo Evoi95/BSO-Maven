@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 
 import database.*;
-import factoryBook.*;
+import factorybook.*;
 import javafx.collections.ObservableList;
 import logger.Log;
 

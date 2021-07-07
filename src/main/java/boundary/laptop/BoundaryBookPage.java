@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
 import controller_app.ControllerBookPage;
 import controller_app.ControllerCancLibro;
 import controller_app.SingeltonSystemState;
-import factoryBook.Libro;
+import factorybook.Libro;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

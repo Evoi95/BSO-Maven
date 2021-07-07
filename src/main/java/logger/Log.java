@@ -12,13 +12,15 @@ public class Log {
 
 	public static final Logger logger = Logger.getLogger( Logger.GLOBAL_LOGGER_NAME );
 	private FileHandler fh;
+	private SimpleFormatter formatter;
+	private ConsoleHandler cH;
 	
 	public Log() 
 	{
 		LogManager.getLogManager().reset();
 		logger.setLevel(Level.ALL);
 		
-		ConsoleHandler cH = new ConsoleHandler();
+		cH = new ConsoleHandler();
 		cH.setLevel(Level.SEVERE);
 		logger.addHandler(cH);
 		
@@ -31,7 +33,7 @@ public class Log {
 			logger.warning("No handler file! : "+e);
 		}
 		logger.addHandler(fh);
-		SimpleFormatter formatter = new SimpleFormatter();
+		 formatter = new SimpleFormatter();
 		fh.setFormatter(formatter);
 		
 	} 

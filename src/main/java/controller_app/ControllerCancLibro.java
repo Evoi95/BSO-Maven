@@ -1,7 +1,7 @@
 package controller_app;
 
 import database.LibroDao;
-import factoryBook.Libro;
+import factorybook.Libro;
 
 public class ControllerCancLibro {
 	
