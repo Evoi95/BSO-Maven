@@ -35,7 +35,7 @@ public class BoundaryDownload implements Initializable {
 	@FXML
 	private Button buttonI;
 	@FXML
-	private Button buttonA;
+	private Button buttonA;	
 
 	private ControllerDownload cD;
 	protected Alert a;

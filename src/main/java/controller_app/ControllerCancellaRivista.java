@@ -1,4 +1,4 @@
-package controller_app;
+	package controller_app;
 
 import database.RivistaDao;
 import factorybook.Rivista;

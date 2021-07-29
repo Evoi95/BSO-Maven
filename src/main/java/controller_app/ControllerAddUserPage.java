@@ -9,7 +9,6 @@ import logger.Log;
 import users.singelton.TempUser;
 
 public class ControllerAddUserPage {
-	private UsersDao uD;
 	private static TempUser u=TempUser.getInstance();
 	
 	public ControllerAddUserPage()

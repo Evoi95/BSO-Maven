@@ -423,7 +423,7 @@ public class LibroDao  {
 					disp = rs.getInt(1);
 					if (disp >= 1)
 						state=true;
-			        Log.logger.log(Level.INFO, "libro trovato : .{0} ", l.getTitolo());
+			        Log.logger.log(Level.INFO, "libro trovato  ");
 					}
 			}
 		} catch (SQLException e) {

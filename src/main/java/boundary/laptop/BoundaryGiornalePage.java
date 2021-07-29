@@ -1,4 +1,4 @@
-package boundary.laptop;
+/*package boundary.laptop;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -55,4 +55,4 @@ public class BoundaryGiornalePage implements Initializable{
 		prezzo.setCellValueFactory(new PropertyValueFactory<>("prezzo"));
 		
 	}
-}
+}*/

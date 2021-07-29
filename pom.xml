@@ -151,7 +151,7 @@
 		        <argLine>
 		            --illegal-access=permit
 		        </argLine>
-		        <skipTests>false</skipTests>
+		        <skipTests>true</skipTests>
                 <testFailureIgnore>true</testFailureIgnore>
                 <forkCount>0</forkCount> 
 		    </configuration>
@@ -312,6 +312,15 @@
 		    <version>4.0.16-alpha</version>
 		    <scope>test</scope>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+		
 		
   </dependencies>
 

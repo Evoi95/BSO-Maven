@@ -1,4 +1,4 @@
-package users.singelton;
+	package users.singelton;
 
 import java.time.LocalDate;
 

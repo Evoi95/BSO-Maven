@@ -27,7 +27,7 @@ public class RivistaDao {
 	private  ResultSet rs;
 	private int row=0;
 	private int id = 0;
-	private 		boolean state=false;
+	private boolean state=false;
 	private String rivista="SELECT * FORM RIVISTA;";
 	private String usaDB="USE ISPW;";
 	private String riv="rivista";

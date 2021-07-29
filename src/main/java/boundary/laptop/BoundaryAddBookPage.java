@@ -154,10 +154,45 @@ public class BoundaryAddBookPage implements Initializable {
 		cABP=new ControllerAddBookPage();
 		
 		categoriaList.setItems(items);
-		items.add("horror");
-		items.add("thriller");
-		items.add("fantasy");
-		items.add("avventura");
+
+		items.add("ADOLESCENTI_RAGAZZI");
+		items.add("ARTE");
+		items.add("CINEMA_FOTOGRAFIA");
+		items.add("BIOGRAFIE");
+		items.add("DIARI_MEMORIE");
+		items.add("CALENDARI_AGENDE");
+		items.add("DIRITTO");
+		items.add("DIZINARI_OPERE");
+		items.add("ECONOMIA");
+		items.add("FAMIGLIA");
+		items.add("SALUTE_BENESSERE");
+		items.add("FANTASCIENZA_FANTASY");
+		items.add("FUMETTI_MANGA");
+		items.add("GIALLI_THRILLER");
+		items.add("SELFHELP");
+		items.add("COMPUTER_GIOCHI");
+		items.add("HUMOR");
+		items.add("INFORMATICA");
+		items.add("WEB_DIGITAL_MEDIA");
+		items.add("LETTERATURA_NARRATIVA");
+		items.add("LIBRI_BAMBINI");
+		items.add("LIBRI_SCOLASTICI");
+		items.add("LIBRI_UNIVERSITARI");
+		items.add("RICETTARI_GENERALI");
+		items.add("LINGUISTICA_SCRITTURA");
+		items.add("POLITICA");
+		items.add("RELIGIONE");
+		items.add("ROMANZI_ROSA");
+		items.add("SCIENZE");
+		items.add("TECNOLOGIA_MEDICINA");
+		items.add("SPORT");
+		items.add("STORIA");
+		items.add("TEMPO_LIBERO");
+		items.add("VIAGGI");
+		items.add("ALTRO");
+
+		
+		
 		
 		
 	}

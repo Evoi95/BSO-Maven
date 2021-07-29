@@ -11,10 +11,10 @@ public class CreateDefaultDB
 {
 	private static Statement st = null ;
 	private static String query ;
-	 private static String creaEditore=" Create table  if not exists EDITORE("
+	 private static String creaEditore="Create table if not exists EDITORE("
 				+ "idEditor int primary key not null auto_increment,"
 				+ "idUser int, casaEditrice VARCHAR (200), "
-				+ "FOREIGN KEY (idUser) REFERENCES USERS(idUser) ";
+				+ "FOREIGN KEY (idUser) REFERENCES USERS(idUser));";
 	 private static String creaScrittore="Create table  if not exists SCRITTORI("
 				+ "idScrittore int primary key not null auto_increment,"
 				+ "idUser int, editoreAssociato int, "
