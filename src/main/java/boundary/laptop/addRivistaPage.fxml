@@ -4,13 +4,13 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
-
 
 <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="681.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="boundary.laptop.BoundaryAddRivistaPage">
    <children>
@@ -45,7 +45,6 @@
             <Label fx:id="labelP" prefHeight="57.0" prefWidth="135.0" text="Inserire Prezzo:" GridPane.rowIndex="8" />
             <Label fx:id="labelCopie" prefHeight="54.0" prefWidth="171.0" text="Inserire CopieRimanenti:" GridPane.rowIndex="9" />
             <TextField fx:id="titoloTF" GridPane.columnIndex="2" />
-            <TextField fx:id="tipologiaTF" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <TextField fx:id="autoreTF" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <TextField fx:id="linguaTF" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <TextField fx:id="prezzoTF" GridPane.columnIndex="2" GridPane.rowIndex="8" />
@@ -54,6 +53,7 @@
             <DatePicker fx:id="datePick" prefHeight="43.0" prefWidth="231.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
             <CheckBox fx:id="dispCheck" mnemonicParsing="false" text="Flaggare per disponibile" GridPane.columnIndex="2" GridPane.rowIndex="7" />
             <TextField fx:id="copieTF" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+            <ListView fx:id="tipologiaTF" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
          </children>
       </GridPane>
       <Button fx:id="buttonAdd" layoutX="577.0" layoutY="238.0" mnemonicParsing="false" onAction="#aggiungi" text="Aggiungi" textAlignment="CENTER" textFill="#19f502" />

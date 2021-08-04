@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 import controller_app.ControllerAddRivistaPage;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -45,7 +47,7 @@ public class BoundaryAddRivistaPage implements Initializable{
 	@FXML
 	private TextField titoloTF;
 	@FXML
-	private TextField tipologiaTF;
+	private ListView<String> tipologiaTF;
 	@FXML
 	private TextField autoreTF;
 	@FXML
@@ -73,13 +75,15 @@ public class BoundaryAddRivistaPage implements Initializable{
 	protected float prezzo ; 
 	protected int copie;
 	protected boolean esito ;
+	private ObservableList<String> items = FXCollections.observableArrayList();
+
 	
 	@FXML
 	private void aggiungi()
 	{
 		int dispo;
 		String t=titoloTF.getText();
-		String tipologia=tipologiaTF.getText();
+		String tipologia=tipologiaTF.getSelectionModel().getSelectedItem();
 		String a=autoreTF.getText();
 		String l=linguaTF.getText();
 		String ed=editoreTF.getText();
@@ -120,8 +124,25 @@ public class BoundaryAddRivistaPage implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		
 		 cARP=new ControllerAddRivistaPage ();
+		 tipologiaTF.setItems(items);
+		 
+		 items.add("SETTIMANALE");
+		 items.add("BISETTIMANALE");
+		 items.add("MENSILE");
+		 items.add("BIMESTRALE");
+		 items.add("TRIMESTRALE");
+		 items.add("ANNUALE");
+		 items.add("ESTIVO");
+		 items.add("INVERNALE");
+		 items.add("SPORTIVO");
+		 items.add("CINEMATOGRAFICA");
+		 items.add("GOSSIP");
+		 items.add("TELEVISIVO");
+		 items.add("MILITARE");
+		 items.add("INFORMATICA");
+		
 
-
+		 
 		
 	}
 	
